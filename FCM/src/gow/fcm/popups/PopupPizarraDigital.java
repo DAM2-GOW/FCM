@@ -27,9 +27,9 @@ public class PopupPizarraDigital extends Activity {
 		
 		ll = (LinearLayout) findViewById(R.id.LinearLayoutBB); // Obtenemos los objetos a manipular.
 		bb = (PizarraDigital) findViewById(R.id.jugadas_campo);
-		view_btn_paint = (View) findViewById(R.id.view_btn_paint);
-		view_btn_circle = (View) findViewById(R.id.view_btn_circle);
-		view_btn_x = (View) findViewById(R.id.view_btn_x);
+		view_btn_paint = findViewById(R.id.view_btn_paint);
+		view_btn_circle = findViewById(R.id.view_btn_circle);
+		view_btn_x = findViewById(R.id.view_btn_x);
 		
 		pass_paint = true; // Personalizamos los estados iniciales.
 		pass_circle = false;
@@ -143,7 +143,7 @@ public class PopupPizarraDigital extends Activity {
 		params.width = 1200; // Fijamos el tamaño en anchura.
 		params.alpha = 1.0f; // Podemos otorgarle transparencia al Pop-Up.
 		params.dimAmount = 0.5f; // Fijamos el nivel de oscuridad para el activity de fondo.
-		activity.getWindow().setAttributes((android.view.WindowManager.LayoutParams) params); // Aplicamos los valores establecidos al Activity.
+		activity.getWindow().setAttributes(params); // Aplicamos los valores establecidos al Activity.
 	}
 	
 }

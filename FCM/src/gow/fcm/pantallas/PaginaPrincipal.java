@@ -110,9 +110,9 @@ public class PaginaPrincipal extends Activity{
 		AlphaAnimation  blinkanimation=new AlphaAnimation(1,0); //Visible->Invisible
 		blinkanimation.setDuration(1000); //Tiempo en milisegundos
 		blinkanimation.setInterpolator(new LinearInterpolator()); //Tansición linear
-		blinkanimation.setRepeatCount(AlphaAnimation.INFINITE); //Repetir la animación infinitamente
+		blinkanimation.setRepeatCount(Animation.INFINITE); //Repetir la animación infinitamente
 		blinkanimation.setRepeatMode(Animation.REVERSE); //Vuelve a empezar
-		View nombresEquipos=(View) findViewById(R.id.nombre_equipo); //Objeto view del texto
+		View nombresEquipos=findViewById(R.id.nombre_equipo); //Objeto view del texto
 		nombresEquipos.setAnimation(blinkanimation); //Asignamos el efecto
 		
 		if(nombre==null){
@@ -128,7 +128,7 @@ public class PaginaPrincipal extends Activity{
 	//Método que realiza una acciones al hacer clic sobre las diferentes opciones del entrenador
 	private void opcionesEntrenador(){
 		//Declaramos como variable la imagen
-		final View configuracionEntrenador=(View) findViewById(R.id.boton_entrenador);
+		final View configuracionEntrenador=findViewById(R.id.boton_entrenador);
 		
 		//Acción a realizar
 		configuracionEntrenador.setOnTouchListener(new OnTouchListener(){
@@ -154,10 +154,10 @@ public class PaginaPrincipal extends Activity{
 	//Método que muestra los botones en los cuales puedes navegar en la aplicación
 	private void seccionesBotones(){
 		//Declaramos la variables que harán de botones
-		View botonEquipo=(View) findViewById(R.id.boton_equipo);
-		View botonPizarra=(View) findViewById(R.id.boton_pizarra);
-		View botonEvento=(View) findViewById(R.id.boton_evento);
-		View botonCalendario=(View) findViewById(R.id.boton_calendario);
+		View botonEquipo=findViewById(R.id.boton_equipo);
+		View botonPizarra=findViewById(R.id.boton_pizarra);
+		View botonEvento=findViewById(R.id.boton_evento);
+		View botonCalendario=findViewById(R.id.boton_calendario);
 		
 		//Declaramos la variables que harán la animación al pulsar el botón
 		final ImageView imgEquipo=(ImageView) findViewById(R.id.equipo);

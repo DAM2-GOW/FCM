@@ -24,6 +24,7 @@ public class CreateUpgradeSQLite extends SQLiteOpenHelper{
 		super(contexto,nombre,factory,version);
 	}
 	
+	@Override
 	public void onCreate(SQLiteDatabase db){
 		//Se ejecuta la sentencia SQL de creación de la tabla
 		db.execSQL(sqlCreate1);
@@ -36,6 +37,7 @@ public class CreateUpgradeSQLite extends SQLiteOpenHelper{
 		db.execSQL(sqlCreate8);
 	}
 	
+	@Override
 	public void onUpgrade(SQLiteDatabase db, int versionAnterior, int versionNueva){
 		//Se modifica la versión anterior de la tabla
 		db.execSQL(sqlAlter);
