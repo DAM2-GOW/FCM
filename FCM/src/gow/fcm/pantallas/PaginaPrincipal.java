@@ -269,5 +269,5 @@ public class PaginaPrincipal extends Activity{
 		Intent i=new Intent(this,PaginaCalendario.class);
 		startActivity(i);
 	}
-	
+
 }
