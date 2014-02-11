@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Football Coach Manager</string>
+    <string name="no_photo_img">Entrenador sin foto</string>
+    <string name="coach_name">Nombre del entrenador</string>
+    <string name="coach_surname">Apellidos del entrendor</string>
+    <string name="coach_settings">Opciones del entrenador</string>
+    <string name="team_name">Nombre del equipo</string>
+    <string name="team_management">Administrar equipo</string>
+    <string name="team_management_img">Imagen administrar equipo</string>
+    <string name="digital_board">Pizarra digital</string>
+    <string name="digital_board_img">Imagen pizarra digital</string>
+    <string name="event_management">Eventos</string>
+    <string name="event_management_img">Imagen eventos</string>
+    <string name="team_calendar">Calendario</string>
+    <string name="team_calendar_img">Imagen calendario</string>
+    <string name="op_no">No</string>
+    <string name="op_si">Si</string>
+    <string name="title_popup_blackboard">Pizarra digital</string>
+    <string name="main_menu_settings">Opciones</string>
+    <string name="bb_menu_exit">Salir</string>
+    <string name="bb_menu_save">Guardar</string>
+    <string name="bb_menu_restore">Restablecer</string>
+    <string name="no_training">No hay entrenamiento</string>
+    <string name="event_training1">Entrenamiento de resistencia para</string>
+    <string name="event_training2">Entrenamiento de fuerza para</string>
+    <string name="event_training3">Entrenamiento de agilidad para</string>
+    <string name="no_match">No hay partido</string>
+    <string name="event_match1">Partido como local contra</string>
+    <string name="event_match2">Partido como visitante contra</string>
+    <string name="add_event_img">Imagen agregar evento</string>
+    <string name="look_stats_img">Imagen ver estadísticas</string>
+    <string name="edit_event_img">Imagen editar evento</string>
+    <string name="delete_event_img">Imagen eliminar evento</string>
+    <string name="delete_training">Borrar entrenamiento</string>
+    <string name="delete_match">Borrar partido</string>
+    <string name="title_page_calendar">Calendario</string>
+
+</resources>

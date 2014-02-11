@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical"
+        android:padding="50dp" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:paddingBottom="50dp" >
+
+            <ImageView
+                android:id="@+id/equipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/team_management_img"
+                android:src="@drawable/team_management_up" />
+
+            <TextView
+                android:id="@+id/calendario_principal"
+                android:layout_width="245dp"
+                android:layout_height="170dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/equipo"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingLeft="2dp"
+                android:text="@string/team_management"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:typeface="serif" />
+
+            <View
+                android:id="@+id/boton_equipo"
+                android:layout_width="435dp"
+                android:layout_height="170dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:paddingTop="50dp" >
+
+            <ImageView
+                android:id="@+id/pizarra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/digital_board_img"
+                android:src="@drawable/digital_board_up" />
+
+            <TextView
+                android:id="@+id/pizarra_digital"
+                android:layout_width="245dp"
+                android:layout_height="170dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/pizarra"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingLeft="2dp"
+                android:text="@string/digital_board"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:typeface="serif" />
+
+            <View
+                android:id="@+id/boton_pizarra"
+                android:layout_width="435dp"
+                android:layout_height="170dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:padding="50dp" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:paddingBottom="50dp" >
+
+            <ImageView
+                android:id="@+id/evento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/event_management_img"
+                android:src="@drawable/event_management_up" />
+
+            <TextView
+                android:id="@+id/administrar_eventos"
+                android:layout_width="245dp"
+                android:layout_height="170dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/evento"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingLeft="2dp"
+                android:text="@string/event_management"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:typeface="serif" />
+
+            <View
+                android:id="@+id/boton_evento"
+                android:layout_width="435dp"
+                android:layout_height="170dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:paddingTop="50dp" >
+
+            <ImageView
+                android:id="@+id/calendario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/team_calendar_img"
+                android:src="@drawable/team_calendar_up" />
+
+            <TextView
+                android:id="@+id/pruebas"
+                android:layout_width="245dp"
+                android:layout_height="170dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/calendario"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingLeft="2dp"
+                android:text="@string/team_calendar"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:typeface="serif" />
+
+            <View
+                android:id="@+id/boton_calendario"
+                android:layout_width="435dp"
+                android:layout_height="170dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" />
+
+        </RelativeLayout>
+        
+    </LinearLayout>
+
+</LinearLayout>

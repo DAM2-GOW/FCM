@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:id="@+id/borrarPart" android:title="@string/delete_match">
+        
+        <menu>
+            
+            <item android:id="@+id/optionNoPart" android:title="@string/op_no"/>
+            <item android:id="@+id/optionSiPart" android:title="@string/op_si"/>
+            
+        </menu>
+        
+    </item>
+
+</menu>

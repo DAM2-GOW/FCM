@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    tools:context=".PopupPizarraDigital" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutMenu"
+        android:layout_width="180dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/bb_menu_skin"
+        android:orientation="vertical"
+        android:gravity="center" >
+
+        <View
+            android:id="@+id/view_btn_paint"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:background="@drawable/bb_btn_paint_selected" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+
+        <View
+            android:id="@+id/view_btn_circle"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:background="@drawable/bb_btn_circle" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+
+        <View
+            android:id="@+id/view_btn_x"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:background="@drawable/bb_btn_x" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutBB"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/algae_green"
+        android:orientation="vertical" >
+
+        <gow.fcm.utilidades.PizarraDigital
+            android:id="@+id/jugadas_campo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
