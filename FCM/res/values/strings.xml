@@ -36,5 +36,8 @@
     <string name="delete_training">Borrar entrenamiento</string>
     <string name="delete_match">Borrar partido</string>
     <string name="title_page_calendar">Calendario</string>
+    <string name="title_activity_config_entre">Config_entre</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
