@@ -22,7 +22,7 @@ public class PopUpNuevoEntrenamiento extends Activity {
 		showAsPopup(this);
 		setContentView(R.layout.activity_popup_nuevo_entrenamiento);
 		
-		dp = (DatePicker) findViewById(R.id.datePicker1);
+		dp = (DatePicker) findViewById(R.id.fecha_entrenamientoNuevo);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 	        dp.setCalendarViewShown(false);
 	    }
