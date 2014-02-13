@@ -40,6 +40,18 @@
             android:name="gow.fcm.pantallas.Config_entre"
             android:label="@string/title_activity_config_entre" >
         </activity>
+        <activity
+            android:name="gow.fcm.popups.PopUpNuevoJugador"
+            android:label="@string/title_activity_pop_up_nuevo_jugador" >
+        </activity>
+        <activity
+            android:name="gow.fcm.footbagow.fcm.popups.PopUpNuevoEntrenamiento" 
+            android:label="@string/title_activity_pop_up_nuevo_entrenamiento" >
+        </activity>
+        <activity
+            android:name="gow.fcm.footbagow.fcm.popups.PopUpNuevoPartido"
+            android:label="@string/title_activity_pop_up_nuevo_partido" >
+        </activity>
     </application>
 
 </manifest>

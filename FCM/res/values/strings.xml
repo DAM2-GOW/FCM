@@ -39,5 +39,8 @@
     <string name="title_activity_config_entre">Config_entre</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_pop_up_nuevo_jugador">PopUpNuevoJugador</string>
+    <string name="title_activity_pop_up_nuevo_entrenamiento">PopUpNuevoEntrenamiento</string>
+    <string name="title_activity_pop_up_nuevo_partido">PopUpNuevoPartido</string>
 
 </resources>
