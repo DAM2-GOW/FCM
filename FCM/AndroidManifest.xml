@@ -56,6 +56,10 @@
             android:name="gow.fcm.pantallas.PopUp_config_entre"
             android:label="@string/title_activity_pop_up_config_entre" >
         </activity>
+        <activity
+            android:name="gow.fcm.pantallas.EstadisticasJugador"
+            android:label="@string/title_activity_estadisticas_jugador" >
+        </activity>
     </application>
 
 </manifest>

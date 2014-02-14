@@ -51,5 +51,6 @@
     </string-array>
 
     <string name="title_activity_pop_up_config_entre">PopUp_config_entre</string>
+    <string name="title_activity_estadisticas_jugador">EstadisticasJugador</string>
 
 </resources>
