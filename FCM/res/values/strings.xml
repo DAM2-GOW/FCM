@@ -42,11 +42,14 @@
     <string name="title_activity_pop_up_nuevo_jugador">PopUpNuevoJugador</string>
     <string name="title_activity_pop_up_nuevo_entrenamiento">PopUpNuevoEntrenamiento</string>
     <string name="title_activity_pop_up_nuevo_partido">PopUpNuevoPartido</string>
+
     <string-array name="TipoEntrenamiento">
-        <item >Resistencia</item>
-        <item >Fuerza</item>
-        <item >Agilidad</item>
-        <item >Específico</item>
+        <item>Resistencia</item>
+        <item>Fuerza</item>
+        <item>Agilidad</item>
+        <item>Específico</item>
     </string-array>
+
+    <string name="title_activity_pop_up_config_entre">PopUp_config_entre</string>
 
 </resources>
