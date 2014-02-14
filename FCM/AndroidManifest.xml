@@ -45,16 +45,12 @@
             android:label="@string/title_activity_pop_up_nuevo_jugador" >
         </activity>
         <activity
-            android:name="gow.fcm.footbagow.fcm.popups.PopUpNuevoEntrenamiento"
+            android:name="gow.fcm.popups.PopUpNuevoEntrenamiento"
             android:label="@string/title_activity_pop_up_nuevo_entrenamiento" >
         </activity>
         <activity
-            android:name="gow.fcm.footbagow.fcm.popups.PopUpNuevoPartido"
+            android:name="gow.fcm.popups.PopUpNuevoPartido"
             android:label="@string/title_activity_pop_up_nuevo_partido" >
-        </activity>
-        <activity
-            android:name="gow.fcm.pantallas.PopUp_config_entre"
-            android:label="@string/title_activity_pop_up_config_entre" >
         </activity>
     </application>
 

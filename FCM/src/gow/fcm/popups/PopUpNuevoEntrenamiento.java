@@ -1,8 +1,6 @@
 package gow.fcm.popups;
 
 import gow.fcm.footballcoachmanager.R;
-import gow.fcm.footballcoachmanager.R.layout;
-import gow.fcm.footballcoachmanager.R.menu;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
@@ -15,7 +13,6 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TimePicker;
