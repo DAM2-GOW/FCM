@@ -5,23 +5,34 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class PopUp_config_entre extends Activity {
 Spinner sp;
+EditText txtDato1;
+EditText txtDato2;
+Button enviar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		showAsPopup(this);
 		setContentView(R.layout.popup_config_entre);
+		
+		txtDato1 = (EditText) findViewById(R.id.dato1);
+		txtDato2 = (EditText) findViewById(R.id.dato2);
+		enviar = (Button) findViewById(R.id.btnEnviar);
+		
 	
-		ArrayAdapter<CharSequence> adaptador = ArrayAdapter.createFromResource(this, R.array.TipoEntrenamiento, android.R.layout.simple_spinner_item);
+		ArrayAdapter<CharSequence> adaptador = ArrayAdapter.createFromResource(this, R.array.TipoModulo, android.R.layout.simple_spinner_item);
 		sp = (Spinner) findViewById(R.id.modulo);
 		sp.setAdapter(adaptador);
 		sp.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -29,7 +40,7 @@ Spinner sp;
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				String Text = sp.getSelectedItem().toString();
+				String resultModulo = sp.getSelectedItem().toString();
 				
 			}
 
@@ -40,6 +51,17 @@ Spinner sp;
 			}
 			
 		});
+		
+		enviar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				
+			}
+		});
+		
+		
 	}
 	
 
