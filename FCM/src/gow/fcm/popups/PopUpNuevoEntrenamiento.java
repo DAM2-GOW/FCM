@@ -1,6 +1,9 @@
 package gow.fcm.popups;
 
+import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
+import gow.fcm.sentencias.SentenciasInsertSQLite;
+import gow.fcm.sharefprefs.DatosFootball;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,10 +12,13 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TimePicker;
@@ -22,12 +28,19 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	TimePicker tp;
 	DatePicker dp;
 	Spinner sp;
+	Button bt;
+	EditText titulEntrenamiento;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		showAsPopup(this);
+		
 		setContentView(R.layout.activity_popup_nuevo_entrenamiento);
+		ConexionSQLite.getCrearSQLite(this);
+		DatosFootball.getDatosFootball(this);
+		final int id_equipo = DatosFootball.getIdEquipo();
+		titulEntrenamiento = (EditText) findViewById(R.id.titulo_entrenamientoNuevo);
 		
 		ArrayAdapter<CharSequence> adaptador = ArrayAdapter.createFromResource(this, R.array.TipoEntrenamiento, android.R.layout.simple_spinner_item);
 		sp = (Spinner)findViewById(R.id.tipo_entrenamientoNuevo);
@@ -37,7 +50,7 @@ public class PopUpNuevoEntrenamiento extends Activity {
 			
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				String Text = sp.getSelectedItem().toString();				
+				String stringTipoEntrenamiento = sp.getSelectedItem().toString();				
 			}
 			public void onNothingSelected(AdapterView<?> parentView){
 				
@@ -51,6 +64,16 @@ public class PopUpNuevoEntrenamiento extends Activity {
 		
 		tp = (TimePicker) findViewById(R.id.hora_entrenamientoNuevo);
 		tp.setIs24HourView(DateFormat.is24HourFormat(this));
+		
+		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);
+		bt.setOnClickListener(new OnClickListener( ){
+			 
+            @Override
+            public void onClick(View v) {
+            	//SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha"}, new String[]{""+id_equipo+"", ""+titulEntrenamiento+"", ""+sp+"", ""+tp+"", ""+dp+""});
+            	PopUpNuevoEntrenamiento.this.finish();
+            }
+		});
 	}
 
 	@Override
