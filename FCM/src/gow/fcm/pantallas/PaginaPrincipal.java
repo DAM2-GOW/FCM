@@ -29,7 +29,7 @@ public class PaginaPrincipal extends Activity{
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE); //No mostramos la barra de la cabecera con el nombre de la aplicación
 		setContentView(R.layout.pagina_principal);
 		
-		//PRUEBAS 2.0
+		//PRUEBAS DE NUEVO
 		
 		//Se crea la base de datos si no existe o se actualiza si fuera necesario
 		ConexionSQLite.getCrearSQLite(this);
