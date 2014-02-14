@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_cow"
+    android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -34,7 +35,6 @@
             android:id="@+id/hora_entrenamientoNuevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -55,7 +55,21 @@
             android:id="@+id/fecha_entrenamientoNuevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/observacionesEntrenamientoNuevo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Observaciones..." />
+
+    <Button
+        android:id="@+id/guardarEntrenamientoNuevo"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 </LinearLayout>

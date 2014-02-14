@@ -6,15 +6,25 @@ import gow.fcm.footballcoachmanager.R.menu;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
+import android.text.format.DateFormat;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.TimePicker;
 
 public class PopUpNuevoEntrenamiento extends Activity {
 
+	TimePicker tp;
 	DatePicker dp;
+	Spinner sp;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +32,28 @@ public class PopUpNuevoEntrenamiento extends Activity {
 		showAsPopup(this);
 		setContentView(R.layout.activity_popup_nuevo_entrenamiento);
 		
+		ArrayAdapter<CharSequence> adaptador = ArrayAdapter.createFromResource(this, R.array.TipoEntrenamiento, android.R.layout.simple_spinner_item);
+		sp = (Spinner)findViewById(R.id.tipo_entrenamientoNuevo);
+		sp.setAdapter(adaptador);
+		
+		sp.setOnItemSelectedListener(new OnItemSelectedListener() {
+			
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				String Text = sp.getSelectedItem().toString();				
+			}
+			public void onNothingSelected(AdapterView<?> parentView){
+				
+			}
+		});
+		
 		dp = (DatePicker) findViewById(R.id.fecha_entrenamientoNuevo);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 	        dp.setCalendarViewShown(false);
 	    }
+		
+		tp = (TimePicker) findViewById(R.id.hora_entrenamientoNuevo);
+		tp.setIs24HourView(DateFormat.is24HourFormat(this));
 	}
 
 	@Override
