@@ -1,7 +1,7 @@
 package gow.fcm.pantallas;
 
 import gow.fcm.basedatos.ConexionSQLite;
-import gow.fcm.sentencias.SentenciasSQLitePrincipal;
+import gow.fcm.sentencias.SentenciasSQLiteCalendario;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -53,7 +53,6 @@ public class PaginaCalendario extends Activity{
 	}
 
 	//Método de creación de los menús contextuales
-	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
 		super.onCreateContextMenu(menu,v,menuInfo);
 		MenuInflater inflater=getMenuInflater();
@@ -114,7 +113,7 @@ public class PaginaCalendario extends Activity{
 		int altoPantalla=sizeScreen.heightPixels;
 		
 		if(altoPantalla<800){ //Comprueba que la pantalla sea menor a 800p de altura
-			//88 es el tamaño de la pantalla de desarrollo con margenes
+			//800 es el tamaño de la pantalla de desarrollo con margenes
 			int altoCalendario=800-altoPantalla; //Obtenemos la diferencia del tamaño de la pantalla actual
 			altoCalendario=640-altoCalendario; //Obtenemos la nueva altura del calendario
 			
@@ -125,14 +124,14 @@ public class PaginaCalendario extends Activity{
 		}
 		
 		//Declaramos la variables que harán de botones
-		botonAgregarEntrenamiento=findViewById(R.id.boton_agregar_entrenamiento);
-		botonVerEntrenamiento=findViewById(R.id.boton_ver_entrenamiento);
-		botonEditarEntrenamiento=findViewById(R.id.boton_editar_entrenamiento);
-		botonBorrarEntrenamiento=findViewById(R.id.boton_borrar_entrenamiento);
-		botonAgregarPartido=findViewById(R.id.boton_agregar_partido);
-		botonVerPartido=findViewById(R.id.boton_ver_partido);
-		botonEditarPartido=findViewById(R.id.boton_editar_partido);
-		botonBorrarPartido=findViewById(R.id.boton_borrar_partido);
+		botonAgregarEntrenamiento=(View) findViewById(R.id.boton_agregar_entrenamiento);
+		botonVerEntrenamiento=(View) findViewById(R.id.boton_ver_entrenamiento);
+		botonEditarEntrenamiento=(View) findViewById(R.id.boton_editar_entrenamiento);
+		botonBorrarEntrenamiento=(View) findViewById(R.id.boton_borrar_entrenamiento);
+		botonAgregarPartido=(View) findViewById(R.id.boton_agregar_partido);
+		botonVerPartido=(View) findViewById(R.id.boton_ver_partido);
+		botonEditarPartido=(View) findViewById(R.id.boton_editar_partido);
+		botonBorrarPartido=(View) findViewById(R.id.boton_borrar_partido);
 		
 		//Declaramos las imagenes que haran a función de herramientas para los eventos
 		agregarEventoEntrenamiento=(ImageView) findViewById(R.id.agregar_evento_entrenamiento);
@@ -167,24 +166,24 @@ public class PaginaCalendario extends Activity{
 	
 	@SuppressLint("SimpleDateFormat")
 	private void accionesMostrarEventos(String fecha){
-		SentenciasSQLitePrincipal.getDatosEntrenamientos(fecha,this);
-		SentenciasSQLitePrincipal.getDatosPartidos(fecha,this);
+		SentenciasSQLiteCalendario.getDatosEntrenamientos(fecha,this);
+		SentenciasSQLiteCalendario.getDatosPartidos(fecha,this);
 		
 		//Sentencias para comprobar los eventos
-		String tipoEntrenamiento=SentenciasSQLitePrincipal.getTipoEntrenamiento();
-		String lugarPartido=SentenciasSQLitePrincipal.getLugarPartido();
+		String tipoEntrenamiento=SentenciasSQLiteCalendario.getTipoEntrenamiento();
+		String lugarPartido=SentenciasSQLiteCalendario.getLugarPartido();
 		
 		//Sentencias para comprobar la fecha de los eventos
-		Date fechaEntrenamiento=SentenciasSQLitePrincipal.getFechaEntrenamiento();
-		Date fechaPartido=SentenciasSQLitePrincipal.getFechaPartido();
+		Date fechaEntrenamiento=SentenciasSQLiteCalendario.getFechaEntrenamiento();
+		Date fechaPartido=SentenciasSQLiteCalendario.getFechaPartido();
 		
 		//Sentencias a mostrar datos en los TextView del Entrenamiento
-		String dirigido=SentenciasSQLitePrincipal.getDirigidoEntrenamiento();
+		String dirigido=SentenciasSQLiteCalendario.getDirigidoEntrenamiento();
 		
 		//Sentencias a mostrar datos en los TextView del Partido
-		String rival=SentenciasSQLitePrincipal.getRivalPartido();
+		String rival=SentenciasSQLiteCalendario.getRivalPartido();
 		
-		//Variable local como int para comprobar si cumplen o no una serie de condiciones
+		//Variable local como Date para convertirla a fecha
 		Date dates=null;
 		Date dates2=null;
 		try{
@@ -236,7 +235,7 @@ public class PaginaCalendario extends Activity{
 				entrenamientoEvento.setText(" "+dirigido);
 			}
 			
-			SentenciasSQLitePrincipal.setTipoEntrenamiento(); //Reseta a null el valor
+			SentenciasSQLiteCalendario.setTipoEntrenamiento(); //Reseta a null el valor
 			
 		}else if(tipoEntrenamiento==null & lugarPartido!=null){
 			
@@ -257,7 +256,7 @@ public class PaginaCalendario extends Activity{
 				partidoEvento.setText(" "+rival);
 			}
 			
-			SentenciasSQLitePrincipal.setLugarPartido(); //Reseta a null el valor
+			SentenciasSQLiteCalendario.setLugarPartido(); //Reseta a null el valor
 			
 		}else if(tipoEntrenamiento!=null & lugarPartido!=null){
 			
@@ -285,9 +284,8 @@ public class PaginaCalendario extends Activity{
 				partidoEvento.setText(" "+rival);
 			}
 			
-			SentenciasSQLitePrincipal.setTipoEntrenamiento(); //Reseta a null el valor
-			SentenciasSQLitePrincipal.setLugarPartido(); //Reseta a null el valor
-			
+			SentenciasSQLiteCalendario.setTipoEntrenamiento(); //Reseta a null el valor
+			SentenciasSQLiteCalendario.setLugarPartido(); //Reseta a null el valor
 		}
 	}
 	
@@ -639,7 +637,7 @@ public class PaginaCalendario extends Activity{
 	
 	private void agregarEntrenamiento(){
 		String fecha=getFechaSeleccionada();
-		Intent i=new Intent(this,PaginaPrincipal.class);
+		Intent i=new Intent(this,PaginaCalendario.class);
 		i.putExtra("tipo","entrenamiento");
 		i.putExtra("fecha",fecha);
 		startActivity(i);
@@ -647,7 +645,7 @@ public class PaginaCalendario extends Activity{
 	
 	private void verStatsEntrenamiento(){
 		String fecha=getFechaSeleccionada();
-		Intent i=new Intent(this,PaginaPrincipal.class);
+		Intent i=new Intent(this,PaginaCalendario.class);
 		i.putExtra("tipo","entrenamiento");
 		i.putExtra("fecha",fecha);
 		startActivity(i);
@@ -655,7 +653,7 @@ public class PaginaCalendario extends Activity{
 	
 	private void editarEntrenamiento(){
 		String fecha=getFechaSeleccionada();
-		Intent i=new Intent(this,PaginaPrincipal.class);
+		Intent i=new Intent(this,PaginaCalendario.class);
 		i.putExtra("tipo","entrenamiento");
 		i.putExtra("fecha",fecha);
 		startActivity(i);
@@ -663,13 +661,13 @@ public class PaginaCalendario extends Activity{
 	
 	private void borrarEntrenamiento(){
 		String fecha=getFechaSeleccionada();
-		SentenciasSQLitePrincipal.borrarEventoEntrenamiento(fecha,this);
+		SentenciasSQLiteCalendario.borrarEventoEntrenamiento(fecha,this);
 		accionesMostrarEventos(fecha);
 	}
 	
 	private void agregarPartido(){
 		String fecha=getFechaSeleccionada();
-		Intent i=new Intent(this,PaginaPrincipal.class);
+		Intent i=new Intent(this,PaginaCalendario.class);
 		i.putExtra("tipo","partido");
 		i.putExtra("fecha",fecha);
 		startActivity(i);
@@ -677,7 +675,7 @@ public class PaginaCalendario extends Activity{
 	
 	private void verStatsPartido(){
 		String fecha=getFechaSeleccionada();
-		Intent i=new Intent(this,PaginaPrincipal.class);
+		Intent i=new Intent(this,PaginaCalendario.class);
 		i.putExtra("tipo","partido");
 		i.putExtra("fecha",fecha);
 		startActivity(i);
@@ -685,7 +683,7 @@ public class PaginaCalendario extends Activity{
 	
 	private void editarPartido(){
 		String fecha=getFechaSeleccionada();
-		Intent i=new Intent(this,PaginaPrincipal.class);
+		Intent i=new Intent(this,PaginaCalendario.class);
 		i.putExtra("tipo","partido");
 		i.putExtra("fecha",fecha);
 		startActivity(i);
@@ -693,7 +691,7 @@ public class PaginaCalendario extends Activity{
 	
 	private void borrarPartido(){
 		String fecha=getFechaSeleccionada();
-		SentenciasSQLitePrincipal.borrarEventoPartido(fecha,this);
+		SentenciasSQLiteCalendario.borrarEventoPartido(fecha,this);
 		accionesMostrarEventos(fecha);
 	}
 	

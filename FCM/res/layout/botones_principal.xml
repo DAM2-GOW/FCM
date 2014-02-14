@@ -98,28 +98,28 @@
             android:paddingBottom="50dp" >
 
             <ImageView
-                android:id="@+id/evento"
+                android:id="@+id/partido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/event_management_img"
+                android:contentDescription="@string/go_match_img"
                 android:src="@drawable/event_management_up" />
 
             <TextView
-                android:id="@+id/administrar_eventos"
+                android:id="@+id/ir_partido"
                 android:layout_width="245dp"
                 android:layout_height="170dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignRight="@+id/evento"
+                android:layout_alignRight="@+id/partido"
                 android:gravity="center_vertical|center_horizontal"
                 android:paddingLeft="2dp"
-                android:text="@string/event_management"
+                android:text="@string/go_match"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/white"
                 android:textSize="36sp"
                 android:typeface="serif" />
 
             <View
-                android:id="@+id/boton_evento"
+                android:id="@+id/boton_partido"
                 android:layout_width="435dp"
                 android:layout_height="170dp"
                 android:layout_alignParentLeft="true"
