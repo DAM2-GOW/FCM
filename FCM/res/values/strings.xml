@@ -49,6 +49,12 @@
         <item>Agilidad</item>
         <item>Específico</item>
     </string-array>
+    
+    <string-array name="TipoModulo">
+        <item>Repeticiones</item>
+        <item>Series</item>
+        <item>Jugadas</item>
+    </string-array>
 
     <string name="title_activity_pop_up_config_entre">PopUp_config_entre</string>
     <string name="title_activity_estadisticas_jugador">EstadisticasJugador</string>

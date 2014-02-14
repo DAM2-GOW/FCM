@@ -53,7 +53,7 @@
             android:label="@string/title_activity_pop_up_nuevo_partido" >
         </activity>
         <activity
-            android:name="gow.fcm.pantallas.PopUp_config_entre"
+            android:name="gow.fcm.popups.PopUp_config_entre"
             android:label="@string/title_activity_pop_up_config_entre" >
         </activity>
         <activity
