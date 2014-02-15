@@ -22,8 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="Título Entrenamiento"
-            android:textColor="@color/white_smoke" >
+            android:hint="Título Entrenamiento"
+            android:textColor="@color/white" >
 
             <requestFocus />
         </EditText>
@@ -32,10 +32,18 @@
             android:layout_width="200dp"
             android:layout_height="match_parent" />
 
-        <TimePicker
-            android:id="@+id/hora_entrenamientoNuevo"
+        <TextView
+            android:id="@+id/txtViewDiaEntrenamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <DatePicker
+            android:id="@+id/fecha_entrenamientoNuevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -53,10 +61,18 @@
             android:layout_width="200dp"
             android:layout_height="match_parent" />
 
-        <DatePicker
-            android:id="@+id/fecha_entrenamientoNuevo"
+        <TextView
+            android:id="@+id/txtViewHoraEntrenamient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TimePicker
+            android:id="@+id/hora_entrenamientoNuevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <EditText
@@ -65,8 +81,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:textColor="@color/white_smoke"
-        android:text="Observaciones..." />
+        android:textColor="@color/white"
+        android:hint="Observaciones..." />
 
     <Button
         android:id="@+id/guardarEntrenamientoNuevo"
