@@ -58,5 +58,21 @@
 
     <string name="title_activity_pop_up_config_entre">PopUp_config_entre</string>
     <string name="title_activity_estadisticas_jugador">EstadisticasJugador</string>
+    <string-array name="TipoJugador">
+        <item >Ataque</item>
+        <item >Defensa</item>
+        <item >Equipos Especiales</item>
+    </string-array>
+    <string-array name="PosicionJugador">
+        <item >C</item>
+        <item >OG</item>
+        <item >OT</item>
+        <item >TE</item>
+        <item >WR</item>
+        <item >FB</item>
+        <item >RB</item>
+        <item >TB</item>
+        <item >QB</item>
+    </string-array>
 
 </resources>

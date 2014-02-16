@@ -32,7 +32,6 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	Spinner sp;
 	Button bt;
 	EditText titulEntrenamiento;
-	Config_entre pantallaSenen = new Config_entre();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +69,14 @@ public class PopUpNuevoEntrenamiento extends Activity {
 		tp.setIs24HourView(DateFormat.is24HourFormat(this));
 		
 		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);
-		bt.setOnClickListener(new OnClickListener( ){
+		bt.setOnClickListener(new OnClickListener(){
 			 
             @Override
             public void onClick(View v) {
             	//SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha"}, new String[]{""+id_equipo+"", ""+titulEntrenamiento+"", ""+sp+"", ""+tp+"", ""+dp+""});
             	//PopUpNuevoEntrenamiento.this.finish();
-            	//Intent i = new Intent(this, Config_entre.class);
-            	
-            	//startActivity(i);
+            	Intent i = new Intent(gow.fcm.popups.PopUpNuevoEntrenamiento.this, gow.fcm.pantallas.Config_entre.class);
+            	startActivity(i);
             }
 		});
 	}

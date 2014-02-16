@@ -1,16 +1,86 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_cow"
+    android:gravity="center"
+    android:orientation="horizontal"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".PopUpNuevoJugador" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="613dp"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:gravity="center|right"
+        android:orientation="vertical" >
 
-</RelativeLayout>
+        <EditText
+            android:id="@+id/editTextNombreJugador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/editTextApellidosJugador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Apellidos"
+            android:ems="10" />
+
+        <EditText
+            android:id="@+id/editTextEdadJugador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Edad"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Spinner
+            android:id="@+id/spinnerTipoJugador"
+            android:layout_width="231dp"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/spinnerPosicionJugador"
+            android:layout_width="231dp"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/editTextDorsalJugador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/foto_Jugador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/no_coach_photo" />
+
+        <Button
+            android:id="@+id/guardarPartidoNuevo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="guardarNuevoPartido"
+            android:text="Button" />
+
+    </LinearLayout>
+
+</LinearLayout>

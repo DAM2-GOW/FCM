@@ -55,7 +55,7 @@
             android:id="@+id/tipo_entrenamientoNuevo"
             android:layout_width="149dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/white_smoke" />
+            android:textColor="@color/white" />
 
         <Space
             android:layout_width="200dp"
