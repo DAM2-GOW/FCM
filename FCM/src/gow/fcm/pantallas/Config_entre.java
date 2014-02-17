@@ -19,6 +19,7 @@ public class Config_entre extends Activity {
 	String dato1;
 	String dato2;
 	String modulo;
+	View header;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +28,17 @@ public class Config_entre extends Activity {
 
 		ListView lv = (ListView) findViewById(R.id.listView1);
 		
-		String[] LV_modulo = {dato1};
-		String[] LV_dato1 = {dato2};
-		String[] LV_dato2 = {modulo};
+		String[] LV_modulo = {"adsd",dato1};
+		String[] LV_dato1 = {"asd",dato2};
+		String[] LV_dato2 = {"pepe",modulo};
 		
 		ArrayAdapterStatsList adapter = new ArrayAdapterStatsList(this,LV_modulo, LV_dato1, LV_dato2);
+
+		header = (View)getLayoutInflater().inflate(R.layout.list_header_entrenamientos, null);
+		
+		lv.addHeaderView(header);
+		
+		lv.setAdapter(adapter);
 		
 		bt = (ImageButton) findViewById(R.id.imageButton1);
 
