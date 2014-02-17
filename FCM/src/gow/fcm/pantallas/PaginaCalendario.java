@@ -2,6 +2,7 @@ package gow.fcm.pantallas;
 
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.popups.PopUpNuevoEntrenamiento;
+import gow.fcm.popups.PopUpNuevoPartido;
 import gow.fcm.sentencias.SentenciasSQLiteCalendario;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -668,7 +669,7 @@ public class PaginaCalendario extends Activity{
 	
 	private void agregarPartido(){
 		String fecha=getFechaSeleccionada();
-		Intent i=new Intent(this,PaginaCalendario.class);
+		Intent i=new Intent(this,PopUpNuevoPartido.class);
 		i.putExtra("tipo","partido");
 		i.putExtra("fecha",fecha);
 		startActivity(i);

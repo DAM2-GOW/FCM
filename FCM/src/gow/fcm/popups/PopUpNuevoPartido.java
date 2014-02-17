@@ -41,7 +41,7 @@ public class PopUpNuevoPartido extends Activity {
 		tp.setIs24HourView(DateFormat.is24HourFormat(this));
 		
 		//Guardamos el partido en el calendario recogiendo los datos pertinentes.
-		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);
+		bt = (Button) findViewById(R.id.guardarPartidoNuevo);
 		bt.setOnClickListener(new OnClickListener(){
 			 
             @Override

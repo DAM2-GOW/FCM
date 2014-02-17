@@ -43,7 +43,8 @@ public class PopUpNuevoJugador extends Activity {
 		posicionJugador = (Spinner)findViewById(R.id.spinnerPosicionJugador);
 		
 		//Llamamos a los arrays que contienen los nombre del tipo de jugador y su posicion.
-		ArrayAdapter<CharSequence> adaptadorTipo = ArrayAdapter.createFromResource(this, R.array.TipoJugador, android.R.layout.simple_spinner_item);
+		final ArrayAdapter<CharSequence> adaptadorTipo = ArrayAdapter.createFromResource(this, R.array.TipoJugador, android.R.layout.simple_spinner_item);
+		tipoJugador.setAdapter(adaptadorTipo);
 		final ArrayAdapter<CharSequence> adaptador2 = ArrayAdapter.createFromResource(this, R.array.PosicionAtaque, android.R.layout.simple_spinner_item);
 		
 		final ArrayAdapter<CharSequence> adaptador3 = ArrayAdapter.createFromResource(this, R.array.PosicionDefensa, android.R.layout.simple_spinner_item);
@@ -51,7 +52,7 @@ public class PopUpNuevoJugador extends Activity {
 		final ArrayAdapter<CharSequence> adaptador4 = ArrayAdapter.createFromResource(this, R.array.PosicionEE, android.R.layout.simple_spinner_item);
 		
 		//Dependiendo del tipo que jugador que selecciones tendras diferentes tipos de posicion.
-		posicionJugador.setOnItemSelectedListener(new OnItemSelectedListener() {
+		tipoJugador.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {

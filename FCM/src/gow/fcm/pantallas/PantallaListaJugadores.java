@@ -2,6 +2,7 @@ package gow.fcm.pantallas;
 
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
+import gow.fcm.popups.PopUpNuevoJugador;
 import gow.fcm.sentencias.SentenciasSQLitePrincipal;
 import gow.fcm.utilidades.ListaJugadores;
 import android.os.Bundle;
@@ -189,7 +190,7 @@ public class PantallaListaJugadores extends Activity {
 
 	// Método para agregar al jugador
 	private void agregarJugador() {
-		Intent i = new Intent(this, PantallaListaJugadores.class);
+		Intent i = new Intent(this, PopUpNuevoJugador.class);
 		startActivity(i);
 	}
 
