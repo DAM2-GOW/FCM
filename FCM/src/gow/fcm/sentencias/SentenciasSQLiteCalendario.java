@@ -56,7 +56,7 @@ public class SentenciasSQLiteCalendario{
 	}
 	
 	//Este método obtiene los datos del entrenamiento
-	public static void getDatosEntrenamientos(String fecha,Context contexto){
+	public static void getDatosEntrenamientos(Context contexto,String fecha){
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
 		int id=DatosFootball.getIdEquipo();
@@ -79,7 +79,7 @@ public class SentenciasSQLiteCalendario{
 	}
 	
 	//Este método borrar los entrenamientos
-	public static void borrarEventoEntrenamiento(String fecha,Context contexto){
+	public static void borrarEventoEntrenamiento(Context contexto,String fecha){
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
 		int id=DatosFootball.getIdEntrenador();
@@ -95,7 +95,7 @@ public class SentenciasSQLiteCalendario{
 	}
 	
 	//Este método obtiene los datos del partido
-	public static void getDatosPartidos(String fecha,Context contexto){
+	public static void getDatosPartidos(Context contexto,String fecha){
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
 		int id=DatosFootball.getIdEntrenador();
@@ -117,7 +117,7 @@ public class SentenciasSQLiteCalendario{
 	}
 	
 	//Este método borrar los partidos
-	public static void borrarEventoPartido(String fecha,Context contexto){
+	public static void borrarEventoPartido(Context contexto,String fecha){
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
 		int id=DatosFootball.getIdEquipo();

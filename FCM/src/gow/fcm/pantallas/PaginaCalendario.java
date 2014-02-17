@@ -167,8 +167,8 @@ public class PaginaCalendario extends Activity{
 	
 	@SuppressLint("SimpleDateFormat")
 	private void accionesMostrarEventos(String fecha){
-		SentenciasSQLiteCalendario.getDatosEntrenamientos(fecha,this);
-		SentenciasSQLiteCalendario.getDatosPartidos(fecha,this);
+		SentenciasSQLiteCalendario.getDatosEntrenamientos(this,fecha);
+		SentenciasSQLiteCalendario.getDatosPartidos(this,fecha);
 		
 		//Sentencias para comprobar los eventos
 		String tipoEntrenamiento=SentenciasSQLiteCalendario.getTipoEntrenamiento();
@@ -662,7 +662,7 @@ public class PaginaCalendario extends Activity{
 	
 	private void borrarEntrenamiento(){
 		String fecha=getFechaSeleccionada();
-		SentenciasSQLiteCalendario.borrarEventoEntrenamiento(fecha,this);
+		SentenciasSQLiteCalendario.borrarEventoEntrenamiento(this,fecha);
 		accionesMostrarEventos(fecha);
 	}
 	
@@ -692,7 +692,7 @@ public class PaginaCalendario extends Activity{
 	
 	private void borrarPartido(){
 		String fecha=getFechaSeleccionada();
-		SentenciasSQLiteCalendario.borrarEventoPartido(fecha,this);
+		SentenciasSQLiteCalendario.borrarEventoPartido(this,fecha);
 		accionesMostrarEventos(fecha);
 	}
 	
