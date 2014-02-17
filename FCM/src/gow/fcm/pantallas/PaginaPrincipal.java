@@ -248,7 +248,7 @@ public class PaginaPrincipal extends Activity{
 	
 	//Método para acceder a la administración del equipo
 	private void botonAdministrarEquipo(){
-		Intent i=new Intent(this,PaginaPrincipal.class);
+		Intent i=new Intent(this,PantallaListaJugadores.class);
 		startActivity(i);
 	}
 	
