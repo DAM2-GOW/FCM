@@ -16,6 +16,9 @@ import android.widget.ListView;
 public class Config_entre extends Activity {
 	ArrayAdapterStatsList aasl;
 	ImageButton bt;
+	String dato1;
+	String dato2;
+	String modulo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,11 @@ public class Config_entre extends Activity {
 
 		ListView lv = (ListView) findViewById(R.id.listView1);
 		
+		String[] LV_modulo = {dato1};
+		String[] LV_dato1 = {dato2};
+		String[] LV_dato2 = {modulo};
+		
+		ArrayAdapterStatsList adapter = new ArrayAdapterStatsList(this,LV_modulo, LV_dato1, LV_dato2);
 		
 		bt = (ImageButton) findViewById(R.id.imageButton1);
 
@@ -49,9 +57,9 @@ public class Config_entre extends Activity {
 		if (requestCode == 1) {
 
 			if (resultCode == RESULT_OK) {
-				String dato1 = datos.getStringExtra("txtDato1");
-				String dato2 = datos.getStringExtra("txtDato2");
-				String modulo = datos.getStringExtra("modulo");
+				 dato1 = datos.getStringExtra("txtDato1");
+				 dato2 = datos.getStringExtra("txtDato2");
+				 modulo = datos.getStringExtra("modulo");
 			}
 			if (resultCode == RESULT_CANCELED) {
 				// Write your code if there's no result

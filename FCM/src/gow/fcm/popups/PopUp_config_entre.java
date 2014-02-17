@@ -1,6 +1,7 @@
 package gow.fcm.popups;
 
 import gow.fcm.footballcoachmanager.R;
+import gow.fcm.pantallas.Config_entre;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ Spinner sp;
 EditText txtDato1;
 EditText txtDato2;
 Button enviar;
+String resultModulo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ Button enviar;
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				String resultModulo = sp.getSelectedItem().toString();
+				 resultModulo = sp.getSelectedItem().toString();
 				
 			}
 
@@ -57,10 +59,10 @@ Button enviar;
 			
 			@Override
 			public void onClick(View v) {
-				Intent info = new Intent();
+				Intent info = new Intent(PopUp_config_entre.this,Config_entre.class);
 				info.putExtra("dato1", txtDato1.getText().toString());
 				info.putExtra("dato2", txtDato2.getText().toString());
-				info.putExtra("modulo", sp.getSelectedItem().toString());
+				info.putExtra("modulo", resultModulo.toString());
 				startActivity(info);
 				
 			}
