@@ -31,34 +31,42 @@
         </activity>
         <activity
             android:name="gow.fcm.pantallas.PaginaCalendario"
-            android:label="@string/title_page_calendar" />
+            android:label="@string/title_page_calendar"
+            android:screenOrientation="landscape" />
         <activity
             android:name="gow.fcm.popups.PopupPizarraDigital"
             android:label="@string/title_popup_blackboard"
-            android:theme="@style/PopupTheme" />
+            android:theme="@style/PopupTheme"
+            android:screenOrientation="landscape" />
         <activity
             android:name="gow.fcm.pantallas.Config_entre"
-            android:label="@string/title_activity_config_entre" >
+            android:label="@string/title_activity_config_entre"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="gow.fcm.popups.PopUpNuevoJugador"
-            android:label="@string/title_activity_pop_up_nuevo_jugador" >
+            android:label="@string/title_activity_pop_up_nuevo_jugador"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="gow.fcm.popups.PopUpNuevoEntrenamiento"
-            android:label="@string/title_activity_pop_up_nuevo_entrenamiento" >
+            android:label="@string/title_activity_pop_up_nuevo_entrenamiento"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="gow.fcm.popups.PopUpNuevoPartido"
-            android:label="@string/title_activity_pop_up_nuevo_partido" >
+            android:label="@string/title_activity_pop_up_nuevo_partido"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="gow.fcm.popups.PopUp_config_entre"
-            android:label="@string/title_activity_pop_up_config_entre" >
+            android:label="@string/title_activity_pop_up_config_entre"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="gow.fcm.pantallas.EstadisticasJugador"
-            android:label="@string/title_activity_estadisticas_jugador" >
+            android:label="@string/title_activity_estadisticas_jugador"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 
