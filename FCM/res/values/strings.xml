@@ -42,6 +42,8 @@
     <string name="title_activity_pop_up_nuevo_jugador">PopUpNuevoJugador</string>
     <string name="title_activity_pop_up_nuevo_entrenamiento">PopUpNuevoEntrenamiento</string>
     <string name="title_activity_pop_up_nuevo_partido">PopUpNuevoPartido</string>
+    <string name="add_photo_gallery">anyadir_foto_galeria</string>
+    <string name="add_photo_camera">anyadir_foto_camara</string>
 
     <string-array name="TipoEntrenamiento">
         <item>Resistencia</item>
