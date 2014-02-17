@@ -15,7 +15,6 @@ public class RegistroUsuarios{
 	public void comprobarNombreUsuario(Context contexto,String usuario){
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
-		int id=DatosFootball.getIdEntrenador();
 		
 		//Ejcutamos la sentencia
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",new String[]{"COUNT (usuario)"},"usuario='"+usuario+"'");
