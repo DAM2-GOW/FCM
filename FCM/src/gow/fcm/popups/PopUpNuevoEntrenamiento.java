@@ -1,12 +1,14 @@
 package gow.fcm.popups;
 
 import gow.fcm.basedatos.ConexionSQLite;
+import gow.fcm.pantallas.Config_entre;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.View;
@@ -39,6 +41,7 @@ public class PopUpNuevoEntrenamiento extends Activity {
 		setContentView(R.layout.activity_popup_nuevo_entrenamiento);
 		ConexionSQLite.getCrearSQLite(this);
 		DatosFootball.getDatosFootball(this);
+		
 		final int id_equipo = DatosFootball.getIdEquipo();
 		titulEntrenamiento = (EditText) findViewById(R.id.titulo_entrenamientoNuevo);
 		
@@ -66,12 +69,14 @@ public class PopUpNuevoEntrenamiento extends Activity {
 		tp.setIs24HourView(DateFormat.is24HourFormat(this));
 		
 		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);
-		bt.setOnClickListener(new OnClickListener( ){
+		bt.setOnClickListener(new OnClickListener(){
 			 
             @Override
             public void onClick(View v) {
             	//SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha"}, new String[]{""+id_equipo+"", ""+titulEntrenamiento+"", ""+sp+"", ""+tp+"", ""+dp+""});
-            	PopUpNuevoEntrenamiento.this.finish();
+            	//PopUpNuevoEntrenamiento.this.finish();
+            	Intent i = new Intent(gow.fcm.popups.PopUpNuevoEntrenamiento.this, gow.fcm.pantallas.Config_entre.class);
+            	startActivity(i);
             }
 		});
 	}
