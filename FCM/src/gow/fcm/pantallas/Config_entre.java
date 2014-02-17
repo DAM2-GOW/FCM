@@ -16,10 +16,11 @@ import android.widget.ListView;
 public class Config_entre extends Activity {
 	ArrayAdapterStatsList aasl;
 	ImageButton bt;
-	String dato1;
-	String dato2;
-	String modulo;
+	String[] dato1;
+	String[] dato2;
+	String[] modulo;
 	View header;
+	ArrayAdapterStatsList adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +28,6 @@ public class Config_entre extends Activity {
 		setContentView(R.layout.activity_config_entre);
 
 		ListView lv = (ListView) findViewById(R.id.listView1);
-		
-		String[] LV_modulo = {"adsd",dato1};
-		String[] LV_dato1 = {"asd",dato2};
-		String[] LV_dato2 = {"pepe",modulo};
-		
-		ArrayAdapterStatsList adapter = new ArrayAdapterStatsList(this,LV_modulo, LV_dato1, LV_dato2);
 
 		header = (View)getLayoutInflater().inflate(R.layout.list_header_entrenamientos, null);
 		
@@ -64,9 +59,11 @@ public class Config_entre extends Activity {
 		if (requestCode == 1) {
 
 			if (resultCode == RESULT_OK) {
-				 dato1 = datos.getStringExtra("txtDato1");
-				 dato2 = datos.getStringExtra("txtDato2");
-				 modulo = datos.getStringExtra("modulo");
+				 dato1 = datos.getStringArrayExtra("txtDato1");
+				 dato2 = datos.getStringArrayExtra("txtDato2");
+				 modulo = datos.getStringArrayExtra("modulo");
+				 
+				 ArrayAdapterStatsList adapter = new ArrayAdapterStatsList(this,modulo,dato1,dato2);
 			}
 			if (resultCode == RESULT_CANCELED) {
 				// Write your code if there's no result
