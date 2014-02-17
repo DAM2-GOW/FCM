@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:id="@+id/editarJug" android:title="@string/edit_player"></item>
+    
+    <item android:id="@+id/borrarJug" android:title="@string/delete_player">
+        
+        <menu>
+            
+            <item android:id="@+id/optionNoJugador" android:title="@string/op_no"/>
+            <item android:id="@+id/optionSiJugador" android:title="@string/op_si"/>
+            
+        </menu>
+        
+    </item>
+
+</menu>

@@ -91,4 +91,16 @@
         <item >R (Reciver)</item>
     </string-array>
 
+    <string name="player_list">Lista de jugadores</string>
+    <string name="dorsal_number">0</string>
+    <string name="player_name">Nombre del Jugador</string>
+    <string name="player_surname">Apellidos del jugador</string>
+    <string name="position">Posición:</string>
+    <string name="position_name">nombre de la posición</string>
+    <string name="no_players">No hay jugadores</string>
+    <string name="div_img">Imagen divisoria</string>
+    <string name="add_player">Añadir jugador</string>
+    <string name="edit_player">Editar jugador</string>
+    <string name="delete_player">Borrar jugador</string>
+    
 </resources>

@@ -72,6 +72,10 @@
             android:label="@string/title_activity_estadisticas_jugador"
             android:screenOrientation="landscape" >
         </activity>
+        <activity 
+            android:name="gow.fcm.pantallas.PantallaListaJugadores"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>
