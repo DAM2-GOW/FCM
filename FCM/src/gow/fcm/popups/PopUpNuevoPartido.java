@@ -27,17 +27,20 @@ public class PopUpNuevoPartido extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		showAsPopup(this);
+		showAsPopup(this); //Llama al método que pone el activity en modo ventana PopuP.
 		setContentView(R.layout.activity_popup_nuevo_partido);
 		
+		//Modificamos el diseño de la fecha para que no se muestre un calendario.
 		dp = (DatePicker) findViewById(R.id.fecha_PartidoNuevo);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 	        dp.setCalendarViewShown(false);
 	    }
 		
+		//Modificamos el diseño de la hora para que este en formato 24H.
 		tp = (TimePicker) findViewById(R.id.hora_PartidoNuevo);
 		tp.setIs24HourView(DateFormat.is24HourFormat(this));
 		
+		//Guardamos el partido en el calendario recogiendo los datos pertinentes.
 		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);
 		bt.setOnClickListener(new OnClickListener(){
 			 
@@ -58,6 +61,7 @@ public class PopUpNuevoPartido extends Activity {
 		return true;
 	}
 	
+	//Metodo que hace mostrar el activity como PopUp.
 	public static void showAsPopup(Activity activity) {
 		activity.requestWindowFeature(Window.FEATURE_ACTION_BAR); // Esta caracteristica habilita la barra (menu) en el Pop-Up.
 		activity.getWindow().setFlags(

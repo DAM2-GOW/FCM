@@ -36,12 +36,13 @@ public class PopUpNuevoJugador extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		showAsPopup(this);
+		showAsPopup(this); //Llama al metodo que hace que se muestre como PopUp.
 		setContentView(R.layout.activity_popup_nuevo_jugador);
 		
 		tipoJugador = (Spinner)findViewById(R.id.spinnerTipoJugador);
 		posicionJugador = (Spinner)findViewById(R.id.spinnerPosicionJugador);
 		
+		//Llamamos a los arrays que contienen los nombre del tipo de jugador y su posicion.
 		ArrayAdapter<CharSequence> adaptadorTipo = ArrayAdapter.createFromResource(this, R.array.TipoJugador, android.R.layout.simple_spinner_item);
 		final ArrayAdapter<CharSequence> adaptador2 = ArrayAdapter.createFromResource(this, R.array.PosicionAtaque, android.R.layout.simple_spinner_item);
 		
@@ -49,11 +50,12 @@ public class PopUpNuevoJugador extends Activity {
 		
 		final ArrayAdapter<CharSequence> adaptador4 = ArrayAdapter.createFromResource(this, R.array.PosicionEE, android.R.layout.simple_spinner_item);
 		
+		//Dependiendo del tipo que jugador que selecciones tendras diferentes tipos de posicion.
 		posicionJugador.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-				if(position == 0){
+				if(position == 0){ //Posicion de ataque
 					posicionJugador.setAdapter(adaptador2);
 					posicionJugador.setOnItemSelectedListener(new OnItemSelectedListener(){
 
@@ -68,7 +70,7 @@ public class PopUpNuevoJugador extends Activity {
 						
 					});
 				} else {
-					if(position == 1){
+					if(position == 1){ //Posicion de defensa
 						posicionJugador.setAdapter(adaptador3);
 						posicionJugador.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -83,7 +85,7 @@ public class PopUpNuevoJugador extends Activity {
 							
 						});
 					}else{
-						if(position == 2){
+						if(position == 2){ //Posicion de EE
 							posicionJugador.setAdapter(adaptador4);
 							posicionJugador.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -108,6 +110,7 @@ public class PopUpNuevoJugador extends Activity {
 		});
 	}
 	
+	//Metodo que hace que puedas seleccionar una foto desde la galeria o hacerla en el instante.
 	@Override
 	public boolean onContextItemSelected(MenuItem item){
 		switch(item.getItemId()){
@@ -180,6 +183,7 @@ public class PopUpNuevoJugador extends Activity {
 		return true;
 	}
 	
+	//Metodo que hace que el activity salga como PopUp.
 	public static void showAsPopup(Activity activity) {
 		activity.requestWindowFeature(Window.FEATURE_ACTION_BAR); // Esta caracteristica habilita la barra (menu) en el Pop-Up.
 		activity.getWindow().setFlags(

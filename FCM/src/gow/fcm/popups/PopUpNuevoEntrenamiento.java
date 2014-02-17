@@ -36,21 +36,24 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		showAsPopup(this);
-		
+		showAsPopup(this); //Llama al método que pone el activity en modo ventana PopuP.
 		setContentView(R.layout.activity_popup_nuevo_entrenamiento);
+		
+		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
 		ConexionSQLite.getCrearSQLite(this);
 		DatosFootball.getDatosFootball(this);
 		
 		final int id_equipo = DatosFootball.getIdEquipo();
 		titulEntrenamiento = (EditText) findViewById(R.id.titulo_entrenamientoNuevo);
 		
+		//Array de tipos de entrenamiento para poder seleccionar.
 		ArrayAdapter<CharSequence> adaptador = ArrayAdapter.createFromResource(this, R.array.TipoEntrenamiento, android.R.layout.simple_spinner_item);
 		sp = (Spinner)findViewById(R.id.tipo_entrenamientoNuevo);
 		sp.setAdapter(adaptador);
 		
 		sp.setOnItemSelectedListener(new OnItemSelectedListener() {
 			
+			//Cuando selecciones el spinner se guarda en un String.
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				String stringTipoEntrenamiento = sp.getSelectedItem().toString();				
@@ -60,14 +63,17 @@ public class PopUpNuevoEntrenamiento extends Activity {
 			}
 		});
 		
+		//Modificamos el diseño de la fecha para que no se muestre un calendario.
 		dp = (DatePicker) findViewById(R.id.fecha_entrenamientoNuevo);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 	        dp.setCalendarViewShown(false);
 	    }
 		
+		//Modificamos el diseño de la hora para que este en formato 24H.
 		tp = (TimePicker) findViewById(R.id.hora_entrenamientoNuevo);
 		tp.setIs24HourView(DateFormat.is24HourFormat(this));
 		
+		//Cuando le des al boton se guardan los datos en la BD y se va a la configuración del mismo entrenamiento nuevo creado.
 		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);
 		bt.setOnClickListener(new OnClickListener(){
 			 
@@ -88,6 +94,7 @@ public class PopUpNuevoEntrenamiento extends Activity {
 		return true;
 	}
 	
+	//Metodo que hace mostrar el activity como PopUp.
 	public static void showAsPopup(Activity activity) {
 		activity.requestWindowFeature(Window.FEATURE_ACTION_BAR); // Esta caracteristica habilita la barra (menu) en el Pop-Up.
 		activity.getWindow().setFlags(
