@@ -2,6 +2,7 @@ package gow.fcm.popups;
 
 import gow.fcm.footballcoachmanager.R;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -56,7 +57,11 @@ Button enviar;
 			
 			@Override
 			public void onClick(View v) {
-				
+				Intent info = new Intent();
+				info.putExtra("dato1", txtDato1.getText().toString());
+				info.putExtra("dato2", txtDato2.getText().toString());
+				info.putExtra("modulo", sp.getSelectedItem().toString());
+				startActivity(info);
 				
 			}
 		});

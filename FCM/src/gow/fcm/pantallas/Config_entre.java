@@ -1,21 +1,21 @@
 package gow.fcm.pantallas;
 
 import gow.fcm.footballcoachmanager.R;
+import gow.fcm.popups.PopUp_config_entre;
 import gow.fcm.utilidades.ArrayAdapterStatsList;
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 public class Config_entre extends Activity {
 	ArrayAdapterStatsList aasl;
-	Button bt;
+	ImageButton bt;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +23,15 @@ public class Config_entre extends Activity {
 		setContentView(R.layout.activity_config_entre);
 
 		ListView lv = (ListView) findViewById(R.id.listView1);
-		bt = (Button) findViewById(R.id.imageButton1);
+		
+		
+		bt = (ImageButton) findViewById(R.id.imageButton1);
 
 		bt.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Intent info = new Intent();
+				Intent info = new Intent(Config_entre.this,PopUp_config_entre.class);
 				startActivityForResult(info, 1);
 
 			}
@@ -47,7 +49,9 @@ public class Config_entre extends Activity {
 		if (requestCode == 1) {
 
 			if (resultCode == RESULT_OK) {
-				String result = datos.getStringExtra("result");
+				String dato1 = datos.getStringExtra("txtDato1");
+				String dato2 = datos.getStringExtra("txtDato2");
+				String modulo = datos.getStringExtra("modulo");
 			}
 			if (resultCode == RESULT_CANCELED) {
 				// Write your code if there's no result
