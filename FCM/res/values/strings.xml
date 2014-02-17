@@ -63,16 +63,30 @@
         <item >Defensa</item>
         <item >Equipos Especiales</item>
     </string-array>
-    <string-array name="PosicionJugador">
-        <item >C</item>
-        <item >OG</item>
-        <item >OT</item>
-        <item >TE</item>
-        <item >WR</item>
-        <item >FB</item>
-        <item >RB</item>
-        <item >TB</item>
-        <item >QB</item>
+    <string-array name="PosicionAtaque">
+        <item >C (Center)</item>
+        <item >LG (Left Guard)</item>
+        <item >RG (Right Guard)</item>
+        <item >LT (Left Tackle)</item>
+        <item >RT (Right Tackle)</item>
+        <item >QB (Quaterback)</item>
+        <item >RB (Running Back)</item>
+        <item >HB (Half Back)</item>
+        <item >FB (Full Back)</item>
+    </string-array>
+    <string-array name="PosicionDefensa">
+        <item >DT (Defensive Tackle)</item>
+        <item >DE (Defensive End)</item>
+        <item >NT (Nose Tackle)</item>
+        <item >CB (Corner Backs)</item>
+        <item >FS (Free Safety)</item>
+        <item >SS (Strong Safety)</item>
+        <item >LB (Line Backers)</item>
+    </string-array>
+    <string-array name="PosicionEE">
+        <item >K (Kicker)</item>
+        <item >P (Punter)</item>
+        <item >R (Reciver)</item>
     </string-array>
 
 </resources>

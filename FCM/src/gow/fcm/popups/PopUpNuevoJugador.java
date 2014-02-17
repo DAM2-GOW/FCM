@@ -18,6 +18,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class PopUpNuevoJugador extends Activity {
 
 	Spinner tipoJugador, posicionJugador;
+	String posJug;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,29 +30,67 @@ public class PopUpNuevoJugador extends Activity {
 		posicionJugador = (Spinner)findViewById(R.id.spinnerPosicionJugador);
 		
 		ArrayAdapter<CharSequence> adaptadorTipo = ArrayAdapter.createFromResource(this, R.array.TipoJugador, android.R.layout.simple_spinner_item);
-		ArrayAdapter<CharSequence> adaptadorPosicion = ArrayAdapter.createFromResource(this, R.array.PosicionJugador, android.R.layout.simple_spinner_item);
-		tipoJugador.setAdapter(adaptadorTipo);
-		posicionJugador.setAdapter(adaptadorPosicion);
+		final ArrayAdapter<CharSequence> adaptador2 = ArrayAdapter.createFromResource(this, R.array.PosicionAtaque, android.R.layout.simple_spinner_item);
 		
-		tipoJugador.setOnItemSelectedListener(new OnItemSelectedListener() {
-			
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				String stringTipoJugador = tipoJugador.getSelectedItem().toString();				
-			}
-			public void onNothingSelected(AdapterView<?> parentView){
-				
-			}
-		});
+		final ArrayAdapter<CharSequence> adaptador3 = ArrayAdapter.createFromResource(this, R.array.PosicionDefensa, android.R.layout.simple_spinner_item);
+		
+		final ArrayAdapter<CharSequence> adaptador4 = ArrayAdapter.createFromResource(this, R.array.PosicionEE, android.R.layout.simple_spinner_item);
 		
 		posicionJugador.setOnItemSelectedListener(new OnItemSelectedListener() {
-			
+
 			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				String stringPosicionJugador = posicionJugador.getSelectedItem().toString();				
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+				if(position == 0){
+					posicionJugador.setAdapter(adaptador2);
+					posicionJugador.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+						@Override
+						public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+							posJug = posicionJugador.getSelectedItem().toString();
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> arg0) {
+						}
+						
+					});
+				} else {
+					if(position == 1){
+						posicionJugador.setAdapter(adaptador3);
+						posicionJugador.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+							@Override
+							public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+								posJug = posicionJugador.getSelectedItem().toString();
+							}
+
+							@Override
+							public void onNothingSelected(AdapterView<?> arg0) {
+							}
+							
+						});
+					}else{
+						if(position == 2){
+							posicionJugador.setAdapter(adaptador4);
+							posicionJugador.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+								@Override
+								public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+									posJug = posicionJugador.getSelectedItem().toString();
+								}
+
+								@Override
+								public void onNothingSelected(AdapterView<?> arg0) {
+								}
+								
+							});
+						}
+					}
+				}
 			}
-			public void onNothingSelected(AdapterView<?> parentView){
-				
+
+			public void onNothingSelected(AdapterView<?> parentView) {
+
 			}
 		});
 	}
