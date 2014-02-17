@@ -1,24 +1,37 @@
 package gow.fcm.popups;
 
+import java.io.File;
+
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.footballcoachmanager.R.layout;
 import gow.fcm.footballcoachmanager.R.menu;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class PopUpNuevoJugador extends Activity {
 
-	Spinner tipoJugador, posicionJugador;
-	String posJug;
+	private Spinner tipoJugador, posicionJugador;
+	private String posJug;
+	private ImageView fotoEntrenador; //Imagen o foto del entrenador
+	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
+	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
+	private File dirActual=Environment.getExternalStorageDirectory(); //Directorio donde esta la carpeta de las imágenes
+	private String dirRecortes="image/*"; //Directorio donde se encuentran las imágenes recortadas
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +106,71 @@ public class PopUpNuevoJugador extends Activity {
 
 			}
 		});
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item){
+		switch(item.getItemId()){
+			case R.id.camaraFotos: cargarCamaraFotos();
+				return true;
+			case R.id.galeriaFotos: cargarGaleriaFotos();
+				return true;
+			default:
+				return super.onContextItemSelected(item);
+		}
+	}
+	
+	//Método que carga la cámara de fotos
+	private void cargarCamaraFotos(){
+		String nombreFoto=System.currentTimeMillis()+".png";
+		File directorioCompleto=new File(dirActual,nombreFoto);
+		selectedImageUri=Uri.fromFile(directorioCompleto);
+		Intent i=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		i.putExtra(MediaStore.EXTRA_OUTPUT,selectedImageUri);
+		startActivityForResult(i,camara);
+	}
+	
+	//Método que carga la galería de fotos
+	private void cargarGaleriaFotos(){
+		//Abrimos la galería
+		Intent i=new Intent();
+		i.setAction(Intent.ACTION_GET_CONTENT);
+		i.setType(dirRecortes);
+		i.putExtra("crop","true");
+		i.putExtra("aspectX",1);
+		i.putExtra("aspectY",1);
+		i.putExtra("outputX",100);
+		i.putExtra("outputY",102);
+		i.putExtra("return-data",false);
+		
+		//Pasamos los parámetros para guardar la imagen
+		String nombreFoto=System.currentTimeMillis()+".png";
+		File directorioCompleto=new File(dirActual,nombreFoto);
+		selectedImageUri=Uri.fromFile(directorioCompleto);
+				
+		//La guaradamos
+		i.putExtra(MediaStore.EXTRA_OUTPUT,selectedImageUri);
+		startActivityForResult(Intent.createChooser(i,"Completar acción"),galeria);
+	}
+	
+	//Método que recorta la imagen
+	private void recortarFotoCamara(Uri archivo){
+		//Recortamos la imagen
+		Intent i=new Intent("com.android.camera.action.CROP");
+		i.setDataAndType(archivo,dirRecortes);
+		i.putExtra("crop","true");
+		i.putExtra("aspectX",1);
+		i.putExtra("aspectY",1);
+		i.putExtra("outputX",100);
+		i.putExtra("outputY",102);
+		i.putExtra("return-data",false);
+		
+		//Pasamos los parámetros para guardarla
+		selectedImageUri=archivo;
+		
+		//La guaradamos
+		i.putExtra(MediaStore.EXTRA_OUTPUT,selectedImageUri);
+		startActivityForResult(i,recortar);
 	}
 
 	@Override
