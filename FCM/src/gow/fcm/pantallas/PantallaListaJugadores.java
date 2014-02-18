@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNuevoJugador;
+import gow.fcm.sentencias.SentenciasInsertSQLite;
+import gow.fcm.sentencias.SentenciasSQLiteListaJugadores;
 import gow.fcm.sentencias.SentenciasSQLitePrincipal;
+import gow.fcm.sharefprefs.DatosFootball;
 import gow.fcm.utilidades.ListaJugadores;
 import android.os.Bundle;
 import android.app.Activity;
@@ -30,10 +33,10 @@ public class PantallaListaJugadores extends Activity {
 
 	private GridView listaJugadores; //Lista de los jugadores del equipo
 	private int getDorsal; //Dorsal pulsado en la la lista
-	private String[] nombreJugador,apellidosJugador,posicionJugador,dorsalJugador, tipoJugador; //Matrices donde se les pasa los datos a mostrar en la lista
+	private String[] nombreJugador,apellidosJugador,posicionJugador,tipoJugador,dorsalJugador; //Matrices donde se les pasa los datos a mostrar en la lista
 	private View pie; //Variable usada para almacenar un objeto View del pie de página de la lista de jugadores
 	private ArrayList<String[]> jugadoresTipo;
-
+	private String tiposJugadores;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,22 +47,27 @@ public class PantallaListaJugadores extends Activity {
 		// nombre de la
 		// aplicación
 		setContentView(R.layout.activity_lista_jugadores);
-
-		// Se crea la base de datos si no existe o se actualiza si fuera necesario
 		
-		// JOSEEEEEEEP AQUI CREA LA BASE DE DATOS ¿OTRA VEZ?
+		// Se crea la base de datos si no existe o se actualiza si fuera necesario
 		ConexionSQLite.getCrearSQLite(this);
-
+		
+		//DatosFootball.setDatosFootball(this,1,1);
+		//SentenciasInsertSQLite.insertarSQLite("Equipos",new String[]{"nombre"},new String[]{"Pepe Team"});
+		//SentenciasInsertSQLite.insertarSQLite("Entrenadores",new String[]{"id_equipo","nombre","apellidos","usuario","clave","pregunta_seguridad","respuesta_seguridad"},new String[]{"1","Pepe","García","pepe","1234","1","Chispi"});
+		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Antonio","Martinez","22","DE","Defensa","32"});
+		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Jose","Martinez","23","QB","Ataque","32"});
+		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Mario","Martinez","24","K","Equipos Especiales","32"});
+		
 		//Método que mostrará la lista de jugadores
-		mostrarLista(true);
+		mostrarLista();
 
 		ImageButton BtnAtaque = (ImageButton) findViewById(R.id.imageButtonListaAtaque);
 		BtnAtaque.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				obtenerJugadoresTipo("Ataque");
-				mostrarLista(false);
+				tiposJugadores="Ataque";
+				actualizarLista(tiposJugadores);
 				Log.d("Raul", "Pulsado ataque");
 			}
 		}
@@ -70,26 +78,24 @@ public class PantallaListaJugadores extends Activity {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				obtenerJugadoresTipo("Defensa");
-				mostrarLista(false);
+				tiposJugadores="Defensa";
+				actualizarLista(tiposJugadores);
 				Log.d("Raul", "Pulsado defensa");
 			}
 		}
 				);
-
 
 		ImageButton BtnEe = (ImageButton) findViewById(R.id.imageButtonListaEe);
 		BtnEe.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				obtenerJugadoresTipo("Equipos Especiales");
-				mostrarLista(false);
+				tiposJugadores="Equipos Especiales";
+				actualizarLista(tiposJugadores);
 				Log.d("Raul", "Pulsado ee");
 			}
 		}
 				);
-
 	}
 
 	// Método de creación de los menús contextuales
@@ -119,7 +125,7 @@ public class PantallaListaJugadores extends Activity {
 			return true;
 		case R.id.optionSiJugador:
 			borrarJugador();
-			actualizarLista();
+			actualizarLista(tiposJugadores);
 			return true;
 		default:
 			return super.onContextItemSelected(item);
@@ -128,28 +134,35 @@ public class PantallaListaJugadores extends Activity {
 
 	private void cargarJugadores() {
 		//Forzamos los datos de entrada que serán mostrados en la lista
-		/*SentenciasSQLitePrincipal.getDatosJugadores(this);
-		dorsalJugador = SentenciasSQLitePrincipal.getVectorDorsal();
-		nombreJugador = SentenciasSQLitePrincipal. .getVectorNombre();
-		apellidosJugador = SentenciasSQLitePrincipal.getVectorApellidos();
-		posicionJugador = SentenciasSQLitePrincipal.getVectorPosicion();
-		tipoJugador = //Necesito recibir esto JOSEEEEEEEEEEEEP
-		 */
-		dorsalJugador=new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13"};
-		Log.d("Raul", "cargarJugadores"+dorsalJugador[5]);
-		nombreJugador=new String[]{"Pepe","Matias","Raul","Joli","Kevin","Artur","Segnent","Josep","Lolo","Paco","Tono","Pedro","Luis"};
-		apellidosJugador=new String[]{"Lopez","Garcia","Martinez","Fernandez","Hernandez","Castillo","Cucu","Perez","Palau","Lopez","Perez","Martin","Martinez"};
-		posicionJugador=new String[]{"DE","QB","LB","DE","QB","LB","DE","QB","LB","LB","LB","DE","DE"};
-		tipoJugador=new String[]{"Ataque","Ataque","Ataque","Defensa","Defensa","Defensa","Defensa","Defensa","Equipos Especiales","Equipos Especiales","Equipos Especiales","Equipos Especiales","Equipos Especiales"};
+		SentenciasSQLiteListaJugadores.getDatosJugador(this);
+		dorsalJugador = SentenciasSQLiteListaJugadores.getDorsalJugador();
+		nombreJugador = SentenciasSQLiteListaJugadores.getNombreJugador();
+		apellidosJugador = SentenciasSQLiteListaJugadores.getApellidosJugador();
+		posicionJugador = SentenciasSQLiteListaJugadores.getPosicionJugador();
+		 
+		//dorsalJugador=new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13"};
+		//Log.d("Raul", "cargarJugadores"+dorsalJugador[5]);
+		//nombreJugador=new String[]{"Pepe","Matias","Raul","Joli","Kevin","Artur","Segnent","Josep","Lolo","Paco","Tono","Pedro","Luis"};
+		//apellidosJugador=new String[]{"Lopez","Garcia","Martinez","Fernandez","Hernandez","Castillo","Cucu","Perez","Palau","Lopez","Perez","Martin","Martinez"};
+		//posicionJugador=new String[]{"DE","QB","LB","DE","QB","LB","DE","QB","LB","LB","LB","DE","DE"};
+		//tipoJugador=new String[]{"Ataque","Ataque","Ataque","Defensa","Defensa","Defensa","Defensa","Defensa","Equipos Especiales","Equipos Especiales","Equipos Especiales","Equipos Especiales","Equipos Especiales"};
+	}
+	
+	private void cargarTipoJugadores(String tipo){
+		//Forzamos los datos de entrada que serán mostrados en la lista según el tipo de jugador
+		SentenciasSQLiteListaJugadores.getDatosJugadorTipo(this,tipo);
+		dorsalJugador = SentenciasSQLiteListaJugadores.getDorsalJugador();
+		nombreJugador = SentenciasSQLiteListaJugadores.getNombreJugador();
+		apellidosJugador = SentenciasSQLiteListaJugadores.getApellidosJugador();
+		posicionJugador = SentenciasSQLiteListaJugadores.getPosicionJugador();
 	}
 
-	private void mostrarLista(boolean seleccion) {
+	private void mostrarLista(/*boolean seleccion*/) {
 		// Obtenemos el elemento GridView de android
 		listaJugadores = (GridView) findViewById(R.id.lista_jugadores_equipo);
 		// Registramos el menú contextual
 		registerForContextMenu(listaJugadores);
 
-		if(seleccion){
 			//Buscamos en la base de datos
 			cargarJugadores();
 
@@ -158,38 +171,16 @@ public class PantallaListaJugadores extends Activity {
 
 			// Se colocan los datos en la lista
 			listaJugadores.setAdapter(adaptador);
-		}else{
-			//Estos datos se cogen de los datos ya leidos
-			int longitud =jugadoresTipo.size();
-			String[] dorsales=new String[longitud];
-			String[] nombres=new String[longitud];
-			String[] apellidos=new String[longitud];
-			String[] posiciones=new String[longitud];
-			for (int i = 0; i <longitud; i++) {
-				String[] jugadores = new String[longitud];
-				jugadores = jugadoresTipo.get(i);
-				dorsales[i]= jugadores[0];
-				nombres[i]= jugadores[1];
-				apellidos[i]= jugadores[2];
-				posiciones[i]= jugadores[3];
-			}
-			ListaJugadores adaptador = new ListaJugadores(this, dorsales, nombres, apellidos, posiciones);
-			// Se colocan los datos en la lista
-			listaJugadores.setAdapter(adaptador);
-		}
-
-
 
 		accionesListaJugadores();
 	}
 
+	private void actualizarLista(String tipo) {
+		cargarTipoJugadores(tiposJugadores);
 
-	private void actualizarLista() {
-		cargarJugadores();
-
-		// Le enviamos a la clase ListaJugadores los datos a actualizar
-		ListaJugadores adaptador = new ListaJugadores(this, nombreJugador, apellidosJugador, posicionJugador, dorsalJugador);
-
+		// Le enviamos a la clase ListaJugadores los datos a rellenar
+		 ListaJugadores adaptador = new ListaJugadores(this, dorsalJugador, nombreJugador, apellidosJugador, posicionJugador);
+		 
 		// Se colocan los datos en la lista
 		listaJugadores.setAdapter(adaptador);
 
@@ -229,9 +220,8 @@ public class PantallaListaJugadores extends Activity {
 		// Lo mostramos
 		imgDiv.setVisibility(View.VISIBLE);
 
-
 		//}
-
+		
 		// Cargamos un elemento ImageView
 		final ImageView addJugador = (ImageView) findViewById(R.id.add_jugador);
 
@@ -276,26 +266,26 @@ public class PantallaListaJugadores extends Activity {
 		//SentenciasSQLitePrincipal.borrarJugador(getDorsal, this);
 	}
 
-	private void obtenerJugadoresTipo(String tipoJ){
+	//Método que permite obtener los datos de los jugadores
+	/*private void obtenerJugadoresTipo(String tipoJ){
 		jugadoresTipo=new ArrayList<String[]>();
 		int i=0;
-		Log.d("Raul", "Entrando en obtenerJugador:"+tipoJ);
+		Log.d("Hola", "Entrando en obtenerJugador:"+tipoJ);
 		for (String tipo : tipoJugador) {
-			Log.d("Raul", "Entrando dentro del for:"+tipo);
+			Log.d("Hola", "Entrando dentro del for:"+tipo);
 			if (tipo.compareTo(tipoJ)==0) {
 				String[] jugador = new String[4];
-				Log.d("Raul", dorsalJugador[i]+"i="+i);
+				Log.d("Hola", dorsalJugador[i]+"i="+i);
 				jugador[0]=dorsalJugador[i];
-				Log.d("Raul", nombreJugador[i]+"i="+i);
+				Log.d("Hola", nombreJugador[i]+"i="+i);
 				jugador[1]=nombreJugador[i];
-				Log.d("Raul", apellidosJugador[i]+"i="+i);
+				Log.d("Hola", apellidosJugador[i]+"i="+i);
 				jugador[2]=apellidosJugador[i];
-				Log.d("Raul", posicionJugador[i]+"i="+i);
+				Log.d("Hola", posicionJugador[i]+"i="+i);
 				jugador[3]=posicionJugador[i];
 				jugadoresTipo.add(jugador);
 			}
 			i++;
-
 		}
-	}
+	}*/
 }
