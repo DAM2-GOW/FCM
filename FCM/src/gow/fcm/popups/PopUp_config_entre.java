@@ -1,4 +1,4 @@
-package gow.fcm.popups;
+/*package gow.fcm.popups;
 
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.pantallas.Config_entre;
@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class PopUp_config_entre extends Activity {
+/*public class PopUp_config_entre extends Activity {
 Spinner sp;
 EditText txtDato1;
 EditText txtDato2;
@@ -58,15 +58,15 @@ String resultModulo;
 		enviar.setOnClickListener(new OnClickListener() {
 			
 			@Override
-			public void onClick(View v) {
-				Intent info = new Intent(PopUp_config_entre.this,Config_entre.class);
+//			public void onClick(View v) {
+			/*	Intent info = new Intent(PopUp_config_entre.this,Config_entre.class);
 				info.putExtra("dato1", txtDato1.getText().toString());
 				info.putExtra("dato2", txtDato2.getText().toString());
 				info.putExtra("modulo", resultModulo.toString());
-				startActivity(info);
+				setResult(Activity.RESULT_OK, info);
 				
 			}
-		});
+			});
 		
 		
 	}
@@ -87,7 +87,7 @@ String resultModulo;
 	 * 
 	 * @param activity : le pasamos el activity actual para personalizarlo.
 	 */
-	public static void showAsPopup(Activity activity) {
+	/*public static void showAsPopup(Activity activity) {
 		activity.requestWindowFeature(Window.FEATURE_ACTION_BAR); // Esta caracteristica habilita la barra (menu) en el Pop-Up.
 		activity.getWindow().setFlags(
 				WindowManager.LayoutParams.FLAG_DIM_BEHIND,
@@ -101,5 +101,5 @@ String resultModulo;
 				(android.view.WindowManager.LayoutParams) params); // Aplicamos los valores establecidos al Activity.
 	}
 
+*/
 
-}
