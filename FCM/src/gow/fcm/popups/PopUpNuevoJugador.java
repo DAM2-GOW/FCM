@@ -1,37 +1,37 @@
 package gow.fcm.popups;
 
-import java.io.File;
-
 import gow.fcm.footballcoachmanager.R;
-import gow.fcm.footballcoachmanager.R.layout;
-import gow.fcm.footballcoachmanager.R.menu;
+import java.io.File;
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.app.Activity;
-import android.content.Intent;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 
 public class PopUpNuevoJugador extends Activity {
 
 	private Spinner tipoJugador, posicionJugador;
 	private String posJug;
-	private ImageView fotoEntrenador; //Imagen o foto del entrenador
 	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
 	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
 	private File dirActual=Environment.getExternalStorageDirectory(); //Directorio donde esta la carpeta de las imágenes
 	private String dirRecortes="image/*"; //Directorio donde se encuentran las imágenes recortadas
+	private Button botonEditar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +109,55 @@ public class PopUpNuevoJugador extends Activity {
 
 			}
 		});
+		
+		getFotoEntrenador();
 	}
+	
+	@Override
+	protected void onActivityResult(int codigo,int resultado,Intent datos){
+		//Comprobamos si se ha producido algún error
+		if(resultado!=RESULT_OK){
+			return;
+		}
+		
+		//Acciones a realizar según la opción seleccionada previamente
+		switch(codigo){
+			case camara: Uri ruta=selectedImageUri; //Obtenemos la ruta
+				
+				recortarFotoCamara(ruta); //Recortamos la imagen
+				break;
+			case galeria: Uri ruta2=selectedImageUri; //Obtenemos la ruta
+				String rutaImagen2=String.valueOf(ruta2); //Convertimos a string la ruta
+				
+				//Guardamos y actualizamos la imagen
+				//SentenciasSQLitePrincipal.actualizarFotoEntrenador(rutaImagen2,this);
+				
+				getFotoEntrenador();
+				break;
+			case recortar: Uri ruta3=selectedImageUri; //Obtenemos la ruta
+				String rutaImagen3=String.valueOf(ruta3); //Convertimos a string la ruta
+				
+				//Guardamos y actualizamos la imagen
+				//SentenciasSQLitePrincipal.actualizarFotoEntrenador(rutaImagen3,this);
+				
+				getFotoEntrenador();
+				break;
+			default:
+				break;
+		}
+	}
+	
+	//Método de creación de los menús contextuales
+		public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
+			super.onCreateContextMenu(menu,v,menuInfo);
+			MenuInflater inflater=getMenuInflater();
+			switch(v.getId()){
+				case R.id.editarFotoJugador: inflater.inflate(R.menu.foto_select, menu);
+					break;
+				default:
+					break;
+			}
+		}
 	
 	//Metodo que hace que puedas seleccionar una foto desde la galeria o hacerla en el instante.
 	@Override
@@ -183,6 +231,26 @@ public class PopUpNuevoJugador extends Activity {
 		getMenuInflater().inflate(R.menu.pop_up_nuevo_jugador, menu);
 		return true;
 	}
+	
+	//Método que obtiene y muestra la foto actual del entrenador
+		private void getFotoEntrenador(){
+			botonEditar = (Button)findViewById(R.id.editarFotoJugador);
+			registerForContextMenu(botonEditar);
+			
+			//Ejecutamos las sentencias
+			//SentenciasSQLitePrincipal.getDatosEntrenador(this);
+			//String fotoEnt=SentenciasSQLitePrincipal.getFotoEntrenador();
+			
+			//Mostramos la foto del entrenador si la hay o no
+			/*if(fotoEnt==null){
+				fotoEntrenador.setImageResource(R.drawable.no_coach_photo);
+			}else{
+				//Agregamos el valor o contenido a los elementos
+				fotoEntrenador.setImageURI(Uri.parse(fotoEnt));
+				
+				SentenciasSQLitePrincipal.setFotoEntrenador(); //Reseta a null el valor
+			}*/
+		}
 	
 	//Metodo que hace que el activity salga como PopUp.
 	public static void showAsPopup(Activity activity) {

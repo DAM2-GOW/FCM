@@ -1,7 +1,6 @@
 package gow.fcm.popups;
 
 import gow.fcm.basedatos.ConexionSQLite;
-import gow.fcm.pantallas.Config_entre;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
@@ -81,8 +80,8 @@ public class PopUpNuevoEntrenamiento extends Activity {
             public void onClick(View v) {
             	//SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha"}, new String[]{""+id_equipo+"", ""+titulEntrenamiento+"", ""+sp+"", ""+tp+"", ""+dp+""});
             	//PopUpNuevoEntrenamiento.this.finish();
-            	Intent i = new Intent(gow.fcm.popups.PopUpNuevoEntrenamiento.this, gow.fcm.pantallas.Config_entre.class);
-            	startActivity(i);
+//            	Intent i = new Intent(gow.fcm.popups.PopUpNuevoEntrenamiento.this, gow.fcm.pantallas.Config_entre.class);
+//            	startActivity(i);
             }
 		});
 	}

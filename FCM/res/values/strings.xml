@@ -44,6 +44,9 @@
     <string name="title_activity_pop_up_nuevo_partido">PopUpNuevoPartido</string>
     <string name="add_photo_gallery">anyadir_foto_galeria</string>
     <string name="add_photo_camera">anyadir_foto_camara</string>
+    <string name="fecha">Fecha</string>
+    <string name="hora">Hora</string>
+    <string name="tipo_entrenamiento">Tipo Entrenamiento</string>
 
     <string-array name="TipoEntrenamiento">
         <item>Resistencia</item>
