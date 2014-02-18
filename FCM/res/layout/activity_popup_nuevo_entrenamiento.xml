@@ -13,8 +13,8 @@
     tools:context=".PopUpNuevoEntrenamiento" >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="337dp"
         android:gravity="center" >
 
         <EditText
@@ -23,26 +23,51 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Título Entrenamiento"
-            android:textColor="@color/white" >
-
-            <requestFocus />
-        </EditText>
+            android:textColor="@color/white" />
 
         <Space
             android:layout_width="200dp"
             android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/txtViewDiaEntrenamiento"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
 
-        <DatePicker
-            android:id="@+id/fecha_entrenamientoNuevo"
+            <TextView
+                android:id="@+id/txtViewDiaEntrenamiento"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <DatePicker
+                android:id="@+id/fecha_entrenamientoNuevo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txtViewHoraEntrenamient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TimePicker
+                android:id="@+id/hora_entrenamientoNuevo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -57,39 +82,31 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white" />
 
+        <EditText
+            android:id="@+id/observacionesEntrenamientoNuevo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Observaciones..."
+            android:inputType="textMultiLine"
+            android:textColor="@color/white" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/guardarEntrenamientoNuevo"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="guardarNuevoEntrenamiento"
+            android:text="Button" />
+
         <Space
             android:layout_width="200dp"
             android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/txtViewHoraEntrenamient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TimePicker
-            android:id="@+id/hora_entrenamientoNuevo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/observacionesEntrenamientoNuevo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:textColor="@color/white"
-        android:hint="Observaciones..." />
-
-    <Button
-        android:id="@+id/guardarEntrenamientoNuevo"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="guardarNuevoEntrenamiento"
-        android:text="Button" />
 
 </LinearLayout>

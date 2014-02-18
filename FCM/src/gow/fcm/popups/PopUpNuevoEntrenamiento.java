@@ -2,12 +2,10 @@ package gow.fcm.popups;
 
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
-import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.View;
