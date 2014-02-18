@@ -39,15 +39,24 @@
     <string name="title_activity_config_entre">Config_entre</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_pop_up_nuevo_jugador">PopUpNuevoJugador</string>
-    <string name="title_activity_pop_up_nuevo_entrenamiento">PopUpNuevoEntrenamiento</string>
-    <string name="title_activity_pop_up_nuevo_partido">PopUpNuevoPartido</string>
+    <string name="title_activity_pop_up_nuevo_jugador">Crear Nuevo Jugador</string>
+    <string name="title_activity_pop_up_nuevo_entrenamiento">Crear Nuevo Entrenamiento</string>
+    <string name="title_activity_pop_up_nuevo_partido">Crear Nuevo Partido</string>
     <string name="add_photo_gallery">anyadir_foto_galeria</string>
     <string name="add_photo_camera">anyadir_foto_camara</string>
     <string name="fecha">Fecha</string>
     <string name="hora">Hora</string>
     <string name="tipo_entrenamiento">Tipo Entrenamiento</string>
-
+    <string name="editar_foto">Editar Foto</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="edad">Edad</string>
+    <string name="dorsal">Dorsal</string>
+    <string name="lugar">Lugar</string>
+    <string name="rival">Rival</string>
+    <string name="observaciones">Observaciones</string>
+	<string name="titulo_entrenamiento">Título Entrenamiento</string>
+	
     <string-array name="TipoEntrenamiento">
         <item>Resistencia</item>
         <item>Fuerza</item>
@@ -98,7 +107,7 @@
     <string name="dorsal_number">0</string>
     <string name="player_name">Nombre del Jugador</string>
     <string name="player_surname">Apellidos del jugador</string>
-    <string name="position">Posición:</string>
+    <string name="position">Posición</string>
     <string name="position_name">nombre de la posición</string>
     <string name="no_players">No hay jugadores</string>
     <string name="div_img">Imagen divisoria</string>

@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Lugar"
+            android:hint="@string/lugar"
             android:textColor="@color/white" >
 
             <requestFocus />
@@ -36,7 +36,7 @@
             android:id="@+id/txtViewDiaPartido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Large Text"
+            android:text="@string/fecha"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <DatePicker
@@ -55,7 +55,7 @@
             android:id="@+id/editText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Rival"
+            android:hint="@string/rival"
             android:ems="10" />
 
         <Space
@@ -66,7 +66,7 @@
             android:id="@+id/txtViewHoraPartido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Large Text"
+            android:text="@string/hora"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TimePicker
@@ -83,7 +83,7 @@
         android:ems="10"
         android:inputType="textMultiLine"
         android:textColor="@color/white"
-        android:hint="Observaciones..." />
+        android:hint="@string/observaciones" />
 
     <Button
         android:id="@+id/guardarPartidoNuevo"
@@ -91,6 +91,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="guardarNuevoEntrenamiento"
-        android:text="Button" />
+        android:text="@string/bb_menu_save" />
 
 </LinearLayout>

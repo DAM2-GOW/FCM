@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Título Entrenamiento"
+            android:hint="@string/titulo_entrenamiento"
             android:textColor="@color/white" />
 
         <Space
@@ -39,7 +39,7 @@
                 android:id="@+id/txtViewDiaEntrenamiento"
                 android:layout_width="133dp"
                 android:layout_height="wrap_content"
-                android:text="Large Text"
+                android:text="@string/fecha"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <DatePicker
@@ -59,7 +59,7 @@
                 android:id="@+id/txtViewHoraEntrenamient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Large Text"
+                android:text="@string/hora"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TimePicker
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Observaciones..."
+            android:hint="@string/observaciones"
             android:inputType="textMultiLine"
             android:textColor="@color/white" >
 
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="guardarNuevoEntrenamiento"
-            android:text="Button" />
+            android:text="@string/bb_menu_save" />
 
         <Space
             android:layout_width="200dp"
