@@ -21,5 +21,7 @@ public class EstadisticasJugador extends Activity {
 		getMenuInflater().inflate(R.menu.estadisticas_jugador, menu);
 		return true;
 	}
+	
+	//jajajajajaja
 
 }
