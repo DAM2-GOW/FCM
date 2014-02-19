@@ -47,12 +47,12 @@ public class PantallaListaJugadores extends Activity {
 		// Se crea la base de datos si no existe o se actualiza si fuera necesario
 		ConexionSQLite.getCrearSQLite(this);
 		
-		//DatosFootball.setDatosFootball(this,1,1);
-		//SentenciasInsertSQLite.insertarSQLite("Equipos",new String[]{"nombre"},new String[]{"Pepe Team"});
-		//SentenciasInsertSQLite.insertarSQLite("Entrenadores",new String[]{"id_equipo","nombre","apellidos","usuario","clave","pregunta_seguridad","respuesta_seguridad"},new String[]{"1","Pepe","García","pepe","1234","1","Chispi"});
-		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Antonio","Martinez","22","DE","Defensa","32"});
-		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Jose","Martinez","23","QB","Ataque","32"});
-		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Mario","Martinez","24","K","Equipos Especiales","32"});
+		DatosFootball.setDatosFootball(this,1,1);
+		SentenciasInsertSQLite.insertarSQLite("Equipos",new String[]{"nombre"},new String[]{"Pepe Team"});
+		SentenciasInsertSQLite.insertarSQLite("Entrenadores",new String[]{"id_equipo","nombre","apellidos","usuario","clave","pregunta_seguridad","respuesta_seguridad"},new String[]{"1","Pepe","García","pepe","1234","1","Chispi"});
+		SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Antonio","Martinez","22","DE","Defensa","32"});
+		SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Jose","Martinez","23","QB","Ataque","32"});
+		SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Mario","Martinez","24","K","Equipos Especiales","32"});
 		
 		//Método que mostrará la lista de jugadores
 		mostrarLista();

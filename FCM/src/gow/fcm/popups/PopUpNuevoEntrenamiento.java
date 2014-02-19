@@ -1,7 +1,10 @@
 package gow.fcm.popups;
 
+import javax.security.auth.PrivateCredentialPermission;
+
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
+import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker.OnTimeChangedListener;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TimePicker;
@@ -30,6 +34,7 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	Spinner sp;
 	Button bt;
 	EditText titulEntrenamiento;
+	String stringTipoEntrenamiento, fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +59,7 @@ public class PopUpNuevoEntrenamiento extends Activity {
 			//Cuando selecciones el spinner se guarda en un String.
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				String stringTipoEntrenamiento = sp.getSelectedItem().toString();				
+				stringTipoEntrenamiento = sp.getSelectedItem().toString();				
 			}
 			public void onNothingSelected(AdapterView<?> parentView){
 				
@@ -67,9 +72,27 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	        dp.setCalendarViewShown(false);
 	    }
 		
+		diaEntrenamiento = String.valueOf(dp.getDayOfMonth());
+		mesEntrenamiento = String.valueOf(dp.getMonth());
+		anyoEntrenamiento = String.valueOf(dp.getYear());
+		
+		fechaEntrenamiento = fechaEntrenamiento.concat(anyoEntrenamiento+"-").concat(mesEntrenamiento+"-").concat(diaEntrenamiento);
+		
 		//Modificamos el diseño de la hora para que este en formato 24H.
 		tp = (TimePicker) findViewById(R.id.hora_entrenamientoNuevo);
 		tp.setIs24HourView(DateFormat.is24HourFormat(this));
+		
+		horaMinuto = horaMinuto.concat(tp.getCurrentHour()+":").concat(tp.getCurrentMinute()+":00");
+		
+		tp.setOnTimeChangedListener(new OnTimeChangedListener() {
+			
+			@Override
+			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+				horaMinuto = horaMinuto.concat(String.valueOf(hourOfDay)+":").concat(String.valueOf(minute+":00"));
+				
+			}
+		});
+		
 		
 		//Cuando le des al boton se guardan los datos en la BD y se va a la configuración del mismo entrenamiento nuevo creado.
 		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);
@@ -81,10 +104,8 @@ public class PopUpNuevoEntrenamiento extends Activity {
             		Toast.makeText(getApplicationContext(), "Esta vacio el campo Titulo entrenamiento rellenalo", Toast.LENGTH_SHORT).show();
             		
             	}
-            	//SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha"}, new String[]{""+id_equipo+"", ""+titulEntrenamiento+"", ""+sp+"", ""+tp+"", ""+dp+""});
-            	//PopUpNuevoEntrenamiento.this.finish();
-//            	Intent i = new Intent(gow.fcm.popups.PopUpNuevoEntrenamiento.this, gow.fcm.pantallas.Config_entre.class);
-//            	startActivity(i);
+            	SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha"}, new String[]{""+id_equipo+"", ""+titulEntrenamiento+"", ""+stringTipoEntrenamiento+"", ""+fechaEntrenamiento+"", ""+fechaEntrenamiento + " " + horaMinuto+""});
+            	PopUpNuevoEntrenamiento.this.finish();
             }
 		});
 	}
