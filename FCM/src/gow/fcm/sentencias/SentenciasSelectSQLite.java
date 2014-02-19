@@ -2,12 +2,12 @@ package gow.fcm.sentencias;
 
 import gow.fcm.basedatos.ConexionSQLite;
 import android.database.Cursor;
-import android.util.Log;
 
 public class SentenciasSelectSQLite{
 	
 	//Valores a almacenar de los campos de la base de datos
-	private static String[] valores;
+	private static int maxValores=24; //Número de valores a obtener en la sentencia como máximo
+	private static String[] valores=new String[maxValores];//Indicamos el tamaño del array para que no de un error
 	
 	public static String[] getValores(){
 		return valores;
@@ -15,8 +15,7 @@ public class SentenciasSelectSQLite{
 	
 	//Reseteamos los valores de la clase genérica Object
 	public static void borrarTodosValores(){
-		valores=new String[24]; //Indicamos el tamaño del array para que no de un error
-		for(int i=0;i<24;i++){
+		for(int i=0;i<maxValores;i++){
 			valores[i]=null;
 		}
 	}
@@ -24,6 +23,9 @@ public class SentenciasSelectSQLite{
 	//Método que obtiene un registro en la base de datos pasandole como parametros el nombre de la tabla, el nombre de los campos y la condición que se debe cumplir
 	public static void seleccionarSQLite(String tabla,String[] campos,String condicion){
 		ConexionSQLite.getAbrirSQLite(); //Abrimos la conexión
+		
+		maxValores=campos.length;
+		valores=new String[maxValores]; //Le indicamos el nuevo tamaño del vector según el número de campos a obtener
 		
 		//Convertimos a string el vector
 		String campo="";
