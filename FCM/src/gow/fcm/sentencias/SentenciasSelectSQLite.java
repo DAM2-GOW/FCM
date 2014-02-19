@@ -2,18 +2,20 @@ package gow.fcm.sentencias;
 
 import gow.fcm.basedatos.ConexionSQLite;
 import android.database.Cursor;
+import android.util.Log;
 
 public class SentenciasSelectSQLite{
 	
 	//Valores a almacenar de los campos de la base de datos
-	private static Object[] valores;
+	private static String[] valores;
 	
-	public static Object[] getValores(){
+	public static String[] getValores(){
 		return valores;
 	}
 	
 	//Reseteamos los valores de la clase genérica Object
 	public static void borrarTodosValores(){
+		valores=new String[24]; //Indicamos el tamaño del array para que no de un error
 		for(int i=0;i<24;i++){
 			valores[i]=null;
 		}
@@ -45,123 +47,123 @@ public class SentenciasSelectSQLite{
 				
 				//Según el número de campos que le hayamos pasados, devolverá un determinado conjunto de valores
 				switch(campos.length){
-					case 1: for(int i=0;i<1;i++){
-							valores[i]=cursor.getString(0);
+					case 1: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 						
-					case 2: for(int i=0;i<2;i++){
-							valores[i]=cursor.getString(0);
+					case 2: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 						
-					case 3: for(int i=0;i<3;i++){
-							valores[i]=cursor.getString(0);
+					case 3: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 						
-					case 4: for(int i=0;i<4;i++){
-							valores[i]=cursor.getString(0);
+					case 4: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 						
-					case 5: for(int i=0;i<5;i++){
-							valores[i]=cursor.getString(0);
+					case 5: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 6: for(int i=0;i<6;i++){
-							valores[i]=cursor.getString(0);
+					case 6: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 7: for(int i=0;i<7;i++){
-							valores[i]=cursor.getString(0);
+					case 7: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 8: for(int i=0;i<8;i++){
-							valores[i]=cursor.getString(0);
+					case 8: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 9: for(int i=0;i<9;i++){
-							valores[i]=cursor.getString(0);
+					case 9: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 10: for(int i=0;i<10;i++){
-							valores[i]=cursor.getString(0);
+					case 10: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 11: for(int i=0;i<11;i++){
-							valores[i]=cursor.getString(0);
+					case 11: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 12: for(int i=0;i<12;i++){
-							valores[i]=cursor.getString(0);
+					case 12: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 13: for(int i=0;i<13;i++){
-							valores[i]=cursor.getString(0);
+					case 13: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 14: for(int i=0;i<14;i++){
-							valores[i]=cursor.getString(0);
+					case 14: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 15: for(int i=0;i<15;i++){
-							valores[i]=cursor.getString(0);
+					case 15: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 16: for(int i=0;i<16;i++){
-							valores[i]=cursor.getString(0);
+					case 16: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 17: for(int i=0;i<17;i++){
-							valores[i]=cursor.getString(0);
+					case 17: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 18: for(int i=0;i<18;i++){
-							valores[i]=cursor.getString(0);
+					case 18: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 19: for(int i=0;i<19;i++){
-							valores[i]=cursor.getString(0);
+					case 19: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 20: for(int i=0;i<20;i++){
-							valores[i]=cursor.getString(0);
+					case 20: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 21: for(int i=0;i<21;i++){
-							valores[i]=cursor.getString(0);
+					case 21: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 22: for(int i=0;i<22;i++){
-							valores[i]=cursor.getString(0);
+					case 22: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 23: for(int i=0;i<23;i++){
-							valores[i]=cursor.getString(0);
+					case 23: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 
-					case 24: for(int i=0;i<24;i++){
-							valores[i]=cursor.getString(0);
+					case 24: for(int i=0;i<campos.length;i++){
+							valores[i]=cursor.getString(i);
 						}
 						break;
 				}

@@ -107,7 +107,7 @@
     <string name="dorsal_number">0</string>
     <string name="player_name">Nombre del Jugador</string>
     <string name="player_surname">Apellidos del jugador</string>
-    <string name="position">Posición</string>
+    <string name="position">Posición:</string>
     <string name="position_name">nombre de la posición</string>
     <string name="no_players">No hay jugadores</string>
     <string name="div_img">Imagen divisoria</string>

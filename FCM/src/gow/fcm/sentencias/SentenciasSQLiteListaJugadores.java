@@ -2,6 +2,7 @@ package gow.fcm.sentencias;
 
 import gow.fcm.sharefprefs.DatosFootball;
 import android.content.Context;
+import android.util.Log;
 
 public class SentenciasSQLiteListaJugadores {
 	
@@ -49,12 +50,12 @@ public class SentenciasSQLiteListaJugadores {
 				//Ejcutamos la sentencia
 				SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"nombre","apellidos","posicion","dorsal"},"id_equipo="+id+" LIMIT 0,"+(i+1)+"");
 				//Almacenamos los valores
+				valores=(String[]) SentenciasSelectSQLite.getValores();
 				nombreJugador[i]=valores[0];
 				apellidosJugador[i]=valores[1];
 				posicionJugador[i]=valores[2];
 				dorsalJugador[i]=valores[3];
 			}
-			
 		}
 		
 		//Este método obtiene los datos del jugador
@@ -83,12 +84,12 @@ public class SentenciasSQLiteListaJugadores {
 				//Ejcutamos la sentencia
 				SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"nombre","apellidos","posicion","dorsal"},"id_equipo="+id+" AND tipo='"+tipo+"' LIMIT 0,"+(i+1)+"");
 				//Almacenamos los valores
+				valores=(String[]) SentenciasSelectSQLite.getValores();
 				nombreJugador[i]=valores[0];
 				apellidosJugador[i]=valores[1];
 				posicionJugador[i]=valores[2];
 				dorsalJugador[i]=valores[3];
 			}
-
 		}
 		
 }
