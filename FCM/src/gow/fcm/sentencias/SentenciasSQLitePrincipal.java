@@ -50,9 +50,7 @@ public class SentenciasSQLitePrincipal{
 	//Este método obtiene los datos del entrenador
 	public static void getDatosEntrenador(Context contexto){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
-		SentenciasSelectSQLite.setValor1();
-		SentenciasSelectSQLite.setValor2();
-		SentenciasSelectSQLite.setValor3();
+		SentenciasSelectSQLite.borrarTodosValores();
 		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
@@ -62,15 +60,16 @@ public class SentenciasSQLitePrincipal{
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",new String[]{"nombre","apellidos","foto"},"id_entrenador="+id+"");
 		
 		//Almacenamos los valores
-		nombreEntrenador=(String) SentenciasSelectSQLite.getValor1();
-		apellidosEntrenador=(String) SentenciasSelectSQLite.getValor2();
-		fotoEntrenador=(String) SentenciasSelectSQLite.getValor3();
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		nombreEntrenador=valores[0];
+		apellidosEntrenador=valores[1];
+		fotoEntrenador=valores[2];
 	}
 	
 	//Este método obtiene el nombre del equipo
 	public static void getNombreEquipo(Context contexto){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
-		SentenciasSelectSQLite.setValor1();
+		SentenciasSelectSQLite.borrarTodosValores();
 		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
@@ -80,7 +79,8 @@ public class SentenciasSQLitePrincipal{
 		SentenciasSelectSQLite.seleccionarSQLite("Equipos",new String[]{"nombre"},"id_equipo="+id+"");
 		
 		//Almacenamos el valor
-		nombreEquipo=(String) SentenciasSelectSQLite.getValor1();
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		nombreEquipo=valores[0];
 	}
 	
 }

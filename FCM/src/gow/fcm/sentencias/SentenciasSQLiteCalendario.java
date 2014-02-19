@@ -58,9 +58,7 @@ public class SentenciasSQLiteCalendario{
 	//Este método obtiene los datos del entrenamiento
 	public static void getDatosEntrenamientos(Context contexto,String fecha){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
-		SentenciasSelectSQLite.setValor1();
-		SentenciasSelectSQLite.setValor2();
-		SentenciasSelectSQLite.setValor3();
+		SentenciasSelectSQLite.borrarTodosValores();
 		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
@@ -70,9 +68,10 @@ public class SentenciasSQLiteCalendario{
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"tipo","dirigido","fecha"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
-		tipoEntrenamiento=(String) SentenciasSelectSQLite.getValor1();
-		dirigidoEntrenamiento=(String) SentenciasSelectSQLite.getValor2();
-		String fechaTraining=(String) SentenciasSelectSQLite.getValor3();
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		tipoEntrenamiento=valores[0];
+		dirigidoEntrenamiento=valores[1];
+		String fechaTraining=valores[2];
 		if(fechaTraining!=null){
 			try{
 				fechaEntrenamiento=formatoTexto.parse(fechaTraining);
@@ -86,7 +85,7 @@ public class SentenciasSQLiteCalendario{
 	//Este método borrar los entrenamientos
 	public static void borrarEventoEntrenamiento(Context contexto,String fecha){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
-		SentenciasSelectSQLite.setValor1();
+		SentenciasSelectSQLite.borrarTodosValores();
 		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
@@ -96,7 +95,8 @@ public class SentenciasSQLiteCalendario{
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"id_entrenamiento"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
-		String idEntrenamiento=(String) SentenciasSelectSQLite.getValor1();
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		String idEntrenamiento=valores[0];
 		
 		//Ejcutamos la sentencia
 		SentenciasDeleteSQLite.borrarSQLite("Entrenamientos","id_entrenamiento="+idEntrenamiento+"");
@@ -105,9 +105,7 @@ public class SentenciasSQLiteCalendario{
 	//Este método obtiene los datos del partido
 	public static void getDatosPartidos(Context contexto,String fecha){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
-		SentenciasSelectSQLite.setValor1();
-		SentenciasSelectSQLite.setValor2();
-		SentenciasSelectSQLite.setValor3();
+		SentenciasSelectSQLite.borrarTodosValores();
 		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
@@ -117,9 +115,10 @@ public class SentenciasSQLiteCalendario{
 		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"lugar","rival","fecha"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
-		lugarPartido=(String) SentenciasSelectSQLite.getValor1();
-		rivalPartido=(String) SentenciasSelectSQLite.getValor2();
-		String fechaMatch=(String) SentenciasSelectSQLite.getValor3();
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		lugarPartido=valores[0];
+		rivalPartido=valores[1];
+		String fechaMatch=valores[2];
 		if(fechaMatch!=null){
 			try{
 				fechaPartido=formatoTexto.parse(fechaMatch);
@@ -132,7 +131,7 @@ public class SentenciasSQLiteCalendario{
 	//Este método borrar los partidos
 	public static void borrarEventoPartido(Context contexto,String fecha){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
-		SentenciasSelectSQLite.setValor1();
+		SentenciasSelectSQLite.borrarTodosValores();
 		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
@@ -142,7 +141,8 @@ public class SentenciasSQLiteCalendario{
 		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"id_partido"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
-		String idPartido=(String) SentenciasSelectSQLite.getValor1();
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		String idPartido=valores[0];
 		
 		//Ejcutamos la sentencia
 		SentenciasDeleteSQLite.borrarSQLite("Partidos","id_partido="+idPartido+"");

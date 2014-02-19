@@ -212,7 +212,7 @@ public class PaginaPrincipal extends Activity{
 				switch(arg1.getAction()){
 					case MotionEvent.ACTION_DOWN: {
 						imgEvento.setImageResource(R.drawable.event_management_down);
-						botonEvento(); //Método para ir a la sección
+						botonIrPartido(); //Método para ir a la sección
 						break;
 					}
 					case MotionEvent.ACTION_UP:
@@ -259,9 +259,9 @@ public class PaginaPrincipal extends Activity{
 	}
 	
 	//Método para acceder a los eventos
-	private void botonEvento(){
-		Intent i=new Intent(this,PaginaPrincipal.class);
-		startActivity(i);
+	private void botonIrPartido(){
+		//Intent i=new Intent(this,PlayingGround.class);
+		//startActivity(i);
 	}
 	
 	//Método para acceder al calendario

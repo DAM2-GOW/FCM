@@ -6,249 +6,19 @@ import android.database.Cursor;
 public class SentenciasSelectSQLite{
 	
 	//Valores a almacenar de los campos de la base de datos
-	private static Object valor1,valor2,valor3,valor4,valor5,valor6,valor7,valor8,valor9,valor10,valor11,valor12;
-	private static Object valor13,valor14,valor15,valor16,valor17,valor18,valor19,valor20,valor21,valor22,valor23,valor24;
+	private static Object[] valores;
 	
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor1(){
-		return valor1;
+	public static Object[] getValores(){
+		return valores;
 	}
 	
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor2(){
-		return valor2;
+	//Reseteamos los valores de la clase genérica Object
+	public static void borrarTodosValores(){
+		for(int i=0;i<24;i++){
+			valores[i]=null;
+		}
 	}
 	
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor3(){
-		return valor3;
-	}
-	
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor4(){
-		return valor4;
-	}
-	
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor5(){
-		return valor5;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor6(){
-		return valor6;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor7(){
-		return valor7;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor8(){
-		return valor8;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor9(){
-		return valor9;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor10(){
-		return valor10;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor11(){
-		return valor11;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor12(){
-		return valor12;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor13(){
-		return valor13;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor14(){
-		return valor14;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor15(){
-		return valor15;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor16(){
-		return valor16;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor17(){
-		return valor17;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor18(){
-		return valor18;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor19(){
-		return valor19;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor20(){
-		return valor20;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor21(){
-		return valor21;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor22(){
-		return valor22;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor23(){
-		return valor23;
-	}
-
-	//Obtenemos el valor como la clase genérica Object
-	public static Object getValor24(){
-		return valor24;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor1(){
-		valor1=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor2(){
-		valor2=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor3(){
-		valor3=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor4(){
-		valor4=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor5(){
-		valor5=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor6(){
-		valor6=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor7(){
-		valor7=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor8(){
-		valor8=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor9(){
-		valor9=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor10(){
-		valor10=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor11(){
-		valor11=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor12(){
-		valor12=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor13(){
-		valor13=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor14(){
-		valor14=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor15(){
-		valor15=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor16(){
-		valor16=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor17(){
-		valor17=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor18(){
-		valor18=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor19(){
-		valor19=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor20(){
-		valor20=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor21(){
-		valor21=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor22(){
-		valor22=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor23(){
-		valor23=null;
-	}
-	
-	//Reseteamos el valor de la clase genérica Object
-	public static void setValor24(){
-		valor24=null;
-	}
-
 	//Método que obtiene un registro en la base de datos pasandole como parametros el nombre de la tabla, el nombre de los campos y la condición que se debe cumplir
 	public static void seleccionarSQLite(String tabla,String[] campos,String condicion){
 		ConexionSQLite.getAbrirSQLite(); //Abrimos la conexión
@@ -275,352 +45,124 @@ public class SentenciasSelectSQLite{
 				
 				//Según el número de campos que le hayamos pasados, devolverá un determinado conjunto de valores
 				switch(campos.length){
-					case 1: valor1=cursor.getString(0);
+					case 1: for(int i=0;i<1;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 						
-					case 2: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
+					case 2: for(int i=0;i<2;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 						
-					case 3: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
+					case 3: for(int i=0;i<3;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 						
-					case 4: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
+					case 4: for(int i=0;i<4;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 						
-					case 5: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
+					case 5: for(int i=0;i<5;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 6: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
+					case 6: for(int i=0;i<6;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 7: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
+					case 7: for(int i=0;i<7;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 8: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
+					case 8: for(int i=0;i<8;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 9: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
+					case 9: for(int i=0;i<9;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 10: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
+					case 10: for(int i=0;i<10;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 11: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
+					case 11: for(int i=0;i<11;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 12: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
+					case 12: for(int i=0;i<12;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 13: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
+					case 13: for(int i=0;i<13;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 14: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
+					case 14: for(int i=0;i<14;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 15: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
-						valor15=cursor.getString(14);
+					case 15: for(int i=0;i<15;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 16: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
-						valor15=cursor.getString(14);
-						valor16=cursor.getString(15);
+					case 16: for(int i=0;i<16;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 17: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
-						valor15=cursor.getString(14);
-						valor16=cursor.getString(15);
-						valor17=cursor.getString(16);
+					case 17: for(int i=0;i<17;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 18: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
-						valor15=cursor.getString(14);
-						valor16=cursor.getString(15);
-						valor17=cursor.getString(16);
-						valor18=cursor.getString(17);
+					case 18: for(int i=0;i<18;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 19: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
-						valor15=cursor.getString(14);
-						valor16=cursor.getString(15);
-						valor17=cursor.getString(16);
-						valor18=cursor.getString(17);
-						valor19=cursor.getString(18);
+					case 19: for(int i=0;i<19;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 20: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
-						valor15=cursor.getString(14);
-						valor16=cursor.getString(15);
-						valor17=cursor.getString(16);
-						valor18=cursor.getString(17);
-						valor19=cursor.getString(18);
-						valor20=cursor.getString(19);
+					case 20: for(int i=0;i<20;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 21: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
-						valor15=cursor.getString(14);
-						valor16=cursor.getString(15);
-						valor17=cursor.getString(16);
-						valor18=cursor.getString(17);
-						valor19=cursor.getString(18);
-						valor20=cursor.getString(19);
-						valor21=cursor.getString(20);
+					case 21: for(int i=0;i<21;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 22: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
-						valor15=cursor.getString(14);
-						valor16=cursor.getString(15);
-						valor17=cursor.getString(16);
-						valor18=cursor.getString(17);
-						valor19=cursor.getString(18);
-						valor20=cursor.getString(19);
-						valor21=cursor.getString(20);
-						valor22=cursor.getString(21);
+					case 22: for(int i=0;i<22;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 23: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
-						valor15=cursor.getString(14);
-						valor16=cursor.getString(15);
-						valor17=cursor.getString(16);
-						valor18=cursor.getString(17);
-						valor19=cursor.getString(18);
-						valor20=cursor.getString(19);
-						valor21=cursor.getString(20);
-						valor22=cursor.getString(21);
-						valor23=cursor.getString(22);
+					case 23: for(int i=0;i<23;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 
-					case 24: valor1=cursor.getString(0);
-						valor2=cursor.getString(1);
-						valor3=cursor.getString(2);
-						valor4=cursor.getString(3);
-						valor5=cursor.getString(4);
-						valor6=cursor.getString(5);
-						valor7=cursor.getString(6);
-						valor8=cursor.getString(7);
-						valor9=cursor.getString(8);
-						valor10=cursor.getString(9);
-						valor11=cursor.getString(10);
-						valor12=cursor.getString(11);
-						valor13=cursor.getString(12);
-						valor14=cursor.getString(13);
-						valor15=cursor.getString(14);
-						valor16=cursor.getString(15);
-						valor17=cursor.getString(16);
-						valor18=cursor.getString(17);
-						valor19=cursor.getString(18);
-						valor20=cursor.getString(19);
-						valor21=cursor.getString(20);
-						valor22=cursor.getString(21);
-						valor23=cursor.getString(22);
-						valor24=cursor.getString(23);
+					case 24: for(int i=0;i<24;i++){
+							valores[i]=cursor.getString(0);
+						}
 						break;
 				}
 			}while(cursor.moveToNext());

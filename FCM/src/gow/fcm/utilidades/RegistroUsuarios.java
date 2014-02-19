@@ -6,9 +6,9 @@ import gow.fcm.sharefprefs.DatosFootball;
 
 public class RegistroUsuarios{
 	
-	private Integer nombreUsuario; //Nombre de usuario del entrenador
+	private String nombreUsuario; //Nombre de usuario del entrenador
 	
-	public Integer getNombreUsuario(){
+	public String getNombreUsuario(){
 		return nombreUsuario;
 	}
 	
@@ -20,7 +20,8 @@ public class RegistroUsuarios{
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",new String[]{"COUNT (usuario)"},"usuario='"+usuario+"'");
 		
 		//Almacenamos los valores
-		nombreUsuario=(Integer) SentenciasSelectSQLite.getValor1();
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		nombreUsuario=valores[0];
 	}
 	
 }

@@ -26,10 +26,7 @@ public class SentenciasSQLiteListaJugadores {
 	//Este método obtiene los datos del jugador
 		public static void getDatosJugador(Context contexto){
 			//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
-			SentenciasSelectSQLite.setValor1();
-			SentenciasSelectSQLite.setValor2();
-			SentenciasSelectSQLite.setValor3();
-			SentenciasSelectSQLite.setValor4();
+			SentenciasSelectSQLite.borrarTodosValores();
 			
 			//Obtenemos el identificador
 			DatosFootball.getDatosFootball(contexto);
@@ -39,7 +36,8 @@ public class SentenciasSQLiteListaJugadores {
 			SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(*)"},"id_equipo="+id+"");
 			
 			//Obtenemos el número de valores
-			String numValores=(String) SentenciasSelectSQLite.getValor1();
+			String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+			String numValores=valores[0];
 			
 			//Asignamos el tamaño de los vectores
 			nombreJugador=new String[Integer.parseInt(numValores)];
@@ -51,10 +49,10 @@ public class SentenciasSQLiteListaJugadores {
 				//Ejcutamos la sentencia
 				SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"nombre","apellidos","posicion","dorsal"},"id_equipo="+id+" LIMIT 0,"+(i+1)+"");
 				//Almacenamos los valores
-				nombreJugador[i]=(String) SentenciasSelectSQLite.getValor1();
-				apellidosJugador[i]=(String) SentenciasSelectSQLite.getValor2();
-				posicionJugador[i]=(String) SentenciasSelectSQLite.getValor3();
-				dorsalJugador[i]=(String) SentenciasSelectSQLite.getValor4();
+				nombreJugador[i]=valores[0];
+				apellidosJugador[i]=valores[1];
+				posicionJugador[i]=valores[2];
+				dorsalJugador[i]=valores[3];
 			}
 			
 		}
@@ -62,10 +60,7 @@ public class SentenciasSQLiteListaJugadores {
 		//Este método obtiene los datos del jugador
 		public static void getDatosJugadorTipo(Context contexto,String tipo){
 			//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
-			SentenciasSelectSQLite.setValor1();
-			SentenciasSelectSQLite.setValor2();
-			SentenciasSelectSQLite.setValor3();
-			SentenciasSelectSQLite.setValor4();
+			SentenciasSelectSQLite.borrarTodosValores();
 			
 			//Obtenemos el identificador
 			DatosFootball.getDatosFootball(contexto);
@@ -75,7 +70,8 @@ public class SentenciasSQLiteListaJugadores {
 			SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(*)"},"id_equipo="+id+" AND tipo='"+tipo+"'");
 
 			//Obtenemos el número de valores
-			String numValores=(String) SentenciasSelectSQLite.getValor1();
+			String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+			String numValores=valores[0];
 
 			//Asignamos el tamaño de los vectores
 			nombreJugador=new String[Integer.parseInt(numValores)];
@@ -87,10 +83,10 @@ public class SentenciasSQLiteListaJugadores {
 				//Ejcutamos la sentencia
 				SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"nombre","apellidos","posicion","dorsal"},"id_equipo="+id+" AND tipo='"+tipo+"' LIMIT 0,"+(i+1)+"");
 				//Almacenamos los valores
-				nombreJugador[i]=(String) SentenciasSelectSQLite.getValor1();
-				apellidosJugador[i]=(String) SentenciasSelectSQLite.getValor2();
-				posicionJugador[i]=(String) SentenciasSelectSQLite.getValor3();
-				dorsalJugador[i]=(String) SentenciasSelectSQLite.getValor4();
+				nombreJugador[i]=valores[0];
+				apellidosJugador[i]=valores[1];
+				posicionJugador[i]=valores[2];
+				dorsalJugador[i]=valores[3];
 			}
 
 		}
