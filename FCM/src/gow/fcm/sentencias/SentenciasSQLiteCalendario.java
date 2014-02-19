@@ -57,6 +57,11 @@ public class SentenciasSQLiteCalendario{
 	
 	//Este método obtiene los datos del entrenamiento
 	public static void getDatosEntrenamientos(Context contexto,String fecha){
+		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
+		SentenciasSelectSQLite.setValor1();
+		SentenciasSelectSQLite.setValor2();
+		SentenciasSelectSQLite.setValor3();
+		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
 		int id=DatosFootball.getIdEquipo();
@@ -80,6 +85,9 @@ public class SentenciasSQLiteCalendario{
 	
 	//Este método borrar los entrenamientos
 	public static void borrarEventoEntrenamiento(Context contexto,String fecha){
+		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
+		SentenciasSelectSQLite.setValor1();
+		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
 		int id=DatosFootball.getIdEntrenador();
@@ -96,6 +104,11 @@ public class SentenciasSQLiteCalendario{
 	
 	//Este método obtiene los datos del partido
 	public static void getDatosPartidos(Context contexto,String fecha){
+		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
+		SentenciasSelectSQLite.setValor1();
+		SentenciasSelectSQLite.setValor2();
+		SentenciasSelectSQLite.setValor3();
+		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
 		int id=DatosFootball.getIdEntrenador();
@@ -118,6 +131,9 @@ public class SentenciasSQLiteCalendario{
 	
 	//Este método borrar los partidos
 	public static void borrarEventoPartido(Context contexto,String fecha){
+		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
+		SentenciasSelectSQLite.setValor1();
+		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
 		int id=DatosFootball.getIdEquipo();

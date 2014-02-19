@@ -1,13 +1,10 @@
 package gow.fcm.pantallas;
 
-import java.util.ArrayList;
-
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNuevoJugador;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLiteListaJugadores;
-import gow.fcm.sentencias.SentenciasSQLitePrincipal;
 import gow.fcm.sharefprefs.DatosFootball;
 import gow.fcm.utilidades.ListaJugadores;
 import android.os.Bundle;
@@ -33,9 +30,8 @@ public class PantallaListaJugadores extends Activity {
 
 	private GridView listaJugadores; //Lista de los jugadores del equipo
 	private int getDorsal; //Dorsal pulsado en la la lista
-	private String[] nombreJugador,apellidosJugador,posicionJugador,tipoJugador,dorsalJugador; //Matrices donde se les pasa los datos a mostrar en la lista
+	private String[] nombreJugador,apellidosJugador,posicionJugador,dorsalJugador; //Matrices donde se les pasa los datos a mostrar en la lista
 	private View pie; //Variable usada para almacenar un objeto View del pie de página de la lista de jugadores
-	private ArrayList<String[]> jugadoresTipo;
 	private String tiposJugadores;
 
 	@Override

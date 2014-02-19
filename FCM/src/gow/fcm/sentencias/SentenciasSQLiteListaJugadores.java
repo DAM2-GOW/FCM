@@ -25,6 +25,12 @@ public class SentenciasSQLiteListaJugadores {
 	
 	//Este método obtiene los datos del jugador
 		public static void getDatosJugador(Context contexto){
+			//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
+			SentenciasSelectSQLite.setValor1();
+			SentenciasSelectSQLite.setValor2();
+			SentenciasSelectSQLite.setValor3();
+			SentenciasSelectSQLite.setValor4();
+			
 			//Obtenemos el identificador
 			DatosFootball.getDatosFootball(contexto);
 			int id=DatosFootball.getIdEquipo();
@@ -55,6 +61,12 @@ public class SentenciasSQLiteListaJugadores {
 		
 		//Este método obtiene los datos del jugador
 		public static void getDatosJugadorTipo(Context contexto,String tipo){
+			//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
+			SentenciasSelectSQLite.setValor1();
+			SentenciasSelectSQLite.setValor2();
+			SentenciasSelectSQLite.setValor3();
+			SentenciasSelectSQLite.setValor4();
+			
 			//Obtenemos el identificador
 			DatosFootball.getDatosFootball(contexto);
 			int id=DatosFootball.getIdEquipo();

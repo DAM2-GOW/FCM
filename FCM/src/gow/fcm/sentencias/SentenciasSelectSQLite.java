@@ -129,6 +129,126 @@ public class SentenciasSelectSQLite{
 		return valor24;
 	}
 	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor1(){
+		valor1=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor2(){
+		valor2=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor3(){
+		valor3=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor4(){
+		valor4=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor5(){
+		valor5=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor6(){
+		valor6=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor7(){
+		valor7=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor8(){
+		valor8=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor9(){
+		valor9=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor10(){
+		valor10=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor11(){
+		valor11=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor12(){
+		valor12=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor13(){
+		valor13=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor14(){
+		valor14=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor15(){
+		valor15=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor16(){
+		valor16=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor17(){
+		valor17=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor18(){
+		valor18=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor19(){
+		valor19=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor20(){
+		valor20=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor21(){
+		valor21=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor22(){
+		valor22=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor23(){
+		valor23=null;
+	}
+	
+	//Reseteamos el valor de la clase genérica Object
+	public static void setValor24(){
+		valor24=null;
+	}
+
 	//Método que obtiene un registro en la base de datos pasandole como parametros el nombre de la tabla, el nombre de los campos y la condición que se debe cumplir
 	public static void seleccionarSQLite(String tabla,String[] campos,String condicion){
 		ConexionSQLite.getAbrirSQLite(); //Abrimos la conexión
