@@ -96,7 +96,7 @@ public class SentenciasSQLiteCalendario{
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"id_entrenamiento"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
-		int idEntrenamiento=(Integer) SentenciasSelectSQLite.getValor1();
+		String idEntrenamiento=(String) SentenciasSelectSQLite.getValor1();
 		
 		//Ejcutamos la sentencia
 		SentenciasDeleteSQLite.borrarSQLite("Entrenamientos","id_entrenamiento="+idEntrenamiento+"");
@@ -142,7 +142,7 @@ public class SentenciasSQLiteCalendario{
 		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"id_partido"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
-		int idPartido=(Integer) SentenciasSelectSQLite.getValor1();
+		String idPartido=(String) SentenciasSelectSQLite.getValor1();
 		
 		//Ejcutamos la sentencia
 		SentenciasDeleteSQLite.borrarSQLite("Partidos","id_partido="+idPartido+"");

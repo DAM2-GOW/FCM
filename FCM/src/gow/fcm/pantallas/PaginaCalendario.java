@@ -3,6 +3,7 @@ package gow.fcm.pantallas;
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.popups.PopUpNuevoEntrenamiento;
 import gow.fcm.popups.PopUpNuevoPartido;
+import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLiteCalendario;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
