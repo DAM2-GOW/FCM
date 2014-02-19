@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TimePicker;
 
@@ -76,6 +77,10 @@ public class PopUpNuevoEntrenamiento extends Activity {
 			 
             @Override
             public void onClick(View v) {
+            	if(titulEntrenamiento.getText().toString().trim().equals("") || titulEntrenamiento.getText().toString().trim()==null ){
+            		Toast.makeText(getApplicationContext(), "Esta vacio el campo Titulo entrenamiento rellenalo", Toast.LENGTH_SHORT).show();
+            		
+            	}
             	//SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha"}, new String[]{""+id_equipo+"", ""+titulEntrenamiento+"", ""+sp+"", ""+tp+"", ""+dp+""});
             	//PopUpNuevoEntrenamiento.this.finish();
 //            	Intent i = new Intent(gow.fcm.popups.PopUpNuevoEntrenamiento.this, gow.fcm.pantallas.Config_entre.class);
