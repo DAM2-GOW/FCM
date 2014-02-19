@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:background="@color/charcoal_A"
+    android:padding="6dip" >
+
+    <TextView
+        android:id="@+id/player_num"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:text="0"
+        android:textSize="44sp"
+        android:typeface="sans"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:layout_marginRight="6dip" />
+
+    <TextView
+        android:id="@+id/firstLine"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/player_num"
+        android:gravity="center_vertical"
+        android:typeface="serif"
+        android:text="Item1 - Player Name"
+        android:textSize="16sp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/secondLine"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/player_num"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:gravity="bottom"
+        android:typeface="serif"
+        android:text="Item2 - Player Type"
+        android:textSize="12sp"
+        android:textColor="@color/white" />
+    
+</RelativeLayout> 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn_show_blackboard"
+        android:layout_width="315dp"
+        android:layout_height="80dp"
+        android:background="@drawable/btn_style"
+        android:minWidth="68dp"
+        android:text="@string/playingGround_btn_action_finish_event"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:typeface="serif" />
+
+</LinearLayout>

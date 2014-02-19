@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="60dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <RadioGroup
+        android:id="@+id/rGroup_att_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/playingGround_option_att_rbtn0"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:typeface="serif" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/playingGround_option_att_rbtn1"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:typeface="serif" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/playingGround_option_att_rbtn2"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:typeface="serif" />
+
+        <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/playingGround_option_att_rbtn3"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:typeface="serif" />
+
+    </RadioGroup>
+
+</LinearLayout>
