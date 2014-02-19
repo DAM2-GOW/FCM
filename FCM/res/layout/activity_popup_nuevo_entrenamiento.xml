@@ -21,12 +21,13 @@
             android:id="@+id/titulo_entrenamientoNuevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="22sp"
             android:ems="10"
             android:hint="@string/titulo_entrenamiento"
             android:textColor="@color/white" />
 
         <Space
-            android:layout_width="200dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent" />
 
         <LinearLayout
@@ -39,6 +40,8 @@
                 android:id="@+id/txtViewDiaEntrenamiento"
                 android:layout_width="133dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="22sp"
                 android:text="@string/fecha"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -48,6 +51,12 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="1dp"
+            android:layout_height="210dp"
+            android:background="@color/black" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -59,6 +68,8 @@
                 android:id="@+id/txtViewHoraEntrenamient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="22sp"
                 android:text="@string/hora"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -76,6 +87,15 @@
         android:layout_height="wrap_content"
         android:gravity="center" >
 
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:text="TextView" />
+        	
+
         <Spinner
             android:id="@+id/tipo_entrenamientoNuevo"
             android:layout_width="149dp"
@@ -89,6 +109,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/observaciones"
+            android:textSize="22sp"
             android:inputType="textMultiLine"
             android:textColor="@color/white" >
 
@@ -99,12 +120,14 @@
             android:id="@+id/guardarEntrenamientoNuevo"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
+            android:textSize="22sp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:onClick="guardarNuevoEntrenamiento"
             android:text="@string/bb_menu_save" />
 
         <Space
-            android:layout_width="200dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent" />
 
     </LinearLayout>
