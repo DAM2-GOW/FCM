@@ -1,7 +1,10 @@
 package gow.fcm.popups;
 
+import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
+import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLitePrincipal;
+import gow.fcm.sharefprefs.DatosFootball;
 
 import java.io.File;
 
@@ -29,15 +32,17 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class PopUpNuevoJugador extends Activity {
 
 	private Spinner tipoJugador, posicionJugador;
 	private String posJug,rutaImagen;
-	private Button botonEditar, guardar;
-	
+	private Button botonEditar, guardarJugador;
+	private EditText nomJug, apellJug, edadJug, dorsalJug;
 	private ImageView imgPhoto; //Imagen o foto del entrenador
 	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
 	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
@@ -50,9 +55,19 @@ public class PopUpNuevoJugador extends Activity {
 		showAsPopup(this); //Llama al metodo que hace que se muestre como PopUp.
 		setContentView(R.layout.activity_popup_nuevo_jugador);
 		
+		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
+		ConexionSQLite.getCrearSQLite(this);
+		DatosFootball.getDatosFootball(this);
+		final int id_equipo = DatosFootball.getIdEquipo();
+		
 		tipoJugador = (Spinner)findViewById(R.id.spinnerTipoJugador);
 		posicionJugador = (Spinner)findViewById(R.id.spinnerPosicionJugador);
 		imgPhoto = (ImageView)findViewById(R.id.foto_Jugador);
+		guardarJugador = (Button)findViewById(R.id.guardarJugadorNuevo);
+		nomJug = (EditText)findViewById(R.id.editTextNombreJugador);
+		apellJug = (EditText)findViewById(R.id.editTextApellidosJugador);
+		edadJug = (EditText)findViewById(R.id.editTextEdadJugador);
+		dorsalJug = (EditText)findViewById(R.id.editTextDorsalJugador);
 		
 		//Llamamos a los arrays que contienen los nombre del tipo de jugador y su posicion.
 		final ArrayAdapter<CharSequence> adaptadorTipo = ArrayAdapter.createFromResource(this, R.array.TipoJugador, android.R.layout.simple_spinner_item);
@@ -129,6 +144,19 @@ public class PopUpNuevoJugador extends Activity {
 			@Override
 			public void onClick(View v) {
 				botonEditar.showContextMenu();
+			}
+		});
+		
+		guardarJugador.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(nomJug.getText().toString().trim().equals("") || apellJug.getText().toString().trim().equals("")  || edadJug.getText().toString().trim()==null || dorsalJug.getText().toString().trim()==null){
+            		Toast.makeText(getApplicationContext(), "Algun campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
+				}else{
+					SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJugador),dorsalJug.getText().toString(),rutaImagen});
+                	PopUpNuevoJugador.this.finish();
+				}
 			}
 		});
 		

@@ -55,6 +55,8 @@
     <string name="observaciones">Observaciones</string>
 	<string name="titulo_entrenamiento">Título Entrenamiento</string>
 	<string name="statistics">Estadísticas</string>
+	<string name="playingGround_toast_no_player_selected">No se ha seleccionado ningún jugador</string>
+	<string name="playingGround_toast_cancel_swap_player">Se ha candelado el intercambio</string>
 	
     <string-array name="TipoEntrenamiento">
         <item>Resistencia</item>
@@ -77,29 +79,29 @@
         <item >Equipos Especiales</item>
     </string-array>
     <string-array name="PosicionAtaque">
-        <item >C (Center)</item>
-        <item >LG (Left Guard)</item>
-        <item >RG (Right Guard)</item>
-        <item >LT (Left Tackle)</item>
-        <item >RT (Right Tackle)</item>
-        <item >QB (Quaterback)</item>
-        <item >RB (Running Back)</item>
-        <item >HB (Half Back)</item>
-        <item >FB (Full Back)</item>
+        <item >C</item>
+        <item >LG</item>
+        <item >RG</item>
+        <item >LT</item>
+        <item >RT</item>
+        <item >QB</item>
+        <item >RB</item>
+        <item >HB</item>
+        <item >FB</item>
     </string-array>
     <string-array name="PosicionDefensa">
-        <item >DT (Defensive Tackle)</item>
-        <item >DE (Defensive End)</item>
-        <item >NT (Nose Tackle)</item>
-        <item >CB (Corner Backs)</item>
-        <item >FS (Free Safety)</item>
-        <item >SS (Strong Safety)</item>
-        <item >LB (Line Backers)</item>
+        <item >DT</item>
+        <item >DE</item>
+        <item >NT</item>
+        <item >CB</item>
+        <item >FS</item>
+        <item >SS</item>
+        <item >LB</item>
     </string-array>
     <string-array name="PosicionEE">
-        <item >K (Kicker)</item>
-        <item >P (Punter)</item>
-        <item >R (Reciver)</item>
+        <item >K</item>
+        <item >P</item>
+        <item >R</item>
     </string-array>
 
     <string name="player_list">Lista de jugadores</string>

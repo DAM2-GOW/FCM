@@ -46,7 +46,6 @@ public class PopUpNuevoPartido extends Activity {
 		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
 		ConexionSQLite.getCrearSQLite(this);
 		DatosFootball.getDatosFootball(this);
-		
 		final int id_equipo = DatosFootball.getIdEquipo();
 		
 		//Modificamos el diseño de la fecha para que no se muestre un calendario.
@@ -72,7 +71,7 @@ public class PopUpNuevoPartido extends Activity {
 		tp.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
 		
 		//Guardamos el partido en el calendario recogiendo los datos pertinentes.
-		bt = (Button) findViewById(R.id.guardarPartidoNuevo);
+		bt = (Button) findViewById(R.id.guardarJugadorNuevo);
 		bt.setOnClickListener(new OnClickListener(){
 			 
             @Override
