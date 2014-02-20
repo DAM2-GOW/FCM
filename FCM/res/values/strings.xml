@@ -156,5 +156,8 @@
     <string name="playingGround_fragment_final_words_11">sin penalización</string>
     <string name="playingGround_fragment_final_words_12">de</string>
     <string name="playingGround_fragment_final_words_13">hacia</string>
+    <string name="acerca_de">Acerca de la aplicación.</string>
+    <string name="explicacion_acerca_de">Football Coach Manager (F.C.M.) es una aplicación dirigida a deportistas y a entrenadores de fútbol americano. A través de su funcionalidad estos podrán mejorar el rendimiento tanto de forma individual como a nivel de equipo.</string>
+    <string name="miembros_grupo">Contacto:</string>
     
 </resources>

@@ -76,6 +76,9 @@
             android:name="gow.fcm.pantallas.PantallaListaJugadores"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name="gow.fcm.pantallas.PantallaAcercaDe"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>
