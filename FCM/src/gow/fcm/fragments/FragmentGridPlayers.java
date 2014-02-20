@@ -22,7 +22,7 @@ public class FragmentGridPlayers extends Fragment {
 	private boolean selected;
 	private int lastPosition;
 	private int[] playersInTheGround;
-	SentenciasSQLitePlayingGround sentences = new SentenciasSQLitePlayingGround();
+	SentenciasSQLitePlayingGround sentences = new SentenciasSQLitePlayingGround(getActivity().getApplicationContext());
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

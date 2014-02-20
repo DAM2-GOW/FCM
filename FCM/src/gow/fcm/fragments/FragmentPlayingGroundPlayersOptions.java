@@ -26,7 +26,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 	private OnPlayerOptionClickEvent mCallback;
 	private ViewGroup container;
 	private LayoutInflater inflater;
-	SentenciasSQLitePlayingGround sentences = new SentenciasSQLitePlayingGround();
+	SentenciasSQLitePlayingGround sentences = new SentenciasSQLitePlayingGround(getActivity().getApplicationContext());
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

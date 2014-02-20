@@ -24,7 +24,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class PopUpPlayersSelector extends Activity {
 	ArrayAdapterPlayersGrid gridViewCustomeAdapter;
-	SentenciasSQLitePlayingGround sentences = new SentenciasSQLitePlayingGround();
+	SentenciasSQLitePlayingGround sentences;
 	GridView gridView;
 	ArrayList<Integer> playersPositionSelected = new ArrayList<Integer>(); // Almacena una lista de jugadores por posicion seleccionados.
 	ArrayList<Integer> playersIDSelected = new ArrayList<Integer>(); // Almacena una lista de ID de jugador seleccionados para jugar.
@@ -38,7 +38,7 @@ public class PopUpPlayersSelector extends Activity {
 		super.onCreate(savedInstanceState);
 		showAsPopup(this); // La personalizacion del Activity depende de esta linea, y DEBE ser llamada en este punto concreto.
 		setContentView(R.layout.popup_players_selector);
-		
+		sentences = new SentenciasSQLitePlayingGround(this);
 		btn_OK = (Button) findViewById(R.id.btn_OK);// Obtenemos onjetos a usar.
 		gridView = (GridView) findViewById(R.id.popUpGridView);
 		selected = false; // Se inicia la variable por defecto en falso. (todavia no se ha seleccioando ningun jugador.)

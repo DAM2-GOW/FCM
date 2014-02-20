@@ -9,11 +9,15 @@ import gow.fcm.fragments.FragmentPlayingGroundPlayersOptions;
 import gow.fcm.fragments.FragmentPlayingGroundPlayersOptions.OnPlayerOptionClickEvent;
 import gow.fcm.fragments.FragmentSelectStartingPlayers;
 import gow.fcm.fragments.FragmentSelectStartingPlayers.OnSelectStartingPlayers;
+import gow.fcm.popups.PopUpPlayersSelector;
+import gow.fcm.sentencias.SentenciasInsertSQLite;
+import gow.fcm.sentencias.SentenciasSQLitePlayingGround;
+import gow.fcm.sharefprefs.DatosFootball;
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.app.FragmentManager.OnBackStackChangedListener;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,16 +25,13 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import gow.fcm.popups.PopUpPlayersSelector;
-import gow.fcm.sentencias.CursorSentenciasSelect;
-import gow.fcm.sentencias.SentenciasSQLitePlayingGround;
 
 public class PlayingGround extends Activity implements OnSelectStartingPlayers, OnGridPlayersFragment, OnClickFinishEvent, OnPlayerOptionClickEvent{
 	FrameLayout flTopLeft;
 	LinearLayout flBottom;
 	FragmentGridPlayers fgp;
 	FragmentSelectStartingPlayers fssp;
-	SentenciasSQLitePlayingGround sentences = new SentenciasSQLitePlayingGround();
+	SentenciasSQLitePlayingGround sentences;
 	FragmentFinishEvent ffe;
 	FragmentManager fm;
 	FragmentTransaction ft;
@@ -57,26 +58,39 @@ public class PlayingGround extends Activity implements OnSelectStartingPlayers, 
 		ft.add(flTopLeft.getId(), fssp);
 		ft.add(flBottom.getId(), ffe);
 		ft.commit();
-		/*******************************************
-		//Se crea la base por cuestiones de DEV.
-		ConexionSQLite.CrearSQLite(this);
-		// Se abre la conexion.
-		ConexionSQLite.AbrirSQLite();
-		// Se vacian todas las filas de las tablas nombradas por cuestiones de DEV.
-		ConexionSQLite.getConexion().delete("Equipos",null,null);
-		ConexionSQLite.getConexion().delete("Jugadores",null,null);
+		fm.addOnBackStackChangedListener(new OnBackStackChangedListener() {
+			
+			@Override
+			public void onBackStackChanged() {
+				// Si BACKSTACK esta vacio entonces boton seleccionado de jugador sin pintar y 'Entered' false.
+				if(fm.getBackStackEntryCount() == 0){
+					entered = false;
+					
+				}
+				
+			}
+		});
+		
+				
+		/*******************************************/
+		// Se crea la base de datos si no existe o se actualiza si fuera necesario
+		//ConexionSQLite.getCrearSQLite(this);
+				
+		// Se loguea un entrenador y equipo asociado.
+		DatosFootball.setDatosFootball(this,1,1);
+		
 		// Se rellena la base de datos.
 		String[] data_position = { "QB", "DL", "RB", "DL", "WR", "S", "RB", "QB", "WR", "S", "QB", "DL", "RB", "DL", "WR", "S", "RB", "QB", "WR", "S"};
 		int[] data_type = { 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1};
 		int[] data_num = { 8, 17, 45, 12, 54, 43, 57, 16, 45, 67, 28, 56, 21, 22, 23, 41, 42, 78, 87, 98};
-		String sql1 = "INSERT INTO Equipos (nombre,ciudad) VALUES ('Mismo', 'Mismamente')";
-		ConexionSQLite.getConexion().execSQL(sql1);
+		SentenciasInsertSQLite.insertarSQLite("Equipos",new String[]{"nombre"},new String[]{"Mismo"});
+		SentenciasInsertSQLite.insertarSQLite("Entrenadores",new String[]{"id_equipo","nombre","apellidos","usuario","clave","pregunta_seguridad","respuesta_seguridad"},new String[]{"1","Pepe","García","pepe","1234","1","Chispi"});
 		for(int i = 0;i < data_type.length;i++){
-			String sql = "INSERT INTO Jugadores (id_equipo, nombre, apellidos, posicion, tipo, edad, dorsal) VALUES ('1', 'Nombre"+i+"', 'Apellido"+i+"', '"+data_position[i]+"', '"+data_type[i]+"', '"+i+"', '"+data_num[i]+"')";
-			ConexionSQLite.getConexion().execSQL(sql);
+			SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Nombre "+i,"Apellidos "+i,"22",data_position[i],String.valueOf(data_type[i]),String.valueOf(data_num[i])});
 		}
-		ConexionSQLite.CerrarSQLite();
-		************************************************/
+		
+		/************************************************/
+		sentences = new SentenciasSQLitePlayingGround(this); // Esto va arriba, pero por DEV se pone abajo.
 	}
 
 	@Override
@@ -149,7 +163,6 @@ public class PlayingGround extends Activity implements OnSelectStartingPlayers, 
 		String[] pna = sentences.getNombreApellidos();
 		dataSummaryToShow[0] = pna[0]; // Se almacena el nombre del jugador que realiza la accion.
 
-		// IF BACKSTACK = NULL THEN BOTONES GRID SIN PINTAR.
 	}
 
 	@Override
