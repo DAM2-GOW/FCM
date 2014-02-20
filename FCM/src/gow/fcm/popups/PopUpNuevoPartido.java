@@ -95,8 +95,6 @@ public class PopUpNuevoPartido extends Activity {
             		
             		SentenciasInsertSQLite.insertarSQLite("Partidos", new String[]{"id_equipo","lugar","rival","dia","fecha"}, new String[]{String.valueOf(id_equipo),lugar.getText().toString(),rival.getText().toString(),fechaEntrenamiento,fechaEntrenamiento+" "+horaMinuto});
                 	PopUpNuevoPartido.this.finish();
-            	
-                	PopUpNuevoPartido.this.finish();
             }
             }
 		});
