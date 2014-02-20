@@ -40,8 +40,8 @@
     <string name="title_activity_pop_up_nuevo_jugador">Crear Nuevo Jugador</string>
     <string name="title_activity_pop_up_nuevo_entrenamiento">Crear Nuevo Entrenamiento</string>
     <string name="title_activity_pop_up_nuevo_partido">Crear Nuevo Partido</string>
-    <string name="add_photo_gallery">anyadir_foto_galeria</string>
-    <string name="add_photo_camera">anyadir_foto_camara</string>
+    <string name="add_photo_gallery">Añadir foto de la galería</string>
+    <string name="add_photo_camera">Hacer foto</string>
     <string name="fecha">Fecha</string>
     <string name="hora">Hora</string>
     <string name="tipo_entrenamiento">Tipo Entrenamiento</string>
@@ -54,6 +54,7 @@
     <string name="rival">Rival</string>
     <string name="observaciones">Observaciones</string>
 	<string name="titulo_entrenamiento">Título Entrenamiento</string>
+	<string name="statistics">Estadísticas</string>
 	
     <string-array name="TipoEntrenamiento">
         <item>Resistencia</item>

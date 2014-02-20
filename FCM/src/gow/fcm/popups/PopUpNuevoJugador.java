@@ -1,7 +1,10 @@
 package gow.fcm.popups;
 
 import gow.fcm.footballcoachmanager.R;
+import gow.fcm.sentencias.SentenciasSQLitePrincipal;
+
 import java.io.File;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,10 +13,16 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
@@ -26,13 +35,14 @@ import android.widget.Spinner;
 public class PopUpNuevoJugador extends Activity {
 
 	private Spinner tipoJugador, posicionJugador;
-	private String posJug;
+	private String posJug,rutaImagen;
 	private Button botonEditar;
-	private int SELECT_IMAGE = 237487;
-	private int TAKE_PICTURE = 829038;
-	Cursor cursor;
-	ImageView imgPhoto;
-	AlertDialog.Builder builder;
+	
+	private ImageView imgPhoto; //Imagen o foto del entrenador
+	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
+	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
+	private File dirActual=Environment.getExternalStorageDirectory(); //Directorio donde esta la carpeta de las imágenes
+	private String dirRecortes="image/*"; //Directorio donde se encuentran las imágenes recortadas
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -113,67 +123,134 @@ public class PopUpNuevoJugador extends Activity {
 		});
 		
 		botonEditar = (Button)findViewById(R.id.editarFotoJugador);
+		registerForContextMenu(botonEditar);
 		botonEditar.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				try{
-					  final CharSequence[] items = {"Seleccionar de la galería", "Hacer una foto"};
-
-					  builder = new AlertDialog.Builder(PopUpNuevoJugador.this);
-					  builder.setTitle("Seleccionar una foto");
-					  builder.setItems(items, new DialogInterface.OnClickListener() {
-					    public void onClick(DialogInterface dialog, int item) {
-					      switch(item){
-					       case 0:
-					    	   Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-					    	   intent.setType("image/*");
-					    	   startActivityForResult(intent, SELECT_IMAGE);   
-					    	   break;
-					       case 1:
-					    	   startActivityForResult(new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE), TAKE_PICTURE);
-					    	   break;
-					      }
-					            
-					    }
-					  });
-					  AlertDialog alert = builder.create();
-					  alert.show(); 
-					     } catch(Exception e){}
-				
+				botonEditar.showContextMenu();
 			}
 		});
 		
 	}
-
-	@Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-      super.onActivityResult(requestCode, resultCode, data);
-          
-      try{
-    	  if (requestCode == SELECT_IMAGE)
-    		  if (resultCode == Activity.RESULT_OK) {
-    			  Uri selectedImage = data.getData();
-    			  //lblPhoto.setText(getPath(selectedImage));
-    			  imgPhoto.setImageURI(selectedImage); 
-    		  } 
-    	  if(requestCode == TAKE_PICTURE)
-    		  if(resultCode == Activity.RESULT_OK){
-    			  Uri selectedImage = data.getData();
-    			  //lblPhoto.setText(getPath(selectedImage));  
-    			  imgPhoto.setImageURI(selectedImage); 
-    		  }
-      	} catch(Exception e){}
-    }   
-
-//	private String getPath(Uri uri) {
-//		 String[] projection = { android.provider.MediaStore.Images.Media.DATA };
-//		 cursor = managedQuery(uri, projection, null, null, null);
-//		 int column_index = cursor.getColumnIndexOrThrow(android.provider.MediaStore.Images.Media.DATA);
-//		 cursor.moveToFirst();
-//		 return cursor.getString(column_index);
-//		   }
 	
+	@Override
+	protected void onActivityResult(int codigo,int resultado,Intent datos){
+		//Comprobamos si se ha producido algún error
+		if(resultado!=RESULT_OK){
+			return;
+		}
+		
+		//Acciones a realizar según la opción seleccionada previamente
+		switch(codigo){
+			case camara: Uri ruta=selectedImageUri; //Obtenemos la ruta
+				
+				recortarFotoCamara(ruta); //Recortamos la imagen
+				break;
+			case galeria: Uri ruta2=selectedImageUri; //Obtenemos la ruta
+				rutaImagen=String.valueOf(ruta2); //Convertimos a string la ruta
+				
+				setFotoEntrenador();
+				break;
+			case recortar: Uri ruta3=selectedImageUri; //Obtenemos la ruta
+				rutaImagen=String.valueOf(ruta3); //Convertimos a string la ruta
+				
+				setFotoEntrenador();
+				break;
+			default:
+				break;
+		}
+	}
+	
+	public void setFotoEntrenador(){
+		//Mostramos la foto del entrenador si la hay o no
+		if(rutaImagen==null){
+			imgPhoto.setImageResource(R.drawable.no_coach_photo);
+		}else{
+			//Agregamos el valor o contenido a los elementos
+			imgPhoto.setImageURI(Uri.parse(rutaImagen));
+			
+			rutaImagen=null; //Reseta a null el valor
+		}
+	}
+	
+	//Método de creación de los menús contextuales
+	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
+		super.onCreateContextMenu(menu,v,menuInfo);
+		MenuInflater inflater=getMenuInflater();
+		switch(v.getId()){
+			case R.id.editarFotoJugador: inflater.inflate(R.menu.foto_select, menu);
+				break;
+			default:
+				break;
+		}
+	}
+	
+	//Método que indica la acción a realizar según la opción elegida en el menú
+	@Override
+	public boolean onContextItemSelected(MenuItem item){
+		switch(item.getItemId()){
+			case R.id.camaraFotos: cargarCamaraFotos();
+				return true;
+			case R.id.galeriaFotos: cargarGaleriaFotos();
+				return true;
+			default:
+				return super.onContextItemSelected(item);
+		}
+	}
+	
+	//Método que carga la cámara de fotos
+	private void cargarCamaraFotos(){
+		String nombreFoto=System.currentTimeMillis()+".png";
+		File directorioCompleto=new File(dirActual,nombreFoto);
+		selectedImageUri=Uri.fromFile(directorioCompleto);
+		Intent i=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		i.putExtra(MediaStore.EXTRA_OUTPUT,selectedImageUri);
+		startActivityForResult(i,camara);
+	}
+	
+	//Método que carga la galería de fotos
+	private void cargarGaleriaFotos(){
+		//Abrimos la galería
+		Intent i=new Intent();
+		i.setAction(Intent.ACTION_GET_CONTENT);
+		i.setType(dirRecortes);
+		i.putExtra("crop","true");
+		i.putExtra("aspectX",1);
+		i.putExtra("aspectY",1);
+		i.putExtra("outputX",100);
+		i.putExtra("outputY",102);
+		i.putExtra("return-data",false);
+		
+		//Pasamos los parámetros para guardar la imagen
+		String nombreFoto=System.currentTimeMillis()+".png";
+		File directorioCompleto=new File(dirActual,nombreFoto);
+		selectedImageUri=Uri.fromFile(directorioCompleto);
+		
+		//La guaradamos
+		i.putExtra(MediaStore.EXTRA_OUTPUT,selectedImageUri);
+		startActivityForResult(Intent.createChooser(i,"Completar acción"),galeria);
+	}
+	
+	//Método que recorta la imagen
+	private void recortarFotoCamara(Uri archivo){
+		//Recortamos la imagen
+		Intent i=new Intent("com.android.camera.action.CROP");
+		i.setDataAndType(archivo,dirRecortes);
+		i.putExtra("crop","true");
+		i.putExtra("aspectX",1);
+		i.putExtra("aspectY",1);
+		i.putExtra("outputX",100);
+		i.putExtra("outputY",102);
+		i.putExtra("return-data",false);
+		
+		//Pasamos los parámetros para guardarla
+		selectedImageUri=archivo;
+		
+		//La guaradamos
+		i.putExtra(MediaStore.EXTRA_OUTPUT,selectedImageUri);
+		startActivityForResult(i,recortar);
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
