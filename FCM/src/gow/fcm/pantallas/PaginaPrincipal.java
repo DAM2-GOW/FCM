@@ -10,11 +10,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import gow.fcm.footballcoachmanager.R;
@@ -40,6 +42,7 @@ public class PaginaPrincipal extends Activity{
 		
 		//Método que muestra las diferentes secciones de la aplicación
 		seccionesBotones();
+		
 	}
 	
 	//Método que muestra
@@ -158,12 +161,22 @@ public class PaginaPrincipal extends Activity{
 		View botonPizarra=(View) findViewById(R.id.boton_pizarra);
 		View botonEvento=(View) findViewById(R.id.boton_partido);
 		View botonCalendario=(View) findViewById(R.id.boton_calendario);
+		ImageButton botonInfo=(ImageButton) findViewById(R.id.imageButtonInfo);
 		
 		//Declaramos la variables que harán la animación al pulsar el botón
 		final ImageView imgEquipo=(ImageView) findViewById(R.id.equipo);
 		final ImageView imgPizarra=(ImageView) findViewById(R.id.pizarra);
 		final ImageView imgEvento=(ImageView) findViewById(R.id.partido);
 		final ImageView imgCalendario=(ImageView) findViewById(R.id.calendario);
+		
+		
+		//Método del botón info
+		botonInfo.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v){
+				botonInfo();
+			}
+		});
 		
 		//Método que realiza la animación
 		botonEquipo.setOnTouchListener(new OnTouchListener(){
@@ -244,6 +257,14 @@ public class PaginaPrincipal extends Activity{
 				return true;
 			}
 		});
+		
+
+	}
+	
+	//Método para acceder al "Acerca de"
+	private void botonInfo(){
+		Intent i=new Intent (this,PantallaAcercaDe.class);
+		startActivity(i);
 	}
 	
 	//Método para acceder a la administración del equipo
@@ -269,5 +290,4 @@ public class PaginaPrincipal extends Activity{
 		Intent i=new Intent(this,PaginaCalendario.class);
 		startActivity(i);
 	}
-	
 }

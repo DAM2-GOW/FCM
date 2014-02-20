@@ -65,27 +65,42 @@
                     qwerjk:strokeWidth="2" />
                 
             </RelativeLayout>
-            
-            <TextView
-                android:id="@+id/nombre_app"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:shadowColor="@color/white"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
-                android:text="@string/app_name"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/white"
-                android:textSize="32sp"
-                android:textStyle="italic"
-                android:typeface="serif" />
-               
-        </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:gravity="right" >
+
+                <ImageButton
+                    android:id="@+id/imageButtonInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    android:contentDescription="@string/info_img"
+                    android:src="@drawable/icono_info" />
+
+                <TextView
+                    android:id="@+id/nombre_app"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:text="@string/app_name"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/white"
+                    android:textSize="32sp"
+                    android:textStyle="italic"
+                    android:typeface="serif" />
+            </LinearLayout>  
+            
+        </LinearLayout> 
         
     </LinearLayout>
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

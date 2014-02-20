@@ -7,6 +7,7 @@
     <string name="coach_surname">Apellidos del entrendor</string>
     <string name="coach_settings">Opciones del entrenador</string>
     <string name="team_name">Nombre del equipo</string>
+    <string name="info_img">Imagen información</string>
     <string name="team_management">Administrar equipo</string>
     <string name="team_management_img">Imagen administrar equipo</string>
     <string name="digital_board">Pizarra digital</string>
