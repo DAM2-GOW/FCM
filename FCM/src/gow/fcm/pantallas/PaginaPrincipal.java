@@ -260,8 +260,8 @@ public class PaginaPrincipal extends Activity{
 	
 	//Método para acceder a los eventos
 	private void botonIrPartido(){
-		//Intent i=new Intent(this,PlayingGround.class);
-		//startActivity(i);
+		Intent i=new Intent(this,PlayingGround.class);
+		startActivity(i);
 	}
 	
 	//Método para acceder al calendario

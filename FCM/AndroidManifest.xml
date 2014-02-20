@@ -79,6 +79,8 @@
         <activity android:name="gow.fcm.pantallas.PantallaAcercaDe"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name="gow.fcm.pantallas.PlayingGround"></activity>
+        <activity android:name="gow.fcm.popups.PopUpPlayersSelector"></activity>
     </application>
 
 </manifest>
