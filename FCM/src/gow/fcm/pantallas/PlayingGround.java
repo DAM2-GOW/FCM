@@ -72,9 +72,7 @@ public class PlayingGround extends Activity implements OnSelectStartingPlayers, 
 		});
 		
 				
-		/*******************************************/
-		// Se crea la base de datos si no existe o se actualiza si fuera necesario
-		//ConexionSQLite.getCrearSQLite(this);
+		/*******************************************
 				
 		// Se loguea un entrenador y equipo asociado.
 		DatosFootball.setDatosFootball(this,1,1);
@@ -89,7 +87,7 @@ public class PlayingGround extends Activity implements OnSelectStartingPlayers, 
 			SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Nombre "+i,"Apellidos "+i,"22",data_position[i],String.valueOf(data_type[i]),String.valueOf(data_num[i])});
 		}
 		
-		/************************************************/
+		************************************************/
 		sentences = new SentenciasSQLitePlayingGround(this); // Esto va arriba, pero por DEV se pone abajo.
 	}
 

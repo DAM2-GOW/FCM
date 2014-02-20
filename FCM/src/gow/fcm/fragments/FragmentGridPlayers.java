@@ -7,6 +7,7 @@ import gow.fcm.utilidades.ArrayAdapterPlayersGrid;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class FragmentGridPlayers extends Fragment {
 	private boolean selected;
 	private int lastPosition;
 	private int[] playersInTheGround;
-	SentenciasSQLitePlayingGround sentences = new SentenciasSQLitePlayingGround(getActivity().getApplicationContext());
+	SentenciasSQLitePlayingGround sentences;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,13 +31,15 @@ public class FragmentGridPlayers extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_grid_players, container,
 				false);
 		selected = false;
+		sentences = new SentenciasSQLitePlayingGround(getActivity().getApplicationContext());
 		gridView = (GridView) view.findViewById(R.id.gridView1);
 		Bundle bundle = this.getArguments(); // Aqui obtenemos el objeto que trae los adjuntos al crear esta clase.
 		playersInTheGround = bundle.getIntArray("players_selected");
+		Log.d("FGP", "JUGADORES: "+playersInTheGround.length);
 		sentences.ObtenerDatosDelimitadosJugadores(getActivity(), playersInTheGround); // Mandamos la orden de obtener los datos de los jugadores.
 		// Se crea el adaptador para mostrar los datos.
 		createAdapter(getActivity(), sentences.getId_jugador(), sentences.getNombreApellidos(), sentences.getPosicion(), sentences.getDorsal());
-
+		Log.d("FGP", "JUGADORES: "+sentences.getId_jugador().length);
 		return view;
 	}
 

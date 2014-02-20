@@ -26,7 +26,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 	private OnPlayerOptionClickEvent mCallback;
 	private ViewGroup container;
 	private LayoutInflater inflater;
-	SentenciasSQLitePlayingGround sentences = new SentenciasSQLitePlayingGround(getActivity().getApplicationContext());
+	SentenciasSQLitePlayingGround sentences;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +36,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 		this.inflater=inflater;
 		View view = SelectViewToShow(this.getArguments().getInt("lastDimension"),
 				this.getArguments().getInt("comeFromRbtn"),this.getArguments().getInt("branchType"));
-		
+		sentences = new SentenciasSQLitePlayingGround(getActivity().getApplicationContext());
 		return view;
 	}
 

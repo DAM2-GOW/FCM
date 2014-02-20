@@ -44,6 +44,7 @@ public class SentenciasSQLitePlayingGround {
 		String[] campos = { "id_jugador", "nombre", "apellidos", "tipo",
 				"posicion", "dorsal" };
 
+		countJugadores = jugadores.length;
 		// Inicializamos arrays segun necesidad de espacio.
 		id_jugador = new int[countJugadores];
 		nombreApellidos = new String[countJugadores];
@@ -78,6 +79,9 @@ public class SentenciasSQLitePlayingGround {
 		String[] campos = { "id_jugador", "nombre", "apellidos", "tipo",
 				"posicion", "dorsal" };
 
+		SentenciasSelectSQLite.seleccionarSQLite("jugadores", new String[]{"count(*)"}, "id_equipo = '"+EquipoEnUso+"'");
+		String[] valor = SentenciasSelectSQLite.getValores();
+		countJugadores = Integer.parseInt(valor[0]);
 		// Inicializamos arrays segun necesidad de espacio.
 					id_jugador = new int[countJugadores];
 					nombreApellidos = new String[countJugadores];
@@ -117,6 +121,10 @@ public class SentenciasSQLitePlayingGround {
 		for(int i=1;i<jugadores.length;i++)
 			IDsentence = IDsentence+", '"+jugadores[i]+"'";
 
+		SentenciasSelectSQLite.seleccionarSQLite("jugadores", new String[]{"count(*)"}, "id_equipo = '"+EquipoEnUso+"'");
+		String[] valor = SentenciasSelectSQLite.getValores();
+		int o = Integer.parseInt(valor[0]);
+		countJugadores = (o - jugadores.length);
 		// Inicializamos arrays segun necesidad de espacio.
 		id_jugador = new int[countJugadores];
 		nombreApellidos = new String[countJugadores];

@@ -1,14 +1,11 @@
 package gow.fcm.popups;
 
-import java.util.ArrayList;
-
 import gow.fcm.footballcoachmanager.R;
-import gow.fcm.sentencias.CursorSentenciasSelect;
 import gow.fcm.sentencias.SentenciasSQLitePlayingGround;
 import gow.fcm.utilidades.ArrayAdapterPlayersGrid;
+import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -17,10 +14,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class PopUpPlayersSelector extends Activity {
 	ArrayAdapterPlayersGrid gridViewCustomeAdapter;

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class FragmentSelectStartingPlayers extends Fragment {
 	private OnSelectStartingPlayers mCallback;
