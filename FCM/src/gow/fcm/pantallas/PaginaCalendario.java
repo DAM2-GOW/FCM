@@ -55,9 +55,10 @@ public class PaginaCalendario extends Activity{
 	}
 	
 	@Override
-	protected void onRestart(){
+	protected void onResume(){
 		super.onRestart();
 		
+		mostrarEventos();
 	}
 	
 	//Método de creación de los menús contextuales
@@ -297,9 +298,6 @@ public class PaginaCalendario extends Activity{
 			}
 			
 		}
-		
-		SentenciasSQLiteCalendario.setTotalEntrenamiento(); //Reseta a null el valor
-		SentenciasSQLiteCalendario.setTotalPartido(); //Reseta a null el valor
 	}
 	
 	private void opcionAgregarEntrenamiento(String accion){

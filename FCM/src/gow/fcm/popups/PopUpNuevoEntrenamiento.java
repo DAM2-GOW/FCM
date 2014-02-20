@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TimePicker.OnTimeChangedListener;
 import android.widget.Toast;
@@ -72,6 +73,9 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	        dp.setCalendarViewShown(false);
 	    }
 		
+		dp.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
+		dp.setMinDate(System.currentTimeMillis()-1000); //Obtenemos la fecha seleccionada y la ponemos como la mínima
+		
 		//Modificamos el diseño de la hora para que este en formato 24H.
 		tp = (TimePicker) findViewById(R.id.hora_entrenamientoNuevo);
 		tp.setIs24HourView(DateFormat.is24HourFormat(this));
@@ -83,6 +87,7 @@ public class PopUpNuevoEntrenamiento extends Activity {
 			}
 		});
 		
+		tp.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
 		
 		//Cuando le des al boton se guardan los datos en la BD y se va a la configuración del mismo entrenamiento nuevo creado.
 		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);

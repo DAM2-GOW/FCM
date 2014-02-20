@@ -10,7 +10,7 @@ import android.content.Context;
 public class SentenciasSQLiteCalendario{
 	
 	//Variables de la aplicación o de la base de datos
-	private static String totalEntrenamiento=null,totalPartido=null;
+	private static String totalEntrenamiento,totalPartido;
 	private static Date fechaEntrenamiento,fechaPartido; //Variables para usarlas en las sentencias
 	@SuppressLint("SimpleDateFormat")
 	private static SimpleDateFormat formatoTexto=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
@@ -20,19 +20,9 @@ public class SentenciasSQLiteCalendario{
 		return totalEntrenamiento;
 	}
 	
-	//Resetea el total de entrenamientos
-	public static void setTotalEntrenamiento(){
-		totalEntrenamiento=null;
-	}
-	
 	//Obtenemos el total de partidos
 	public static String getTotalPartido(){
 		return totalPartido;
-	}
-	
-	//Resetea el total de partidos
-	public static void setTotalPartido(){
-		totalPartido=null;
 	}
 	
 	//Obtenemos la fecha del entrenamiento

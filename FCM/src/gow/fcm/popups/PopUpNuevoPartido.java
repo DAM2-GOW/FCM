@@ -20,6 +20,7 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.TimePicker.OnTimeChangedListener;
@@ -54,6 +55,9 @@ public class PopUpNuevoPartido extends Activity {
 	        dp.setCalendarViewShown(false);
 	    }
 		
+		dp.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
+		dp.setMinDate(System.currentTimeMillis()-1000); //Obtenemos la fecha seleccionada y la ponemos como la mínima
+		
 		//Modificamos el diseño de la hora para que este en formato 24H.
 		tp = (TimePicker) findViewById(R.id.hora_PartidoNuevo);
 		tp.setIs24HourView(DateFormat.is24HourFormat(this));
@@ -64,6 +68,8 @@ public class PopUpNuevoPartido extends Activity {
 				horaMinuto = String.valueOf(hourOfDay)+":"+String.valueOf(minute)+":00";
 			}
 		});
+		
+		tp.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
 		
 		//Guardamos el partido en el calendario recogiendo los datos pertinentes.
 		bt = (Button) findViewById(R.id.guardarPartidoNuevo);
