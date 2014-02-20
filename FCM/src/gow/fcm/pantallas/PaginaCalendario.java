@@ -54,6 +54,12 @@ public class PaginaCalendario extends Activity{
 		mostrarEventos();
 	}
 	
+	@Override
+	protected void onRestart(){
+		super.onRestart();
+		
+	}
+	
 	//Método de creación de los menús contextuales
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
 		super.onCreateContextMenu(menu,v,menuInfo);
@@ -152,7 +158,7 @@ public class PaginaCalendario extends Activity{
 		fechaActual=getFechaActual(); //Fecha actual
 		fechaSeleccionada=fechaActual; //Igualamos la fecha actual a la fecha seleccionada
 		
-		accionesMostrarEventos(fechaActual); //Imagenes desactivadas y activadas
+		accionesMostrarEventos(fechaSeleccionada); //Imagenes desactivadas y activadas
 		
 		accionesHerramientasEventos(); //Acciones de las imagenes
 		
@@ -163,8 +169,18 @@ public class PaginaCalendario extends Activity{
 				String month="0";
 				if(mes<10){ //Si el mes es inferior a 2 cifras, le agregamos un 0 delante para mantener el formato
 					month=month.concat(String.valueOf(mes));
+				}else{
+					month=String.valueOf(mes);
 				}
-				fechaSeleccionada=year+"-"+month+"-"+dia;
+				
+				String day="0";
+				if(dia<10){
+					day=day.concat(String.valueOf(dia));
+				}else{
+					day=String.valueOf(dia);
+				}
+				
+				fechaSeleccionada=year+"-"+month+"-"+day;
 				accionesMostrarEventos(fechaSeleccionada);
 			}
 		});

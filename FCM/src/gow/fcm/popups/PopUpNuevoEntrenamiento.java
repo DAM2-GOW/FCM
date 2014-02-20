@@ -1,7 +1,5 @@
 package gow.fcm.popups;
 
-import javax.security.auth.PrivateCredentialPermission;
-
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
@@ -10,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -72,24 +71,14 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	        dp.setCalendarViewShown(false);
 	    }
 		
-		diaEntrenamiento = String.valueOf(dp.getDayOfMonth());
-		mesEntrenamiento = String.valueOf(dp.getMonth());
-		anyoEntrenamiento = String.valueOf(dp.getYear());
-		
-		fechaEntrenamiento = fechaEntrenamiento.concat(anyoEntrenamiento+"-").concat(mesEntrenamiento+"-").concat(diaEntrenamiento);
-		
 		//Modificamos el diseño de la hora para que este en formato 24H.
 		tp = (TimePicker) findViewById(R.id.hora_entrenamientoNuevo);
 		tp.setIs24HourView(DateFormat.is24HourFormat(this));
 		
-		horaMinuto = horaMinuto.concat(tp.getCurrentHour()+":").concat(tp.getCurrentMinute()+":00");
-		
 		tp.setOnTimeChangedListener(new OnTimeChangedListener() {
-			
 			@Override
 			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-				horaMinuto = horaMinuto.concat(String.valueOf(hourOfDay)+":").concat(String.valueOf(minute+":00"));
-				
+				horaMinuto = String.valueOf(hourOfDay)+":"+String.valueOf(minute)+":00";
 			}
 		});
 		
@@ -103,9 +92,22 @@ public class PopUpNuevoEntrenamiento extends Activity {
             	if(titulEntrenamiento.getText().toString().trim().equals("") || titulEntrenamiento.getText().toString().trim()==null ){
             		Toast.makeText(getApplicationContext(), "Esta vacio el campo Titulo entrenamiento rellenalo", Toast.LENGTH_SHORT).show();
             		
+            	}else{
+            		diaEntrenamiento = String.valueOf(dp.getDayOfMonth());
+            		if(Integer.parseInt(diaEntrenamiento)<10){
+            			diaEntrenamiento="0"+diaEntrenamiento;
+            		}
+            		mesEntrenamiento = String.valueOf(dp.getMonth()+1);
+            		if(Integer.parseInt(mesEntrenamiento)<10){
+            			mesEntrenamiento="0"+mesEntrenamiento;
+            		}
+            		anyoEntrenamiento = String.valueOf(dp.getYear());
+            		
+            		fechaEntrenamiento = fechaEntrenamiento.concat(anyoEntrenamiento+"-").concat(mesEntrenamiento+"-").concat(diaEntrenamiento);
+            		
+            		SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha"}, new String[]{String.valueOf(id_equipo),stringTipoEntrenamiento,titulEntrenamiento.getText().toString(),fechaEntrenamiento,fechaEntrenamiento+" "+horaMinuto});
+                	PopUpNuevoEntrenamiento.this.finish();
             	}
-            	SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha"}, new String[]{""+id_equipo+"", ""+titulEntrenamiento+"", ""+stringTipoEntrenamiento+"", ""+fechaEntrenamiento+"", ""+fechaEntrenamiento + " " + horaMinuto+""});
-            	PopUpNuevoEntrenamiento.this.finish();
             }
 		});
 	}
