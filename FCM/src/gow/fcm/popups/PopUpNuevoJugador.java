@@ -36,7 +36,7 @@ public class PopUpNuevoJugador extends Activity {
 
 	private Spinner tipoJugador, posicionJugador;
 	private String posJug,rutaImagen;
-	private Button botonEditar;
+	private Button botonEditar, guardar;
 	
 	private ImageView imgPhoto; //Imagen o foto del entrenador
 	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
@@ -162,18 +162,6 @@ public class PopUpNuevoJugador extends Activity {
 		}
 	}
 	
-	public void setFotoEntrenador(){
-		//Mostramos la foto del entrenador si la hay o no
-		if(rutaImagen==null){
-			imgPhoto.setImageResource(R.drawable.no_coach_photo);
-		}else{
-			//Agregamos el valor o contenido a los elementos
-			imgPhoto.setImageURI(Uri.parse(rutaImagen));
-			
-			rutaImagen=null; //Reseta a null el valor
-		}
-	}
-	
 	//Método de creación de los menús contextuales
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
 		super.onCreateContextMenu(menu,v,menuInfo);
@@ -256,6 +244,18 @@ public class PopUpNuevoJugador extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.pop_up_nuevo_jugador, menu);
 		return true;
+	}
+	
+	public void setFotoEntrenador(){
+		//Mostramos la foto del entrenador si la hay o no
+		if(rutaImagen==null){
+			imgPhoto.setImageResource(R.drawable.no_coach_photo);
+		}else{
+			//Agregamos el valor o contenido a los elementos
+			imgPhoto.setImageURI(Uri.parse(rutaImagen));
+			
+			rutaImagen=null; //Reseta a null el valor
+		}
 	}
 	
 	//Metodo que hace que el activity salga como PopUp.
