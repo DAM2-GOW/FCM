@@ -35,11 +35,9 @@ public class FragmentGridPlayers extends Fragment {
 		gridView = (GridView) view.findViewById(R.id.gridView1);
 		Bundle bundle = this.getArguments(); // Aqui obtenemos el objeto que trae los adjuntos al crear esta clase.
 		playersInTheGround = bundle.getIntArray("players_selected");
-		Log.d("FGP", "JUGADORES: "+playersInTheGround.length);
 		sentences.ObtenerDatosDelimitadosJugadores(getActivity(), playersInTheGround); // Mandamos la orden de obtener los datos de los jugadores.
 		// Se crea el adaptador para mostrar los datos.
 		createAdapter(getActivity(), sentences.getId_jugador(), sentences.getNombreApellidos(), sentences.getPosicion(), sentences.getDorsal());
-		Log.d("FGP", "JUGADORES: "+sentences.getId_jugador().length);
 		return view;
 	}
 

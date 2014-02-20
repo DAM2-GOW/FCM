@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.NumberPicker.OnValueChangeListener;
 import android.widget.RadioButton;
@@ -34,9 +36,9 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 		
 		this.container=container;
 		this.inflater=inflater;
+		sentences = new SentenciasSQLitePlayingGround(getActivity().getApplicationContext());
 		View view = SelectViewToShow(this.getArguments().getInt("lastDimension"),
 				this.getArguments().getInt("comeFromRbtn"),this.getArguments().getInt("branchType"));
-		sentences = new SentenciasSQLitePlayingGround(getActivity().getApplicationContext());
 		return view;
 	}
 
@@ -54,7 +56,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 			Log.d("DEBUG", "ENTRA DIMENSION 1");
 			int[] pid = new int[1];
 			pid[0] = this.getArguments().getInt("playerID");
-			sentences.ObtenerDatosDelimitadosJugadores(getActivity(), pid); // Mandamos la orden de obtener los datos de los jugadores.
+			sentences.ObtenerDatosDelimitadosJugadores(getActivity().getApplicationContext(), pid); // Mandamos la orden de obtener los datos de los jugadores.
 			int[] res = new int[1];
 			res = sentences.getTipo();
 			final int branch_type = res[0];
@@ -397,6 +399,15 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					tvf0.setText(data[0]);
 					tvf1.setText(data[1]+" "+data[2]);
 					tvf2.setText("");
+					Button btn = (Button) view.findViewById(R.id.btnAcceptOptions);
+					btn.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Da la orden de guardar las opciones seleccionadas en la DB.
+							mCallback.onClickFinalOptionEvent();
+						}
+					});
 					break;
 				case 1: // Condicional Si/No.
 					view = inflater.inflate(R.layout.fragment_dim2_opt4att_opt3def_opt5ee_dim3_opt23att_opt1def,
@@ -456,7 +467,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					np0.setMaxValue(100);
 					np0.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
 					np0.setEnabled(false);
-					sentences.ObtenerDatosDelimitadosJugadores(getActivity(), this.getArguments().getIntArray("playersOnTheField")); // Mandamos la orden de obtener los datos de los jugadores.
+					sentences.ObtenerDatosDelimitadosJugadores(getActivity().getApplicationContext(), this.getArguments().getIntArray("playersOnTheField")); // Mandamos la orden de obtener los datos de los jugadores.
 					String[] nombreApellidoJugadores = sentences.getNombreApellidos();
 					final Spinner sp = (Spinner) view.findViewById(R.id.spinnerDim3);
 					ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(),
@@ -497,9 +508,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 												// Nada.
 												
 											}
-											
 										});
-										//ASDADSADASADSADA
 									}
 								});
 							}else{
@@ -549,6 +558,15 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					tvf0.setText(data[0]);
 					tvf1.setText(data[1]+" "+data[2]);
 					tvf2.setText("");
+					Button btn = (Button) view.findViewById(R.id.btnAcceptOptions);
+					btn.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Da la orden de guardar las opciones seleccionadas en la DB.
+							mCallback.onClickFinalOptionEvent();
+						}
+					});
 					break;
 				case 2: // Condicional Si/No, selecciona de yardas y jugador involucrado.
 					view = inflater.inflate(R.layout.fragment_dim3_opt4att_opt3def_opt5ee,
@@ -604,6 +622,15 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					tvf0.setText(data[0]);
 					tvf1.setText(data[1]+" "+data[2]);
 					tvf2.setText("");
+					Button btn = (Button) view.findViewById(R.id.btnAcceptOptions);
+					btn.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Da la orden de guardar las opciones seleccionadas en la DB.
+							mCallback.onClickFinalOptionEvent();
+						}
+					});
 					break;
 				case 4: // Condicional Si/No, selecciona de yardas y jugador involucrado.
 					view = inflater.inflate(R.layout.fragment_dim3_opt4att_opt3def_opt5ee,
@@ -663,6 +690,15 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					tvf0.setText(data[0]);
 					tvf1.setText(data[1]+" "+data[2]);
 					tvf2.setText(data[3]);
+					Button btn = (Button) view.findViewById(R.id.btnAcceptOptions);
+					btn.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Da la orden de guardar las opciones seleccionadas en la DB.
+							mCallback.onClickFinalOptionEvent();
+						}
+					});
 					break;
 				default:
 					break;
@@ -682,6 +718,15 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					tvf0.setText(data[0]);
 					tvf1.setText(data[1]+" "+data[2]);
 					tvf2.setText(data[3]);
+					Button btn = (Button) view.findViewById(R.id.btnAcceptOptions);
+					btn.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Da la orden de guardar las opciones seleccionadas en la DB.
+							mCallback.onClickFinalOptionEvent();
+						}
+					});
 					break;
 				default:
 					break;
@@ -700,6 +745,15 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					tvf0.setText(data[0]);
 					tvf1.setText(data[1]+" "+data[2]);
 					tvf2.setText(data[3]);
+					Button btn = (Button) view.findViewById(R.id.btnAcceptOptions);
+					btn.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Da la orden de guardar las opciones seleccionadas en la DB.
+							mCallback.onClickFinalOptionEvent();
+						}
+					});
 					break;
 				default:
 					break;

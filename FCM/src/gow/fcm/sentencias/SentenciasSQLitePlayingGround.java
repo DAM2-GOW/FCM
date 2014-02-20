@@ -2,7 +2,6 @@ package gow.fcm.sentencias;
 
 import gow.fcm.sharefprefs.DatosFootball;
 import android.content.Context;
-import android.util.Log;
 
 public class SentenciasSQLitePlayingGround {
 	private String[] nombreApellidos, posicion;
@@ -14,15 +13,8 @@ public class SentenciasSQLitePlayingGround {
 	public SentenciasSQLitePlayingGround(Context context) {
 		// Obtenemos el equipo en uso por el entrenador. 
 		// Usamos ese equipo para delimitar las busquedas.
-		Log.d("DEBUG", "ANTES");
 		DatosFootball.getDatosFootball(context);
-		Log.d("DEBUG", "CREADA");
 		EquipoEnUso = DatosFootball.getIdEquipo();
-		Log.d("EQUIPO", ""+EquipoEnUso);
-		// Obtenemos el numero total de jugadores para inicializar los Arrays.
-		SentenciasSelectSQLite.seleccionarSQLite("jugadores", new String[]{"count(*)"}, "id_equipo = '"+EquipoEnUso+"'");
-		String[] valores = SentenciasSelectSQLite.getValores();
-		countJugadores = Integer.parseInt(valores[0]);
 	}
 
 	/**
@@ -79,6 +71,7 @@ public class SentenciasSQLitePlayingGround {
 		String[] campos = { "id_jugador", "nombre", "apellidos", "tipo",
 				"posicion", "dorsal" };
 
+		// Obtenemos el numero total de jugadores para inicializar los Arrays.
 		SentenciasSelectSQLite.seleccionarSQLite("jugadores", new String[]{"count(*)"}, "id_equipo = '"+EquipoEnUso+"'");
 		String[] valor = SentenciasSelectSQLite.getValores();
 		countJugadores = Integer.parseInt(valor[0]);
@@ -121,10 +114,11 @@ public class SentenciasSQLitePlayingGround {
 		for(int i=1;i<jugadores.length;i++)
 			IDsentence = IDsentence+", '"+jugadores[i]+"'";
 
+		// Obtenemos el numero total de jugadores para inicializar los Arrays.
 		SentenciasSelectSQLite.seleccionarSQLite("jugadores", new String[]{"count(*)"}, "id_equipo = '"+EquipoEnUso+"'");
 		String[] valor = SentenciasSelectSQLite.getValores();
-		int o = Integer.parseInt(valor[0]);
-		countJugadores = (o - jugadores.length);
+		int o = Integer.parseInt(valor[0]); // Restamos los que descartamos.
+		countJugadores = (jugadores.length - o);
 		// Inicializamos arrays segun necesidad de espacio.
 		id_jugador = new int[countJugadores];
 		nombreApellidos = new String[countJugadores];

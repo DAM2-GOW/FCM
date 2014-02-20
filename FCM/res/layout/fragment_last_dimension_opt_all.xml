@@ -49,7 +49,7 @@
             android:typeface="serif" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btnAcceptOptions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

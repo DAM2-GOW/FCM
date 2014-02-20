@@ -64,8 +64,9 @@ public class PlayingGround extends Activity implements OnSelectStartingPlayers, 
 			public void onBackStackChanged() {
 				// Si BACKSTACK esta vacio entonces boton seleccionado de jugador sin pintar y 'Entered' false.
 				if(fm.getBackStackEntryCount() == 0){
+					Log.d("onBackStackChanged", "HA LLEGADO A 0");
 					entered = false;
-					
+					lastPlayerID = -1;
 				}
 				
 			}
@@ -221,7 +222,8 @@ public class PlayingGround extends Activity implements OnSelectStartingPlayers, 
 		// Este metodo se ejecuta por la clase 'PlayingGroundPlayersOptions' cuando
 		// se acepta lo mostrado en el resumen y almacena en la DB las diversas
 		// opciones que se han ido seleccionando.
-		
+		Toast.makeText(getApplicationContext(), "Se almacenan los datos en la DB y se ejecutan las acciones", Toast.LENGTH_SHORT).show();
+		fm.popBackStack("playerOptions", FragmentManager.POP_BACK_STACK_INCLUSIVE); // Aqui se reinicia la pila de fragments.
 	}
 
 	@Override
@@ -273,14 +275,14 @@ public class PlayingGround extends Activity implements OnSelectStartingPlayers, 
 				playersID = data.getExtras().getIntArray("players_selection");
 				showGridPlayersFragment(playersID);
 			}else{
-				Toast.makeText(getApplicationContext(), "No se ha seleccionado ningun jugador", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), getString(R.string.playingGround_toast_no_player_selected), Toast.LENGTH_SHORT).show();
 			}
 			break;
 		case 102:
 			if(resultCode==Activity.RESULT_OK){
 				OnPlayerChanged(data.getExtras().getInt("player_swap")); // Se obtiene el nuevo jugador a cambiar.
 			}else{
-				Toast.makeText(getApplicationContext(), "Se ha cancelado el intercambio", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), getString(R.string.playingGround_toast_cancel_swap_player), Toast.LENGTH_SHORT).show();
 			}
 			break;
 		
