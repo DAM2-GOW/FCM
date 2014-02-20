@@ -53,7 +53,7 @@ public class PaginaCalendario extends Activity{
 		//Método que mostrará los eventos del calendario
 		mostrarEventos();
 	}
-
+	
 	//Método de creación de los menús contextuales
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
 		super.onCreateContextMenu(menu,v,menuInfo);
@@ -103,7 +103,7 @@ public class PaginaCalendario extends Activity{
 	}
 	
 	//Método para mostrar los eventos del calendario
-	@SuppressLint({ "NewApi", "ResourceAsColor" })
+	@SuppressLint({"NewApi","ResourceAsColor"})
 	private void mostrarEventos(){
 		calendario=(CalendarView) findViewById(R.id.calendario_eventos);
 		calendario.setFirstDayOfWeek(Calendar.MONDAY); //Hacemos que el primer día de la semana sea Lunes
@@ -160,7 +160,11 @@ public class PaginaCalendario extends Activity{
 			@Override
 			public void onSelectedDayChange(CalendarView arg, int year, int mes, int dia){
 				mes=mes+1; //Le debemos sumar 1 al mes porque va solo del 0 al 11
-				fechaSeleccionada=year+"-"+mes+"-"+dia;
+				String month="0";
+				if(mes<10){ //Si el mes es inferior a 2 cifras, le agregamos un 0 delante para mantener el formato
+					month=month.concat(String.valueOf(mes));
+				}
+				fechaSeleccionada=year+"-"+month+"-"+dia;
 				accionesMostrarEventos(fechaSeleccionada);
 			}
 		});
@@ -172,18 +176,12 @@ public class PaginaCalendario extends Activity{
 		SentenciasSQLiteCalendario.getDatosPartidos(this,fecha);
 		
 		//Sentencias para comprobar los eventos
-		String tipoEntrenamiento=SentenciasSQLiteCalendario.getTipoEntrenamiento();
-		String lugarPartido=SentenciasSQLiteCalendario.getLugarPartido();
+		int totalEntrenamiento=Integer.parseInt(SentenciasSQLiteCalendario.getTotalEntrenamiento());
+		int totalPartido=Integer.parseInt(SentenciasSQLiteCalendario.getTotalPartido());
 		
 		//Sentencias para comprobar la fecha de los eventos
 		Date fechaEntrenamiento=SentenciasSQLiteCalendario.getFechaEntrenamiento();
 		Date fechaPartido=SentenciasSQLiteCalendario.getFechaPartido();
-		
-		//Sentencias a mostrar datos en los TextView del Entrenamiento
-		String dirigido=SentenciasSQLiteCalendario.getDirigidoEntrenamiento();
-		
-		//Sentencias a mostrar datos en los TextView del Partido
-		String rival=SentenciasSQLiteCalendario.getRivalPartido();
 		
 		//Variable local como Date para convertirla a fecha
 		Date dates=null;
@@ -197,12 +195,14 @@ public class PaginaCalendario extends Activity{
 		
 		//TextView a modificar según el tipo de evento
 		TextView eventoEntrenamiento=(TextView) findViewById(R.id.evento_entrenamiento);
+		TextView numeroEntrenamiento=(TextView) findViewById(R.id.numero_entrenamiento);
 		TextView entrenamientoEvento=(TextView) findViewById(R.id.entrenamiento_evento);
 		TextView eventoPartido=(TextView) findViewById(R.id.evento_partido);
+		TextView numeroPartido=(TextView) findViewById(R.id.numero_partido);
 		TextView partidoEvento=(TextView) findViewById(R.id.partido_evento);
 		
 		//Desactivamos o activamos las imagenes comprobando las condiciones
-		if(tipoEntrenamiento==null & lugarPartido==null){
+		if((totalEntrenamiento==0 & totalPartido==0) || (String.valueOf(totalEntrenamiento)==null & String.valueOf(totalPartido)==null)){
 			
 			if(dates.after(dates2)){
 				fechaActualImagenes("Superior",1);
@@ -211,11 +211,13 @@ public class PaginaCalendario extends Activity{
 			}
 			
 			eventoEntrenamiento.setText(R.string.no_training);
+			numeroEntrenamiento.setText("");
 			entrenamientoEvento.setText("");
 			eventoPartido.setText(R.string.no_match);
+			numeroPartido.setText("");
 			partidoEvento.setText("");
 				
-		}else if(tipoEntrenamiento!=null & lugarPartido==null){
+		}else if(totalEntrenamiento!=0 & totalPartido==0){
 			
 			if(dates.after(fechaEntrenamiento)){
 				fechaActualImagenes("Superior",2);
@@ -224,22 +226,20 @@ public class PaginaCalendario extends Activity{
 			}
 			
 			eventoPartido.setText(R.string.no_match);
+			numeroPartido.setText("");
 			partidoEvento.setText("");
 			
-			if(tipoEntrenamiento.equals("Resistencia")){
-				eventoEntrenamiento.setText(R.string.event_training1);
-				entrenamientoEvento.setText(" "+dirigido);
-			}else if(tipoEntrenamiento.equals("Fuerza")){
-				eventoEntrenamiento.setText(R.string.event_training2);
-				entrenamientoEvento.setText(" "+dirigido);
-			}else if(tipoEntrenamiento.equals("Agilidad")){
-				eventoEntrenamiento.setText(R.string.event_training3);
-				entrenamientoEvento.setText(" "+dirigido);
+			if(totalEntrenamiento>1){
+				eventoEntrenamiento.setText(R.string.there_are);
+				numeroEntrenamiento.setText(" "+totalEntrenamiento+" ");
+				entrenamientoEvento.setText(R.string.trainings);
+			}else if(totalEntrenamiento==1){
+				eventoEntrenamiento.setText(R.string.there_are);
+				numeroEntrenamiento.setText(" "+totalEntrenamiento+" ");
+				entrenamientoEvento.setText(R.string.training);
 			}
 			
-			SentenciasSQLiteCalendario.setTipoEntrenamiento(); //Reseta a null el valor
-			
-		}else if(tipoEntrenamiento==null & lugarPartido!=null){
+		}else if(totalEntrenamiento==0 & totalPartido!=0){
 			
 			if(dates.after(fechaPartido)){
 				fechaActualImagenes("Superior",3);
@@ -248,19 +248,16 @@ public class PaginaCalendario extends Activity{
 			}
 			
 			eventoEntrenamiento.setText(R.string.no_training);
+			numeroEntrenamiento.setText("");
 			entrenamientoEvento.setText("");
 			
-			if(lugarPartido.equals("Local")){
-				eventoPartido.setText(R.string.event_match1);
-				partidoEvento.setText(" "+rival);
-			}else if(lugarPartido.equals("Visitante")){
-				eventoPartido.setText(R.string.event_match2);
-				partidoEvento.setText(" "+rival);
+			if(totalPartido==1){
+				eventoPartido.setText(R.string.there_are);
+				numeroPartido.setText(" "+totalPartido+" ");
+				partidoEvento.setText(R.string.match);
 			}
 			
-			SentenciasSQLiteCalendario.setLugarPartido(); //Reseta a null el valor
-			
-		}else if(tipoEntrenamiento!=null & lugarPartido!=null){
+		}else if(totalEntrenamiento!=0 & totalPartido!=0){
 			
 			if(dates.after(fechaEntrenamiento) & dates.after(fechaPartido)){
 				fechaActualImagenes("Superior",4);
@@ -268,27 +265,25 @@ public class PaginaCalendario extends Activity{
 				fechaActualImagenes("Inferior",4);
 			}
 			
-			if(tipoEntrenamiento.equals("Resistencia")){
-				eventoEntrenamiento.setText(R.string.event_training1);
-				entrenamientoEvento.setText(" "+dirigido);
-			}else if(tipoEntrenamiento.equals("Fuerza")){
-				eventoEntrenamiento.setText(R.string.event_training2);
-				entrenamientoEvento.setText(" "+dirigido);
-			}else if(tipoEntrenamiento.equals("Agilidad")){
-				eventoEntrenamiento.setText(R.string.event_training3);
-				entrenamientoEvento.setText(" "+dirigido);
+			if(totalEntrenamiento>1){
+				eventoEntrenamiento.setText(R.string.there_are);
+				numeroEntrenamiento.setText(" "+totalEntrenamiento+" ");
+				entrenamientoEvento.setText(R.string.trainings);
+			}else if(totalEntrenamiento==1){
+				eventoEntrenamiento.setText(R.string.there_are);
+				numeroEntrenamiento.setText(" "+totalEntrenamiento+" ");
+				entrenamientoEvento.setText(R.string.training);
 			}
-			if(lugarPartido.equals("Local")){
-				eventoPartido.setText(R.string.event_match1);
-				partidoEvento.setText(" "+rival);
-			}else if(lugarPartido.equals("Visitante")){
-				eventoPartido.setText(R.string.event_match2);
-				partidoEvento.setText(" "+rival);
+			if(totalPartido==1){
+				eventoPartido.setText(R.string.there_are);
+				numeroPartido.setText(" "+totalPartido+" ");
+				partidoEvento.setText(R.string.match);
 			}
 			
-			SentenciasSQLiteCalendario.setTipoEntrenamiento(); //Reseta a null el valor
-			SentenciasSQLiteCalendario.setLugarPartido(); //Reseta a null el valor
 		}
+		
+		SentenciasSQLiteCalendario.setTotalEntrenamiento(); //Reseta a null el valor
+		SentenciasSQLiteCalendario.setTotalPartido(); //Reseta a null el valor
 	}
 	
 	private void opcionAgregarEntrenamiento(String accion){

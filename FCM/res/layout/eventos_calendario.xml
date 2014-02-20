@@ -25,6 +25,14 @@
             android:typeface="sans" />
 
         <TextView
+            android:id="@+id/numero_entrenamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:typeface="sans" />
+
+        <TextView
             android:id="@+id/entrenamiento_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -129,6 +137,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_match"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:typeface="sans" />
+
+        <TextView
+            android:id="@+id/numero_partido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:typeface="sans" />

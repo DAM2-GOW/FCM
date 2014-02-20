@@ -53,6 +53,10 @@ public class PantallaListaJugadores extends Activity {
 		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Antonio","Martinez","22","DE","Defensa","32"});
 		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Jose","Martinez","23","QB","Ataque","32"});
 		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Mario","Martinez","24","K","Equipos Especiales","32"});
+		//SentenciasInsertSQLite.insertarSQLite("Entrenamientos",new String[]{"id_equipo","tipo","dirigido","dia","fecha"},new String[]{"1","1","Defensas","2014-02-21","2014-02-21 18:00:00"});
+		//SentenciasInsertSQLite.insertarSQLite("Entrenamientos",new String[]{"id_equipo","tipo","dirigido","dia","fecha"},new String[]{"1","2","Ataque","2014-02-21","2014-02-21 19:00:00"});
+		//SentenciasInsertSQLite.insertarSQLite("Partidos",new String[]{"id_equipo","lugar","rival","dia","fecha"},new String[]{"1","0","New York Giants","2014-02-21","2014-02-21 18:00:00"});
+		//SentenciasInsertSQLite.insertarSQLite("Partidos",new String[]{"id_equipo","lugar","rival","dia","fecha"},new String[]{"1","1","New York Jets","2014-02-22","2014-02-22 18:00:00"});
 		
 		//Método que mostrará la lista de jugadores
 		mostrarLista();

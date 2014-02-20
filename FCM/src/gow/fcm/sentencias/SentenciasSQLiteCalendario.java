@@ -10,44 +10,34 @@ import android.content.Context;
 public class SentenciasSQLiteCalendario{
 	
 	//Variables de la aplicación o de la base de datos
-	private static String tipoEntrenamiento=null,dirigidoEntrenamiento,lugarPartido=null,rivalPartido;
+	private static String totalEntrenamiento=null,totalPartido=null;
 	private static Date fechaEntrenamiento,fechaPartido; //Variables para usarlas en las sentencias
 	@SuppressLint("SimpleDateFormat")
 	private static SimpleDateFormat formatoTexto=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
 	
-	//Obtenemos el tipo de entrenamiento
-	public static String getTipoEntrenamiento(){
-		return tipoEntrenamiento;
+	//Obtenemos el total de entrenamientos
+	public static String getTotalEntrenamiento(){
+		return totalEntrenamiento;
 	}
 	
-	//Resetea el tipo de entrenamiento
-	public static void setTipoEntrenamiento(){
-		tipoEntrenamiento=null;
+	//Resetea el total de entrenamientos
+	public static void setTotalEntrenamiento(){
+		totalEntrenamiento=null;
 	}
 	
-	//Obtenemos a quien va dirigido el entrenamiento
-	public static String getDirigidoEntrenamiento(){
-		return dirigidoEntrenamiento;
+	//Obtenemos el total de partidos
+	public static String getTotalPartido(){
+		return totalPartido;
+	}
+	
+	//Resetea el total de partidos
+	public static void setTotalPartido(){
+		totalPartido=null;
 	}
 	
 	//Obtenemos la fecha del entrenamiento
 	public static Date getFechaEntrenamiento(){
 		return fechaEntrenamiento;
-	}
-	
-	//Obtenemos el lugar del partido
-	public static String getLugarPartido(){
-		return lugarPartido;
-	}
-	
-	//Resetea el lugar del partido
-	public static void setLugarPartido(){
-		lugarPartido=null;
-	}
-	
-	//Obtenemos el rival del partido
-	public static String getRivalPartido(){
-		return rivalPartido;
 	}
 	
 	//Obtenemos la fecha del partido
@@ -65,13 +55,12 @@ public class SentenciasSQLiteCalendario{
 		int id=DatosFootball.getIdEquipo();
 		
 		//Ejcutamos la sentencia
-		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"tipo","dirigido","fecha"},"id_equipo="+id+" AND dia='"+fecha+"'");
+		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"COUNT(*)","fecha"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
 		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
-		tipoEntrenamiento=valores[0];
-		dirigidoEntrenamiento=valores[1];
-		String fechaTraining=valores[2];
+		totalEntrenamiento=valores[0];
+		String fechaTraining=valores[1];
 		if(fechaTraining!=null){
 			try{
 				fechaEntrenamiento=formatoTexto.parse(fechaTraining);
@@ -79,7 +68,6 @@ public class SentenciasSQLiteCalendario{
 				e.printStackTrace();
 			}
 		}
-		
 	}
 	
 	//Este método borrar los entrenamientos
@@ -92,7 +80,7 @@ public class SentenciasSQLiteCalendario{
 		int id=DatosFootball.getIdEntrenador();
 		
 		//Ejcutamos la sentencia
-		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"id_entrenamiento"},"id_equipo="+id+" AND dia='"+fecha+"'");
+		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"id_entrenamiento"},"id_equipo="+id+" AND dia='"+fecha+"' LIMIT 1");
 		
 		//Almacenamos los valores
 		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
@@ -112,13 +100,12 @@ public class SentenciasSQLiteCalendario{
 		int id=DatosFootball.getIdEntrenador();
 		
 		//Ejcutamos la sentencia
-		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"lugar","rival","fecha"},"id_equipo="+id+" AND dia='"+fecha+"'");
+		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"COUNT(*)","fecha"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
 		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
-		lugarPartido=valores[0];
-		rivalPartido=valores[1];
-		String fechaMatch=valores[2];
+		totalPartido=valores[0];
+		String fechaMatch=valores[1];
 		if(fechaMatch!=null){
 			try{
 				fechaPartido=formatoTexto.parse(fechaMatch);
