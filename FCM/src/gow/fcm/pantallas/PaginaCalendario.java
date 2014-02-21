@@ -39,7 +39,7 @@ public class PaginaCalendario extends Activity{
 	private CalendarView calendario; //Calendario de los eventos
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
-	private String fechaActual,fechaSeleccionada; //Variables para las fechas en la base de datos
+	private String fechaActual,fechaSeleccionada,varFechaEvento="date_event"; //Variables para las fechas en la base de datos
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -59,7 +59,7 @@ public class PaginaCalendario extends Activity{
 		super.onResume();
 		
 		//Este método actualiza el contenido del calendario al cerrar el Popup
-		mostrarEventos();
+		accionesMostrarEventos(getFechaSeleccionada());
 	}
 	
 	//Método de creación de los menús contextuales
@@ -448,7 +448,7 @@ public class PaginaCalendario extends Activity{
 				
 		}else if(signo=="fechaInferior" & num==3){
 			
-			opcionAgregarEntrenamiento("desactivar");
+			opcionAgregarEntrenamiento("activar");
 			opcionVerEntrenamiento("desactivar");
 			opcionEditarEntrenamiento("desactivar");
 			opcionBorrarEntrenamiento("desactivar");
@@ -470,7 +470,7 @@ public class PaginaCalendario extends Activity{
 			
 		}else if(signo=="fechaInferior" & num==4){
 			
-			opcionAgregarEntrenamiento("desactivar");
+			opcionAgregarEntrenamiento("activar");
 			opcionVerEntrenamiento("desactivar");
 			opcionEditarEntrenamiento("activar");
 			opcionBorrarEntrenamiento("activar");
@@ -648,7 +648,17 @@ public class PaginaCalendario extends Activity{
 	//Los siguientes métodos abren otras pantallas o borran el contenido seleccionado del calendario
 	
 	private void agregarEntrenamiento(){
+		//Pasamos la fecha seleccionada a milisegundos
+		String fecha=getFechaSeleccionada();
+		Date date=null;
+		try{
+			date=formato.parse(fecha);
+		}catch (ParseException e){
+			e.printStackTrace();
+		}
+		
 		Intent i=new Intent(this,PopUpNuevoEntrenamiento.class);
+		i.putExtra(varFechaEvento,date.getTime());
 		startActivity(i);
 	}
 	
@@ -669,7 +679,17 @@ public class PaginaCalendario extends Activity{
 	}
 	
 	private void agregarPartido(){
+		//Pasamos la fecha seleccionada a milisegundos
+		String fecha=getFechaSeleccionada();
+		Date date=new Date();
+		try{
+			date=formato.parse(fecha);
+		}catch (ParseException e){
+			e.printStackTrace();
+		}
+		
 		Intent i=new Intent(this,PopUpNuevoPartido.class);
+		i.putExtra(varFechaEvento,date.getTime());
 		startActivity(i);
 	}
 	

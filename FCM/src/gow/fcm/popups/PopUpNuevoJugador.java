@@ -48,6 +48,7 @@ public class PopUpNuevoJugador extends Activity {
 	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
 	private File dirActual=Environment.getExternalStorageDirectory(); //Directorio donde esta la carpeta de las imágenes
 	private String dirRecortes="image/*"; //Directorio donde se encuentran las imágenes recortadas
+	private int tipoJug;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,7 @@ public class PopUpNuevoJugador extends Activity {
 		//Llamamos a los arrays que contienen los nombre del tipo de jugador y su posicion.
 		final ArrayAdapter<CharSequence> adaptadorTipo = ArrayAdapter.createFromResource(this, R.array.TipoJugador, android.R.layout.simple_spinner_item);
 		tipoJugador.setAdapter(adaptadorTipo);
+		
 		final ArrayAdapter<CharSequence> adaptador2 = ArrayAdapter.createFromResource(this, R.array.PosicionAtaque, android.R.layout.simple_spinner_item);
 		
 		final ArrayAdapter<CharSequence> adaptador3 = ArrayAdapter.createFromResource(this, R.array.PosicionDefensa, android.R.layout.simple_spinner_item);
@@ -90,6 +92,9 @@ public class PopUpNuevoJugador extends Activity {
 						@Override
 						public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 							posJug = posicionJugador.getSelectedItem().toString();
+							if(posJug=="Ataque"){
+								tipoJug = 0;
+							}
 						}
 
 						@Override
@@ -105,6 +110,9 @@ public class PopUpNuevoJugador extends Activity {
 							@Override
 							public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 								posJug = posicionJugador.getSelectedItem().toString();
+								if(posJug=="Defensa"){
+									tipoJug = 1;
+								}
 							}
 
 							@Override
@@ -120,6 +128,9 @@ public class PopUpNuevoJugador extends Activity {
 								@Override
 								public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 									posJug = posicionJugador.getSelectedItem().toString();
+									if(posJug=="Equipos Especiales"){
+										tipoJug = 2;
+									}
 								}
 
 								@Override
@@ -154,7 +165,7 @@ public class PopUpNuevoJugador extends Activity {
 				if(nomJug.getText().toString().trim().equals("") || apellJug.getText().toString().trim().equals("")  || edadJug.getText().toString().trim()==null || dorsalJug.getText().toString().trim()==null){
             		Toast.makeText(getApplicationContext(), "Algun campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
 				}else{
-					SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJugador),dorsalJug.getText().toString(),rutaImagen});
+					SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),rutaImagen});
                 	PopUpNuevoJugador.this.finish();
 				}
 			}

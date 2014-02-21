@@ -2,8 +2,6 @@ package gow.fcm.popups;
 
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
-import gow.fcm.footballcoachmanager.R.layout;
-import gow.fcm.footballcoachmanager.R.menu;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
 import android.os.Build;
@@ -31,13 +29,16 @@ public class PopUpNuevoPartido extends Activity {
 	DatePicker dp;
 	Button bt;
 	EditText lugar,rival;
-	String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento;
+	String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event";
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		showAsPopup(this); //Llama al método que pone el activity en modo ventana PopuP.
+		
+		Intent i=getIntent();
+		Long fecha=i.getExtras().getLong(varFechaEvento);
 		
 		setContentView(R.layout.activity_popup_nuevo_partido);
 		lugar = (EditText) findViewById(R.id.lugarPartidoNuevo);
@@ -55,7 +56,8 @@ public class PopUpNuevoPartido extends Activity {
 	    }
 		
 		dp.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
-		dp.setMinDate(System.currentTimeMillis()-1000); //Obtenemos la fecha seleccionada y la ponemos como la mínima
+		dp.setMinDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la mínima
+		dp.setMaxDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
 		
 		//Modificamos el diseño de la hora para que este en formato 24H.
 		tp = (TimePicker) findViewById(R.id.hora_PartidoNuevo);
@@ -71,7 +73,7 @@ public class PopUpNuevoPartido extends Activity {
 		tp.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
 		
 		//Guardamos el partido en el calendario recogiendo los datos pertinentes.
-		bt = (Button) findViewById(R.id.guardarJugadorNuevo);
+		bt = (Button) findViewById(R.id.guardarPartidoNuevo);
 		bt.setOnClickListener(new OnClickListener(){
 			 
             @Override

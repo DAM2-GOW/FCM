@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -35,13 +34,16 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	Spinner sp;
 	Button bt;
 	EditText titulEntrenamiento;
-	String stringTipoEntrenamiento, fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento;
+	String stringTipoEntrenamiento, fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		showAsPopup(this); //Llama al método que pone el activity en modo ventana PopuP.
 		setContentView(R.layout.activity_popup_nuevo_entrenamiento);
+		
+		Intent i=getIntent();
+		Long fecha=i.getExtras().getLong(varFechaEvento);
 		
 		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
 		ConexionSQLite.getCrearSQLite(this);
@@ -74,7 +76,8 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	    }
 		
 		dp.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
-		dp.setMinDate(System.currentTimeMillis()-1000); //Obtenemos la fecha seleccionada y la ponemos como la mínima
+		dp.setMinDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la mínima
+		dp.setMaxDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
 		
 		//Modificamos el diseño de la hora para que este en formato 24H.
 		tp = (TimePicker) findViewById(R.id.hora_entrenamientoNuevo);
