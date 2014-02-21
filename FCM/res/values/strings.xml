@@ -14,6 +14,7 @@
     <string name="digital_board_img">Imagen pizarra digital</string>
     <string name="go_match">Ir al partido</string>
     <string name="go_match_img">Imagen ir al partido</string>
+    <string name="msg_no_match">No tiene un partido hoy</string>
     <string name="team_calendar">Calendario</string>
     <string name="team_calendar_img">Imagen calendario</string>
     <string name="op_no">No</string>

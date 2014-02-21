@@ -1,5 +1,7 @@
 package gow.fcm.pantallas;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.popups.PopupPizarraDigital;
 import gow.fcm.sentencias.SentenciasSQLitePrincipal;
@@ -18,7 +20,9 @@ import android.view.animation.LinearInterpolator;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import gow.fcm.footballcoachmanager.R;
 
 public class PaginaPrincipal extends Activity{
@@ -39,6 +43,13 @@ public class PaginaPrincipal extends Activity{
 		
 		//Método que muestra el nombre del equipo
 		mostrarNombreEquipo();
+		
+		//Método que muestra las diferentes secciones de la aplicación
+		seccionesBotones();
+	}
+	
+	protected void onResume(){
+		super.onResume();
 		
 		//Método que muestra las diferentes secciones de la aplicación
 		seccionesBotones();
@@ -174,6 +185,16 @@ public class PaginaPrincipal extends Activity{
 		informacionAplicacion();
 	}
 	
+	//Método que devuelve la fecha actual
+	@SuppressLint("SimpleDateFormat")
+	private String getFechaActual(){
+		//Obtenemos la fecha actual
+		Date dates=new Date();
+		SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
+		String fecha=formato.format(dates);
+		return fecha;
+	}
+	
 	//Método que muestra los botones en los cuales puedes navegar en la aplicación
 	private void seccionesBotones(){
 		//Declaramos la variables que harán de botones
@@ -188,21 +209,25 @@ public class PaginaPrincipal extends Activity{
 		final ImageView imgEvento=(ImageView) findViewById(R.id.partido);
 		final ImageView imgCalendario=(ImageView) findViewById(R.id.calendario);
 		
+		String fechaActual=getFechaActual();
+		SentenciasSQLitePrincipal.numeroPartidos(this,fechaActual);
+		final int hayPartido=Integer.parseInt(SentenciasSQLitePrincipal.getNumPartidos());
+		
 		//Método que realiza la animación
 		botonEquipo.setOnTouchListener(new OnTouchListener(){
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1){
 				switch(arg1.getAction()){
-					case MotionEvent.ACTION_DOWN: {
-						imgEquipo.setImageResource(R.drawable.team_management_down);
-						botonAdministrarEquipo(); //Método para ir a la sección
-						break;
-					}
-					case MotionEvent.ACTION_UP:
-					case MotionEvent.ACTION_CANCEL: {
-						imgEquipo.setImageResource(R.drawable.team_management_up);
-						break;
-					}
+				case MotionEvent.ACTION_DOWN: {
+					imgEquipo.setImageResource(R.drawable.team_management_down);
+					botonAdministrarEquipo(); //Método para ir a la sección
+					break;
+				}
+				case MotionEvent.ACTION_UP:
+				case MotionEvent.ACTION_CANCEL: {
+					imgEquipo.setImageResource(R.drawable.team_management_up);
+					break;
+				}
 				}
 				return true;
 			}
@@ -213,16 +238,16 @@ public class PaginaPrincipal extends Activity{
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1){
 				switch(arg1.getAction()){
-					case MotionEvent.ACTION_DOWN: {
-						imgPizarra.setImageResource(R.drawable.digital_board_down);
-						botonPizarraDigital(); //Método para ir a la sección
-						break;
-					}
-					case MotionEvent.ACTION_UP:
-					case MotionEvent.ACTION_CANCEL: {
-						imgPizarra.setImageResource(R.drawable.digital_board_up);
-						break;
-					}
+				case MotionEvent.ACTION_DOWN: {
+					imgPizarra.setImageResource(R.drawable.digital_board_down);
+					botonPizarraDigital(); //Método para ir a la sección
+					break;
+				}
+				case MotionEvent.ACTION_UP:
+				case MotionEvent.ACTION_CANCEL: {
+					imgPizarra.setImageResource(R.drawable.digital_board_up);
+					break;
+				}
 				}
 				return true;
 			}
@@ -233,16 +258,26 @@ public class PaginaPrincipal extends Activity{
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1){
 				switch(arg1.getAction()){
-					case MotionEvent.ACTION_DOWN: {
-						imgEvento.setImageResource(R.drawable.event_management_down);
+				case MotionEvent.ACTION_DOWN: {
+					imgEvento.setImageResource(R.drawable.event_management_down);
+					
+					if(hayPartido>0){
 						botonIrPartido(); //Método para ir a la sección
-						break;
+					}else{
+						Toast toast=Toast.makeText(getApplicationContext(),R.string.msg_no_match,Toast.LENGTH_SHORT);
+						LinearLayout toastLayout=(LinearLayout) toast.getView();
+						TextView toastTV=(TextView) toastLayout.getChildAt(0);
+						toastTV.setTextSize(25);
+						toast.show(); //Mostramos un mensaje de que no hay partido para dicho dia
 					}
-					case MotionEvent.ACTION_UP:
-					case MotionEvent.ACTION_CANCEL: {
-						imgEvento.setImageResource(R.drawable.event_management_up);
-						break;
-					}
+					
+					break;
+				}
+				case MotionEvent.ACTION_UP:
+				case MotionEvent.ACTION_CANCEL: {
+					imgEvento.setImageResource(R.drawable.event_management_up);
+					break;
+				}
 				}
 				return true;
 			}

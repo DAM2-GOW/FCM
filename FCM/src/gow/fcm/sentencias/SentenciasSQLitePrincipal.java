@@ -6,7 +6,7 @@ import android.content.Context;
 public class SentenciasSQLitePrincipal{
 	
 	//Variables de la aplicación o de la base de datos
-	private static String nombreEntrenador=null,apellidosEntrenador=null,fotoEntrenador=null,nombreEquipo=null;
+	private static String nombreEntrenador=null,apellidosEntrenador=null,fotoEntrenador=null,nombreEquipo=null,numPartidos;
 	
 	//Obtenemos la foto del entrenador
 	public static String getFotoEntrenador(){
@@ -37,6 +37,7 @@ public class SentenciasSQLitePrincipal{
 	public static void setApellidosEntrenador(){
 		apellidosEntrenador=null;
 	}
+	
 	//Obtenemos el nombre del equipo
 	public static String getNombreEquipo(){
 		return nombreEquipo;
@@ -45,6 +46,11 @@ public class SentenciasSQLitePrincipal{
 	//Resetea el nombre del equipo
 	public static void setNombreEquipo(){
 		nombreEquipo=null;
+	}
+	
+	//Obtenemos el número de partidos
+	public static String getNumPartidos(){
+		return numPartidos;
 	}
 	
 	//Este método obtiene los datos del entrenador
@@ -83,4 +89,19 @@ public class SentenciasSQLitePrincipal{
 		nombreEquipo=valores[0];
 	}
 	
+	public static void numeroPartidos(Context contexto,String fecha){
+		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
+		SentenciasSelectSQLite.borrarTodosValores();
+
+		//Obtenemos el identificador
+		DatosFootball.getDatosFootball(contexto);
+		int id=DatosFootball.getIdEquipo();
+
+		//Ejcutamos la sentencia
+		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"COUNT(*)"},"id_equipo="+id+" AND dia='"+fecha+"'");
+
+		//Almacenamos los valores
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		numPartidos=valores[0];
+	}
 }
