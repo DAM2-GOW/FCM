@@ -13,18 +13,18 @@ public class ArrayAdapterStatisticsList extends ArrayAdapter<Object> {
   private final Context context; // Recoge el contexto en el que es lanzado.
   private final String statistic; // Recoge las estadisticas recibidas como array de String.
   private final String date; // Recoge los datos de las estadisticas recibidas como array de String.
-  private final int number; // Recoge los numeros de cada estadistica recibida como array de int.
+  private final String number; // Recoge los numeros de cada estadistica recibida como array de int.
   
   /**
    * Este es el constructor de la clase personalizada.
    * Recibe los datos de nombre, numero y dato de cada estadistica.
    */
-  public ArrayAdapterStatisticsList(Context context, String stat, String date, int number) {
+  public ArrayAdapterStatisticsList(Context context, String stat, String date, String numeros) {
     super(context, R.layout.template_item_player_grid);
     this.context = context;
     this.statistic = stat;
     this.date = date;
-    this.number = number;
+    this.number = numeros;
    
   }
   
@@ -47,7 +47,7 @@ public class ArrayAdapterStatisticsList extends ArrayAdapter<Object> {
     // al llamar a esta clase.
     tv_statistic.setText(statistic);
     tv_date.setText(date);
-    tv_number.setText(Integer.toString(number));
+    tv_number.setText(number);
     
     return rowView;
   }

@@ -4,6 +4,7 @@ import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.footballcoachmanager.R.layout;
 import gow.fcm.footballcoachmanager.R.menu;
+import gow.fcm.sentencias.SentenciasSQLiteDatosJugador;
 import gow.fcm.sentencias.SentenciasSQLiteListaEstadisticas;
 import gow.fcm.sentencias.SentenciasSelectSQLite;
 import gow.fcm.utilidades.ArrayAdapterStatisticsList;
@@ -20,37 +21,37 @@ public class EstadisticasJugador extends Activity {
 	int playerId;
 	String nombre;
 	String apellidos;
-	int edat;
-	int num;
+	String edat;
+	String num;
 	String pos;
-	int tip;
+	String tip;
 	String fot;
-	String[] carrera, pase, pase_comp, recep, fumbles, sacks, placajes, intercepciones, field_goals, punts, touchdown, faltas, extra_point, pt_conversion;
+	String carrera, pase_comp, recep, fumbles, sacks, placajes, intercepciones, field_goals, punts, touchdown, faltas, extra_point, pt_conversion;
+	
+	String car, pas, rec, fum, sac, pla, inter, figo, pun, tou, fal, extp, ptcon; 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_estadisticas_jugador);
 		
 		Bundle bundle = getIntent().getExtras();
-		//playerId= bundle.getInt("playerId");
+		playerId= bundle.getInt("playerId");
 		playerId = 1;
 		ConexionSQLite.getCrearSQLite(this);
-		SentenciasSelectSQLite.seleccionarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, "id_jugador = "+playerId+"");
+		
+		nombre = SentenciasSQLiteDatosJugador.getNombre();
+		apellidos = SentenciasSQLiteDatosJugador.getApellido();
+		edat = SentenciasSQLiteDatosJugador.getEdad();
+		pos = SentenciasSQLiteDatosJugador.getPosicion();
+		tip = SentenciasSQLiteDatosJugador.getTipo();
+		num = SentenciasSQLiteDatosJugador.getNumero();
+		fot = SentenciasSQLiteDatosJugador.getFoto();
 		
 		
-		
-//		nombre = (String) SentenciasSelectSQLite.getValor1();
-//		apellidos = (String) SentenciasSelectSQLite.getValor2();
-//		edat = (Integer) SentenciasSelectSQLite.getValor3();
-//		pos = (String) SentenciasSelectSQLite.getValor4();
-//		tip = (Integer) SentenciasSelectSQLite.getValor5();
-//		num = (Integer) SentenciasSelectSQLite.getValor6();
-//		fot = (String) SentenciasSelectSQLite.getValor7();
-		
-		//new FillPlayer(nombre, apellidos, edat, num, tip, pos, fot);
+		new FillPlayer( nombre, apellidos, edat, num,tip,pos,fot);
 		
 		ConexionSQLite.getCrearSQLite(this);
-		SentenciasSelectSQLite.seleccionarSQLite("Estadisticas_Partidos", new String[]{"carreras","pases_completados","recepciones","fumbles","sacks","placajes","intercepciones","field_goals","punts","touchdowns","faltas","extra_points_completados","2pt_conversions_completados"}, "id_jugador = "+playerId+"");
 		carrera = SentenciasSQLiteListaEstadisticas.getCarreras();
 		pase_comp = SentenciasSQLiteListaEstadisticas.getPases();
 		recep = SentenciasSQLiteListaEstadisticas.getRecepcion();
@@ -65,7 +66,24 @@ public class EstadisticasJugador extends Activity {
 		extra_point = SentenciasSQLiteListaEstadisticas.getExtrapoint();
 		pt_conversion = SentenciasSQLiteListaEstadisticas.getPtconversion();
 		
-		new FillStatistics (carrera, pase_comp, recep, fumbles, sacks, placajes, intercepciones, field_goals, punts, touchdown, faltas, extra_point, pt_conversion);
+		
+			car = carrera;
+			pas = pase_comp;
+			rec = recep;
+			fum = fumbles;
+			sac = sacks;
+			pla = placajes;
+			inter = intercepciones;
+			figo = field_goals;
+			pun = punts;
+			tou = touchdown;
+			fal = faltas;
+			extp = extra_point;
+			ptcon = pt_conversion;
+			
+			
+		
+			new FillStatistics(carrera, pase_comp, recep, fumbles, sacks, placajes, intercepciones, field_goals, punts, touchdown, faltas, extra_point, pt_conversion);
 	}
 
 	@Override
@@ -82,14 +100,15 @@ class FillStatistics {
 		String[] nombre_stat =  new String[]{"Carreras","Pases","Recepciones","Fumbles","Sacks","Placajes","Intercepciones","Field Goals","Punts","Touchdowns","Faltas","Extra point","Extra game"};
 		String[] tipo_stat =  new String[]{"YD","","","","","","","","","","","",""};
 		ArrayAdapterStatisticsList adapter;
-		int[] numero_stat;
-		int numeros;
+		String[] numero_stat;
+		String numeros;
 		String tipos;
 		String nombres;
 		
-		 public FillStatistics(int car, int pas, int rec, int fum, int sac, int pla, int inter, int figo, int pun, int tou, int fal, int extp, int ptcon){
+		
+		public FillStatistics (String care, String pase, String rece, String fume, String sacks, String placajes, String intercepciones, String field_goals, String punts, String touchdown, String faltas, String extra_point, String pt_conversion){
 		 
-			 numero_stat =  new int[]{car,pas,rec,fum,sac,pla,inter,figo,pun,tou,fal,extp,ptcon};
+			 numero_stat =  new String[]{care,pase,rece,fume,sacks,placajes,intercepciones,field_goals,punts,touchdown,faltas,extra_point,pt_conversion};
 		 
 		 	ListView lv = (ListView)findViewById(R.id.statistics_list);
 		 	
@@ -106,14 +125,8 @@ class FillStatistics {
 	        lv.setAdapter(adapter);
 	 }
 
-		public FillStatistics(String[] carrera, String[] pase_comp,
-				String[] recep, String[] fumbles, String[] sacks,
-				String[] placajes, String[] intercepciones,
-				String[] field_goals, String[] punts, String[] touchdown,
-				String[] faltas, String[] extra_point, String[] pt_conversion) {
-			// TODO Auto-generated constructor stub
-		}
 	}
+
 class FillPlayer {
 
 	    //declaración de atributos
@@ -127,13 +140,14 @@ class FillPlayer {
 	 
 	  //declaración de constructor
 
-	  public FillPlayer(String nombre, String ape, int edad, int numero, int tipo, String posicion, String foto) {
+	  public FillPlayer(String nombre, String apellidos, String edat, String num, String tipo, String pos, String fot) {
+		  
 		  
 		  etName = (EditText) findViewById(R.id.nombre_jug);
-		  etName.setText(nombre+" "+ape);
+		  etName.setText(nombre+" "+apellidos);
 		  
 		  etTipo = (ImageView) findViewById(R.id.imagen_tipo);
-		  switch(tipo) {
+		  switch(Integer.parseInt(tipo)) {
 		  case 1:
 			  etTipo.setId(R.drawable.btn_all_attack);
 		  break;
@@ -146,13 +160,13 @@ class FillPlayer {
 		  }
 		  
 		  etAge = (EditText) findViewById(R.id.edad_jug);
-		  etAge.setText(edad);
+		  etAge.setText(edat);
 		  
 		  etNum = (EditText) findViewById(R.id.dorsal_jug);
-		  etNum.setText(numero);
+		  etNum.setText(num);
 		  
 		  etPos = (EditText) findViewById(R.id.posicion_jug);
-		  etPos.setText(posicion);
+		  etPos.setText(pos);
 		  
 //		  etFoto= (ImageView) findViewById(R.id.imagen_jug);
 //		  etFoto.setId(foto);
