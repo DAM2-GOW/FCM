@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.text.format.DateFormat;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -105,6 +106,8 @@ public class PopUpNuevoPartido extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.pop_up_nuevo_partido, menu);
+		MenuItem item = menu.findItem(R.id.action_settings);
+		item.setVisible(false);
 		return true;
 	}
 	

@@ -282,6 +282,8 @@ public class PopUpNuevoJugador extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.pop_up_nuevo_jugador, menu);
+		MenuItem item = menu.findItem(R.id.action_settings);
+		item.setVisible(false);
 		return true;
 	}
 	
