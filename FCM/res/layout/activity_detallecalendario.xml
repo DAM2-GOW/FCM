@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_horizontal"
+    android:animateLayoutChanges="true"
+    android:background="@color/black_cow"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView_tituloevento"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_gravity="center|center_vertical"
+        android:gravity="center_vertical"
+        android:text="Eventos dia "
+        android:textColor="@color/white"
+        android:textSize="32sp" />
+    
+     <ListView
+         android:id="@+id/listView_eventoscalendario"
+         android:layout_width="1200dp"
+         android:layout_height="fill_parent"
+         android:layout_marginBottom="50dp"
+         android:background="@color/black"
+         android:choiceMode="singleChoice"
+         android:divider="@drawable/divider_element"
+         android:dividerHeight="4dp" />
+     
+</LinearLayout>

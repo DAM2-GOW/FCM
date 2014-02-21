@@ -164,5 +164,7 @@
     <string name="miembros_grupo">Contacto:</string>
     <string name="title_activity_perfil_entrenador">PerfilEntrenador</string>
     <string name="hello_world">Hello world!</string>
+    <string name="Vistadetallada_calendario_tipo">Tipo:</string>
+    <string name="Vistadetallada_calendario_hora">Hora:</string>
 
 </resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_cow"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView_tituloobservaciones"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_weight="0.11"
+        android:gravity="center"
+        android:text="Observaciones"
+        android:textColor="@color/white"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/textView_observaciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_weight="1"
+        android:background="@color/black"
+        android:gravity="center|center_vertical"
+        android:text="Aqui van todas las observaciones de cada entrenamiento y cosas de gentuza u mas mismas cosas"
+        android:textColor="@color/white"
+        android:textSize="32sp" />
+
+</LinearLayout>
