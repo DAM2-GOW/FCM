@@ -42,7 +42,6 @@ public class PaginaPrincipal extends Activity{
 		
 		//Método que muestra las diferentes secciones de la aplicación
 		seccionesBotones();
-		
 	}
 	
 	//Método que muestra
@@ -98,6 +97,50 @@ public class PaginaPrincipal extends Activity{
 		}
 	}
 	
+	//Método que realiza una acciones al hacer clic sobre las diferentes opciones del entrenador
+	private void opcionesEntrenador(){
+		//Declaramos como variable la imagen
+		final View configuracionEntrenador=(View) findViewById(R.id.boton_entrenador);
+		
+		//Acción a realizar
+		configuracionEntrenador.setOnTouchListener(new OnTouchListener(){
+			@Override
+			public boolean onTouch(View arg0, MotionEvent arg1){
+				switch(arg1.getAction()){
+				case MotionEvent.ACTION_DOWN: {
+					datosEntrenador(); //Método para modificar los datos del entrenador o entrenadores y su equipo o equipos
+					break;
+				}
+				}
+				return true;
+			}
+		});
+	}
+
+	//Método que abre la pantalla con los datos del entrenador y su equipo
+	private void datosEntrenador(){
+		Intent i=new Intent(this,PaginaPrincipal.class);
+		startActivity(i);
+	}
+
+	private void informacionAplicacion(){
+		ImageButton botonInfo=(ImageButton) findViewById(R.id.imageButtonInfo); //Declaramos la variable que harán de botón
+		
+		//Método del botón info
+		botonInfo.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v){
+				botonInfo();
+			}
+		});
+	}
+	
+	//Método para acceder al "Acerca de"
+	private void botonInfo(){
+		Intent i=new Intent (this,PantallaAcercaDe.class);
+		startActivity(i);
+	}
+	
 	//Método que carga y muestra en pantalla en nombre del equipo
 	@SuppressLint("CutPasteId")
 	private void mostrarNombreEquipo(){
@@ -126,32 +169,9 @@ public class PaginaPrincipal extends Activity{
 			efectoShadow.setText(nombre);
 			SentenciasSQLitePrincipal.setNombreEquipo(); //Reseta a null el valor
 		}
-	}
-	
-	//Método que realiza una acciones al hacer clic sobre las diferentes opciones del entrenador
-	private void opcionesEntrenador(){
-		//Declaramos como variable la imagen
-		final View configuracionEntrenador=(View) findViewById(R.id.boton_entrenador);
 		
-		//Acción a realizar
-		configuracionEntrenador.setOnTouchListener(new OnTouchListener(){
-			@Override
-			public boolean onTouch(View arg0, MotionEvent arg1){
-				switch(arg1.getAction()){
-					case MotionEvent.ACTION_DOWN: {
-						datosEntrenador(); //Método para modificar los datos del entrenador o entrenadores y su equipo o equipos
-						break;
-					}
-				}
-				return true;
-			}
-		});
-	}
-	
-	//Método que abre la pantalla con los datos del entrenador y su equipo
-	private void datosEntrenador(){
-		Intent i=new Intent(this,PaginaPrincipal.class);
-		startActivity(i);
+		//Método que lleva a la pantalla de Acerca de
+		informacionAplicacion();
 	}
 	
 	//Método que muestra los botones en los cuales puedes navegar en la aplicación
@@ -161,22 +181,12 @@ public class PaginaPrincipal extends Activity{
 		View botonPizarra=(View) findViewById(R.id.boton_pizarra);
 		View botonEvento=(View) findViewById(R.id.boton_partido);
 		View botonCalendario=(View) findViewById(R.id.boton_calendario);
-		ImageButton botonInfo=(ImageButton) findViewById(R.id.imageButtonInfo);
 		
 		//Declaramos la variables que harán la animación al pulsar el botón
 		final ImageView imgEquipo=(ImageView) findViewById(R.id.equipo);
 		final ImageView imgPizarra=(ImageView) findViewById(R.id.pizarra);
 		final ImageView imgEvento=(ImageView) findViewById(R.id.partido);
 		final ImageView imgCalendario=(ImageView) findViewById(R.id.calendario);
-		
-		
-		//Método del botón info
-		botonInfo.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v){
-				botonInfo();
-			}
-		});
 		
 		//Método que realiza la animación
 		botonEquipo.setOnTouchListener(new OnTouchListener(){
@@ -259,12 +269,6 @@ public class PaginaPrincipal extends Activity{
 		});
 		
 
-	}
-	
-	//Método para acceder al "Acerca de"
-	private void botonInfo(){
-		Intent i=new Intent (this,PantallaAcercaDe.class);
-		startActivity(i);
 	}
 	
 	//Método para acceder a la administración del equipo

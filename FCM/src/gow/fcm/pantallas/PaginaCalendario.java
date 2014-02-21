@@ -56,8 +56,9 @@ public class PaginaCalendario extends Activity{
 	
 	@Override
 	protected void onResume(){
-		super.onRestart();
+		super.onResume();
 		
+		//Este método actualiza el contenido del calendario al cerrar el Popup
 		mostrarEventos();
 	}
 	
@@ -168,7 +169,7 @@ public class PaginaCalendario extends Activity{
 			public void onSelectedDayChange(CalendarView arg, int year, int mes, int dia){
 				mes=mes+1; //Le debemos sumar 1 al mes porque va solo del 0 al 11
 				String month="0";
-				if(mes<10){ //Si el mes es inferior a 2 cifras, le agregamos un 0 delante para mantener el formato
+				if(mes<10){ //Si el mes es fechaInferior a 2 cifras, le agregamos un 0 delante para mantener el formato
 					month=month.concat(String.valueOf(mes));
 				}else{
 					month=String.valueOf(mes);
@@ -222,9 +223,9 @@ public class PaginaCalendario extends Activity{
 		if((totalEntrenamiento==0 & totalPartido==0) || (String.valueOf(totalEntrenamiento)==null & String.valueOf(totalPartido)==null)){
 			
 			if(dates.after(dates2)){
-				fechaActualImagenes("Superior",1);
+				fechaActualImagenes("fechaSuperior",1);
 			}else{
-				fechaActualImagenes("Inferior",1);
+				fechaActualImagenes("fechaInferior",1);
 			}
 			
 			eventoEntrenamiento.setText(R.string.no_training);
@@ -237,9 +238,9 @@ public class PaginaCalendario extends Activity{
 		}else if(totalEntrenamiento!=0 & totalPartido==0){
 			
 			if(dates.after(fechaEntrenamiento)){
-				fechaActualImagenes("Superior",2);
+				fechaActualImagenes("fechaSuperior",2);
 			}else{
-				fechaActualImagenes("Inferior",2);
+				fechaActualImagenes("fechaInferior",2);
 			}
 			
 			eventoPartido.setText(R.string.no_match);
@@ -259,9 +260,9 @@ public class PaginaCalendario extends Activity{
 		}else if(totalEntrenamiento==0 & totalPartido!=0){
 			
 			if(dates.after(fechaPartido)){
-				fechaActualImagenes("Superior",3);
+				fechaActualImagenes("fechaSuperior",3);
 			}else{
-				fechaActualImagenes("Inferior",3);
+				fechaActualImagenes("fechaInferior",3);
 			}
 			
 			eventoEntrenamiento.setText(R.string.no_training);
@@ -277,9 +278,9 @@ public class PaginaCalendario extends Activity{
 		}else if(totalEntrenamiento!=0 & totalPartido!=0){
 			
 			if(dates.after(fechaEntrenamiento) & dates.after(fechaPartido)){
-				fechaActualImagenes("Superior",4);
+				fechaActualImagenes("fechaSuperior",4);
 			}else{
-				fechaActualImagenes("Inferior",4);
+				fechaActualImagenes("fechaInferior",4);
 			}
 			
 			if(totalEntrenamiento>1){
@@ -390,7 +391,7 @@ public class PaginaCalendario extends Activity{
 	
 	//Método que desactiva y activa las imágenes
 	private void fechaActualImagenes(String signo,int num){
-		if(signo=="Superior" & num==1){
+		if(signo=="fechaSuperior" & num==1){
 			
 			opcionAgregarEntrenamiento("desactivar");
 			opcionVerEntrenamiento("desactivar");
@@ -401,7 +402,7 @@ public class PaginaCalendario extends Activity{
 			opcionEditarPartido("desactivar");
 			opcionBorrarPartido("desactivar");
 			
-		}else if(signo=="Inferior" & num==1){
+		}else if(signo=="fechaInferior" & num==1){
 			
 			opcionAgregarEntrenamiento("activar");
 			opcionVerEntrenamiento("desactivar");
@@ -412,7 +413,7 @@ public class PaginaCalendario extends Activity{
 			opcionEditarPartido("desactivar");
 			opcionBorrarPartido("desactivar");
 			
-		}else if(signo=="Superior" & num==2){
+		}else if(signo=="fechaSuperior" & num==2){
 			
 			opcionAgregarEntrenamiento("desactivar");
 			opcionVerEntrenamiento("activar");
@@ -423,18 +424,18 @@ public class PaginaCalendario extends Activity{
 			opcionEditarPartido("desactivar");
 			opcionBorrarPartido("desactivar");
 			
-		}else if(signo=="Inferior" & num==2){
+		}else if(signo=="fechaInferior" & num==2){
 			
-			opcionAgregarEntrenamiento("desactivar");
+			opcionAgregarEntrenamiento("activar");
 			opcionVerEntrenamiento("desactivar");
 			opcionEditarEntrenamiento("activar");
 			opcionBorrarEntrenamiento("activar");
-			opcionAgregarPartido("desactivar");
+			opcionAgregarPartido("activar");
 			opcionVerPartido("desactivar");
 			opcionEditarPartido("desactivar");
 			opcionBorrarPartido("desactivar");
 			
-		}else if(signo=="Superior" & num==3){
+		}else if(signo=="fechaSuperior" & num==3){
 			
 			opcionAgregarEntrenamiento("desactivar");
 			opcionVerEntrenamiento("desactivar");
@@ -445,7 +446,7 @@ public class PaginaCalendario extends Activity{
 			opcionEditarPartido("desactivar");
 			opcionBorrarPartido("desactivar");
 				
-		}else if(signo=="Inferior" & num==3){
+		}else if(signo=="fechaInferior" & num==3){
 			
 			opcionAgregarEntrenamiento("desactivar");
 			opcionVerEntrenamiento("desactivar");
@@ -456,7 +457,7 @@ public class PaginaCalendario extends Activity{
 			opcionEditarPartido("activar");
 			opcionBorrarPartido("activar");
 			
-		}else if(signo=="Superior" & num==4){
+		}else if(signo=="fechaSuperior" & num==4){
 			
 			opcionAgregarEntrenamiento("desactivar");
 			opcionVerEntrenamiento("activar");
@@ -467,7 +468,7 @@ public class PaginaCalendario extends Activity{
 			opcionEditarPartido("desactivar");
 			opcionBorrarPartido("desactivar");
 			
-		}else if(signo=="Inferior" & num==4){
+		}else if(signo=="fechaInferior" & num==4){
 			
 			opcionAgregarEntrenamiento("desactivar");
 			opcionVerEntrenamiento("desactivar");
@@ -647,26 +648,17 @@ public class PaginaCalendario extends Activity{
 	//Los siguientes métodos abren otras pantallas o borran el contenido seleccionado del calendario
 	
 	private void agregarEntrenamiento(){
-		String fecha=getFechaSeleccionada();
 		Intent i=new Intent(this,PopUpNuevoEntrenamiento.class);
-		i.putExtra("tipo","entrenamiento");
-		i.putExtra("fecha",fecha);
 		startActivity(i);
 	}
 	
 	private void verStatsEntrenamiento(){
-		String fecha=getFechaSeleccionada();
 		Intent i=new Intent(this,PaginaCalendario.class);
-		i.putExtra("tipo","entrenamiento");
-		i.putExtra("fecha",fecha);
 		startActivity(i);
 	}
 	
 	private void editarEntrenamiento(){
-		String fecha=getFechaSeleccionada();
 		Intent i=new Intent(this,PaginaCalendario.class);
-		i.putExtra("tipo","entrenamiento");
-		i.putExtra("fecha",fecha);
 		startActivity(i);
 	}
 	
@@ -677,26 +669,17 @@ public class PaginaCalendario extends Activity{
 	}
 	
 	private void agregarPartido(){
-		String fecha=getFechaSeleccionada();
 		Intent i=new Intent(this,PopUpNuevoPartido.class);
-		i.putExtra("tipo","partido");
-		i.putExtra("fecha",fecha);
 		startActivity(i);
 	}
 	
 	private void verStatsPartido(){
-		String fecha=getFechaSeleccionada();
 		Intent i=new Intent(this,PaginaCalendario.class);
-		i.putExtra("tipo","partido");
-		i.putExtra("fecha",fecha);
 		startActivity(i);
 	}
 	
 	private void editarPartido(){
-		String fecha=getFechaSeleccionada();
 		Intent i=new Intent(this,PaginaCalendario.class);
-		i.putExtra("tipo","partido");
-		i.putExtra("fecha",fecha);
 		startActivity(i);
 	}
 	

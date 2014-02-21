@@ -32,6 +32,7 @@ public class PantallaListaJugadores extends Activity {
 	private GridView listaJugadores; //Lista de los jugadores del equipo
 	private int getDorsal; //Dorsal pulsado en la la lista
 	private String[] nombreJugador,apellidosJugador,posicionJugador,dorsalJugador; //Matrices donde se les pasa los datos a mostrar en la lista
+	private ListaJugadores adaptador; //Declaramos el adaptador
 	private View pie; //Variable usada para almacenar un objeto View del pie de página de la lista de jugadores
 	private String tiposJugadores;
 
@@ -164,14 +165,14 @@ public class PantallaListaJugadores extends Activity {
 		// Registramos el menú contextual
 		registerForContextMenu(listaJugadores);
 
-			//Buscamos en la base de datos
-			cargarJugadores();
+		//Buscamos en la base de datos
+		cargarJugadores();
 
-			// Le enviamos a la clase ListaJugadores los datos a rellenar
-			 ListaJugadores adaptador = new ListaJugadores(this, dorsalJugador, nombreJugador, apellidosJugador, posicionJugador);
+		// Le enviamos a la clase ListaJugadores los datos a rellenar
+		adaptador = new ListaJugadores(this, dorsalJugador, nombreJugador, apellidosJugador, posicionJugador);
 
-			// Se colocan los datos en la lista
-			listaJugadores.setAdapter(adaptador);
+		// Se colocan los datos en la lista
+		listaJugadores.setAdapter(adaptador);
 
 		accionesListaJugadores();
 	}
@@ -180,7 +181,7 @@ public class PantallaListaJugadores extends Activity {
 		cargarTipoJugadores(tiposJugadores);
 
 		// Le enviamos a la clase ListaJugadores los datos a rellenar
-		 ListaJugadores adaptador = new ListaJugadores(this, dorsalJugador, nombreJugador, apellidosJugador, posicionJugador);
+		adaptador = new ListaJugadores(this, dorsalJugador, nombreJugador, apellidosJugador, posicionJugador);
 		 
 		// Se colocan los datos en la lista
 		listaJugadores.setAdapter(adaptador);
