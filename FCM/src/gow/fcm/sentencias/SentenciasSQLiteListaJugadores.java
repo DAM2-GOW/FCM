@@ -48,7 +48,7 @@ public class SentenciasSQLiteListaJugadores {
 			
 			for(int i=0;i<Integer.parseInt(numValores);i++){
 				//Ejcutamos la sentencia
-				SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"nombre","apellidos","posicion","dorsal"},"id_equipo="+id+" LIMIT 0,"+(i+1)+"");
+				SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"nombre","apellidos","posicion","dorsal"},"id_equipo="+id+" ORDER BY dorsal LIMIT "+(i)+",1");
 				//Almacenamos los valores
 				valores=(String[]) SentenciasSelectSQLite.getValores();
 				nombreJugador[i]=valores[0];
@@ -82,7 +82,7 @@ public class SentenciasSQLiteListaJugadores {
 
 			for(int i=0;i<Integer.parseInt(numValores);i++){
 				//Ejcutamos la sentencia
-				SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"nombre","apellidos","posicion","dorsal"},"id_equipo="+id+" AND tipo='"+tipo+"' LIMIT 0,"+(i+1)+"");
+				SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"nombre","apellidos","posicion","dorsal"},"id_equipo="+id+" AND tipo='"+tipo+"' ORDER BY dorsal LIMIT "+(i)+",1");
 				//Almacenamos los valores
 				valores=(String[]) SentenciasSelectSQLite.getValores();
 				nombreJugador[i]=valores[0];

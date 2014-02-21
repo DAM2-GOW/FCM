@@ -5,6 +5,7 @@ import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNuevoJugador;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLiteListaJugadores;
+import gow.fcm.sentencias.SentenciasUpdateSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
 import gow.fcm.utilidades.ListaJugadores;
 import android.os.Bundle;
@@ -51,8 +52,8 @@ public class PantallaListaJugadores extends Activity {
 		//SentenciasInsertSQLite.insertarSQLite("Equipos",new String[]{"nombre"},new String[]{"Pepe Team"});
 		//SentenciasInsertSQLite.insertarSQLite("Entrenadores",new String[]{"id_equipo","nombre","apellidos","usuario","clave","pregunta_seguridad","respuesta_seguridad"},new String[]{"1","Pepe","García","pepe","1234","1","Chispi"});
 		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Antonio","Martinez","22","DE","Defensa","32"});
-		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Jose","Martinez","23","QB","Ataque","32"});
-		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Mario","Martinez","24","K","Equipos Especiales","32"});
+		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Jose","Martinez","23","QB","Ataque","40"});
+		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Mario","Martinez","24","K","Equipos Especiales","22"});
 		//SentenciasInsertSQLite.insertarSQLite("Entrenamientos",new String[]{"id_equipo","tipo","dirigido","dia","fecha"},new String[]{"1","1","Defensas","2014-02-21","2014-02-21 18:00:00"});
 		//SentenciasInsertSQLite.insertarSQLite("Entrenamientos",new String[]{"id_equipo","tipo","dirigido","dia","fecha"},new String[]{"1","2","Ataque","2014-02-21","2014-02-21 19:00:00"});
 		//SentenciasInsertSQLite.insertarSQLite("Partidos",new String[]{"id_equipo","lugar","rival","dia","fecha"},new String[]{"1","0","New York Giants","2014-02-21","2014-02-21 18:00:00"});
