@@ -36,8 +36,8 @@
         <activity
             android:name="gow.fcm.popups.PopupPizarraDigital"
             android:label="@string/title_popup_blackboard"
-            android:theme="@style/PopupTheme"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:theme="@style/PopupTheme" />
         <activity
             android:name="gow.fcm.pantallas.Config_entre"
             android:label="@string/title_activity_config_entre"
@@ -72,15 +72,22 @@
             android:label="@string/title_activity_estadisticas_jugador"
             android:screenOrientation="landscape" >
         </activity>
-        <activity 
+        <activity
             android:name="gow.fcm.pantallas.PantallaListaJugadores"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
-        <activity android:name="gow.fcm.pantallas.PantallaAcercaDe"
-            android:screenOrientation="landscape">
+        <activity
+            android:name="gow.fcm.pantallas.PantallaAcercaDe"
+            android:screenOrientation="landscape" >
         </activity>
-        <activity android:name="gow.fcm.pantallas.PlayingGround"></activity>
-        <activity android:name="gow.fcm.popups.PopUpPlayersSelector"></activity>
+        <activity android:name="gow.fcm.pantallas.PlayingGround" >
+        </activity>
+        <activity android:name="gow.fcm.popups.PopUpPlayersSelector" >
+        </activity>
+        <activity
+            android:name="gow.fcm.pantallas.PerfilEntrenador"
+            android:label="@string/title_activity_perfil_entrenador" >
+        </activity>
     </application>
 
 </manifest>

@@ -54,18 +54,17 @@
     <string name="lugar">Lugar</string>
     <string name="rival">Rival</string>
     <string name="observaciones">Observaciones</string>
-	<string name="titulo_entrenamiento">Título Entrenamiento</string>
-	<string name="statistics">Estadísticas</string>
-	<string name="playingGround_toast_no_player_selected">No se ha seleccionado ningún jugador</string>
-	<string name="playingGround_toast_cancel_swap_player">Se ha candelado el intercambio</string>
-	
+    <string name="titulo_entrenamiento">Título Entrenamiento</string>
+    <string name="statistics">Estadísticas</string>
+    <string name="playingGround_toast_no_player_selected">No se ha seleccionado ningún jugador</string>
+    <string name="playingGround_toast_cancel_swap_player">Se ha candelado el intercambio</string>
+
     <string-array name="TipoEntrenamiento">
         <item>Resistencia</item>
         <item>Fuerza</item>
         <item>Agilidad</item>
         <item>Específico</item>
     </string-array>
-    
     <string-array name="TipoModulo">
         <item>Repeticiones</item>
         <item>Series</item>
@@ -74,35 +73,36 @@
 
     <string name="title_activity_pop_up_config_entre">PopUp_config_entre</string>
     <string name="title_activity_estadisticas_jugador">EstadisticasJugador</string>
+
     <string-array name="TipoJugador">
-        <item >Ataque</item>
-        <item >Defensa</item>
-        <item >Equipos Especiales</item>
+        <item>Ataque</item>
+        <item>Defensa</item>
+        <item>Equipos Especiales</item>
     </string-array>
     <string-array name="PosicionAtaque">
-        <item >C</item>
-        <item >LG</item>
-        <item >RG</item>
-        <item >LT</item>
-        <item >RT</item>
-        <item >QB</item>
-        <item >RB</item>
-        <item >HB</item>
-        <item >FB</item>
+        <item>C</item>
+        <item>LG</item>
+        <item>RG</item>
+        <item>LT</item>
+        <item>RT</item>
+        <item>QB</item>
+        <item>RB</item>
+        <item>HB</item>
+        <item>FB</item>
     </string-array>
     <string-array name="PosicionDefensa">
-        <item >DT</item>
-        <item >DE</item>
-        <item >NT</item>
-        <item >CB</item>
-        <item >FS</item>
-        <item >SS</item>
-        <item >LB</item>
+        <item>DT</item>
+        <item>DE</item>
+        <item>NT</item>
+        <item>CB</item>
+        <item>FS</item>
+        <item>SS</item>
+        <item>LB</item>
     </string-array>
     <string-array name="PosicionEE">
-        <item >K</item>
-        <item >P</item>
-        <item >R</item>
+        <item>K</item>
+        <item>P</item>
+        <item>R</item>
     </string-array>
 
     <string name="player_list">Lista de jugadores</string>
@@ -116,7 +116,6 @@
     <string name="add_player">Añadir jugador</string>
     <string name="edit_player">Editar jugador</string>
     <string name="delete_player">Borrar jugador</string>
-    
     <string name="playingGround_gridView_header">Jugadores en el Campo</string>
     <string name="playingGround_popup_players_selector_title">PlayersSelectorPopupActivity</string>
     <string name="playingGround_lbl_first_players">Haga Clic aqui para seleccionar los primeros jugadores</string>
@@ -163,5 +162,7 @@
     <string name="acerca_de">Acerca de la aplicación.</string>
     <string name="explicacion_acerca_de">Football Coach Manager (F.C.M.) es una aplicación dirigida a deportistas y a entrenadores de fútbol americano. A través de su funcionalidad estos podrán mejorar el rendimiento tanto de forma individual como a nivel de equipo.</string>
     <string name="miembros_grupo">Contacto:</string>
-    
+    <string name="title_activity_perfil_entrenador">PerfilEntrenador</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>
