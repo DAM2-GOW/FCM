@@ -3,10 +3,7 @@ package gow.fcm.pantallas;
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNuevoJugador;
-import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLiteListaJugadores;
-import gow.fcm.sentencias.SentenciasUpdateSQLite;
-import gow.fcm.sharefprefs.DatosFootball;
 import gow.fcm.utilidades.ListaJugadores;
 import android.os.Bundle;
 import android.app.Activity;
@@ -66,6 +63,7 @@ public class PantallaListaJugadores extends Activity {
 		ImageButton BtnAtaque = (ImageButton) findViewById(R.id.imageButtonListaAtaque);
 		BtnAtaque.setOnClickListener(new OnClickListener() {
 
+			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				tiposJugadores="Ataque";
@@ -78,6 +76,7 @@ public class PantallaListaJugadores extends Activity {
 		ImageButton BtnDefensa = (ImageButton) findViewById(R.id.imageButtonListaDefensa);
 		BtnDefensa.setOnClickListener(new OnClickListener() {
 
+			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				tiposJugadores="Defensa";
@@ -90,6 +89,7 @@ public class PantallaListaJugadores extends Activity {
 		ImageButton BtnEe = (ImageButton) findViewById(R.id.imageButtonListaEe);
 		BtnEe.setOnClickListener(new OnClickListener() {
 
+			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				tiposJugadores="Equipos Especiales";
@@ -101,6 +101,7 @@ public class PantallaListaJugadores extends Activity {
 	}
 
 	// Método de creación de los menús contextuales
+	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getMenuInflater();

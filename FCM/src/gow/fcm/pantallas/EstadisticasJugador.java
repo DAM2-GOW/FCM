@@ -2,11 +2,8 @@ package gow.fcm.pantallas;
 
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
-import gow.fcm.footballcoachmanager.R.layout;
-import gow.fcm.footballcoachmanager.R.menu;
 import gow.fcm.sentencias.SentenciasSQLiteDatosJugador;
 import gow.fcm.sentencias.SentenciasSQLiteListaEstadisticas;
-import gow.fcm.sentencias.SentenciasSelectSQLite;
 import gow.fcm.utilidades.ArrayAdapterStatisticsList;
 import android.os.Bundle;
 import android.app.Activity;
@@ -119,7 +116,7 @@ class FillStatistics {
 		 		
 			adapter = new ArrayAdapterStatisticsList(EstadisticasJugador.this, nombres, tipos, numeros);
 		 	}
-			View header = (View)getLayoutInflater().inflate(R.layout.list_header_statistics, null);
+			View header = getLayoutInflater().inflate(R.layout.list_header_statistics, null);
 			
 	        lv.addHeaderView(header);
 	        lv.setAdapter(adapter);

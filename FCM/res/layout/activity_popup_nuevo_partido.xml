@@ -36,7 +36,7 @@
             android:id="@+id/txtViewDiaPartido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fecha"
+            android:text="@string/pop_ups_nuevos_fecha"
             android:textColor="@color/white"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 

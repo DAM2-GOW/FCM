@@ -44,7 +44,7 @@
     <string name="title_activity_pop_up_nuevo_partido">Crear Nuevo Partido</string>
     <string name="add_photo_gallery">Añadir foto de la galería</string>
     <string name="add_photo_camera">Hacer foto</string>
-    <string name="fecha">Fecha</string>
+    <string name="pop_ups_nuevos_fecha">Fecha</string>
     <string name="hora">Hora</string>
     <string name="tipo_entrenamiento">Tipo Entrenamiento</string>
     <string name="editar_foto">Editar Foto</string>
@@ -59,6 +59,16 @@
     <string name="statistics">Estadísticas</string>
     <string name="playingGround_toast_no_player_selected">No se ha seleccionado ningún jugador</string>
     <string name="playingGround_toast_cancel_swap_player">Se ha candelado el intercambio</string>
+    <string name="activity_nuevoEntrenador_lblEntrenador">Entrenador</string>
+    <string name="activity_nuevoEntrenador_lblNomEntrenador">Nombre:</string>
+    <string name="activity_nuevoEntrenador_lblApellidosEntrenador">Apellidos:</string>
+    <string name="activity_nuevoEntrenador_btnGuardarCambios">Guardar Cambios</string>
+    <string name="activity_nuevoEntrenador_lblEquipo">Equipo</string>
+    <string name="activity_nuevoEntrenador_lblNomEquipo">Nombre:</string>
+    <string name="activity_nuevoEntrenador_lblCiudadEquipo">Ciudad:</string>
+    <string name="activity_nuevoEntrenador_lblContrasenya">Nueva Contraseña</string>
+    <string name="activity_nuevoEntrenador_lblNewContra">Repita Contraseña:</string>
+    <string name="activity_nuevoEntrenador_lblRepNewContra">Repite Contraseña</string>
 
     <string-array name="TipoEntrenamiento">
         <item>Resistencia</item>

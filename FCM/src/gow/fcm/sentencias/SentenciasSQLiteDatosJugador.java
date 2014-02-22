@@ -1,8 +1,6 @@
 package gow.fcm.sentencias;
 
-import gow.fcm.sharefprefs.DatosFootball;
 import android.content.Context;
-import android.util.Log;
 
 public class SentenciasSQLiteDatosJugador {
 	
@@ -50,7 +48,7 @@ public class SentenciasSQLiteDatosJugador {
 			SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(*)"},"id_jugador = 1");
 			
 			//Obtenemos el número de valores
-			String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+			String[] valores=SentenciasSelectSQLite.getValores();
 			
 			
 			
@@ -59,7 +57,7 @@ public class SentenciasSQLiteDatosJugador {
 				//Ejcutamos la sentencia
 				SentenciasSelectSQLite.seleccionarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, "id_jugador = 1");
 				//Almacenamos los valores
-				valores=(String[]) SentenciasSelectSQLite.getValores();
+				valores=SentenciasSelectSQLite.getValores();
 				nombre=valores[0];
 				apellidos=valores[1];
 				edad=valores[2];

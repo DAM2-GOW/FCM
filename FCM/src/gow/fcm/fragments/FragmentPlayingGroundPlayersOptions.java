@@ -125,7 +125,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np0 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
 					np0.setMaxValue(100);
 					np0.setMinValue(0);
-					np0.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 					np0.setOnValueChangedListener(new OnValueChangeListener() {
 						
 						@Override
@@ -142,7 +142,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np1 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
 					np1.setMaxValue(100);
 					np1.setMinValue(0);
-					np1.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+					np1.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 					np1.setOnValueChangedListener(new OnValueChangeListener() {
 						
 						@Override
@@ -167,7 +167,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np2 = (NumberPicker) view.findViewById(R.id.numberPicker2Dim2);
 					np2.setMaxValue(100);
 					np2.setMinValue(0);
-					np2.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
+					np2.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
 					np2.setOnValueChangedListener(new OnValueChangeListener() {
 						
 						@Override
@@ -232,7 +232,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np0 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
 					np0.setMaxValue(100);
 					np0.setMinValue(0);
-					np0.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 					np0.setOnValueChangedListener(new OnValueChangeListener() {
 						
 						@Override
@@ -249,7 +249,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					Log.d("MARCADOR", "DOWN A 1");
 					np1.setMaxValue(100);
 					np1.setMinValue(0);
-					np1.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+					np1.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 					np1.setOnValueChangedListener(new OnValueChangeListener() {
 						
 						@Override
@@ -294,7 +294,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np0 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
 					np0.setMaxValue(100);
 					np0.setMinValue(0);
-					np0.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 					np0.setOnValueChangedListener(new OnValueChangeListener() {
 						
 						@Override
@@ -311,7 +311,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np1 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
 					np1.setMaxValue(100);
 					np1.setMinValue(0);
-					np1.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+					np1.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 					np1.setOnValueChangedListener(new OnValueChangeListener() {
 						
 						@Override
@@ -328,7 +328,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np2 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
 					np2.setMaxValue(100);
 					np2.setMinValue(0);
-					np2.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+					np2.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 					np2.setOnValueChangedListener(new OnValueChangeListener() {
 						
 						@Override
@@ -344,7 +344,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np3 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
 					np3.setMaxValue(100);
 					np3.setMinValue(0);
-					np3.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+					np3.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 					np3.setOnValueChangedListener(new OnValueChangeListener() {
 						
 						@Override
@@ -465,7 +465,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np0 = (NumberPicker) view.findViewById(R.id.numberPickerDim3);
 					np0.setMinValue(0);
 					np0.setMaxValue(100);
-					np0.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
+					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
 					np0.setEnabled(false);
 					sentences.ObtenerDatosDelimitadosJugadores(getActivity().getApplicationContext(), this.getArguments().getIntArray("playersOnTheField")); // Mandamos la orden de obtener los datos de los jugadores.
 					String[] nombreApellidoJugadores = sentences.getNombreApellidos();
@@ -576,7 +576,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np0 = (NumberPicker) view.findViewById(R.id.numberPickerDim3);
 					np0.setMinValue(0);
 					np0.setMaxValue(100);
-					np0.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
+					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
 					np0.setEnabled(false);
 					RadioGroup rgroup2 = (RadioGroup) view.findViewById(R.id.radioGroup1Dim3);
 					rgroup2.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -640,7 +640,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					final NumberPicker np0 = (NumberPicker) view.findViewById(R.id.numberPickerDim3);
 					np0.setMinValue(0);
 					np0.setMaxValue(100);
-					np0.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
+					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
 					np0.setEnabled(false);
 					RadioGroup rgroup2 = (RadioGroup) view.findViewById(R.id.radioGroup1Dim3);
 					rgroup2.setOnCheckedChangeListener(new OnCheckedChangeListener() {

@@ -3,21 +3,16 @@ package gow.fcm.popups;
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
-import gow.fcm.sentencias.SentenciasSQLitePrincipal;
 import gow.fcm.sharefprefs.DatosFootball;
 
 import java.io.File;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -143,6 +138,7 @@ public class PopUpNuevoJugador extends Activity {
 				}
 			}
 
+			@Override
 			public void onNothingSelected(AdapterView<?> parentView) {
 
 			}
@@ -202,6 +198,7 @@ public class PopUpNuevoJugador extends Activity {
 	}
 	
 	//Método de creación de los menús contextuales
+	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
 		super.onCreateContextMenu(menu,v,menuInfo);
 		MenuInflater inflater=getMenuInflater();
@@ -306,12 +303,12 @@ public class PopUpNuevoJugador extends Activity {
 				WindowManager.LayoutParams.FLAG_DIM_BEHIND,
 				WindowManager.LayoutParams.FLAG_DIM_BEHIND); // Marcamos activity para habilitar opciones diversas.
 		LayoutParams params = activity.getWindow().getAttributes(); // Obtenemos objeto de configuracion del Activity.
-		params.height = LayoutParams.WRAP_CONTENT; // Adaptamos el tamaño en altura segun componentes del XML.
+		params.height = android.view.ViewGroup.LayoutParams.WRAP_CONTENT; // Adaptamos el tamaño en altura segun componentes del XML.
 		params.width = 800; // Fijamos el tamaño en anchura.
 		params.alpha = 1.0f; // Podemos otorgarle transparencia al Pop-Up.
 		params.dimAmount = 0.5f; // Fijamos el nivel de oscuridad para el activity de fondo.
 		activity.getWindow().setAttributes(
-				(android.view.WindowManager.LayoutParams) params); // Aplicamos los valores establecidos al Activity.
+				params); // Aplicamos los valores establecidos al Activity.
 	}
 
 }

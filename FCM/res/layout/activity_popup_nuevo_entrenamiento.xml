@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                android:text="@string/fecha"
+                android:text="@string/pop_ups_nuevos_fecha"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <DatePicker

@@ -10,9 +10,7 @@ import gow.fcm.fragments.FragmentPlayingGroundPlayersOptions.OnPlayerOptionClick
 import gow.fcm.fragments.FragmentSelectStartingPlayers;
 import gow.fcm.fragments.FragmentSelectStartingPlayers.OnSelectStartingPlayers;
 import gow.fcm.popups.PopUpPlayersSelector;
-import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLitePlayingGround;
-import gow.fcm.sharefprefs.DatosFootball;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentManager.OnBackStackChangedListener;

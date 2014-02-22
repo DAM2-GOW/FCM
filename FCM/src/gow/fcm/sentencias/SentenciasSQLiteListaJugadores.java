@@ -2,7 +2,6 @@ package gow.fcm.sentencias;
 
 import gow.fcm.sharefprefs.DatosFootball;
 import android.content.Context;
-import android.util.Log;
 
 public class SentenciasSQLiteListaJugadores {
 	
@@ -37,7 +36,7 @@ public class SentenciasSQLiteListaJugadores {
 			SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(*)"},"id_equipo="+id+"");
 			
 			//Obtenemos el número de valores
-			String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+			String[] valores=SentenciasSelectSQLite.getValores();
 			String numValores=valores[0];
 			
 			//Asignamos el tamaño de los vectores
@@ -50,7 +49,7 @@ public class SentenciasSQLiteListaJugadores {
 				//Ejcutamos la sentencia
 				SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"nombre","apellidos","posicion","dorsal"},"id_equipo="+id+" ORDER BY dorsal LIMIT "+(i)+",1");
 				//Almacenamos los valores
-				valores=(String[]) SentenciasSelectSQLite.getValores();
+				valores=SentenciasSelectSQLite.getValores();
 				nombreJugador[i]=valores[0];
 				apellidosJugador[i]=valores[1];
 				posicionJugador[i]=valores[2];
@@ -71,7 +70,7 @@ public class SentenciasSQLiteListaJugadores {
 			SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(*)"},"id_equipo="+id+" AND tipo='"+tipo+"'");
 
 			//Obtenemos el número de valores
-			String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+			String[] valores=SentenciasSelectSQLite.getValores();
 			String numValores=valores[0];
 
 			//Asignamos el tamaño de los vectores
@@ -84,7 +83,7 @@ public class SentenciasSQLiteListaJugadores {
 				//Ejcutamos la sentencia
 				SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"nombre","apellidos","posicion","dorsal"},"id_equipo="+id+" AND tipo='"+tipo+"' ORDER BY dorsal LIMIT "+(i)+",1");
 				//Almacenamos los valores
-				valores=(String[]) SentenciasSelectSQLite.getValores();
+				valores=SentenciasSelectSQLite.getValores();
 				nombreJugador[i]=valores[0];
 				apellidosJugador[i]=valores[1];
 				posicionJugador[i]=valores[2];

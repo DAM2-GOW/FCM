@@ -12,6 +12,7 @@ import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
@@ -56,7 +57,7 @@ public class PopUpNuevoPartido extends Activity {
 	        dp.setCalendarViewShown(false);
 	    }
 		
-		dp.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
+		dp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
 		dp.setMinDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la mínima
 		dp.setMaxDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
 		
@@ -71,7 +72,7 @@ public class PopUpNuevoPartido extends Activity {
 			}
 		});
 		
-		tp.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
+		tp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
 		
 		//Guardamos el partido en el calendario recogiendo los datos pertinentes.
 		bt = (Button) findViewById(R.id.guardarPartidoNuevo);
@@ -118,12 +119,12 @@ public class PopUpNuevoPartido extends Activity {
 				WindowManager.LayoutParams.FLAG_DIM_BEHIND,
 				WindowManager.LayoutParams.FLAG_DIM_BEHIND); // Marcamos activity para habilitar opciones diversas.
 		LayoutParams params = activity.getWindow().getAttributes(); // Obtenemos objeto de configuracion del Activity.
-		params.height = LayoutParams.WRAP_CONTENT; // Adaptamos el tamaño en altura segun componentes del XML.
+		params.height = android.view.ViewGroup.LayoutParams.WRAP_CONTENT; // Adaptamos el tamaño en altura segun componentes del XML.
 		params.width = 800; // Fijamos el tamaño en anchura.
 		params.alpha = 1.0f; // Podemos otorgarle transparencia al Pop-Up.
 		params.dimAmount = 0.5f; // Fijamos el nivel de oscuridad para el activity de fondo.
 		activity.getWindow().setAttributes(
-				(android.view.WindowManager.LayoutParams) params); // Aplicamos los valores establecidos al Activity.
+				params); // Aplicamos los valores establecidos al Activity.
 	}
 
 }

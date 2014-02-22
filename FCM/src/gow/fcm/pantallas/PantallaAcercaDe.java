@@ -12,7 +12,8 @@ import android.view.View.OnClickListener;
 public class PantallaAcercaDe extends Activity{
 
 
-	 public void onCreate(Bundle savedInstanceState) {
+	 @Override
+	public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_acerca_de);
 
@@ -20,7 +21,8 @@ public class PantallaAcercaDe extends Activity{
 	        ImageButton botonGh = (ImageButton) findViewById(R.id.imageButtonGh);
 	        botonGh.setOnClickListener(new OnClickListener() {
 	        	
-	            public void onClick(View v) {
+	            @Override
+				public void onClick(View v) {
 	                Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
 	                myWebLink.setData(Uri.parse("https://github.com/DAM2-GOW/FCM/"));
 	                    startActivity(myWebLink);
@@ -31,7 +33,8 @@ public class PantallaAcercaDe extends Activity{
 	        ImageButton botonFlo = (ImageButton) findViewById(R.id.imageButtonFlorida);
 	        botonFlo.setOnClickListener(new OnClickListener() {
 	        	
-	            public void onClick(View v) {
+	            @Override
+				public void onClick(View v) {
 	                Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
 	                myWebLink.setData(Uri.parse("http://www.florida-uni.es/web_es/home.php"));
 	                    startActivity(myWebLink);
@@ -42,7 +45,8 @@ public class PantallaAcercaDe extends Activity{
 	        ImageButton botonBlog = (ImageButton) findViewById(R.id.imageButtonBlogger);
 	        botonBlog.setOnClickListener(new OnClickListener() {
 	        	
-	            public void onClick(View v) {
+	            @Override
+				public void onClick(View v) {
 	                Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
 	                myWebLink.setData(Uri.parse("http://damgow.blogspot.com.es/"));
 	                    startActivity(myWebLink);

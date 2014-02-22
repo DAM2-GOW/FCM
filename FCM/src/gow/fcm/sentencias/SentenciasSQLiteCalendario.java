@@ -48,7 +48,7 @@ public class SentenciasSQLiteCalendario{
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"COUNT(*)","fecha"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
-		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		String[] valores=SentenciasSelectSQLite.getValores();
 		totalEntrenamiento=valores[0];
 		String fechaTraining=valores[1];
 		if(fechaTraining!=null){
@@ -73,7 +73,7 @@ public class SentenciasSQLiteCalendario{
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"id_entrenamiento"},"id_equipo="+id+" AND dia='"+fecha+"' LIMIT 1");
 		
 		//Almacenamos los valores
-		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		String[] valores=SentenciasSelectSQLite.getValores();
 		String idEntrenamiento=valores[0];
 		
 		//Ejcutamos la sentencia
@@ -93,7 +93,7 @@ public class SentenciasSQLiteCalendario{
 		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"COUNT(*)","fecha"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
-		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		String[] valores=SentenciasSelectSQLite.getValores();
 		totalPartido=valores[0];
 		String fechaMatch=valores[1];
 		if(fechaMatch!=null){
@@ -118,7 +118,7 @@ public class SentenciasSQLiteCalendario{
 		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"id_partido"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
-		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		String[] valores=SentenciasSelectSQLite.getValores();
 		String idPartido=valores[0];
 		
 		//Ejcutamos la sentencia

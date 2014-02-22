@@ -20,7 +20,7 @@ public class RegistroUsuarios{
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",new String[]{"COUNT (usuario)"},"usuario='"+usuario+"'");
 		
 		//Almacenamos los valores
-		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+		String[] valores=SentenciasSelectSQLite.getValores();
 		nombreUsuario=valores[0];
 	}
 	

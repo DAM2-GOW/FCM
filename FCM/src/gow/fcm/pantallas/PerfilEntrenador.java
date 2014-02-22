@@ -1,8 +1,6 @@
 package gow.fcm.pantallas;
 
 import gow.fcm.footballcoachmanager.R;
-import gow.fcm.footballcoachmanager.R.layout;
-import gow.fcm.footballcoachmanager.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;

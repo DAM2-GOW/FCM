@@ -63,6 +63,7 @@ public class PaginaCalendario extends Activity{
 	}
 	
 	//Método de creación de los menús contextuales
+	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
 		super.onCreateContextMenu(menu,v,menuInfo);
 		MenuInflater inflater=getMenuInflater();
@@ -134,14 +135,14 @@ public class PaginaCalendario extends Activity{
 		}
 		
 		//Declaramos la variables que harán de botones
-		botonAgregarEntrenamiento=(View) findViewById(R.id.boton_agregar_entrenamiento);
-		botonVerEntrenamiento=(View) findViewById(R.id.boton_ver_entrenamiento);
-		botonEditarEntrenamiento=(View) findViewById(R.id.boton_editar_entrenamiento);
-		botonBorrarEntrenamiento=(View) findViewById(R.id.boton_borrar_entrenamiento);
-		botonAgregarPartido=(View) findViewById(R.id.boton_agregar_partido);
-		botonVerPartido=(View) findViewById(R.id.boton_ver_partido);
-		botonEditarPartido=(View) findViewById(R.id.boton_editar_partido);
-		botonBorrarPartido=(View) findViewById(R.id.boton_borrar_partido);
+		botonAgregarEntrenamiento=findViewById(R.id.boton_agregar_entrenamiento);
+		botonVerEntrenamiento=findViewById(R.id.boton_ver_entrenamiento);
+		botonEditarEntrenamiento=findViewById(R.id.boton_editar_entrenamiento);
+		botonBorrarEntrenamiento=findViewById(R.id.boton_borrar_entrenamiento);
+		botonAgregarPartido=findViewById(R.id.boton_agregar_partido);
+		botonVerPartido=findViewById(R.id.boton_ver_partido);
+		botonEditarPartido=findViewById(R.id.boton_editar_partido);
+		botonBorrarPartido=findViewById(R.id.boton_borrar_partido);
 		
 		//Declaramos las imagenes que haran a función de herramientas para los eventos
 		agregarEventoEntrenamiento=(ImageView) findViewById(R.id.agregar_evento_entrenamiento);

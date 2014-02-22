@@ -1,8 +1,6 @@
 package gow.fcm.sentencias;
 
-import gow.fcm.sharefprefs.DatosFootball;
 import android.content.Context;
-import android.util.Log;
 
 public class SentenciasSQLiteListaEstadisticas {
 	
@@ -80,7 +78,7 @@ public class SentenciasSQLiteListaEstadisticas {
 				//Ejcutamos la sentencia
 				SentenciasSelectSQLite.seleccionarSQLite("Estadisticas_Partidos", new String[]{"carreras","pases_completados","recepciones","fumbles","sacks","placajes","intercepciones","field_goals","punts","touchdowns","faltas","extra_points_completados","2pt_conversions_completados"}, "id_jugador = 1");
 				//Almacenamos los valores
-				valores=(String[]) SentenciasSelectSQLite.getValores();
+				valores=SentenciasSelectSQLite.getValores();
 				carreras = valores[0];
 				pases_completados = valores[1];
 				recepciones=valores[2];

@@ -2,7 +2,6 @@ package gow.fcm.sentencias;
 
 import gow.fcm.basedatos.ConexionSQLite;
 import android.database.Cursor;
-import android.util.Log;
 
 public class SentenciasSelectSQLite{
 	
