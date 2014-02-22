@@ -85,8 +85,8 @@
         <activity android:name="gow.fcm.popups.PopUpPlayersSelector" >
         </activity>
         <activity
-            android:name="gow.fcm.pantallas.PerfilEntrenador"
-            android:label="@string/title_activity_perfil_entrenador" >
+            android:name="gow.fcm.pantallas.PantallaPerfilEntrenador"
+            android:label="@string/title_activity_pantalla_perfil_entrenador" >
         </activity>
     </application>
 
