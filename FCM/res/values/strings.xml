@@ -69,6 +69,15 @@
     <string name="activity_nuevoEntrenador_lblContrasenya">Nueva Contraseña</string>
     <string name="activity_nuevoEntrenador_lblNewContra">Repita Contraseña:</string>
     <string name="activity_nuevoEntrenador_lblRepNewContra">Repite Contraseña</string>
+    <string name="popup_newUser_lblUser">Usuario:*</string>
+    <string name="popup_newUser_lblNombre">Nombre:*</string>
+    <string name="popup_newUser_lblApellidos">Apellidos:*</string>
+    <string name="popup_newUser_lblContrasenya">Contraseña:*</string>
+    <string name="popup_newUser_lblRepContrasenya">Repita Contraseña:*</string>
+    <string name="popup_newUser_lblPreguntaSecreta">Elija una pregunta secreta:*</string>
+    <string name="popup_newUser_lblRespuesta">Respuesta:*</string>
+    <string name="popup_newUser_btnGuardar">Guardar</string>
+    <string name="popup_newUser_camposObligatorios">* Los campos son obligatorios</string>
 
     <string-array name="TipoEntrenamiento">
         <item>Resistencia</item>
