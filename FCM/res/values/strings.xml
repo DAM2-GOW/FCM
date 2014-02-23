@@ -90,7 +90,12 @@
         <item>Series</item>
         <item>Jugadas</item>
     </string-array>
-
+	<string-array name="PreguntasSeguridad">
+        <item>¿Cuál es tu comida favorita?</item>
+        <item>¿Cómo se llama tu mascota?</item>
+        <item>¿Cuál es el nombre de la ciudad donde naciste?</item>
+        <item>¿Cuál es tu color favorito?</item>
+    </string-array>
     <string name="title_activity_pop_up_config_entre">PopUp_config_entre</string>
     <string name="title_activity_estadisticas_jugador">EstadisticasJugador</string>
 
@@ -199,5 +204,6 @@
     <string name="login_screen_toast_recover_password_cancel">Se ha cancelado la recuperacion de contraseña</string>
     <string name="title_activity_popup_recover_password">PopupRecoverPassword</string>
     <string name="title_activity_login_entrenador">PopupRecoverPassword</string>
+    <string name="login_screen_textview_recover_pass">Pulsa aqui para recuperar la contraseña</string>
 
 </resources>
