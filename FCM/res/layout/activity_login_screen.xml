@@ -1,0 +1,127 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout_loginScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <View
+        android:id="@+id/view_image1"
+        android:layout_width="640dp"
+        android:layout_height="430dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/red_brown" />
+
+    <View
+        android:id="@+id/view_image2"
+        android:layout_width="640dp"
+        android:layout_height="430dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/algae_green" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_form_back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/logincreen_background"
+        android:gravity="bottom"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_form"
+            android:layout_width="400dp"
+            android:layout_height="370dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="100dp"
+            android:orientation="vertical"
+            tools:ignore="UselessParent" >
+
+            <TextView
+                android:id="@+id/textView_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/login_screen_textview_signin"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:typeface="serif" />
+
+            <EditText
+                android:id="@+id/editText_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:typeface="serif"
+                android:inputType="text">
+
+                <requestFocus />
+            </EditText>
+
+            <TextView
+                android:id="@+id/textView_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/login_screen_textview_password"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:typeface="serif" />
+
+            <EditText
+                android:id="@+id/editText_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:typeface="serif" />
+
+            <LinearLayout
+                android:id="@+id/LinearLayout_form_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btn_singIn"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/btn_style"
+                    android:text="@string/login_screen_btn_singin"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:typeface="serif" />
+
+                <Button
+                    android:id="@+id/btn_singUp"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_style"
+                    android:text="@string/login_screen_btn_signup"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:typeface="serif" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
