@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="15"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="15" />
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -23,17 +23,17 @@
         <activity
             android:name="gow.fcm.pantallas.LoginScreen"
             android:label="@string/title_activity_login_entrenador"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape" android:windowSoftInputMode="stateHidden">
             
             <intent-filter>
                 
                 <action android:name="android.intent.action.MAIN" />
-
+                
                 <category android:name="android.intent.category.LAUNCHER" />
                 
             </intent-filter>
             
-        </activity>
+        </activity><activity android:label="@string/title_activity_pop_up_new_user" android:name="gow.fcm.pantallas.PaginaPrincipal" />
         
         <activity
             android:name="gow.fcm.pantallas.PaginaCalendario"
@@ -45,10 +45,6 @@
             android:label="@string/title_popup_blackboard"
             android:screenOrientation="landscape"
             android:theme="@style/PopupTheme" />
-        <activity
-            android:name="gow.fcm.pantallas.Config_entre"
-            android:label="@string/title_activity_config_entre"
-            android:screenOrientation="landscape" />
         
         <activity
             android:name="gow.fcm.popups.PopUpNuevoEditarJugador"
@@ -104,13 +100,12 @@
             android:name="gow.fcm.pantallas.DetalleCalendario"
             android:screenOrientation="landscape" />
         
-        <activity android:name="gow.fcm.pantallas.PaginaPrincipal"
+        <activity android:name="gow.fcm.popups.PopUpNewUser"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" android:theme="@style/PopupTheme"/>
         
-        <activity
-            android:label="@string/title_activity_pop_up_new_user"
-            android:name="gow.fcm.popups.PopUpNewUser" />
+        
+        <activity android:name="gow.fcm.popups.PopUpRecoverPassword" android:label="@string/title_activity_popup_recover_password" android:theme="@style/PopupTheme"></activity>
         
     </application>
     

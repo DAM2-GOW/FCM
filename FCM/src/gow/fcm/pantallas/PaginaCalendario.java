@@ -671,8 +671,18 @@ public class PaginaCalendario extends Activity{
 	
 	//El siguiente método abre un popup para editar los entrenamientos
 	private void editarEntrenamiento(){
-		Intent i=new Intent(this,PaginaCalendario.class);
+		//Pasamos la fecha seleccionada a milisegundos
+		String fecha=getFechaSeleccionada();
+		Date date=null;
+		try{
+			date=formato.parse(fecha);
+		}catch (ParseException e){
+			e.printStackTrace();
+		}
+		
+		Intent i=new Intent(this,PopUpNuevoEditarEntrenamiento.class);
 		i.putExtra(varAccion,"editar");
+		i.putExtra(varFechaEvento,date.getTime());
 		startActivity(i);
 	}
 	
@@ -708,8 +718,18 @@ public class PaginaCalendario extends Activity{
 	
 	//El siguiente método abre un popup para editar un partido
 	private void editarPartido(){
-		Intent i=new Intent(this,PaginaCalendario.class);
+		//Pasamos la fecha seleccionada a milisegundos
+		String fecha=getFechaSeleccionada();
+		Date date=null;
+		try{
+			date=formato.parse(fecha);
+		}catch (ParseException e){
+			e.printStackTrace();
+		}
+		
+		Intent i=new Intent(this,PopUpNuevoEditarPartido.class);
 		i.putExtra(varAccion,"editar");
+		i.putExtra(varFechaEvento,date.getTime());
 		startActivity(i);
 	}
 	

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,7 +58,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 		setContentView(R.layout.activity_popup_nuevo_editar_partido);
 		
 		Intent i=getIntent();
-		final Long fecha=i.getExtras().getLong(varFechaEvento);
+		final long fecha=i.getExtras().getLong(varFechaEvento);
 		String accion=i.getExtras().getString(varAccion);
 		
 		//Declaramos los elementos a usar por el Popup
@@ -67,11 +68,16 @@ public class PopUpNuevoEditarPartido extends Activity {
 		tp = (TimePicker) findViewById(R.id.hora_PartidoNuevo);
 		bt = (Button) findViewById(R.id.guardarPartidoNuevo);
 		
-		if(accion=="editar"){
+		if(accion.equals("editar")){
 			String fechas=formato.format(fecha);
 			SentenciasSQLiteNuevoEditarPartido.getDatosEditarPartido(this,fechas);
-			lugar.setText("");
-			rival.setText("");
+			
+			//Obtenemos los datos
+			String placeMatch=SentenciasSQLiteNuevoEditarPartido.getLugarPartido();
+			String rivalMatch=SentenciasSQLiteNuevoEditarPartido.getRivalPartido();
+			
+			lugar.setText(placeMatch);
+			rival.setText(rivalMatch);
 		}
 		
 		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
@@ -86,11 +92,24 @@ public class PopUpNuevoEditarPartido extends Activity {
 		
 		dp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano
 		
-		if(accion=="agregar"){
+		if(accion.equals("agregar")){
 			dp.setMinDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la mínima
 			dp.setMaxDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
-		}else if(accion=="editar"){
+		}else if(accion.equals("editar")){
+			//Obtenemos los datos
+			String diaMatch=SentenciasSQLiteNuevoEditarPartido.getDiaPartido();
 			
+			//Pasamos la fecha seleccionada a milisegundos
+			Date date=null;
+			try{
+				date=formato.parse(diaMatch);
+			}catch (ParseException e){
+				e.printStackTrace();
+			}
+			long fechas=date.getTime(); //Guardamos la fecha en formato long
+			
+			dp.setMinDate(fechas); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la mínima
+			dp.setMaxDate(fechas); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
 		}
 		
 		//Modificamos el diseño de la hora para que este en formato 24H.
@@ -106,13 +125,17 @@ public class PopUpNuevoEditarPartido extends Activity {
 		}
 		final long fechas=date.getTime(); //Guardamos la fecha en formato long
 		
-		if(accion=="agregar"){
-			//Obtenemos la hora y minutos actuales
+		if(accion.equals("agregar")){
 			Calendar cal=Calendar.getInstance();
-			hour=cal.get(Calendar.HOUR_OF_DAY);
+			
+			//Obtenemos la hora actual
+			int hour=cal.get(Calendar.HOUR_OF_DAY);
 			tp.setCurrentHour(hour); //Especificamos la hora actual para el formato de 24 horas
+			
+			//Obtenemos los minutos actuales
 			min=cal.get(Calendar.MINUTE);
-		}else if(accion=="editar"){
+			tp.setCurrentMinute(min); //Especificamos la hora actual para el formato de 24 horas
+		}else if(accion.equals("editar")){
 			
 		}
 		

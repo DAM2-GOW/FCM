@@ -58,7 +58,7 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 		setContentView(R.layout.activity_popup_nuevo_editar_entrenamiento);
 		
 		Intent i=getIntent();
-		final Long fecha=i.getExtras().getLong(varFechaEvento);
+		final long fecha=i.getExtras().getLong(varFechaEvento);
 		
 		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
 		ConexionSQLite.getCrearSQLite(this);
