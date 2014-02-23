@@ -79,7 +79,7 @@ public class SentenciasSQLitePrincipal{
 		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
-		int id=DatosFootball.getIdEntrenador();
+		int id=DatosFootball.getIdEquipo();
 		
 		//Ejcutamos la sentencia
 		SentenciasSelectSQLite.seleccionarSQLite("Equipos",new String[]{"nombre"},"id_equipo="+id+"");

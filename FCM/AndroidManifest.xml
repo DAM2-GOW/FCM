@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="15"
-        android:targetSdkVersion="16" />
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -19,20 +19,27 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
         <activity
-            android:name="gow.fcm.pantallas.PaginaPrincipal"
-            android:label="@string/app_name"
+            android:name="gow.fcm.pantallas.LoginScreen"
+            android:label="@string/title_activity_login_entrenador"
             android:screenOrientation="landscape" >
+            
             <intent-filter>
+                
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                
             </intent-filter>
+            
         </activity>
+        
         <activity
             android:name="gow.fcm.pantallas.PaginaCalendario"
             android:label="@string/title_page_calendar"
             android:screenOrientation="landscape" />
+        
         <activity
             android:name="gow.fcm.popups.PopupPizarraDigital"
             android:label="@string/title_popup_blackboard"
@@ -41,53 +48,66 @@
         <activity
             android:name="gow.fcm.pantallas.Config_entre"
             android:label="@string/title_activity_config_entre"
-            android:screenOrientation="landscape" >
-        </activity>
+            android:screenOrientation="landscape" />
+        
         <activity
-            android:name="gow.fcm.popups.PopUpNuevoJugador"
+            android:name="gow.fcm.popups.PopUpNuevoEditarJugador"
             android:label="@string/title_activity_pop_up_nuevo_jugador"
             android:screenOrientation="landscape"
-            android:theme="@style/PopupTheme" >
-        </activity>
+            android:theme="@style/PopupTheme" />
+        
         <activity
-            android:name="gow.fcm.popups.PopUpNuevoEntrenamiento"
+            android:name="gow.fcm.popups.PopUpNuevoEditarEntrenamiento"
             android:label="@string/title_activity_pop_up_nuevo_entrenamiento"
             android:screenOrientation="landscape"
-            android:theme="@style/PopupTheme" >
-        </activity>
+            android:theme="@style/PopupTheme" />
+        
         <activity
-            android:name="gow.fcm.popups.PopUpNuevoPartido"
+            android:name="gow.fcm.popups.PopUpNuevoEditarPartido"
             android:label="@string/title_activity_pop_up_nuevo_partido"
             android:screenOrientation="landscape"
-            android:theme="@style/PopupTheme" >
-        </activity>
+            android:theme="@style/PopupTheme" />
+        
         <activity
             android:name="gow.fcm.popups.PopUp_config_entre"
             android:label="@string/title_activity_pop_up_config_entre"
             android:screenOrientation="landscape"
-            android:theme="@style/PopupTheme" >
-        </activity>
+            android:theme="@style/PopupTheme" />
+        
         <activity
             android:name="gow.fcm.pantallas.EstadisticasJugador"
             android:label="@string/title_activity_estadisticas_jugador"
-            android:screenOrientation="landscape" >
-        </activity>
+            android:screenOrientation="landscape" />
+        
         <activity
             android:name="gow.fcm.pantallas.PantallaListaJugadores"
-            android:screenOrientation="landscape" >
-        </activity>
+            android:screenOrientation="landscape" />
+        
         <activity
             android:name="gow.fcm.pantallas.PantallaAcercaDe"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity android:name="gow.fcm.pantallas.PlayingGround" >
-        </activity>
-        <activity android:name="gow.fcm.popups.PopUpPlayersSelector" >
-        </activity>
+            android:screenOrientation="landscape" />
+        
+        <activity
+            android:name="gow.fcm.pantallas.PlayingGround"
+            android:screenOrientation="landscape" />
+        
+        <activity
+            android:name="gow.fcm.popups.PopUpPlayersSelector"
+            android:screenOrientation="landscape" />
+        
         <activity
             android:name="gow.fcm.pantallas.PantallaPerfilEntrenador"
-            android:label="@string/title_activity_pantalla_perfil_entrenador" >
-        </activity>
+            android:label="@string/title_activity_pantalla_perfil_entrenador"
+            android:screenOrientation="landscape" />
+        
+        <activity
+            android:name="gow.fcm.pantallas.DetalleCalendario"
+            android:screenOrientation="landscape" />
+        
+        <activity android:name="gow.fcm.pantallas.PaginaPrincipal"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" />
+        
     </application>
-
+    
 </manifest>

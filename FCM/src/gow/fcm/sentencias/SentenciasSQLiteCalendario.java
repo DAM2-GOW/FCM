@@ -67,7 +67,7 @@ public class SentenciasSQLiteCalendario{
 		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
-		int id=DatosFootball.getIdEntrenador();
+		int id=DatosFootball.getIdEquipo();
 		
 		//Ejcutamos la sentencia
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"id_entrenamiento"},"id_equipo="+id+" AND dia='"+fecha+"' LIMIT 1");
@@ -87,7 +87,7 @@ public class SentenciasSQLiteCalendario{
 		
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
-		int id=DatosFootball.getIdEntrenador();
+		int id=DatosFootball.getIdEquipo();
 		
 		//Ejcutamos la sentencia
 		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"COUNT(*)","fecha"},"id_equipo="+id+" AND dia='"+fecha+"'");

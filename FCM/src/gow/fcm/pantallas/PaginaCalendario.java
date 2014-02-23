@@ -1,8 +1,8 @@
 package gow.fcm.pantallas;
 
 import gow.fcm.basedatos.ConexionSQLite;
-import gow.fcm.popups.PopUpNuevoEntrenamiento;
-import gow.fcm.popups.PopUpNuevoPartido;
+import gow.fcm.popups.PopUpNuevoEditarEntrenamiento;
+import gow.fcm.popups.PopUpNuevoEditarPartido;
 import gow.fcm.sentencias.SentenciasSQLiteCalendario;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -657,7 +657,7 @@ public class PaginaCalendario extends Activity{
 			e.printStackTrace();
 		}
 		
-		Intent i=new Intent(this,PopUpNuevoEntrenamiento.class);
+		Intent i=new Intent(this,PopUpNuevoEditarEntrenamiento.class);
 		i.putExtra(varFechaEvento,date.getTime());
 		startActivity(i);
 	}
@@ -692,7 +692,7 @@ public class PaginaCalendario extends Activity{
 			e.printStackTrace();
 		}
 		
-		Intent i=new Intent(this,PopUpNuevoPartido.class);
+		Intent i=new Intent(this,PopUpNuevoEditarPartido.class);
 		i.putExtra(varFechaEvento,date.getTime());
 		startActivity(i);
 	}

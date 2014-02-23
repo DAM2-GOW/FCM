@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
@@ -21,25 +22,20 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TimePicker.OnTimeChangedListener;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TimePicker;
+import android.widget.Toast;
+import android.widget.TimePicker.OnTimeChangedListener;
 
-public class PopUpNuevoEntrenamiento extends Activity {
+public class PopUpNuevoEditarPartido extends Activity {
 
 	private TimePicker tp;
 	private DatePicker dp;
-	private Spinner sp;
 	private Button bt;
-	private EditText titulEntrenamiento;
-	private String stringTipoEntrenamiento, fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event";
+	private EditText lugar,rival;
+	private String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event";
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
 	
@@ -55,38 +51,21 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		showAsPopup(this); //Llama al método que pone el activity en modo ventana PopuP.
-		setContentView(R.layout.activity_popup_nuevo_entrenamiento);
 		
 		Intent i=getIntent();
 		final Long fecha=i.getExtras().getLong(varFechaEvento);
 		
+		setContentView(R.layout.activity_popup_nuevo_editar_partido);
+		lugar = (EditText) findViewById(R.id.lugarPartidoNuevo);
+		rival = (EditText) findViewById(R.id.rivalPartido);
+		
 		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
 		ConexionSQLite.getCrearSQLite(this);
 		DatosFootball.getDatosFootball(this);
-		
 		final int id_equipo = DatosFootball.getIdEquipo();
-		titulEntrenamiento = (EditText) findViewById(R.id.titulo_entrenamientoNuevo);
-		
-		//Array de tipos de entrenamiento para poder seleccionar.
-		ArrayAdapter<CharSequence> adaptador = ArrayAdapter.createFromResource(this, R.array.TipoEntrenamiento, android.R.layout.simple_spinner_item);
-		sp = (Spinner)findViewById(R.id.tipo_entrenamientoNuevo);
-		sp.setAdapter(adaptador);
-		
-		sp.setOnItemSelectedListener(new OnItemSelectedListener() {
-			
-			//Cuando selecciones el spinner se guarda en un String.
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				stringTipoEntrenamiento = sp.getSelectedItem().toString();				
-			}
-			@Override
-			public void onNothingSelected(AdapterView<?> parentView){
-				
-			}
-		});
 		
 		//Modificamos el diseño de la fecha para que no se muestre un calendario.
-		dp = (DatePicker) findViewById(R.id.fecha_entrenamientoNuevo);
+		dp = (DatePicker) findViewById(R.id.fecha_PartidoNuevo);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 	        dp.setCalendarViewShown(false);
 	    }
@@ -96,7 +75,7 @@ public class PopUpNuevoEntrenamiento extends Activity {
 		dp.setMaxDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
 		
 		//Modificamos el diseño de la hora para que este en formato 24H.
-		tp = (TimePicker) findViewById(R.id.hora_entrenamientoNuevo);
+		tp = (TimePicker) findViewById(R.id.hora_PartidoNuevo);
 		tp.setIs24HourView(true);
 		
 		//Pasamos la fecha seleccionada a milisegundos
@@ -108,7 +87,7 @@ public class PopUpNuevoEntrenamiento extends Activity {
 			e.printStackTrace();
 		}
 		final long fechas=date.getTime(); //Guardamos la fecha en formato long
-
+		
 		//Obtenemos la hora y minutos actuales
 		Calendar cal=Calendar.getInstance();
 		final int hour=cal.get(Calendar.HOUR_OF_DAY);
@@ -134,16 +113,14 @@ public class PopUpNuevoEntrenamiento extends Activity {
 		
 		tp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
 		
-		final EditText observacionesEntrenamiento=(EditText) findViewById(R.id.observacionesEntrenamientoNuevo); //Declaramos el texto observaciones
-		
-		//Cuando le des al boton se guardan los datos en la BD y se va a la configuración del mismo entrenamiento nuevo creado.
-		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);
+		//Guardamos el partido en el calendario recogiendo los datos pertinentes.
+		bt = (Button) findViewById(R.id.guardarPartidoNuevo);
 		bt.setOnClickListener(new OnClickListener(){
 			 
             @Override
             public void onClick(View v) {
-            	if(titulEntrenamiento.getText().toString().trim().equals("") || titulEntrenamiento.getText().toString().trim().equals(null) ){
-            		Toast.makeText(getApplicationContext(), "Esta vacio el campo Título entrenamiento, rellenalo", Toast.LENGTH_SHORT).show();
+            	if(lugar.getText().toString().trim().equals("") || lugar.getText().toString().trim().equals(null)|| rival.getText().toString().trim().equals("") || rival.getText().toString().trim().equals(null)){
+            		Toast.makeText(getApplicationContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
             		
             	}else{
             		diaEntrenamiento = String.valueOf(dp.getDayOfMonth());
@@ -158,9 +135,9 @@ public class PopUpNuevoEntrenamiento extends Activity {
             		
             		fechaEntrenamiento = fechaEntrenamiento.concat(anyoEntrenamiento+"-").concat(mesEntrenamiento+"-").concat(diaEntrenamiento);
             		
-            		SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha","observaciones"}, new String[]{String.valueOf(id_equipo),stringTipoEntrenamiento,titulEntrenamiento.getText().toString(),fechaEntrenamiento,fechaEntrenamiento+" "+horaMinuto,observacionesEntrenamiento.getText().toString()});
-                	PopUpNuevoEntrenamiento.this.finish();
-            	}
+            		SentenciasInsertSQLite.insertarSQLite("Partidos", new String[]{"id_equipo","lugar","rival","dia","fecha"}, new String[]{String.valueOf(id_equipo),lugar.getText().toString(),rival.getText().toString(),fechaEntrenamiento,fechaEntrenamiento+" "+horaMinuto});
+                	PopUpNuevoEditarPartido.this.finish();
+            }
             }
 		});
 	}
@@ -168,7 +145,7 @@ public class PopUpNuevoEntrenamiento extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.pop_up_nuevo_entrenamiento, menu);
+		getMenuInflater().inflate(R.menu.pop_up_nuevo_partido, menu);
 		MenuItem item = menu.findItem(R.id.action_settings);
 		item.setVisible(false);
 		return true;

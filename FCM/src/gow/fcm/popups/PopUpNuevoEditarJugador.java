@@ -32,7 +32,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class PopUpNuevoJugador extends Activity {
+public class PopUpNuevoEditarJugador extends Activity {
 
 	private Spinner tipoJugador, posicionJugador;
 	private String posJug,rutaImagen;
@@ -49,7 +49,7 @@ public class PopUpNuevoJugador extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		showAsPopup(this); //Llama al metodo que hace que se muestre como PopUp.
-		setContentView(R.layout.activity_popup_nuevo_jugador);
+		setContentView(R.layout.activity_popup_nuevo_editar_jugador);
 		
 		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
 		ConexionSQLite.getCrearSQLite(this);
@@ -162,7 +162,7 @@ public class PopUpNuevoJugador extends Activity {
             		Toast.makeText(getApplicationContext(), "Algun campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
 				}else{
 					SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),rutaImagen});
-                	PopUpNuevoJugador.this.finish();
+                	PopUpNuevoEditarJugador.this.finish();
 				}
 			}
 		});
