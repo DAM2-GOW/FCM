@@ -8,6 +8,7 @@ import java.util.Date;
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
+import gow.fcm.sentencias.SentenciasSQLiteNuevoEditarPartido;
 import gow.fcm.sharefprefs.DatosFootball;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,7 +36,9 @@ public class PopUpNuevoEditarPartido extends Activity {
 	private DatePicker dp;
 	private Button bt;
 	private EditText lugar,rival;
-	private String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event";
+	//Elementos que interactuan con el popup e Intents de otras páginas
+	private String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event", varAccion="action";
+	private int hour,min; //Variables que almacenan la hora del sistema o del evento
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
 	
@@ -50,14 +53,26 @@ public class PopUpNuevoEditarPartido extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		showAsPopup(this); //Llama al método que pone el activity en modo ventana PopuP.
+		showAsPopup(this); //Llama al método que pone el activity en modo ventana PopuP
+		setContentView(R.layout.activity_popup_nuevo_editar_partido);
 		
 		Intent i=getIntent();
 		final Long fecha=i.getExtras().getLong(varFechaEvento);
+		String accion=i.getExtras().getString(varAccion);
 		
-		setContentView(R.layout.activity_popup_nuevo_editar_partido);
+		//Declaramos los elementos a usar por el Popup
 		lugar = (EditText) findViewById(R.id.lugarPartidoNuevo);
 		rival = (EditText) findViewById(R.id.rivalPartido);
+		dp = (DatePicker) findViewById(R.id.fecha_PartidoNuevo);
+		tp = (TimePicker) findViewById(R.id.hora_PartidoNuevo);
+		bt = (Button) findViewById(R.id.guardarPartidoNuevo);
+		
+		if(accion=="editar"){
+			String fechas=formato.format(fecha);
+			SentenciasSQLiteNuevoEditarPartido.getDatosEditarPartido(this,fechas);
+			lugar.setText("");
+			rival.setText("");
+		}
 		
 		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
 		ConexionSQLite.getCrearSQLite(this);
@@ -65,17 +80,20 @@ public class PopUpNuevoEditarPartido extends Activity {
 		final int id_equipo = DatosFootball.getIdEquipo();
 		
 		//Modificamos el diseño de la fecha para que no se muestre un calendario.
-		dp = (DatePicker) findViewById(R.id.fecha_PartidoNuevo);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 	        dp.setCalendarViewShown(false);
 	    }
 		
-		dp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
-		dp.setMinDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la mínima
-		dp.setMaxDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
+		dp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano
+		
+		if(accion=="agregar"){
+			dp.setMinDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la mínima
+			dp.setMaxDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
+		}else if(accion=="editar"){
+			
+		}
 		
 		//Modificamos el diseño de la hora para que este en formato 24H.
-		tp = (TimePicker) findViewById(R.id.hora_PartidoNuevo);
 		tp.setIs24HourView(true);
 		
 		//Pasamos la fecha seleccionada a milisegundos
@@ -88,11 +106,16 @@ public class PopUpNuevoEditarPartido extends Activity {
 		}
 		final long fechas=date.getTime(); //Guardamos la fecha en formato long
 		
-		//Obtenemos la hora y minutos actuales
-		Calendar cal=Calendar.getInstance();
-		final int hour=cal.get(Calendar.HOUR_OF_DAY);
-		tp.setCurrentHour(hour); //Especificamos la hora actual para el formato de 24 horas
-		final int min=cal.get(Calendar.MINUTE);
+		if(accion=="agregar"){
+			//Obtenemos la hora y minutos actuales
+			Calendar cal=Calendar.getInstance();
+			hour=cal.get(Calendar.HOUR_OF_DAY);
+			tp.setCurrentHour(hour); //Especificamos la hora actual para el formato de 24 horas
+			min=cal.get(Calendar.MINUTE);
+		}else if(accion=="editar"){
+			
+		}
+		
 		horaMinuto=String.valueOf(hour)+":"+String.valueOf(min)+":00"; //Almacenamos la hora actual para que se guarde un valor null
 		
 		tp.setOnTimeChangedListener(new OnTimeChangedListener() {
@@ -114,7 +137,6 @@ public class PopUpNuevoEditarPartido extends Activity {
 		tp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
 		
 		//Guardamos el partido en el calendario recogiendo los datos pertinentes.
-		bt = (Button) findViewById(R.id.guardarPartidoNuevo);
 		bt.setOnClickListener(new OnClickListener(){
 			 
             @Override

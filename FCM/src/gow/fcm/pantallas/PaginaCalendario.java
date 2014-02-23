@@ -39,7 +39,7 @@ public class PaginaCalendario extends Activity{
 	private CalendarView calendario; //Calendario de los eventos
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
-	private String fechaActual,fechaSeleccionada,varFechaEvento="date_event"; //Variables para las fechas en la base de datos
+	private String fechaActual,fechaSeleccionada,varFechaEvento="date_event",varAccion="action"; //Variables para las fechas e Intents en la base de datos
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -658,19 +658,21 @@ public class PaginaCalendario extends Activity{
 		}
 		
 		Intent i=new Intent(this,PopUpNuevoEditarEntrenamiento.class);
+		i.putExtra(varAccion,"agregar");
 		i.putExtra(varFechaEvento,date.getTime());
 		startActivity(i);
 	}
 	
 	//El siguiente método abre un popup para ver los entrenamientos
 	private void verStatsEntrenamiento(){
-		Intent i=new Intent(this,PaginaCalendario.class);
+		Intent i=new Intent(this,DetalleCalendario.class);
 		startActivity(i);
 	}
 	
 	//El siguiente método abre un popup para editar los entrenamientos
 	private void editarEntrenamiento(){
 		Intent i=new Intent(this,PaginaCalendario.class);
+		i.putExtra(varAccion,"editar");
 		startActivity(i);
 	}
 	
@@ -693,19 +695,21 @@ public class PaginaCalendario extends Activity{
 		}
 		
 		Intent i=new Intent(this,PopUpNuevoEditarPartido.class);
+		i.putExtra(varAccion,"agregar");
 		i.putExtra(varFechaEvento,date.getTime());
 		startActivity(i);
 	}
 	
 	//El siguiente método abre un popup para ver un partido
 	private void verStatsPartido(){
-		Intent i=new Intent(this,PaginaCalendario.class);
+		Intent i=new Intent(this,DetalleCalendario.class);
 		startActivity(i);
 	}
 	
 	//El siguiente método abre un popup para editar un partido
 	private void editarPartido(){
 		Intent i=new Intent(this,PaginaCalendario.class);
+		i.putExtra(varAccion,"editar");
 		startActivity(i);
 	}
 	
