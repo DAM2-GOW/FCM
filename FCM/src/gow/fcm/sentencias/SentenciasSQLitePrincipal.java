@@ -66,7 +66,7 @@ public class SentenciasSQLitePrincipal{
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",new String[]{"nombre","apellidos","foto"},"id_entrenador="+id+"");
 		
 		//Almacenamos los valores
-		String[] valores=SentenciasSelectSQLite.getValores();
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
 		nombreEntrenador=valores[0];
 		apellidosEntrenador=valores[1];
 		fotoEntrenador=valores[2];
@@ -85,7 +85,7 @@ public class SentenciasSQLitePrincipal{
 		SentenciasSelectSQLite.seleccionarSQLite("Equipos",new String[]{"nombre"},"id_equipo="+id+"");
 		
 		//Almacenamos el valor
-		String[] valores=SentenciasSelectSQLite.getValores();
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
 		nombreEquipo=valores[0];
 	}
 	
@@ -101,7 +101,7 @@ public class SentenciasSQLitePrincipal{
 		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"COUNT(*)"},"id_equipo="+id+" AND dia='"+fecha+"'");
 
 		//Almacenamos los valores
-		String[] valores=SentenciasSelectSQLite.getValores();
+		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
 		numPartidos=valores[0];
 	}
 }

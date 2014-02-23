@@ -32,8 +32,10 @@ public class PantallaListaJugadores extends Activity {
 	private ListaJugadores adaptador; //Declaramos el adaptador
 	private View pie; //Variable usada para almacenar un objeto View del pie de página de la lista de jugadores
 	private String tiposJugadores;
+	boolean atak = false;
+	boolean def = false;
+	boolean eqe=false;
 
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE); // No mostramos la
@@ -42,33 +44,35 @@ public class PantallaListaJugadores extends Activity {
 		// nombre de la
 		// aplicación
 		setContentView(R.layout.activity_lista_jugadores);
-		
+
 		// Se crea la base de datos si no existe o se actualiza si fuera necesario
 		ConexionSQLite.getCrearSQLite(this);
-		
+
 		//DatosFootball.setDatosFootball(this,1,1);
 		//SentenciasInsertSQLite.insertarSQLite("Equipos",new String[]{"nombre"},new String[]{"Pepe Team"});
 		//SentenciasInsertSQLite.insertarSQLite("Entrenadores",new String[]{"id_equipo","nombre","apellidos","usuario","clave","pregunta_seguridad","respuesta_seguridad"},new String[]{"1","Pepe","García","pepe","1234","1","Chispi"});
-		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Antonio","Martinez","22","DE","Defensa","32"});
-		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Jose","Martinez","23","QB","Ataque","40"});
-		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Mario","Martinez","24","K","Equipos Especiales","22"});
+		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Antonio","Martinez","22","DE","0","32"});
+		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Jose","Martinez","23","QB","1","40"});
+		//SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Mario","Martinez","24","K","2","22"});
 		//SentenciasInsertSQLite.insertarSQLite("Entrenamientos",new String[]{"id_equipo","tipo","dirigido","dia","fecha"},new String[]{"1","1","Defensas","2014-02-21","2014-02-21 18:00:00"});
 		//SentenciasInsertSQLite.insertarSQLite("Entrenamientos",new String[]{"id_equipo","tipo","dirigido","dia","fecha"},new String[]{"1","2","Ataque","2014-02-21","2014-02-21 19:00:00"});
 		//SentenciasInsertSQLite.insertarSQLite("Partidos",new String[]{"id_equipo","lugar","rival","dia","fecha"},new String[]{"1","0","New York Giants","2014-02-21","2014-02-21 18:00:00"});
 		//SentenciasInsertSQLite.insertarSQLite("Partidos",new String[]{"id_equipo","lugar","rival","dia","fecha"},new String[]{"1","1","New York Jets","2014-02-22","2014-02-22 18:00:00"});
-		
-		//Método que mostrará la lista de jugadores
+
+		// Método que mostrará la lista de jugadores
 		mostrarLista();
 
 		ImageButton BtnAtaque = (ImageButton) findViewById(R.id.imageButtonListaAtaque);
 		BtnAtaque.setOnClickListener(new OnClickListener() {
 
-			@Override
+			// Funcionalidad al hacer click en el botón de Ataque
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				tiposJugadores="Ataque";
+				tiposJugadores="0";
 				actualizarLista(tiposJugadores);
 				Log.d("Raul", "Pulsado ataque");
+				atak = true;
+				def=false;
+				eqe=false;
 			}
 		}
 				);
@@ -76,32 +80,54 @@ public class PantallaListaJugadores extends Activity {
 		ImageButton BtnDefensa = (ImageButton) findViewById(R.id.imageButtonListaDefensa);
 		BtnDefensa.setOnClickListener(new OnClickListener() {
 
-			@Override
+			// Funcionalidad al hacer click en el botón de Defensa
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				tiposJugadores="Defensa";
+				tiposJugadores="1";
 				actualizarLista(tiposJugadores);
 				Log.d("Raul", "Pulsado defensa");
+				def = true;
+				atak=false;
+				eqe=false;
 			}
 		}
 				);
 
+		
 		ImageButton BtnEe = (ImageButton) findViewById(R.id.imageButtonListaEe);
 		BtnEe.setOnClickListener(new OnClickListener() {
-
-			@Override
+			// Funcionalidad al hacer click en el botón de EE
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				tiposJugadores="Equipos Especiales";
+				tiposJugadores="2";
 				actualizarLista(tiposJugadores);
 				Log.d("Raul", "Pulsado ee");
+				eqe = true;
+				def=false;
+				atak=false;
 			}
 		}
 				);
 	}
 
+	protected void onResume(){
+		super.onResume();
+		if(atak==true){
+			tiposJugadores="0";
+			actualizarLista(tiposJugadores);
+			atak=false;
+		}else if(def==true){
+			tiposJugadores="1";
+			actualizarLista(tiposJugadores);
+			def=false;
+		}else if (eqe==true){
+			tiposJugadores="2";
+			actualizarLista(tiposJugadores);
+			eqe=false;
+		}else{
+			mostrarLista();
+		}
+	}
+
 	// Método de creación de los menús contextuales
-	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getMenuInflater();
@@ -142,7 +168,7 @@ public class PantallaListaJugadores extends Activity {
 		nombreJugador = SentenciasSQLiteListaJugadores.getNombreJugador();
 		apellidosJugador = SentenciasSQLiteListaJugadores.getApellidosJugador();
 		posicionJugador = SentenciasSQLiteListaJugadores.getPosicionJugador();
-		 
+
 		//dorsalJugador=new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13"};
 		//Log.d("Raul", "cargarJugadores"+dorsalJugador[5]);
 		//nombreJugador=new String[]{"Pepe","Matias","Raul","Joli","Kevin","Artur","Segnent","Josep","Lolo","Paco","Tono","Pedro","Luis"};
@@ -150,7 +176,7 @@ public class PantallaListaJugadores extends Activity {
 		//posicionJugador=new String[]{"DE","QB","LB","DE","QB","LB","DE","QB","LB","LB","LB","DE","DE"};
 		//tipoJugador=new String[]{"Ataque","Ataque","Ataque","Defensa","Defensa","Defensa","Defensa","Defensa","Equipos Especiales","Equipos Especiales","Equipos Especiales","Equipos Especiales","Equipos Especiales"};
 	}
-	
+
 	private void cargarTipoJugadores(String tipo){
 		//Forzamos los datos de entrada que serán mostrados en la lista según el tipo de jugador
 		SentenciasSQLiteListaJugadores.getDatosJugadorTipo(this,tipo);
@@ -160,19 +186,19 @@ public class PantallaListaJugadores extends Activity {
 		posicionJugador = SentenciasSQLiteListaJugadores.getPosicionJugador();
 	}
 
-	private void mostrarLista(/*boolean seleccion*/) {
+	private void mostrarLista() {
 		// Obtenemos el elemento GridView de android
 		listaJugadores = (GridView) findViewById(R.id.lista_jugadores_equipo);
-		// Registramos el menú contextual
+		//Registramos el menú contextual
 		registerForContextMenu(listaJugadores);
 
 		//Buscamos en la base de datos
 		cargarJugadores();
 
-		// Le enviamos a la clase ListaJugadores los datos a rellenar
+		//Le enviamos a la clase ListaJugadores los datos a rellenar
 		adaptador = new ListaJugadores(this, dorsalJugador, nombreJugador, apellidosJugador, posicionJugador);
 
-		// Se colocan los datos en la lista
+		//Se colocan los datos en la lista
 		listaJugadores.setAdapter(adaptador);
 
 		accionesListaJugadores();
@@ -181,10 +207,10 @@ public class PantallaListaJugadores extends Activity {
 	private void actualizarLista(String tipo) {
 		cargarTipoJugadores(tiposJugadores);
 
-		// Le enviamos a la clase ListaJugadores los datos a rellenar
+		//Le enviamos a la clase ListaJugadores los datos a rellenar
 		adaptador = new ListaJugadores(this, dorsalJugador, nombreJugador, apellidosJugador, posicionJugador);
-		 
-		// Se colocan los datos en la lista
+
+		//Se colocan los datos en la lista
 		listaJugadores.setAdapter(adaptador);
 
 		accionesListaJugadores();
@@ -194,13 +220,12 @@ public class PantallaListaJugadores extends Activity {
 		// Este contenido se mostrará para informar de que no hay jugadores
 		ImageView imgDiv = (ImageView) findViewById(R.id.img_div2);
 
-		// Al hacer click un jugador de la lista se despliega un menú
-		//if (nombreJugador.length > 0) {
+		//Al hacer click un jugador de la lista se despliega un menú
 
-		// Lo ocultamos
+		//Lo ocultamos
 		imgDiv.setVisibility(View.INVISIBLE);
 
-		// Evento de selección de opción de la lista de jugadores
+		//Evento de selección de opción de la lista de jugadores
 		listaJugadores.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View elemento,
@@ -210,7 +235,7 @@ public class PantallaListaJugadores extends Activity {
 					// error
 				} else { // Controlamos que si no es el pie de página debe
 					// realizar una acción diferente
-					getDorsal = Integer.parseInt(dorsalJugador[position - 1]);
+					getDorsal = Integer.parseInt(dorsalJugador[position]);
 					listaJugadores.showContextMenu(); // Muestra las
 					// opciones del menú
 					// contextual
@@ -218,18 +243,17 @@ public class PantallaListaJugadores extends Activity {
 			}
 		});
 
-		//} else if (nombreJugador.length == 0) {
 
-		// Lo mostramos
+		//Lo mostramos
 		imgDiv.setVisibility(View.VISIBLE);
 
 		//}
-		
-		// Cargamos un elemento ImageView
+
+		//Cargamos un elemento ImageView
 		final ImageView addJugador = (ImageView) findViewById(R.id.add_jugador);
 
-		// Este código realiza una animación al hacer clic sobre la imágen de
-		// agregar jugador
+		//Este código realiza una animación al hacer clic sobre la imágen de
+		//agregar jugador
 		addJugador.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
@@ -250,7 +274,7 @@ public class PantallaListaJugadores extends Activity {
 		});
 	}
 
-	// Método para editar al jugador
+	//Método para editar al jugador
 	private void editarJugador() {
 		int dorsal = getDorsal;
 		Intent i = new Intent(this,PantallaListaJugadores.class);
@@ -258,37 +282,15 @@ public class PantallaListaJugadores extends Activity {
 		startActivity(i);
 	}
 
-	// Método para agregar al jugador
+	//Método para agregar al jugador
 	private void agregarJugador() {
 		Intent i = new Intent(this, PopUpNuevoJugador.class);
 		startActivity(i);
 	}
 
-	// Método para borrar al jugador
+	//Método para borrar al jugador
 	private void borrarJugador() {
-		//SentenciasSQLitePrincipal.borrarJugador(getDorsal, this);
+		SentenciasSQLiteListaJugadores.borrarJugador(this,getDorsal);
 	}
 
-	//Método que permite obtener los datos de los jugadores
-	/*private void obtenerJugadoresTipo(String tipoJ){
-		jugadoresTipo=new ArrayList<String[]>();
-		int i=0;
-		Log.d("Hola", "Entrando en obtenerJugador:"+tipoJ);
-		for (String tipo : tipoJugador) {
-			Log.d("Hola", "Entrando dentro del for:"+tipo);
-			if (tipo.compareTo(tipoJ)==0) {
-				String[] jugador = new String[4];
-				Log.d("Hola", dorsalJugador[i]+"i="+i);
-				jugador[0]=dorsalJugador[i];
-				Log.d("Hola", nombreJugador[i]+"i="+i);
-				jugador[1]=nombreJugador[i];
-				Log.d("Hola", apellidosJugador[i]+"i="+i);
-				jugador[2]=apellidosJugador[i];
-				Log.d("Hola", posicionJugador[i]+"i="+i);
-				jugador[3]=posicionJugador[i];
-				jugadoresTipo.add(jugador);
-			}
-			i++;
-		}
-	}*/
 }
