@@ -108,6 +108,10 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape" />
         
+        <activity
+            android:label="@string/title_activity_pop_up_new_user"
+            android:name="gow.fcm.popups.PopUpNewUser" />
+        
     </application>
     
 </manifest>
