@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme" >
         
         <activity
-            android:name="gow.fcm.pantallas.LoginScreen"
+            android:name="gow.fcm.pantallas.PaginaPrincipal"
             android:label="@string/title_activity_login_entrenador"
             android:screenOrientation="landscape" android:windowSoftInputMode="stateHidden">
             
@@ -33,7 +33,11 @@
                 
             </intent-filter>
             
-        </activity><activity android:label="@string/title_activity_pop_up_new_user" android:name="gow.fcm.pantallas.PaginaPrincipal" />
+        </activity>
+        
+        <activity
+            android:name="gow.fcm.pantallas.LoginScreen"
+            android:label="@string/title_activity_pop_up_new_user" />
         
         <activity
             android:name="gow.fcm.pantallas.PaginaCalendario"

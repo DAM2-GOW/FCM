@@ -2,20 +2,19 @@ package gow.fcm.popups;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLiteNuevoEditarPartido;
+import gow.fcm.sentencias.SentenciasUpdateSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
 import android.os.Build;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +37,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 	private Button bt;
 	private EditText lugar,rival;
 	//Elementos que interactuan con el popup e Intents de otras páginas
-	private String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event", varAccion="action";
+	private String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event", varAccion="action", times;
 	private int hour,min; //Variables que almacenan la hora del sistema o del evento
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
@@ -51,6 +50,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 		return fecha;
 	}
 	
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +59,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 		
 		Intent i=getIntent();
 		final long fecha=i.getExtras().getLong(varFechaEvento);
-		String accion=i.getExtras().getString(varAccion);
+		final String accion=i.getExtras().getString(varAccion);
 		
 		//Declaramos los elementos a usar por el Popup
 		lugar = (EditText) findViewById(R.id.lugarPartidoNuevo);
@@ -69,8 +69,8 @@ public class PopUpNuevoEditarPartido extends Activity {
 		bt = (Button) findViewById(R.id.guardarPartidoNuevo);
 		
 		if(accion.equals("editar")){
-			String fechas=formato.format(fecha);
-			SentenciasSQLiteNuevoEditarPartido.getDatosEditarPartido(this,fechas);
+			times=formato.format(fecha);
+			SentenciasSQLiteNuevoEditarPartido.getDatosEditarPartido(this,times);
 			
 			//Obtenemos los datos
 			String placeMatch=SentenciasSQLiteNuevoEditarPartido.getLugarPartido();
@@ -123,20 +123,39 @@ public class PopUpNuevoEditarPartido extends Activity {
 		}catch (ParseException e){
 			e.printStackTrace();
 		}
-		final long fechas=date.getTime(); //Guardamos la fecha en formato long
+		final long fechasMilis=date.getTime(); //Guardamos la fecha en formato long
 		
 		if(accion.equals("agregar")){
-			Calendar cal=Calendar.getInstance();
+			Date horaActual=new Date(System.currentTimeMillis());
+			SimpleDateFormat formato=new SimpleDateFormat("HH:mm:ss"); //Formato de conversión a hora
+			String hora=formato.format(horaActual);
 			
-			//Obtenemos la hora actual
-			int hour=cal.get(Calendar.HOUR_OF_DAY);
+			//Obtenemos la hora
+			String horaPartido="";
+			for(int num=0;num<=1;num++){
+				horaPartido=horaPartido.concat(String.valueOf(hora.charAt(num+0)));
+				horaPartido=horaPartido.replace(":","");
+			}
+			hour=Integer.parseInt(horaPartido);
+			
+			//Obtenemos los minutos
+			String minutosPartido="";
+			for(int num=0;num<=1;num++){
+				int index=hora.indexOf(":");
+				minutosPartido=minutosPartido.concat(String.valueOf(hora.charAt(num+index)));
+				minutosPartido=minutosPartido.replace(":","");
+			}
+			min=Integer.parseInt(minutosPartido);
+			
 			tp.setCurrentHour(hour); //Especificamos la hora actual para el formato de 24 horas
-			
-			//Obtenemos los minutos actuales
-			min=cal.get(Calendar.MINUTE);
 			tp.setCurrentMinute(min); //Especificamos la hora actual para el formato de 24 horas
 		}else if(accion.equals("editar")){
+			//Obtenemos los datos
+			hour=Integer.parseInt(SentenciasSQLiteNuevoEditarPartido.getHoraPartido());
+			min=Integer.parseInt(SentenciasSQLiteNuevoEditarPartido.getMinutosPartido());
 			
+			tp.setCurrentHour(hour); //Especificamos la hora actual para el formato de 24 horas
+			tp.setCurrentMinute(min); //Especificamos la hora actual para el formato de 24 horas
 		}
 		
 		horaMinuto=String.valueOf(hour)+":"+String.valueOf(min)+":00"; //Almacenamos la hora actual para que se guarde un valor null
@@ -145,7 +164,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 			@Override
 			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 				//Si la fecha coincide con la actual, ponemos la hora actual como mínima
-				if(fechas==fecha){
+				if(fechasMilis==fecha){
 					if(hourOfDay<hour){
 						tp.setCurrentHour(hour);
 					}else if(minute<min){
@@ -180,8 +199,13 @@ public class PopUpNuevoEditarPartido extends Activity {
             		
             		fechaEntrenamiento = fechaEntrenamiento.concat(anyoEntrenamiento+"-").concat(mesEntrenamiento+"-").concat(diaEntrenamiento);
             		
-            		SentenciasInsertSQLite.insertarSQLite("Partidos", new String[]{"id_equipo","lugar","rival","dia","fecha"}, new String[]{String.valueOf(id_equipo),lugar.getText().toString(),rival.getText().toString(),fechaEntrenamiento,fechaEntrenamiento+" "+horaMinuto});
-                	PopUpNuevoEditarPartido.this.finish();
+            		if(accion.equals("agregar")){
+            			SentenciasInsertSQLite.insertarSQLite("Partidos", new String[]{"id_equipo","lugar","rival","dia","fecha"}, new String[]{String.valueOf(id_equipo),lugar.getText().toString(),rival.getText().toString(),fechaEntrenamiento,fechaEntrenamiento+" "+horaMinuto});
+            		}else if(accion.equals("editar")){
+            			SentenciasUpdateSQLite.actualizarSQLite("Partidos", new String[]{"lugar","rival","fecha"}, new String[]{lugar.getText().toString(),rival.getText().toString(),fechaEntrenamiento+" "+horaMinuto},"id_equipo="+id_equipo+" AND dia='"+times+"'");
+            		}
+            		
+            		PopUpNuevoEditarPartido.this.finish();
             }
             }
 		});

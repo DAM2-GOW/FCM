@@ -2,7 +2,6 @@ package gow.fcm.sentencias;
 
 import gow.fcm.sharefprefs.DatosFootball;
 import android.content.Context;
-import android.util.Log;
 
 public class SentenciasSQLiteNuevoEditarPartido{
 	
@@ -51,12 +50,22 @@ public class SentenciasSQLiteNuevoEditarPartido{
 		rivalPartido=valores[1];
 		diaPartido=valores[2];
 		String fecha=valores[3];
+		
+		//Obtenemos la hora
 		horaPartido="";
 		for(int i=0;i<=1;i++){
-			horaPartido=horaPartido.concat(String.valueOf(fecha.charAt(i+11)));
+			int index=fecha.indexOf(" ")+1;
+			horaPartido=horaPartido.concat(String.valueOf(fecha.charAt(i+index)));
+			horaPartido=horaPartido.replace(":","");
 		}
-		Log.d("Hola", horaPartido);
-		Log.d("Hola", horaPartido);
+		
+		//Obtenemos los minutos
+		minutosPartido="";
+		for(int i=0;i<=1;i++){
+			int index=fecha.indexOf(":")+1;
+			minutosPartido=minutosPartido.concat(String.valueOf(fecha.charAt(i+index)));
+			minutosPartido=minutosPartido.replace(":","");
+		}
 	}
 	
 }
