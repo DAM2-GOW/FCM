@@ -44,4 +44,16 @@ public class SentenciasSQLLoginScreen {
 		return pregunta;
 	}
 	
+	public String recuperarPassword(Context contexto, String userName, String respuesta) {
+
+		// Ejcutamos la sentencia
+		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",
+				new String[] { "clave" }, "usuario='"+userName+" and clave='"+respuesta+"'");
+
+		// Obtenemos respuesta de existencia.
+		String[] valores = SentenciasSelectSQLite.getValores();
+		String pregunta = valores[0];
+		
+		return pregunta;
+	}
 }
