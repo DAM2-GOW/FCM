@@ -1,14 +1,19 @@
 package gow.fcm.popups;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
 import android.os.Build;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,19 +25,27 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.TimePicker.OnTimeChangedListener;
 
 public class PopUpNuevoPartido extends Activity {
 
-	TimePicker tp;
-	DatePicker dp;
-	Button bt;
-	EditText lugar,rival;
-	String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event";
+	private TimePicker tp;
+	private DatePicker dp;
+	private Button bt;
+	private EditText lugar,rival;
+	private String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event";
+	@SuppressLint("SimpleDateFormat")
+	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
 	
+	//Método que devuelve la fecha actual
+	private String getFechaActual(){
+		//Obtenemos la fecha actual
+		Date dates=new Date();
+		String fecha=formato.format(dates);
+		return fecha;
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +53,7 @@ public class PopUpNuevoPartido extends Activity {
 		showAsPopup(this); //Llama al método que pone el activity en modo ventana PopuP.
 		
 		Intent i=getIntent();
-		Long fecha=i.getExtras().getLong(varFechaEvento);
+		final Long fecha=i.getExtras().getLong(varFechaEvento);
 		
 		setContentView(R.layout.activity_popup_nuevo_partido);
 		lugar = (EditText) findViewById(R.id.lugarPartidoNuevo);
@@ -63,11 +76,37 @@ public class PopUpNuevoPartido extends Activity {
 		
 		//Modificamos el diseño de la hora para que este en formato 24H.
 		tp = (TimePicker) findViewById(R.id.hora_PartidoNuevo);
-		tp.setIs24HourView(DateFormat.is24HourFormat(this));
+		tp.setIs24HourView(true);
+		
+		//Pasamos la fecha seleccionada a milisegundos
+		String dates=getFechaActual();
+		Date date=null;
+		try{
+			date=formato.parse(dates);
+		}catch (ParseException e){
+			e.printStackTrace();
+		}
+		final long fechas=date.getTime(); //Guardamos la fecha en formato long
+		
+		//Obtenemos la hora y minutos actuales
+		Calendar cal=Calendar.getInstance();
+		final int hour=cal.get(Calendar.HOUR_OF_DAY);
+		tp.setCurrentHour(hour); //Especificamos la hora actual para el formato de 24 horas
+		final int min=cal.get(Calendar.MINUTE);
+		horaMinuto=String.valueOf(hour)+":"+String.valueOf(min)+":00"; //Almacenamos la hora actual para que se guarde un valor null
 		
 		tp.setOnTimeChangedListener(new OnTimeChangedListener() {
 			@Override
 			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+				//Si la fecha coincide con la actual, ponemos la hora actual como mínima
+				if(fechas==fecha){
+					if(hourOfDay<hour){
+						tp.setCurrentHour(hour);
+					}else if(minute<min){
+						tp.setCurrentMinute(min);
+					}
+				}
+				
 				horaMinuto = String.valueOf(hourOfDay)+":"+String.valueOf(minute)+":00";
 			}
 		});
@@ -80,8 +119,8 @@ public class PopUpNuevoPartido extends Activity {
 			 
             @Override
             public void onClick(View v) {
-            	if(lugar.getText().toString().trim().equals("") || lugar.getText().toString().trim()==null ){
-            		Toast.makeText(getApplicationContext(), "Esta vacio el campo lugar partido, rellenalo", Toast.LENGTH_SHORT).show();
+            	if(lugar.getText().toString().trim().equals("") || lugar.getText().toString().trim().equals(null)|| rival.getText().toString().trim().equals("") || rival.getText().toString().trim().equals(null)){
+            		Toast.makeText(getApplicationContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
             		
             	}else{
             		diaEntrenamiento = String.valueOf(dp.getDayOfMonth());

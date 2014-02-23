@@ -646,8 +646,7 @@ public class PaginaCalendario extends Activity{
 		
 	}
 	
-	//Los siguientes métodos abren otras pantallas o borran el contenido seleccionado del calendario
-	
+	//El siguiente método abre un popup para agregar un entrenamiento
 	private void agregarEntrenamiento(){
 		//Pasamos la fecha seleccionada a milisegundos
 		String fecha=getFechaSeleccionada();
@@ -663,26 +662,30 @@ public class PaginaCalendario extends Activity{
 		startActivity(i);
 	}
 	
+	//El siguiente método abre un popup para ver los entrenamientos
 	private void verStatsEntrenamiento(){
 		Intent i=new Intent(this,PaginaCalendario.class);
 		startActivity(i);
 	}
 	
+	//El siguiente método abre un popup para editar los entrenamientos
 	private void editarEntrenamiento(){
 		Intent i=new Intent(this,PaginaCalendario.class);
 		startActivity(i);
 	}
 	
+	//El siguiente método abre un popup para borrar los entrenamiento
 	private void borrarEntrenamiento(){
 		String fecha=getFechaSeleccionada();
 		SentenciasSQLiteCalendario.borrarEventoEntrenamiento(this,fecha);
 		accionesMostrarEventos(fecha);
 	}
 	
+	//El siguiente método abre un popup para agregar un partido
 	private void agregarPartido(){
 		//Pasamos la fecha seleccionada a milisegundos
 		String fecha=getFechaSeleccionada();
-		Date date=new Date();
+		Date date=null;
 		try{
 			date=formato.parse(fecha);
 		}catch (ParseException e){
@@ -694,16 +697,19 @@ public class PaginaCalendario extends Activity{
 		startActivity(i);
 	}
 	
+	//El siguiente método abre un popup para ver un partido
 	private void verStatsPartido(){
 		Intent i=new Intent(this,PaginaCalendario.class);
 		startActivity(i);
 	}
 	
+	//El siguiente método abre un popup para editar un partido
 	private void editarPartido(){
 		Intent i=new Intent(this,PaginaCalendario.class);
 		startActivity(i);
 	}
 	
+	//El siguiente método borra un partido
 	private void borrarPartido(){
 		String fecha=getFechaSeleccionada();
 		SentenciasSQLiteCalendario.borrarEventoPartido(this,fecha);
