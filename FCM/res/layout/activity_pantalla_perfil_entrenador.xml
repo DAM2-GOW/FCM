@@ -35,7 +35,7 @@
             android:src="@drawable/no_coach_photo" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/edit_photo_entrenador"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="113dp"
             android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/guardarNombreEntrenador"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -182,7 +182,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/guardarEquipo"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -285,7 +285,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/guardarContraEntrenador"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -131,7 +131,7 @@ public class PaginaPrincipal extends Activity{
 
 	//Método que abre la pantalla con los datos del entrenador y su equipo
 	private void datosEntrenador(){
-		Intent i=new Intent(this,PaginaPrincipal.class);
+		Intent i=new Intent(this,PantallaPerfilEntrenador.class);
 		startActivity(i);
 	}
 
