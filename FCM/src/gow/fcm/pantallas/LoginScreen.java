@@ -2,6 +2,7 @@ package gow.fcm.pantallas;
 
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNewUser;
+import gow.fcm.popups.PopUpRecoverPassword;
 import gow.fcm.utilidades.AnimatorLogin;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginScreen extends Activity {
@@ -25,6 +27,7 @@ public class LoginScreen extends Activity {
 		setContentView(R.layout.activity_login_screen);
 		et_username = (EditText) findViewById(R.id.editText_username);
 		et_password = (EditText) findViewById(R.id.editText_password);
+		TextView tv_pass = (TextView) findViewById(R.id.textView_recover_pass);
 		Button btn_singIn = (Button) findViewById(R.id.btn_singIn);
 		Button btn_singUp = (Button) findViewById(R.id.btn_singUp);
 		View myView1 = (View) findViewById(R.id.view_image1);
@@ -71,6 +74,15 @@ public class LoginScreen extends Activity {
 			}
 		});
 		
+		tv_pass.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// Se abre un pop-up para recuperar la contraseña.
+				Intent i = new Intent(getApplicationContext(), PopUpRecoverPassword.class);
+				startActivityForResult(i, 002);
+			}
+		});
 	}
 
 	@Override
