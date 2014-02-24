@@ -3,6 +3,7 @@ package gow.fcm.pantallas;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNewUser;
 import gow.fcm.popups.PopUpRecoverPassword;
+import gow.fcm.sentencias.SentenciasSQLLoginScreen;
 import gow.fcm.utilidades.AnimatorLogin;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,12 +20,14 @@ import android.widget.Toast;
 public class LoginScreen extends Activity {
 	AnimatorLogin AL, AL2;
 	EditText et_username, et_password;
+	SentenciasSQLLoginScreen ssls;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login_screen);
+		ssls = new SentenciasSQLLoginScreen();
 		et_username = (EditText) findViewById(R.id.editText_username);
 		et_password = (EditText) findViewById(R.id.editText_password);
 		TextView tv_pass = (TextView) findViewById(R.id.textView_recover_pass);
@@ -55,11 +58,17 @@ public class LoginScreen extends Activity {
 				}else if((pass == null) || (pass.equals(""))){
 					// Comprobar que el campo contraseña tenga contenido escrito.
 					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_password_null), Toast.LENGTH_SHORT).show();
+				}else if(ssls.comprobarNombreUsuario(username)==0){
+					// Comprobar en la DB si existe el usuario.
+					Toast.makeText(getApplicationContext(), "El nombre de usuario no existe", Toast.LENGTH_SHORT).show();
+				}else if(ssls.comprobarPasswordUsuario(username, pass)==0){
+					// Comprobar en la DB si se corresponde la contraseña con el usuario dado.
+					Toast.makeText(getApplicationContext(), "La contraseña no se corresponde con el usuario", Toast.LENGTH_SHORT).show();
 				}else{
-					// Comprobar en la DB si existe el usuario y comprobar su contraseña.
-					
-					// Si existe entrar a la pantalla principal y poner entrenador definido por el usuario
-					// Context menu para preguntar por equipo a usar.
+					// Si todo esta correcto, entrar a la pantalla principal y poner entrenador definido por el usuario
+					// en las sharedPrefs. Context menu para preguntar por equipo a usar.
+					Intent i = new Intent(getApplicationContext(), PaginaPrincipal.class);
+					startActivity(i);
 				}
 			}
 		});

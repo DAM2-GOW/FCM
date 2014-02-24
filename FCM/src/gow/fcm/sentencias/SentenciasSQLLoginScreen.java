@@ -1,10 +1,9 @@
 package gow.fcm.sentencias;
 
-import android.content.Context;
 
 public class SentenciasSQLLoginScreen {
 
-	public int comprobarNombreUsuario(Context contexto, String usuario) {
+	public int comprobarNombreUsuario(String usuario) {
 
 		// Ejcutamos la sentencia
 		SentenciasSelectSQLite
@@ -18,7 +17,7 @@ public class SentenciasSQLLoginScreen {
 		return userName;
 	}
 
-	public int comprobarPasswordUsuario(Context contexto, String userName, String clave) {
+	public int comprobarPasswordUsuario(String userName, String clave) {
 
 		// Ejcutamos la sentencia.
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",
@@ -31,7 +30,7 @@ public class SentenciasSQLLoginScreen {
 		return password;
 	}
 
-	public int comprobarPreguntaSeguridad(Context contexto, String userName, String respuesta) {
+	public int comprobarPreguntaSeguridad(String userName, String respuesta) {
 
 		// Ejcutamos la sentencia
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",
@@ -44,7 +43,7 @@ public class SentenciasSQLLoginScreen {
 		return pregunta;
 	}
 	
-	public String recuperarPassword(Context contexto, String userName, String respuesta) {
+	public String recuperarPassword(String userName, String respuesta) {
 
 		// Ejcutamos la sentencia
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",
