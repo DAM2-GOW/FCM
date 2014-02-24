@@ -153,7 +153,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				if(SentenciasSQLiteNuevoEditarJugador.getDatosEditarPartido(getApplicationContext(), dorsalJug.getText().toString())>0){
+				if(SentenciasSQLiteNuevoEditarJugador.getDatosEditarPartido(getApplicationContext(), dorsalJug.getText().toString())<1){
 					if(nomJug.getText().toString().trim().equals("") || apellJug.getText().toString().trim().equals("")  || edadJug.getText().toString().trim()==null || dorsalJug.getText().toString().trim()==null){
 						Toast.makeText(getApplicationContext(), "Algun campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
 					}else{
