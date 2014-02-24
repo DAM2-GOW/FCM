@@ -34,7 +34,7 @@ public class SentenciasSQLLoginScreen {
 
 		// Ejcutamos la sentencia
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",
-				new String[] { "COUNT (clave)" }, "usuario='"+userName+" and clave='"+respuesta+"'");
+				new String[] { "COUNT (id_entrenador)" }, "usuario='"+userName+"' and respuesta_seguridad='"+respuesta+"'");
 
 		// Obtenemos respuesta de existencia.
 		String[] valores = SentenciasSelectSQLite.getValores();
@@ -47,13 +47,13 @@ public class SentenciasSQLLoginScreen {
 
 		// Ejcutamos la sentencia
 		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",
-				new String[] { "clave" }, "usuario='"+userName+" and clave='"+respuesta+"'");
+				new String[] { "clave" }, "usuario='"+userName+"' and respuesta_seguridad='"+respuesta+"'");
 
 		// Obtenemos respuesta de existencia.
 		String[] valores = SentenciasSelectSQLite.getValores();
-		String pregunta = valores[0];
+		String resp = valores[0];
 		
-		return pregunta;
+		return resp;
 	}
 	
 	public int obtenerIDEntrenador(String userName) {
@@ -106,5 +106,17 @@ public class SentenciasSQLLoginScreen {
 		int idTeam = Integer.parseInt(valores[0]);
 
 		return idTeam;
+	}
+	
+	public int obtenerPreguntaSeguridad(String user){
+		// Ejcutamos la sentencia
+				SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",
+						new String[] { "pregunta_seguridad" }, "usuario='"+user+"'");
+				
+		// Obtenemos respuesta de existencia.
+		String[] valores = SentenciasSelectSQLite.getValores();
+		int pregunta = Integer.parseInt(valores[0]);
+			
+		return pregunta;
 	}
 }

@@ -80,7 +80,7 @@
     <string name="popup_newUser_camposObligatorios">* Los campos son obligatorios</string>
     <string name="popup_recoverPass_lblIntroUser">Introduzca Usuario:</string>
     <string name="popup_recoverPass_btnComprobar">Comprobar</string>
-    <string name="popup_recoverPass_lblPreguntaSecreta">Esta es la pregunta secreta:</string>
+    <string name="popup_recoverPass_lblPreguntaSecreta">Pregunta secreta:</string>
     <string name="popup_recoverPass_lblContrasenya">Tu contraseña es:</string>
     <string name="popup_recoverPass_lblVolver">Aceptar</string>
     
@@ -222,5 +222,7 @@
     <string name="login_screen_toast_password_not_match">La contraseña no se corresponde con el usuario</string>
     <string name="popup_new_user_team_name">Indica el nombre del equipo a administar:*</string>
     <string name="popup_new_user_toast_team_name_null">El campo nombre del equipo está vacío</string>
+    <string name="login_screen_toast_secret_answer_not_match">La respuesta secreta no se corresponde</string>
+    <string name="popup_recover_password_textview_secret_answer">Su respuesta:</string>
 
 </resources>
