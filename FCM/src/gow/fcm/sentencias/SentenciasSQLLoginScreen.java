@@ -68,4 +68,43 @@ public class SentenciasSQLLoginScreen {
 		
 		return ID;
 	}
+	
+	public int obtenerEquiposEntrenador(int IDentrenador) {
+
+		// Ejcutamos la sentencia
+		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",
+				new String[] { "id_equipo" }, "id_entrenador='"+IDentrenador+"'");
+
+		// Obtenemos respuesta de existencia.
+		String[] valores = SentenciasSelectSQLite.getValores();
+		int teams = Integer.parseInt(valores[0]);
+
+		return teams;
+	}
+	
+	public String obtenerNombreEquipos(int equipo) {
+
+		// Ejcutamos la sentencia
+		SentenciasSelectSQLite.seleccionarSQLite("Equipos",
+				new String[] { "nombre" }, "id_equipo = '"+equipo+"'");
+
+		// Obtenemos respuesta de existencia.
+		String[] valores = SentenciasSelectSQLite.getValores();
+		String nombre = valores[0];
+		
+		return nombre;
+	}
+	
+	public int obtenerIDEquipoPorNombre(String nombreEquipo) {
+
+		// Ejcutamos la sentencia
+		SentenciasSelectSQLite.seleccionarSQLite("Equipos",
+				new String[] { "id_equipo" }, "nombre='"+nombreEquipo+"'");
+
+		// Obtenemos respuesta de existencia.
+		String[] valores = SentenciasSelectSQLite.getValores();
+		int idTeam = Integer.parseInt(valores[0]);
+
+		return idTeam;
+	}
 }

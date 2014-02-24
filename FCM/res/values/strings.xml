@@ -220,5 +220,7 @@
     <string name="login_screen_toast_new_password_null">El campo contraseña está vacío</string>
     <string name="login_screen_toast_username_not_exist">El nombre de usuario no existe</string>
     <string name="login_screen_toast_password_not_match">La contraseña no se corresponde con el usuario</string>
+    <string name="popup_new_user_team_name">Indica el nombre del equipo a administar:*</string>
+    <string name="popup_new_user_toast_team_name_null">El campo nombre del equipo está vacío</string>
 
 </resources>

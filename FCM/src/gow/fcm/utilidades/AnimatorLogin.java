@@ -119,7 +119,7 @@ public class AnimatorLogin implements Runnable{
 		animation_in.setAnimationListener(new AnimationListener() {
 			@Override
 			public void onAnimationStart(Animation animation) {
-				Log.d("ANIM", "STARTED IN");
+				//Log.d("ANIM", "STARTED IN");
 			}
 
 			@Override
@@ -129,7 +129,7 @@ public class AnimatorLogin implements Runnable{
 
 			@Override
 			public void onAnimationEnd(Animation animation) {
-				Log.d("ANIM", "ENDED IN");
+				//Log.d("ANIM", "ENDED IN");
 				if (running)
 					view.startAnimation(animation_wait_from_in);
 			}
@@ -141,7 +141,7 @@ public class AnimatorLogin implements Runnable{
 
 					@Override
 					public void onAnimationStart(Animation animation) {
-						Log.d("ANIM", "STARTED WAIT FROM IN");
+						//Log.d("ANIM", "STARTED WAIT FROM IN");
 					}
 
 					@Override
@@ -163,7 +163,7 @@ public class AnimatorLogin implements Runnable{
 
 					@Override
 					public void onAnimationStart(Animation animation) {
-						Log.d("ANIM", "STARTED WAIT FROM OUT");
+						//Log.d("ANIM", "STARTED WAIT FROM OUT");
 						imageToShow = imageToShow+1;
 						
 						activity.runOnUiThread(new Runnable() {
@@ -178,12 +178,12 @@ public class AnimatorLogin implements Runnable{
 				            	if (first) {
 				            		if(imageToShow >= images1.length)
 				            			imageToShow = 0;
-				            		Log.d("IMAGE FIRST", "CHANGE TO: "+imageToShow);
+				            		//Log.d("IMAGE FIRST", "CHANGE TO: "+imageToShow);
 				        			view.setBackgroundResource(images1[imageToShow]);
 				        		} else {
 				        			if(imageToShow >= images2.length)
 				            			imageToShow = 0;
-				        			Log.d("IMAGE SECOND", "CHANGE TO: "+imageToShow);
+				        			//Log.d("IMAGE SECOND", "CHANGE TO: "+imageToShow);
 				        			view.setBackgroundResource(images2[(imageToShow)]);
 				        		}
 				            	
@@ -199,7 +199,7 @@ public class AnimatorLogin implements Runnable{
 
 					@Override
 					public void onAnimationEnd(Animation animation) {
-						Log.d("ANIM", "ENDED WAIT FROM OUT");
+						//Log.d("ANIM", "ENDED WAIT FROM OUT");
 						if (running)
 							view.startAnimation(animation_in);
 					}
@@ -209,7 +209,7 @@ public class AnimatorLogin implements Runnable{
 		animation_out.setAnimationListener(new AnimationListener() {
 			@Override
 			public void onAnimationStart(Animation animation) {
-				Log.d("ANIM", "STARTED OUT");
+				//Log.d("ANIM", "STARTED OUT");
 			}
 
 			@Override
@@ -219,7 +219,7 @@ public class AnimatorLogin implements Runnable{
 
 			@Override
 			public void onAnimationEnd(Animation animation) {
-				Log.d("ANIM", "ENDED OUT");
+				//Log.d("ANIM", "ENDED OUT");
 				if (running)
 					view.startAnimation(animation_wait_from_out);
 			}

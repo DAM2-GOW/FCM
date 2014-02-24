@@ -4,6 +4,7 @@ import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNewUser;
 import gow.fcm.popups.PopUpRecoverPassword;
+import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLLoginScreen;
 import gow.fcm.sharefprefs.DatosFootball;
 import gow.fcm.utilidades.AnimatorLogin;
@@ -34,7 +35,9 @@ public class LoginScreen extends Activity {
 		
 		//Se crea la base de datos si no existe o se actualiza.
 		ConexionSQLite.getCrearSQLite(this);
-				
+		//SentenciasInsertSQLite.insertarSQLite("Equipos", new String[] {"nombre"}, new String[] {"MismaCity"});//DEV
+		//SentenciasInsertSQLite.insertarSQLite("Entrenadores", new String[] {"id_equipo","nombre","apellidos", "usuario","clave","pregunta_seguridad","respuesta_seguridad"}, new String[] {"0","Mismo","Mismamente","user","1234","0","no lo se"});//DEV
+		
 		ssls = new SentenciasSQLLoginScreen();
 		et_username = (EditText) findViewById(R.id.editText_username);
 		et_password = (EditText) findViewById(R.id.editText_password);
@@ -55,7 +58,7 @@ public class LoginScreen extends Activity {
 			public void onClick(View v) {
 				
 				// Comprobamos los campos.
-				String username = et_username.getText().toString();
+				final String username = et_username.getText().toString();
 				String pass= et_password.getText().toString();
 				if((username == null) || (username.equals(""))){
 					// Comprobar que el campo usuario tenga contenido escrito.
@@ -77,13 +80,13 @@ public class LoginScreen extends Activity {
 					//AL2 = null;
 					
 					// Si todo esta correcto, entrar a la pantalla principal y poner entrenador definido por el usuario
-					// en las sharedPrefs. Context menu para preguntar por equipo a usar.
-					// AQUI EL CONTEXTMENU PREGUNTANDO POR EQUIPOA USAR.
+					// en las sharedPrefs. MEJORA: Context menu para preguntar por equipo a usar.
 					int entrenadorID = ssls.obtenerIDEntrenador(username);
-					//DatosFootball.setDatosFootball(getApplicationContext(), idTeam, entrenadorID);
-					
+					int equipoAUsar = ssls.obtenerEquiposEntrenador(entrenadorID);
+					DatosFootball.setDatosFootball(getApplicationContext(), equipoAUsar, entrenadorID);
 					Intent i = new Intent(getApplicationContext(), PaginaPrincipal.class);
 					startActivity(i);
+					
 				}
 			}
 		});
@@ -122,7 +125,7 @@ public class LoginScreen extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.login_screen, menu);
+		getMenuInflater().inflate(R.menu.login_screen, menu);
 		return true;
 	}
 
