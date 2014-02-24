@@ -49,7 +49,6 @@ public class PantallaPerfilEntrenador extends Activity {
 		repNewContra = (EditText) findViewById(R.id.rep_new_pass_Entrenador);
 		saveContra = (Button) findViewById(R.id.guardarContraEntrenador);
 		nomEquipo = (EditText) findViewById(R.id.new_nom_Equipo);
-		ciudadEquipo = (EditText) findViewById(R.id.new_ciudad_Equipo);
 		saveEquipo = (Button) findViewById(R.id.guardarEquipo);
 		
 		//Método que sirve para cambiar el nombre y apellidos del entrenador.
