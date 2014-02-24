@@ -3,6 +3,7 @@ package gow.fcm.popups;
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
+import gow.fcm.sentencias.SentenciasSQLiteNuevoEditarJugador;
 import gow.fcm.sharefprefs.DatosFootball;
 
 import java.io.File;
@@ -87,9 +88,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 						@Override
 						public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 							posJug = posicionJugador.getSelectedItem().toString();
-							if(posJug=="Ataque"){
-								tipoJug = 0;
-							}
+							tipoJug = 0;
 						}
 
 						@Override
@@ -105,9 +104,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 							@Override
 							public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 								posJug = posicionJugador.getSelectedItem().toString();
-								if(posJug=="Defensa"){
-									tipoJug = 1;
-								}
+								tipoJug = 1;
 							}
 
 							@Override
@@ -123,9 +120,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 								@Override
 								public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 									posJug = posicionJugador.getSelectedItem().toString();
-									if(posJug=="Equipos Especiales"){
-										tipoJug = 2;
-									}
+									tipoJug = 2;
 								}
 
 								@Override
@@ -158,12 +153,17 @@ public class PopUpNuevoEditarJugador extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				if(nomJug.getText().toString().trim().equals("") || apellJug.getText().toString().trim().equals("")  || edadJug.getText().toString().trim()==null || dorsalJug.getText().toString().trim()==null){
-            		Toast.makeText(getApplicationContext(), "Algun campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
+				if(SentenciasSQLiteNuevoEditarJugador.getDatosEditarPartido(getApplicationContext(), dorsalJug.getText().toString())>0){
+					if(nomJug.getText().toString().trim().equals("") || apellJug.getText().toString().trim().equals("")  || edadJug.getText().toString().trim()==null || dorsalJug.getText().toString().trim()==null){
+						Toast.makeText(getApplicationContext(), "Algun campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
+					}else{
+						SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),rutaImagen});
+						PopUpNuevoEditarJugador.this.finish();
+					}
 				}else{
-					SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),rutaImagen});
-                	PopUpNuevoEditarJugador.this.finish();
+					Toast.makeText(getApplicationContext(), "Ya existe ese dorsal", Toast.LENGTH_SHORT).show();
 				}
+
 			}
 		});
 		

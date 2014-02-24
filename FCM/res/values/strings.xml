@@ -78,6 +78,12 @@
     <string name="popup_newUser_lblRespuesta">Respuesta:*</string>
     <string name="popup_newUser_btnGuardar">Guardar</string>
     <string name="popup_newUser_camposObligatorios">* Los campos son obligatorios</string>
+    <string name="popup_recoverPass_lblIntroUser">Introduzca Usuario:</string>
+    <string name="popup_recoverPass_btnComprobar">Comprobar</string>
+    <string name="popup_recoverPass_lblPreguntaSecreta">Esta es la pregunta secreta:</string>
+    <string name="popup_recoverPass_lblContrasenya">Tu contraseña es:</string>
+    <string name="popup_recoverPass_lblVolver">Aceptar</string>
+    
 
     <string-array name="TipoEntrenamiento">
         <item>Resistencia</item>
