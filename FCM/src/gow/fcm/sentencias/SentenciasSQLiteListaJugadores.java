@@ -5,6 +5,8 @@ import android.content.Context;
 
 public class SentenciasSQLiteListaJugadores {
 	
+	private static String[] nombreJugador, apellidosJugador, posicionJugador,dorsalJugador;
+	
 	public static String[] getNombreJugador() {
 		return nombreJugador;
 	}
@@ -20,10 +22,8 @@ public class SentenciasSQLiteListaJugadores {
 	public static String[] getDorsalJugador() {
 		return dorsalJugador;
 	}
-
-	private static String[] nombreJugador, apellidosJugador, posicionJugador,dorsalJugador;
 	
-	//Este método obtiene los datos del jugador
+		//Este método obtiene los datos del jugador
 		public static void getDatosJugador(Context contexto){
 			//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
 			SentenciasSelectSQLite.borrarTodosValores();

@@ -3,11 +3,11 @@ package gow.fcm.popups;
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
+import gow.fcm.sentencias.SentenciasSQLiteListaJugadores;
+import gow.fcm.sentencias.SentenciasSQLiteNuevoEditarEntrenamiento;
 import gow.fcm.sentencias.SentenciasSQLiteNuevoEditarJugador;
 import gow.fcm.sharefprefs.DatosFootball;
-
 import java.io.File;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -43,14 +43,18 @@ public class PopUpNuevoEditarJugador extends Activity {
 	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
 	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
 	private File dirActual=Environment.getExternalStorageDirectory(); //Directorio donde esta la carpeta de las imágenes
-	private String dirRecortes="image/*"; //Directorio donde se encuentran las imágenes recortadas
+	private String dirRecortes="image/*",accion; //Directorio donde se encuentran las imágenes recortadas
 	private int tipoJug;
+	private Intent ir;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		showAsPopup(this); //Llama al metodo que hace que se muestre como PopUp.
 		setContentView(R.layout.activity_popup_nuevo_editar_jugador);
+		
+		ir=getIntent();
+		accion=ir.getExtras().getString("action");
 		
 		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
 		ConexionSQLite.getCrearSQLite(this);
@@ -66,9 +70,31 @@ public class PopUpNuevoEditarJugador extends Activity {
 		edadJug = (EditText)findViewById(R.id.editTextEdadJugador);
 		dorsalJug = (EditText)findViewById(R.id.editTextDorsalJugador);
 		
+		if(accion.equals("editar")){
+			String number=ir.getExtras().getString("dorsal");
+			SentenciasSQLiteNuevoEditarJugador.getDatosEditarJugador(this,number);
+			
+			//Obtenemos los valores
+			String nameJugador=SentenciasSQLiteNuevoEditarJugador.getNameJugador();
+			String surnameJugador=SentenciasSQLiteNuevoEditarJugador.getSurnameJugador();
+			String ageJugador=SentenciasSQLiteNuevoEditarJugador.getAgeJugador();
+			String numberJugador=SentenciasSQLiteNuevoEditarJugador.getNumberJugador();
+			
+			//Rellenamos los campos
+			nomJug.setText(nameJugador);
+			apellJug.setText(surnameJugador);
+			edadJug.setText(ageJugador);
+			dorsalJug.setText(numberJugador);
+		}
+		
 		//Llamamos a los arrays que contienen los nombre del tipo de jugador y su posicion.
 		final ArrayAdapter<CharSequence> adaptadorTipo = ArrayAdapter.createFromResource(this, R.array.TipoJugador, android.R.layout.simple_spinner_item);
 		tipoJugador.setAdapter(adaptadorTipo);
+		
+		if(accion.equals("editar")){
+			String typeJugador=SentenciasSQLiteNuevoEditarJugador.getTypeJugador(); //Obtenemos el valor
+			tipoJugador.setSelection(Integer.parseInt(typeJugador)); //Asignamos la posicion del spinner
+		}
 		
 		final ArrayAdapter<CharSequence> adaptador2 = ArrayAdapter.createFromResource(this, R.array.PosicionAtaque, android.R.layout.simple_spinner_item);
 		
@@ -130,6 +156,19 @@ public class PopUpNuevoEditarJugador extends Activity {
 							});
 						}
 					}
+					
+					if(accion.equals("editar")){
+						//Obtenemos la posición que ocupa en el spinner la posición del jugador
+						String positionJugador=SentenciasSQLiteNuevoEditarJugador.getPositionJugador(); //Obtenemos el valor
+						int indice=0;
+						for(int num=0;num<posicionJugador.getCount();num++){
+							if(posicionJugador.getItemAtPosition(num).equals(positionJugador)){
+								indice=num;
+							}
+						}
+						posicionJugador.setSelection(indice);
+					}
+					
 				}
 			}
 

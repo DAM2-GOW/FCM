@@ -32,10 +32,10 @@ public class PantallaListaJugadores extends Activity {
 	private ListaJugadores adaptador; //Declaramos el adaptador
 	private View pie; //Variable usada para almacenar un objeto View del pie de página de la lista de jugadores
 	private String tiposJugadores;
-	boolean atak = false;
-	boolean def = false;
-	boolean eqe=false;
-
+	private static boolean atak = false;
+	private static boolean def = false;
+	private static boolean eqe=false;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE); // No mostramos la
@@ -44,7 +44,7 @@ public class PantallaListaJugadores extends Activity {
 		// nombre de la
 		// aplicación
 		setContentView(R.layout.activity_lista_jugadores);
-
+		
 		// Se crea la base de datos si no existe o se actualiza si fuera necesario
 		ConexionSQLite.getCrearSQLite(this);
 
@@ -118,7 +118,7 @@ public class PantallaListaJugadores extends Activity {
 			tiposJugadores="1";
 			actualizarLista(tiposJugadores);
 			def=false;
-		}else if (eqe==true){
+		}else if(eqe==true){
 			tiposJugadores="2";
 			actualizarLista(tiposJugadores);
 			eqe=false;
@@ -154,7 +154,21 @@ public class PantallaListaJugadores extends Activity {
 			return true;
 		case R.id.optionSiJugador:
 			borrarJugador();
-			actualizarLista(tiposJugadores);
+			if(atak==true){
+				tiposJugadores="0";
+				actualizarLista(tiposJugadores);
+				atak=false;
+			}else if(def==true){
+				tiposJugadores="1";
+				actualizarLista(tiposJugadores);
+				def=false;
+			}else if(eqe==true){
+				tiposJugadores="2";
+				actualizarLista(tiposJugadores);
+				eqe=false;
+			}else{
+				mostrarLista();
+			}
 			return true;
 		default:
 			return super.onContextItemSelected(item);
@@ -276,8 +290,9 @@ public class PantallaListaJugadores extends Activity {
 
 	//Método para editar al jugador
 	private void editarJugador() {
-		int dorsal = getDorsal;
-		Intent i = new Intent(this,PantallaListaJugadores.class);
+		String dorsal = String.valueOf(getDorsal);
+		Intent i = new Intent(this,PopUpNuevoEditarJugador.class);
+		i.putExtra("action", "editar");
 		i.putExtra("dorsal", dorsal);
 		startActivity(i);
 	}
@@ -285,6 +300,7 @@ public class PantallaListaJugadores extends Activity {
 	//Método para agregar al jugador
 	private void agregarJugador() {
 		Intent i = new Intent(this, PopUpNuevoEditarJugador.class);
+		i.putExtra("action", "agregar");
 		startActivity(i);
 	}
 
