@@ -55,4 +55,17 @@ public class SentenciasSQLLoginScreen {
 		
 		return pregunta;
 	}
+	
+	public int obtenerIDEntrenador(String userName) {
+
+		// Ejcutamos la sentencia
+		SentenciasSelectSQLite.seleccionarSQLite("Entrenadores",
+				new String[] { "id_entrenador" }, "usuario='"+userName+"'");
+
+		// Obtenemos respuesta de existencia.
+		String[] valores = SentenciasSelectSQLite.getValores();
+		int ID = Integer.parseInt(valores[0]);
+		
+		return ID;
+	}
 }

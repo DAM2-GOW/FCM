@@ -1,9 +1,11 @@
 package gow.fcm.pantallas;
 
+import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNewUser;
 import gow.fcm.popups.PopUpRecoverPassword;
 import gow.fcm.sentencias.SentenciasSQLLoginScreen;
+import gow.fcm.sharefprefs.DatosFootball;
 import gow.fcm.utilidades.AnimatorLogin;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,24 +20,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginScreen extends Activity {
-	AnimatorLogin AL, AL2;
-	EditText et_username, et_password;
-	SentenciasSQLLoginScreen ssls;
+	private AnimatorLogin AL, AL2;
+	private EditText et_username, et_password;
+	private SentenciasSQLLoginScreen ssls;
+	private TextView tv_pass;
+	private Button btn_singIn, btn_singUp, btn_DEMO;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login_screen);
+		
+		//Se crea la base de datos si no existe o se actualiza.
+		ConexionSQLite.getCrearSQLite(this);
+				
 		ssls = new SentenciasSQLLoginScreen();
 		et_username = (EditText) findViewById(R.id.editText_username);
 		et_password = (EditText) findViewById(R.id.editText_password);
-		TextView tv_pass = (TextView) findViewById(R.id.textView_recover_pass);
-		Button btn_singIn = (Button) findViewById(R.id.btn_singIn);
-		Button btn_singUp = (Button) findViewById(R.id.btn_singUp);
+		tv_pass = (TextView) findViewById(R.id.textView_recover_pass);
+		btn_singIn = (Button) findViewById(R.id.btn_singIn);
+		btn_singUp = (Button) findViewById(R.id.btn_singUp);
+		btn_DEMO = (Button) findViewById(R.id.btn_demo);
+		
+		// Contenido para slideShow de imagenes.
 		View myView1 = (View) findViewById(R.id.view_image1);
 		View myView2 = (View) findViewById(R.id.view_image2);
-		
 		AL = new AnimatorLogin(this, getApplicationContext(), myView1, true);
 		AL2 = new AnimatorLogin(this, getApplicationContext(), myView2, false);
 		
@@ -43,11 +53,6 @@ public class LoginScreen extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// Detenemos los hilos que ejecutan la animacion.
-				AL.stopThread();
-				AL2.stopThread();
-				//AL = null;
-				//AL2 = null;
 				
 				// Comprobamos los campos.
 				String username = et_username.getText().toString();
@@ -65,8 +70,18 @@ public class LoginScreen extends Activity {
 					// Comprobar en la DB si se corresponde la contraseña con el usuario dado.
 					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_password_not_match), Toast.LENGTH_SHORT).show();
 				}else{
+					// Detenemos los hilos que ejecutan la animacion.
+					AL.stopThread();
+					AL2.stopThread();
+					//AL = null;
+					//AL2 = null;
+					
 					// Si todo esta correcto, entrar a la pantalla principal y poner entrenador definido por el usuario
 					// en las sharedPrefs. Context menu para preguntar por equipo a usar.
+					// AQUI EL CONTEXTMENU PREGUNTANDO POR EQUIPOA USAR.
+					int entrenadorID = ssls.obtenerIDEntrenador(username);
+					//DatosFootball.setDatosFootball(getApplicationContext(), idTeam, entrenadorID);
+					
 					Intent i = new Intent(getApplicationContext(), PaginaPrincipal.class);
 					startActivity(i);
 				}
@@ -90,6 +105,16 @@ public class LoginScreen extends Activity {
 				// Se abre un pop-up para recuperar la contraseña.
 				Intent i = new Intent(getApplicationContext(), PopUpRecoverPassword.class);
 				startActivityForResult(i, 002);
+			}
+		});
+		
+		btn_DEMO.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// Aqui se podra iniciar una sesion de prueba en la aplicacion con
+				// un entrenador y un equipo con varios datos para consulta.
+				
 			}
 		});
 	}
