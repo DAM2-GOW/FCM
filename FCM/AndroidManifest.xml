@@ -21,9 +21,10 @@
         android:theme="@style/AppTheme" >
         
         <activity
-            android:name="gow.fcm.pantallas.PaginaPrincipal"
+            android:name="gow.fcm.pantallas.LoginScreen"
             android:label="@string/title_activity_login_entrenador"
-            android:screenOrientation="landscape" android:windowSoftInputMode="stateHidden">
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden">
             
             <intent-filter>
                 
@@ -36,8 +37,9 @@
         </activity>
         
         <activity
-            android:name="gow.fcm.pantallas.LoginScreen"
-            android:label="@string/title_activity_pop_up_new_user" />
+            android:name="gow.fcm.pantallas.PaginaPrincipal"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" />
         
         <activity
             android:name="gow.fcm.pantallas.PaginaCalendario"
@@ -105,11 +107,15 @@
             android:screenOrientation="landscape" />
         
         <activity android:name="gow.fcm.popups.PopUpNewUser"
-            android:label="@string/app_name"
-            android:screenOrientation="landscape" android:theme="@style/PopupTheme"/>
+            android:label="@string/title_activity_pop_up_new_user"
+            android:screenOrientation="landscape"
+            android:theme="@style/PopupTheme"/>
         
         
-        <activity android:name="gow.fcm.popups.PopUpRecoverPassword" android:label="@string/title_activity_popup_recover_password" android:theme="@style/PopupTheme"></activity>
+        <activity
+            android:name="gow.fcm.popups.PopUpRecoverPassword"
+            android:label="@string/title_activity_popup_recover_password"
+            android:theme="@style/PopupTheme" />
         
     </application>
     

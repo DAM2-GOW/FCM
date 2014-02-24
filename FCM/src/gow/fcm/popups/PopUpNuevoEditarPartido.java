@@ -3,7 +3,6 @@ package gow.fcm.popups;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
@@ -54,7 +53,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		showAsPopup(this); //Llama al método que pone el activity en modo ventana PopuP
+		showAsPopup(this); //Llama al método que pone el activity en modo ventana Popup
 		setContentView(R.layout.activity_popup_nuevo_editar_partido);
 		
 		Intent i=getIntent();
@@ -80,12 +79,12 @@ public class PopUpNuevoEditarPartido extends Activity {
 			rival.setText(rivalMatch);
 		}
 		
-		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
+		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD
 		ConexionSQLite.getCrearSQLite(this);
 		DatosFootball.getDatosFootball(this);
 		final int id_equipo = DatosFootball.getIdEquipo();
 		
-		//Modificamos el diseño de la fecha para que no se muestre un calendario.
+		//Modificamos el diseño de la fecha para que no se muestre un calendario
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 	        dp.setCalendarViewShown(false);
 	    }
@@ -97,12 +96,12 @@ public class PopUpNuevoEditarPartido extends Activity {
 			dp.setMaxDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
 		}else if(accion.equals("editar")){
 			//Obtenemos los datos
-			String diaMatch=SentenciasSQLiteNuevoEditarPartido.getDiaPartido();
+			String dayMatch=SentenciasSQLiteNuevoEditarPartido.getDiaPartido();
 			
 			//Pasamos la fecha seleccionada a milisegundos
 			Date date=null;
 			try{
-				date=formato.parse(diaMatch);
+				date=formato.parse(dayMatch);
 			}catch (ParseException e){
 				e.printStackTrace();
 			}
@@ -112,7 +111,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 			dp.setMaxDate(fechas); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
 		}
 		
-		//Modificamos el diseño de la hora para que este en formato 24H.
+		//Modificamos el diseño de la hora para que este en formato 24H
 		tp.setIs24HourView(true);
 		
 		//Pasamos la fecha seleccionada a milisegundos
@@ -141,7 +140,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 			//Obtenemos los minutos
 			String minutosPartido="";
 			for(int num=0;num<=1;num++){
-				int index=hora.indexOf(":");
+				int index=hora.indexOf(":")+1;
 				minutosPartido=minutosPartido.concat(String.valueOf(hora.charAt(num+index)));
 				minutosPartido=minutosPartido.replace(":","");
 			}
@@ -178,7 +177,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 		
 		tp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
 		
-		//Guardamos el partido en el calendario recogiendo los datos pertinentes.
+		//Guardamos el partido en el calendario recogiendo los datos pertinentes
 		bt.setOnClickListener(new OnClickListener(){
 			 
             @Override
@@ -213,7 +212,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
+		// Inflate the menu; this adds items to the action bar if it is present
 		getMenuInflater().inflate(R.menu.pop_up_nuevo_partido, menu);
 		MenuItem item = menu.findItem(R.id.action_settings);
 		item.setVisible(false);
@@ -222,7 +221,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 	
 	//Metodo que hace mostrar el activity como PopUp.
 	public static void showAsPopup(Activity activity) {
-		activity.requestWindowFeature(Window.FEATURE_ACTION_BAR); // Esta caracteristica habilita la barra (menu) en el Pop-Up.
+		activity.requestWindowFeature(Window.FEATURE_ACTION_BAR); // Esta caracteristica habilita la barra (menu) en el Pop-Up
 		activity.getWindow().setFlags(
 				WindowManager.LayoutParams.FLAG_DIM_BEHIND,
 				WindowManager.LayoutParams.FLAG_DIM_BEHIND); // Marcamos activity para habilitar opciones diversas.

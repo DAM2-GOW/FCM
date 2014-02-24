@@ -2,11 +2,12 @@ package gow.fcm.popups;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
+import gow.fcm.sentencias.SentenciasSQLiteNuevoEditarEntrenamiento;
+import gow.fcm.sentencias.SentenciasUpdateSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,8 +39,9 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 	private DatePicker dp;
 	private Spinner sp;
 	private Button bt;
-	private EditText titulEntrenamiento;
-	private String stringTipoEntrenamiento, fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event";
+	private EditText titulEntrenamiento, observacionesEntrenamiento;
+	private String stringTipoEntrenamiento, fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event", varAccion="action", times;
+	private int hour,min; //Variables que almacenan la hora del sistema o del evento
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
 	
@@ -51,30 +53,60 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 		return fecha;
 	}
 	
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		showAsPopup(this); //Llama al método que pone el activity en modo ventana PopuP.
+		showAsPopup(this); //Llama al método que pone el activity en modo ventana Popup
 		setContentView(R.layout.activity_popup_nuevo_editar_entrenamiento);
 		
 		Intent i=getIntent();
 		final long fecha=i.getExtras().getLong(varFechaEvento);
+		final String accion=i.getExtras().getString(varAccion);
 		
-		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD.
+		//Declaramos los elementos a usar por el Popup
+		titulEntrenamiento = (EditText) findViewById(R.id.titulo_entrenamientoNuevo);
+		sp = (Spinner)findViewById(R.id.tipo_entrenamientoNuevo);
+		dp = (DatePicker) findViewById(R.id.fecha_entrenamientoNuevo);
+		tp = (TimePicker) findViewById(R.id.hora_entrenamientoNuevo);
+		observacionesEntrenamiento=(EditText) findViewById(R.id.observacionesEntrenamientoNuevo);
+		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);
+		
+		if(accion.equals("editar")){
+			times=formato.format(fecha);
+			SentenciasSQLiteNuevoEditarEntrenamiento.getDatosEditarEntrenamiento(this,times);
+			
+			//Obtenemos los datos
+			String targetTraining=SentenciasSQLiteNuevoEditarEntrenamiento.getDirigidoEntrenamiento();
+			String observationsTraining=SentenciasSQLiteNuevoEditarEntrenamiento.getObservaciones();
+			
+			titulEntrenamiento.setText(targetTraining);
+			observacionesEntrenamiento.setText(observationsTraining);
+		}
+		
+		//Llama a las clases necesarias para recoger los datos y guardarlos en la BD
 		ConexionSQLite.getCrearSQLite(this);
 		DatosFootball.getDatosFootball(this);
-		
 		final int id_equipo = DatosFootball.getIdEquipo();
-		titulEntrenamiento = (EditText) findViewById(R.id.titulo_entrenamientoNuevo);
 		
-		//Array de tipos de entrenamiento para poder seleccionar.
+		//Array de tipos de entrenamiento para poder seleccionar
 		ArrayAdapter<CharSequence> adaptador = ArrayAdapter.createFromResource(this, R.array.TipoEntrenamiento, android.R.layout.simple_spinner_item);
-		sp = (Spinner)findViewById(R.id.tipo_entrenamientoNuevo);
 		sp.setAdapter(adaptador);
+		
+		//Obtenemos la posición que ocupa en el spinner el tipo de entrenamiento
+		String typeTraining=SentenciasSQLiteNuevoEditarEntrenamiento.getTipoEntrenamiento(); //Obtenemos los datos
+		int indice=0;
+		for(int num=0;num<sp.getCount();num++){
+			if(sp.getItemAtPosition(num).equals(typeTraining)){
+				indice=num;
+			}
+		}
+		
+		sp.setSelection(indice); //Indicamos la posición o valor del spinner
 		
 		sp.setOnItemSelectedListener(new OnItemSelectedListener() {
 			
-			//Cuando selecciones el spinner se guarda en un String.
+			//Cuando selecciones el spinner se guarda en un String
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				stringTipoEntrenamiento = sp.getSelectedItem().toString();				
@@ -85,18 +117,34 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 			}
 		});
 		
-		//Modificamos el diseño de la fecha para que no se muestre un calendario.
-		dp = (DatePicker) findViewById(R.id.fecha_entrenamientoNuevo);
+		//Modificamos el diseño de la fecha para que no se muestre un calendario
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 	        dp.setCalendarViewShown(false);
 	    }
 		
 		dp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
-		dp.setMinDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la mínima
-		dp.setMaxDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
 		
-		//Modificamos el diseño de la hora para que este en formato 24H.
-		tp = (TimePicker) findViewById(R.id.hora_entrenamientoNuevo);
+		if(accion.equals("agregar")){
+			dp.setMinDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la mínima
+			dp.setMaxDate(fecha); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
+		}else if(accion.equals("editar")){
+			//Obtenemos los datos
+			String dayTraining=SentenciasSQLiteNuevoEditarEntrenamiento.getDiaEntrenamiento();
+			
+			//Pasamos la fecha seleccionada a milisegundos
+			Date date=null;
+			try{
+				date=formato.parse(dayTraining);
+			}catch (ParseException e){
+				e.printStackTrace();
+			}
+			long fechas=date.getTime(); //Guardamos la fecha en formato long
+			
+			dp.setMinDate(fechas); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la mínima
+			dp.setMaxDate(fechas); //Obtenemos la fecha del dia seleccionado en el calendario y la ponemos como la máxima
+		}
+		
+		//Modificamos el diseño de la hora para que este en formato 24H
 		tp.setIs24HourView(true);
 		
 		//Pasamos la fecha seleccionada a milisegundos
@@ -107,20 +155,48 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 		}catch (ParseException e){
 			e.printStackTrace();
 		}
-		final long fechas=date.getTime(); //Guardamos la fecha en formato long
-
-		//Obtenemos la hora y minutos actuales
-		Calendar cal=Calendar.getInstance();
-		final int hour=cal.get(Calendar.HOUR_OF_DAY);
-		tp.setCurrentHour(hour); //Especificamos la hora actual para el formato de 24 horas
-		final int min=cal.get(Calendar.MINUTE);
+		final long fechasMilis=date.getTime(); //Guardamos la fecha en formato long
+		
+		if(accion.equals("agregar")){
+			Date horaActual=new Date(System.currentTimeMillis());
+			SimpleDateFormat formato=new SimpleDateFormat("HH:mm:ss"); //Formato de conversión a hora
+			String hora=formato.format(horaActual);
+			
+			//Obtenemos la hora
+			String horaEntrenamiento="";
+			for(int num=0;num<=1;num++){
+				horaEntrenamiento=horaEntrenamiento.concat(String.valueOf(hora.charAt(num+0)));
+				horaEntrenamiento=horaEntrenamiento.replace(":","");
+			}
+			hour=Integer.parseInt(horaEntrenamiento);
+			
+			//Obtenemos los minutos
+			String minutosEntrenamiento="";
+			for(int num=0;num<=1;num++){
+				int index=hora.indexOf(":")+1;
+				minutosEntrenamiento=minutosEntrenamiento.concat(String.valueOf(hora.charAt(num+index)));
+				minutosEntrenamiento=minutosEntrenamiento.replace(":","");
+			}
+			min=Integer.parseInt(minutosEntrenamiento);
+			
+			tp.setCurrentHour(hour); //Especificamos la hora actual para el formato de 24 horas
+			tp.setCurrentMinute(min); //Especificamos la hora actual para el formato de 24 horas
+		}else if(accion.equals("editar")){
+			//Obtenemos los datos
+			hour=Integer.parseInt(SentenciasSQLiteNuevoEditarEntrenamiento.getHoraEntrenamiento());
+			min=Integer.parseInt(SentenciasSQLiteNuevoEditarEntrenamiento.getMinutosEntrenamiento());
+			
+			tp.setCurrentHour(hour); //Especificamos la hora actual para el formato de 24 horas
+			tp.setCurrentMinute(min); //Especificamos la hora actual para el formato de 24 horas
+		}
+		
 		horaMinuto=String.valueOf(hour)+":"+String.valueOf(min)+":00"; //Almacenamos la hora actual para que se guarde un valor null
 		
 		tp.setOnTimeChangedListener(new OnTimeChangedListener() {
 			@Override
 			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 				//Si la fecha coincide con la actual, ponemos la hora actual como mínima
-				if(fechas==fecha){
+				if(fechasMilis==fecha){
 					if(hourOfDay<hour){
 						tp.setCurrentHour(hour);
 					}else if(minute<min){
@@ -132,12 +208,9 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 			}
 		});
 		
-		tp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano 
+		tp.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); //Evitamos que el usuario lo cambie a mano
 		
-		final EditText observacionesEntrenamiento=(EditText) findViewById(R.id.observacionesEntrenamientoNuevo); //Declaramos el texto observaciones
-		
-		//Cuando le des al boton se guardan los datos en la BD y se va a la configuración del mismo entrenamiento nuevo creado.
-		bt = (Button) findViewById(R.id.guardarEntrenamientoNuevo);
+		//Cuando le des al boton se guardan los datos en la BD y se va a la configuración del mismo entrenamiento nuevo creado
 		bt.setOnClickListener(new OnClickListener(){
 			 
             @Override
@@ -158,8 +231,12 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
             		
             		fechaEntrenamiento = fechaEntrenamiento.concat(anyoEntrenamiento+"-").concat(mesEntrenamiento+"-").concat(diaEntrenamiento);
             		
-            		SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha","observaciones"}, new String[]{String.valueOf(id_equipo),stringTipoEntrenamiento,titulEntrenamiento.getText().toString(),fechaEntrenamiento,fechaEntrenamiento+" "+horaMinuto,observacionesEntrenamiento.getText().toString()});
-                	PopUpNuevoEditarEntrenamiento.this.finish();
+            		if(accion.equals("agregar")){
+            			SentenciasInsertSQLite.insertarSQLite("Entrenamientos", new String[]{"id_equipo","tipo","dirigido","dia","fecha","observaciones"}, new String[]{String.valueOf(id_equipo),stringTipoEntrenamiento,titulEntrenamiento.getText().toString(),fechaEntrenamiento,fechaEntrenamiento+" "+horaMinuto,observacionesEntrenamiento.getText().toString()});
+            		}else if(accion.equals("editar")){
+            			SentenciasUpdateSQLite.actualizarSQLite("Entrenamientos", new String[]{"tipo","dirigido","fecha","observaciones"}, new String[]{stringTipoEntrenamiento,titulEntrenamiento.getText().toString(),fechaEntrenamiento+" "+horaMinuto,observacionesEntrenamiento.getText().toString()},"id_equipo="+id_equipo+" AND dia='"+times+"'");
+            		}
+            		PopUpNuevoEditarEntrenamiento.this.finish();
             	}
             }
 		});
@@ -167,7 +244,7 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
+		// Inflate the menu; this adds items to the action bar if it is present
 		getMenuInflater().inflate(R.menu.pop_up_nuevo_entrenamiento, menu);
 		MenuItem item = menu.findItem(R.id.action_settings);
 		item.setVisible(false);

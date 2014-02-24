@@ -2,7 +2,6 @@ package gow.fcm.sentencias;
 
 import gow.fcm.basedatos.ConexionSQLite;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public class SentenciasUpdateSQLite{
 	
@@ -25,7 +24,6 @@ public class SentenciasUpdateSQLite{
 		
 		//Ejcutamos la sentencia
 		String sentencia="UPDATE "+tabla+" SET "+actual+" WHERE "+condicion+";";
-		Log.d("Hola", sentencia);
 		bd.execSQL(sentencia);
 		
 		ConexionSQLite.getCerrarSQLite(); //Cerramos la conexión
