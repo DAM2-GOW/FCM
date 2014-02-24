@@ -60,10 +60,10 @@ public class LoginScreen extends Activity {
 					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_password_null), Toast.LENGTH_SHORT).show();
 				}else if(ssls.comprobarNombreUsuario(username)==0){
 					// Comprobar en la DB si existe el usuario.
-					Toast.makeText(getApplicationContext(), "El nombre de usuario no existe", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_username_not_exist), Toast.LENGTH_SHORT).show();
 				}else if(ssls.comprobarPasswordUsuario(username, pass)==0){
 					// Comprobar en la DB si se corresponde la contraseña con el usuario dado.
-					Toast.makeText(getApplicationContext(), "La contraseña no se corresponde con el usuario", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_password_not_match), Toast.LENGTH_SHORT).show();
 				}else{
 					// Si todo esta correcto, entrar a la pantalla principal y poner entrenador definido por el usuario
 					// en las sharedPrefs. Context menu para preguntar por equipo a usar.

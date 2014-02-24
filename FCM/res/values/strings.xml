@@ -193,17 +193,26 @@
     <string name="title_activity_pantalla_perfil_entrenador">Perfil Entrenador</string>
     <string name="login_screen_textview_signin">Introduzca Usuario</string>
     <string name="login_screen_btn_singin">Iniciar</string>
-    <string name="login_screen_btn_signup">Registrarse</string>
+    <string name="login_screen_btn_signup">Crear cuenta</string>
     <string name="login_screen_textview_password">Escriba su contraseña</string>
     <string name="login_screen_toast_username_null">No ha introducido ningun usuario</string>
     <string name="login_screen_toast_password_null">No ha introducido la contraseña</string>
-    <string name="title_activity_pop_up_new_user">PopUpNewUser</string>
+    <string name="title_activity_pop_up_new_user">Crear nuevo usuario</string>
     <string name="login_screen_toast_new_user_cancel">Se ha cancelado la creación de un nuevo usuario</string>
     <string name="login_screen_toast_new_user_complete">Nuevo Usuario creado, ahora puede acceder</string>
     <string name="login_screen_toast_recover_password">Ahora usa tu contraseña recuperada para iniciar</string>
     <string name="login_screen_toast_recover_password_cancel">Se ha cancelado la recuperacion de contraseña</string>
-    <string name="title_activity_popup_recover_password">PopupRecoverPassword</string>
+    <string name="title_activity_popup_recover_password">Recuperar contraseña perdida</string>
     <string name="title_activity_login_entrenador">PopupRecoverPassword</string>
     <string name="login_screen_textview_recover_pass">Pulsa aqui para recuperar la contraseña</string>
+    <string name="login_screen_toast_surname_null">El campo apellidos está vacío</string>
+    <string name="login_screen_toast_username_in_use">El nombre de usuario ya existe. ¿Has perdido la contraseña?</string>
+    <string name="login_screen_toast_password_repeat_null">El campo repetición de contraseña está vacío</string>
+    <string name="login_screen_toast_passwords_verification">No ha escrito la repetición de contraseña igual que la contraseña</string>
+    <string name="login_screen_toast_security_answer_null">El campo respuesta de seguridad está vacío</string>
+    <string name="login_screen_toast_new_username_null">El campo nombre está vacío</string>
+    <string name="login_screen_toast_new_password_null">El campo contraseña está vacío</string>
+    <string name="login_screen_toast_username_not_exist">El nombre de usuario no existe</string>
+    <string name="login_screen_toast_password_not_match">La contraseña no se corresponde con el usuario</string>
 
 </resources>

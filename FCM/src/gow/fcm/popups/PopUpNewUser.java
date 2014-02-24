@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class PopUpNewUser extends Activity {
 	ImageView new_user_pic_preview;
@@ -55,29 +56,29 @@ public class PopUpNewUser extends Activity {
 				
 				if((name == null) || (name.equals(""))){
 					// Se comprueba que el nombre tenga contenido.
-					
+					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_new_username_null), Toast.LENGTH_SHORT).show();
 				}else if((surName == null) || (surName.equals(""))){
 					// Se comprueba que los apellidos tengan contenido.
-					
+					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_surname_null), Toast.LENGTH_SHORT).show();
 				}else if((user == null) || (user.equals(""))){
 					// Se comprueba que el usuario tenga contenido.
-					
+					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_username_null), Toast.LENGTH_SHORT).show();
 				}else if(ssls.comprobarNombreUsuario(user)==1){
 					// Se comprueba que el usuario no extista actualmente.
-					
+					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_username_in_use), Toast.LENGTH_SHORT).show();
 				}else if((password == null) || (password.equals(""))){
 					// Se comprueba que la contraseña tenga contenido.
-					
+					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_new_password_null), Toast.LENGTH_SHORT).show();
 				}else if((passwordRepeat == null) || (passwordRepeat.equals(""))){
 					// Se comprueba que la repeticion de contraseña tenga contenido.
-					
+					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_password_repeat_null), Toast.LENGTH_SHORT).show();
 				}else if(!password.equals(passwordRepeat)){
 					// Se comprueba que la repeticion de contraseña sea identica a la
 					// contraseña escrita.
-					
+					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_passwords_verification), Toast.LENGTH_SHORT).show();
 				}else if((securityAnswer == null) || (securityAnswer.equals(""))){
 					// Se comprueba que la respuesta de seguridad tenga contenido.
-					
+					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_security_answer_null), Toast.LENGTH_SHORT).show();
 				}else{
 					// Se aceptan los campos y se almacena en la DB el nuevo usuario.
 					
