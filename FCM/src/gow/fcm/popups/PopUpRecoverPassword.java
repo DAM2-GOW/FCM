@@ -3,6 +3,7 @@ package gow.fcm.popups;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasSQLLoginScreen;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -36,6 +37,7 @@ public class PopUpRecoverPassword extends Activity {
 		acces1 = (Button) findViewById(R.id.btnConfirmar1);
 		acces2 = (Button) findViewById(R.id.btnConfirmar2);
 		btn_volver = (Button) findViewById(R.id.btn_volver);
+		mostrarPassword = (TextView) findViewById(R.id.textView_show_password);
 		
 		// Se bloquean las secciones para abrirlas segun se avance.
 		acces2.setEnabled(false);
@@ -87,6 +89,17 @@ public class PopUpRecoverPassword extends Activity {
 				}	
 			}
 		});
+		
+		btn_volver.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// Se cierra la ventana.
+				Intent i = new Intent();
+				setResult(RESULT_OK, i);
+				PopUpRecoverPassword.this.finish();
+			}
+		});
 	}
 
 	@Override
@@ -108,8 +121,8 @@ public class PopUpRecoverPassword extends Activity {
 		activity.requestWindowFeature(Window.FEATURE_ACTION_BAR); // Esta caracteristica habilita la barra (menu) en el Pop-Up.
 		activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND,WindowManager.LayoutParams.FLAG_DIM_BEHIND); // Marcamos activity para habilitar opciones diversas.
 		LayoutParams params = activity.getWindow().getAttributes(); // Obtenemos objeto de configuracion del Activity.
-		params.height = 700; // Adaptamos el tamaño en altura segun componentes del XML.
-		params.width = 1200; // Fijamos el tamaño en anchura.
+		params.height = 500; // Adaptamos el tamaño en altura segun componentes del XML.
+		params.width = 1000; // Fijamos el tamaño en anchura.
 		params.alpha = 1.0f; // Podemos otorgarle transparencia al Pop-Up.
 		params.dimAmount = 0.5f; // Fijamos el nivel de oscuridad para el activity de fondo.
 		activity.getWindow().setAttributes(params); // Aplicamos los valores establecidos al Activity.

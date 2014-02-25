@@ -48,9 +48,6 @@ public class PaginaCalendario extends Activity{
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE); //No mostramos la barra de la cabecera con el nombre de la aplicación
 		setContentView(R.layout.pagina_calendario);
 		
-		//Se crea la base de datos si no existe o se actualiza si fuera necesario
-		ConexionSQLite.getCrearSQLite(this);
-		
 		//Método que mostrará los eventos del calendario
 		mostrarEventos();
 	}

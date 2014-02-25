@@ -42,9 +42,6 @@ public class PantallaListaJugadores extends Activity {
 		// nombre de la
 		// aplicación
 		setContentView(R.layout.activity_lista_jugadores);
-		
-		// Se crea la base de datos si no existe o se actualiza si fuera necesario
-		ConexionSQLite.getCrearSQLite(this);
 
 		//DatosFootball.setDatosFootball(this,1,1);
 		//SentenciasInsertSQLite.insertarSQLite("Equipos",new String[]{"nombre"},new String[]{"Pepe Team"});

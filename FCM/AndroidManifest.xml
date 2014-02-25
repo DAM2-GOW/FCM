@@ -50,7 +50,7 @@
             android:name="gow.fcm.popups.PopupPizarraDigital"
             android:label="@string/title_popup_blackboard"
             android:screenOrientation="landscape"
-            android:theme="@style/PopupTheme" />
+            android:theme="@style/PopupTheme" android:logo="@drawable/action_bar_blackboard"/>
         
         <activity
             android:name="gow.fcm.popups.PopUpNuevoEditarJugador"
@@ -95,12 +95,12 @@
         
         <activity
             android:name="gow.fcm.popups.PopUpPlayersSelector"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" android:label="@string/title_popup_player_selector"/>
         
         <activity
             android:name="gow.fcm.pantallas.PantallaPerfilEntrenador"
             android:label="@string/title_activity_pantalla_perfil_entrenador"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" android:windowSoftInputMode="stateHidden"/>
         
         <activity
             android:name="gow.fcm.pantallas.DetalleCalendario"

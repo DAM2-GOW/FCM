@@ -120,6 +120,8 @@
         <item>RB</item>
         <item>HB</item>
         <item>FB</item>
+        <item>WR</item>
+        <item>TE</item>
     </string-array>
     <string-array name="PosicionDefensa">
         <item>DT</item>
@@ -133,7 +135,6 @@
     <string-array name="PosicionEE">
         <item>K</item>
         <item>P</item>
-        <item>R</item>
     </string-array>
 
     <string name="player_list">Lista de jugadores</string>
@@ -224,5 +225,6 @@
     <string name="popup_new_user_toast_team_name_null">El campo nombre del equipo está vacío</string>
     <string name="login_screen_toast_secret_answer_not_match">La respuesta secreta no se corresponde</string>
     <string name="popup_recover_password_textview_secret_answer">Su respuesta:</string>
+    <string name="title_popup_player_selector">Seleccione Jugadores</string>
 
 </resources>

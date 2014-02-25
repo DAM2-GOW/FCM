@@ -48,7 +48,7 @@ public class PlayingGround extends Activity implements OnSelectStartingPlayers, 
 		
 		flTopLeft = (FrameLayout) findViewById(R.id.FrameLayoutTopLeft);
 		flBottom = (LinearLayout) findViewById(R.id.LinearLayoutBottom);
-		
+		sentences = new SentenciasSQLitePlayingGround(this);
 		fm = getFragmentManager();
 		fssp = new FragmentSelectStartingPlayers();
 		ffe = new FragmentFinishEvent();
@@ -69,25 +69,7 @@ public class PlayingGround extends Activity implements OnSelectStartingPlayers, 
 				
 			}
 		});
-		
-				
-		/*******************************************
-				
-		// Se loguea un entrenador y equipo asociado.
-		DatosFootball.setDatosFootball(this,1,1);
-		
-		// Se rellena la base de datos.
-		String[] data_position = { "QB", "DL", "RB", "DL", "WR", "S", "RB", "QB", "WR", "S", "QB", "DL", "RB", "DL", "WR", "S", "RB", "QB", "WR", "S"};
-		int[] data_type = { 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1};
-		int[] data_num = { 8, 17, 45, 12, 54, 43, 57, 16, 45, 67, 28, 56, 21, 22, 23, 41, 42, 78, 87, 98};
-		SentenciasInsertSQLite.insertarSQLite("Equipos",new String[]{"nombre"},new String[]{"Mismo"});
-		SentenciasInsertSQLite.insertarSQLite("Entrenadores",new String[]{"id_equipo","nombre","apellidos","usuario","clave","pregunta_seguridad","respuesta_seguridad"},new String[]{"1","Pepe","García","pepe","1234","1","Chispi"});
-		for(int i = 0;i < data_type.length;i++){
-			SentenciasInsertSQLite.insertarSQLite("Jugadores",new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"},new String[]{"1","Nombre "+i,"Apellidos "+i,"22",data_position[i],String.valueOf(data_type[i]),String.valueOf(data_num[i])});
-		}
-		
-		************************************************/
-		sentences = new SentenciasSQLitePlayingGround(this); // Esto va arriba, pero por DEV se pone abajo.
+
 	}
 
 	@Override
