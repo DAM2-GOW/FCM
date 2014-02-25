@@ -95,7 +95,7 @@
         
         <activity
             android:name="gow.fcm.popups.PopUpPlayersSelector"
-            android:screenOrientation="landscape" android:label="@string/title_popup_player_selector"/>
+            android:screenOrientation="landscape" android:label="@string/title_popup_player_selector" android:theme="@style/PopupTheme"/>
         
         <activity
             android:name="gow.fcm.pantallas.PantallaPerfilEntrenador"
