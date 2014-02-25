@@ -1,8 +1,11 @@
 package gow.fcm.sentencias;
 
+import gow.fcm.sharefprefs.DatosFootball;
 import android.content.Context;
 
 public class SentenciasSQLiteDatosJugador {
+	
+	private static String nombre, apellidos, edad, posicion, tipo, numero, foto;
 	
 	public static String getNombre() {
 		return nombre;
@@ -32,30 +35,23 @@ public class SentenciasSQLiteDatosJugador {
 		return foto;
 	}
 	
-	
-
-	private static String nombre, apellidos, edad, posicion, tipo, numero, foto;
-	
 	//Este método obtiene los datos del jugador
 		public static void getDatosJugador(Context contexto){
 			//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
 			SentenciasSelectSQLite.borrarTodosValores();
 			
 			//Obtenemos el identificador
-			
+			DatosFootball.getDatosFootball(contexto);
+			int idEquipo=DatosFootball.getIdEquipo();
 			
 			//Ejcutamos la sentencia
-			SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(*)"},"id_jugador = 1");
+			SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(*)"},"id_equipo="+idEquipo+"");
 			
 			//Obtenemos el número de valores
 			String[] valores=SentenciasSelectSQLite.getValores();
 			
-			
-			
-			
-			
 				//Ejcutamos la sentencia
-				SentenciasSelectSQLite.seleccionarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, "id_jugador = 1");
+				SentenciasSelectSQLite.seleccionarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, "id_equipo="+idEquipo+"");
 				//Almacenamos los valores
 				valores=SentenciasSelectSQLite.getValores();
 				nombre=valores[0];
@@ -65,8 +61,5 @@ public class SentenciasSQLiteDatosJugador {
 				tipo=valores[4];
 				numero=valores[5];
 				foto=valores[6];
-			
-			
 		}
-		
 }

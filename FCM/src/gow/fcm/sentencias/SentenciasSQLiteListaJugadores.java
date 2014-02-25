@@ -100,7 +100,7 @@ public class SentenciasSQLiteListaJugadores {
 			int id=DatosFootball.getIdEquipo();
 			
 			//Ejcutamos la sentencia
-			SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"id_jugador"},"id_equipo="+id+" AND dorsal="+dorsal+"");
+			SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"id_jugador"},"id_equipo="+id+" AND dorsal='"+dorsal+"'");
 			
 			//Almacenamos los valores
 			String[] valores=(String[]) SentenciasSelectSQLite.getValores();

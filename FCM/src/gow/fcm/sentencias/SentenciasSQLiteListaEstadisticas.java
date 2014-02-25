@@ -1,8 +1,11 @@
 package gow.fcm.sentencias;
 
+import gow.fcm.sharefprefs.DatosFootball;
 import android.content.Context;
 
 public class SentenciasSQLiteListaEstadisticas {
+	
+	private static String carreras, pases_completados, recepciones, fumbles, sacks, placajes, intercepciones, field_goals, punts, touchdowns, faltas, extra_points_completados, pt_conversions_completados;
 	
 	public static String getCarreras() {
 		return carreras;
@@ -56,27 +59,23 @@ public class SentenciasSQLiteListaEstadisticas {
 		return pt_conversions_completados;
 	}
 	
-	
-
-	
-	private static String carreras, pases_completados, recepciones, fumbles, sacks, placajes, intercepciones, field_goals, punts, touchdowns, faltas, extra_points_completados, pt_conversions_completados;
-	
 	//Este método obtiene los datos del jugador
 		public static void getDatosJugador(Context contexto){
 			//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
 			SentenciasSelectSQLite.borrarTodosValores();
 			
 			//Obtenemos el identificador
-			
+			DatosFootball.getDatosFootball(contexto);
+			int idEquipo=DatosFootball.getIdEquipo();
 			
 			//Ejcutamos la sentencia
-			SentenciasSelectSQLite.seleccionarSQLite("Estadisticas_Partidos",new String[]{"COUNT(*)"},"id_jugador = 1");
+			SentenciasSelectSQLite.seleccionarSQLite("Estadisticas_Partidos",new String[]{"COUNT(*)"},"id_equipo="+idEquipo+"");
 			
 			//Obtenemos el número de valores
 			String[] valores;
 			
 				//Ejcutamos la sentencia
-				SentenciasSelectSQLite.seleccionarSQLite("Estadisticas_Partidos", new String[]{"carreras","pases_completados","recepciones","fumbles","sacks","placajes","intercepciones","field_goals","punts","touchdowns","faltas","extra_points_completados","2pt_conversions_completados"}, "id_jugador = 1");
+				SentenciasSelectSQLite.seleccionarSQLite("Estadisticas_Partidos", new String[]{"carreras","pases_completados","recepciones","fumbles","sacks","placajes","intercepciones","field_goals","punts","touchdowns","faltas","extra_points_completados","2pt_conversions_completados"},"id_equipo="+idEquipo+"");
 				//Almacenamos los valores
 				valores=SentenciasSelectSQLite.getValores();
 				carreras = valores[0];
