@@ -362,9 +362,14 @@ public class PopUpNuevoEditarJugador extends Activity {
 			if(fotoJugador==null & rutaImagen==null){
 				imgPhoto.setImageResource(R.drawable.no_coach_photo);
 			}else if(fotoJugador!=null){
-				rutaImagen=fotoJugador;
-				imgPhoto.setImageURI(Uri.parse(rutaImagen));
-				rutaImagen=null; //Reseta a null el valor
+				if(rutaImagen!=null){
+					imgPhoto.setImageURI(Uri.parse(rutaImagen));
+					rutaImagen=null; //Reseta a null el valor
+				}else{
+					rutaImagen=fotoJugador;
+					imgPhoto.setImageURI(Uri.parse(rutaImagen));
+					rutaImagen=null; //Reseta a null el valor
+				}
 			}else if(rutaImagen!=null){
 				imgPhoto.setImageURI(Uri.parse(rutaImagen));
 				rutaImagen=null; //Reseta a null el valor
