@@ -29,6 +29,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 	private ViewGroup container;
 	private LayoutInflater inflater;
 	SentenciasSQLitePlayingGround sentences;
+	private int np_num;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -123,6 +124,8 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					view = inflater.inflate(R.layout.fragment_dim2_opt12att_opt12def_opt1234ee,
 							container, false);
 					final NumberPicker np0 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
+					final Button btn_next = (Button) view.findViewById(R.id.btn_np_next);
+					btn_next.setActivated(false);
 					np0.setMaxValue(100);
 					np0.setMinValue(0);
 					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
@@ -130,16 +133,29 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 						
 						@Override
 						public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-							// TODO Auto-generated method stub
-							Log.d("MARCADOR", "+6 PUNTOS");
-							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+							// Recoge el numero del numberpicker.
+							np_num = newVal;
+							btn_next.setActivated(true);
 						}
 					});
+					
+					btn_next.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Al ser pulsado el boton envia los datos.
+							Log.d("MARCADOR", "+6 PUNTOS");
+							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(np_num)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+						}
+					});
+					
 					break;
 				case 1: // Seleccion yardas.
 					view = inflater.inflate(R.layout.fragment_dim2_opt12att_opt12def_opt1234ee,
 							container, false);
 					final NumberPicker np1 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
+					final Button btn_next1 = (Button) view.findViewById(R.id.btn_np_next);
+					btn_next1.setActivated(false);
 					np1.setMaxValue(100);
 					np1.setMinValue(0);
 					np1.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
@@ -147,8 +163,19 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 						
 						@Override
 						public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-							// Envia los datos.
-							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+							// Recoge el numero del numberpicker.
+							np_num = newVal;
+							btn_next1.setActivated(true);
+							
+						}
+					});
+					
+					btn_next1.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Al ser pulsado el boton envia los datos.
+							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(np_num)+" "+getString(R.string.playingGround_fragment_textView_numPick));
 						}
 					});
 					break;
@@ -230,6 +257,8 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					view = inflater.inflate(R.layout.fragment_dim2_opt12att_opt12def_opt1234ee,
 							container, false);
 					final NumberPicker np0 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
+					final Button btn_next = (Button) view.findViewById(R.id.btn_np_next);
+					btn_next.setActivated(false);
 					np0.setMaxValue(100);
 					np0.setMinValue(0);
 					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
@@ -237,8 +266,18 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 						
 						@Override
 						public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-							// Envia los resultados.
-							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+							// Recoge el numero del numberpicker.
+							np_num = newVal;
+							btn_next.setActivated(true);
+						}
+					});
+					
+					btn_next.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Al ser pulsado el boton envia los datos.
+							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(np_num)+" "+getString(R.string.playingGround_fragment_textView_numPick));
 						}
 					});
 					break;
@@ -246,7 +285,8 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					view = inflater.inflate(R.layout.fragment_dim2_opt12att_opt12def_opt1234ee,
 							container, false);
 					final NumberPicker np1 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
-					Log.d("MARCADOR", "DOWN A 1");
+					final Button btn_next1 = (Button) view.findViewById(R.id.btn_np_next);
+					btn_next1.setActivated(false);
 					np1.setMaxValue(100);
 					np1.setMinValue(0);
 					np1.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
@@ -254,8 +294,19 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 						
 						@Override
 						public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-							// Envia los resultados.
-							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+							// Recoge el numero del numberpicker.
+							np_num = newVal;
+							btn_next1.setActivated(true);
+						}
+					});
+					
+					btn_next1.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Al ser pulsado el boton envia los datos.
+							Log.d("MARCADOR", "DOWN A 1");
+							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(np_num)+" "+getString(R.string.playingGround_fragment_textView_numPick));
 						}
 					});
 					break;
@@ -290,8 +341,10 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 				case 0: // Seleccion yardas y suma 3 puntos.
 					view = inflater.inflate(R.layout.fragment_dim2_opt12att_opt12def_opt1234ee,
 							container, false);
-					Log.d("MARCADOR", "+3 PUNTOS");
+					
 					final NumberPicker np0 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
+					final Button btn_next = (Button) view.findViewById(R.id.btn_np_next);
+					btn_next.setActivated(false);
 					np0.setMaxValue(100);
 					np0.setMinValue(0);
 					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
@@ -299,33 +352,58 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 						
 						@Override
 						public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-							// Envia los resultados.
-							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+							// Recoge el numero del numberpicker.
+							np_num = newVal;
+							btn_next.setActivated(true);
+						}
+					});
+					
+					btn_next.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Al ser pulsado el boton envia los datos.
+							Log.d("MARCADOR", "+3 PUNTOS");
+							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(np_num)+" "+getString(R.string.playingGround_fragment_textView_numPick));
 						}
 					});
 					break;
 				case 1: // Seleccion yardas y suma 1 punto.
 					view = inflater.inflate(R.layout.fragment_dim2_opt12att_opt12def_opt1234ee,
 							container, false);
-					Log.d("MARCADOR", "+1 PUNTOS");
+					
 					final NumberPicker np1 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
+					final Button btn_next1 = (Button) view.findViewById(R.id.btn_np_next);
+					btn_next1.setActivated(false);
 					np1.setMaxValue(100);
 					np1.setMinValue(0);
 					np1.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 					np1.setOnValueChangedListener(new OnValueChangeListener() {
-						
 						@Override
 						public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-							// Envia los resultados.
-							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+							// Recoge el numero del numberpicker.
+							np_num = newVal;
+							btn_next1.setActivated(true);
+						}
+					});
+					
+					btn_next1.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Al ser pulsado el boton envia los datos.
+							Log.d("MARCADOR", "+1 PUNTOS");
+							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(np_num)+" "+getString(R.string.playingGround_fragment_textView_numPick));
 						}
 					});
 					break;
 				case 2: // Seleccion yardas y suma 2 puntos.
 					view = inflater.inflate(R.layout.fragment_dim2_opt12att_opt12def_opt1234ee,
 							container, false);
-					Log.d("MARCADOR", "+2 PUNTOS");
+					
 					final NumberPicker np2 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
+					final Button btn_next2 = (Button) view.findViewById(R.id.btn_np_next);
+					btn_next2.setActivated(false);
 					np2.setMaxValue(100);
 					np2.setMinValue(0);
 					np2.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
@@ -333,8 +411,19 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 						
 						@Override
 						public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-							// Envia los resultados.
-							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+							// Recoge el numero del numberpicker.
+							np_num = newVal;
+							btn_next2.setActivated(true);
+						}
+					});
+					
+					btn_next2.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Al ser pulsado el boton envia los datos.
+							Log.d("MARCADOR", "+2 PUNTOS");
+							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(np_num)+" "+getString(R.string.playingGround_fragment_textView_numPick));
 						}
 					});
 					break;
@@ -342,6 +431,8 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					view = inflater.inflate(R.layout.fragment_dim2_opt12att_opt12def_opt1234ee,
 							container, false);
 					final NumberPicker np3 = (NumberPicker) view.findViewById(R.id.numberPicker1Dim2);
+					final Button btn_next3 = (Button) view.findViewById(R.id.btn_np_next);
+					btn_next3.setActivated(false);
 					np3.setMaxValue(100);
 					np3.setMinValue(0);
 					np3.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
@@ -349,8 +440,18 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 						
 						@Override
 						public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-							// Envia los resultados.
-							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+							// Recoge el numero del numberpicker.
+							np_num = newVal;
+							btn_next3.setActivated(true);
+						}
+					});
+					
+					btn_next3.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// Al ser pulsado el boton envia los datos.
+							mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(np_num)+" "+getString(R.string.playingGround_fragment_textView_numPick));
 						}
 					});
 					break;
@@ -457,7 +558,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 						}
 					});
 					break;
-				case 3: // Condicional Si/No, selecciona de yardas y jugador involucrado.
+				case 3: // Condicional Si/No, seleccion de yardas y jugador involucrado.
 					view = inflater.inflate(R.layout.fragment_dim3_opt4att_opt3def_opt5ee,
 							container, false);
 					TextView tv2 = (TextView) view.findViewById(R.id.textView1Dim3);
@@ -568,7 +669,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 						}
 					});
 					break;
-				case 2: // Condicional Si/No, selecciona de yardas y jugador involucrado.
+				case 2: // Condicional Si/No, seleccion de yardas y jugador involucrado.
 					view = inflater.inflate(R.layout.fragment_dim3_opt4att_opt3def_opt5ee,
 							container, false);
 					TextView tv2 = (TextView) view.findViewById(R.id.textView1Dim3);
@@ -578,27 +679,55 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					np0.setMaxValue(100);
 					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
 					np0.setEnabled(false);
+					sentences.ObtenerDatosDelimitadosJugadores(getActivity().getApplicationContext(), this.getArguments().getIntArray("playersOnTheField")); // Mandamos la orden de obtener los datos de los jugadores.
+					String[] nombreApellidoJugadores = sentences.getNombreApellidos();
+					final Spinner sp = (Spinner) view.findViewById(R.id.spinnerDim3);
+					ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(),
+							android.R.layout.simple_spinner_item, nombreApellidoJugadores);
+					dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					sp.setAdapter(dataAdapter);
+					sp.setEnabled(false);
 					RadioGroup rgroup2 = (RadioGroup) view.findViewById(R.id.radioGroup1Dim3);
 					rgroup2.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 						
 						@Override
 						public void onCheckedChanged(RadioGroup group, int checkedId){
-							// Obtiene el numero del RadioButton que se ha pulsado.
+							// Obtiene el numero del RadioButton que se ha pulsado y habilita el numberPicker.
 							int rbtnID = group.indexOfChild(group.findViewById(group.getCheckedRadioButtonId())); // Numero de rbtn.
 							//Log.d("BOTON", ">> "+rbtnID);
 							if(rbtnID==0){
 								np0.setEnabled(true);
 								np0.setOnValueChangedListener(new OnValueChangeListener() {
 									@Override
-									public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-										// Envia los datos del condicional y las yardas.
-										mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_4)+" "+getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+									public void onValueChange(NumberPicker picker, int oldVal, final int newVal) {
+										// Habilita el desplegable.
+										sp.setEnabled(true);
+										sp.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+											@Override
+											public void onItemSelected(
+													AdapterView<?> arg0,
+													View arg1, int arg2,
+													long arg3) {
+												// Obtiene el texto del selector y envia datos.
+												String SPtext = sp.getSelectedItem().toString();
+												mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_10)+" "+getString(R.string.playingGround_fragment_final_words_12)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick)+" "+getString(R.string.playingGround_fragment_final_words_13)+" "+SPtext);
+											}
+
+											@Override
+											public void onNothingSelected(
+													AdapterView<?> arg0) {
+												// Nada.
+												
+											}
+										});
 									}
 								});
 							}else{
 								np0.setEnabled(false);
+								sp.setEnabled(false);
 								// Envia los datos del condicional.
-								mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_3));
+								mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_11));
 							}
 						}
 					});
@@ -632,7 +761,7 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 						}
 					});
 					break;
-				case 4: // Condicional Si/No, selecciona de yardas y jugador involucrado.
+				case 4: // Condicional Si/No, seleccion de yardas y jugador involucrado.
 					view = inflater.inflate(R.layout.fragment_dim3_opt4att_opt3def_opt5ee,
 							container, false);
 					TextView tv2 = (TextView) view.findViewById(R.id.textView1Dim3);
@@ -642,27 +771,55 @@ public class FragmentPlayingGroundPlayersOptions extends Fragment {
 					np0.setMaxValue(100);
 					np0.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS); // Se desactiva el teclado para el NumberPicker.
 					np0.setEnabled(false);
+					sentences.ObtenerDatosDelimitadosJugadores(getActivity().getApplicationContext(), this.getArguments().getIntArray("playersOnTheField")); // Mandamos la orden de obtener los datos de los jugadores.
+					String[] nombreApellidoJugadores = sentences.getNombreApellidos();
+					final Spinner sp = (Spinner) view.findViewById(R.id.spinnerDim3);
+					ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(),
+							android.R.layout.simple_spinner_item, nombreApellidoJugadores);
+					dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					sp.setAdapter(dataAdapter);
+					sp.setEnabled(false);
 					RadioGroup rgroup2 = (RadioGroup) view.findViewById(R.id.radioGroup1Dim3);
 					rgroup2.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 						
 						@Override
 						public void onCheckedChanged(RadioGroup group, int checkedId){
-							// Obtiene el numero del RadioButton que se ha pulsado.
+							// Obtiene el numero del RadioButton que se ha pulsado y habilita el numberPicker.
 							int rbtnID = group.indexOfChild(group.findViewById(group.getCheckedRadioButtonId())); // Numero de rbtn.
 							//Log.d("BOTON", ">> "+rbtnID);
 							if(rbtnID==0){
 								np0.setEnabled(true);
 								np0.setOnValueChangedListener(new OnValueChangeListener() {
 									@Override
-									public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-										// Envia los datos del condicional y las yardas.
-										mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_4)+" "+getString(R.string.playingGround_fragment_final_words_2)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick));
+									public void onValueChange(NumberPicker picker, int oldVal, final int newVal) {
+										// Habilita el desplegable.
+										sp.setEnabled(true);
+										sp.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+											@Override
+											public void onItemSelected(
+													AdapterView<?> arg0,
+													View arg1, int arg2,
+													long arg3) {
+												// Obtiene el texto del selector y envia datos.
+												String SPtext = sp.getSelectedItem().toString();
+												mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_10)+" "+getString(R.string.playingGround_fragment_final_words_12)+" "+String.valueOf(newVal)+" "+getString(R.string.playingGround_fragment_textView_numPick)+" "+getString(R.string.playingGround_fragment_final_words_13)+" "+SPtext);
+											}
+
+											@Override
+											public void onNothingSelected(
+													AdapterView<?> arg0) {
+												// Nada.
+												
+											}
+										});
 									}
 								});
 							}else{
 								np0.setEnabled(false);
+								sp.setEnabled(false);
 								// Envia los datos del condicional.
-								mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_3));
+								mCallback.onClickOptionEvent(comeFromRbtn, Dimension, branchType, getString(R.string.playingGround_fragment_final_words_11));
 							}
 						}
 					});
