@@ -52,7 +52,7 @@ private static String nameJugador,surnameJugador,ageJugador,positionJugador,type
 	}
 	
 	//Este método obtiene los datos del partido para editarlo
-	public static int getNumDatosEditarJugador(Context contexto,String dorsal){
+	public static int getNumDatosEditarJugador(Context contexto,String dorsal,String antDorsal){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
 		SentenciasSelectSQLite.borrarTodosValores();
 
@@ -65,8 +65,12 @@ private static String nameJugador,surnameJugador,ageJugador,positionJugador,type
 		String[] valores=SentenciasSelectSQLite.getValores();
 		String idJugador=valores[0];
 		
+		SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"id_jugador"},"id_equipo="+id+" AND dorsal="+antDorsal+"");
+		String[] valores2=SentenciasSelectSQLite.getValores();
+		String idJugador2=valores2[0];
+		
 		//Ejcutamos la sentencia
-		SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(dorsal)"},"id_jugador!="+idJugador+" AND id_equipo="+id+" AND dorsal="+dorsal+"");
+		SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(dorsal)"},"id_jugador="+idJugador+" AND "+idJugador+"!="+idJugador2+" AND id_equipo="+id+" AND dorsal="+dorsal+"");
 		String[] valor=SentenciasSelectSQLite.getValores();
 		return Integer.parseInt(valor[0]);
 	}

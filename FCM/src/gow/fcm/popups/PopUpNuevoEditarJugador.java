@@ -200,7 +200,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 					if(accion.equals("agregar")){
 						numero=SentenciasSQLiteNuevoEditarJugador.getNumDatosNuevoJugador(getApplicationContext(),dorsalJug.getText().toString());
 					}else if(accion.equals("editar")){
-						numero=SentenciasSQLiteNuevoEditarJugador.getNumDatosEditarJugador(getApplicationContext(),dorsalJug.getText().toString());
+						numero=SentenciasSQLiteNuevoEditarJugador.getNumDatosEditarJugador(getApplicationContext(),dorsalJug.getText().toString(),numberJugador);
 					}
 					
 					if(numero<1){
@@ -211,7 +211,11 @@ public class PopUpNuevoEditarJugador extends Activity {
 								SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),String.valueOf(selectedImageUri)});
 							}
 						}else if(accion.equals("editar")){
-							SentenciasUpdateSQLite.actualizarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),String.valueOf(selectedImageUri)},"id_equipo="+id_equipo+" and dorsal="+numberJugador+"");
+							if(selectedImageUri==null){
+								SentenciasUpdateSQLite.actualizarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal"}, new String[]{nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString()},"id_equipo="+id_equipo+" and dorsal="+numberJugador+"");
+							}else{
+								SentenciasUpdateSQLite.actualizarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),String.valueOf(selectedImageUri)},"id_equipo="+id_equipo+" and dorsal="+numberJugador+"");
+							}
 						}
 						PopUpNuevoEditarJugador.this.finish();
 					}else{
