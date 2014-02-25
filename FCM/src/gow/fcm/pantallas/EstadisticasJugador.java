@@ -1,17 +1,33 @@
 package gow.fcm.pantallas;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.GraphViewDataInterface;
+import com.jjoe64.graphview.LineGraphView;
+
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
+import gow.fcm.footballcoachmanager.R.layout;
+import gow.fcm.footballcoachmanager.R.menu;
+import gow.fcm.sentencias.SentenciasSQLiteDatosGrafico;
 import gow.fcm.sentencias.SentenciasSQLiteDatosJugador;
 import gow.fcm.sentencias.SentenciasSQLiteListaEstadisticas;
+import gow.fcm.sentencias.SentenciasSelectSQLite;
 import gow.fcm.utilidades.ArrayAdapterStatisticsList;
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Color;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+
 
 public class EstadisticasJugador extends Activity {
 
@@ -27,6 +43,8 @@ public class EstadisticasJugador extends Activity {
 	
 	String car, pas, rec, fum, sac, pla, inter, figo, pun, tou, fal, extp, ptcon; 
 	
+	GraphViewSeries series;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,8 +52,10 @@ public class EstadisticasJugador extends Activity {
 		
 		Bundle bundle = getIntent().getExtras();
 		playerId= bundle.getInt("playerId");
-		playerId = 1;
+		
 		ConexionSQLite.getCrearSQLite(this);
+		
+		
 		
 		nombre = SentenciasSQLiteDatosJugador.getNombre();
 		apellidos = SentenciasSQLiteDatosJugador.getApellido();
@@ -79,8 +99,35 @@ public class EstadisticasJugador extends Activity {
 			ptcon = pt_conversion;
 			
 			
-		
+			
 			new FillStatistics(carrera, pase_comp, recep, fumbles, sacks, placajes, intercepciones, field_goals, punts, touchdown, faltas, extra_point, pt_conversion);
+	
+			CheckBox cb = (CheckBox) findViewById(R.id.checkBox1);
+			TextView et = (TextView) findViewById(R.id.statistic);
+			int[] DatosR;
+			int[] Dias;
+			
+			
+			LineGraphView graphView = new LineGraphView( this, "Graficos Estadisticas");
+				graphView.setDrawDataPoints(true);
+				graphView.setDataPointsRadius(15f);
+				graphView.setViewPort(2, 10);
+				graphView.setScalable(true);
+				// optional - legend
+				graphView.setShowLegend(true);
+				
+				String dataS;
+				if(cb.isChecked()==true){
+					dataS = et.toString();
+					SentenciasSQLiteDatosGrafico.setDatos(dataS, playerId);
+					DatosR = SentenciasSQLiteDatosGrafico.getDatos();
+					Dias = SentenciasSQLiteDatosGrafico.getDias();
+					new FillGraphic(DatosR, Dias);
+					graphView.addSeries(series);
+				}
+				LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
+				layout.addView(graphView);
+			
 	}
 
 	@Override
@@ -116,7 +163,7 @@ class FillStatistics {
 		 		
 			adapter = new ArrayAdapterStatisticsList(EstadisticasJugador.this, nombres, tipos, numeros);
 		 	}
-			View header = getLayoutInflater().inflate(R.layout.list_header_statistics, null);
+			View header = (View)getLayoutInflater().inflate(R.layout.list_header_statistics, null);
 			
 	        lv.addHeaderView(header);
 	        lv.setAdapter(adapter);
@@ -165,10 +212,29 @@ class FillPlayer {
 		  etPos = (EditText) findViewById(R.id.posicion_jug);
 		  etPos.setText(pos);
 		  
-//		  etFoto= (ImageView) findViewById(R.id.imagen_jug);
-//		  etFoto.setId(foto);
+//		  	etFoto= (ImageView) findViewById(R.id.imagen_jug);
+// 			etFoto.setId(foto);
+	  }}
+  
+	  class FillGraphic {
+
+		    //declaración de atributos
 		  
-  }
-	
-	 }
-}
+		  
+		  
+		  int dato;
+		  int dia;
+		  GraphViewData[]  Dfinal;
+		  //declaración de constructor
+
+		  public FillGraphic(int[] data, int[] dias){
+			  Dfinal = new GraphViewData[data.length];
+			  for (int i=0; i<data.length; i++) {		   
+			     data[i] = dato;
+			     dias[i] = dia;
+			    Dfinal[i] = new GraphViewData(dato, dia);
+			  }
+			  series = new GraphViewSeries(Dfinal);
+	  }
+}}
+
