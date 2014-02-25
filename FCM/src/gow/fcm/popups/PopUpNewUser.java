@@ -38,7 +38,7 @@ public class PopUpNewUser extends Activity {
 	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
 	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
 	private File dirActual=Environment.getExternalStorageDirectory(); //Directorio donde esta la carpeta de las imágenes
-	private String dirRecortes="image/*",accion,rutaImagen; //Directorio donde se encuentran las imágenes recortadas
+	private String dirRecortes="image/*",rutaImagen; //Directorio donde se encuentran las imágenes recortadas
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,13 +76,13 @@ public class PopUpNewUser extends Activity {
 			@Override
 			public void onClick(View v) {
 				// Esta seccion es llamada cuando se pulsa el boton de guardar nuevo usuario.
-				String name = et_name.getText().toString();
-				String surName = et_surName.getText().toString();
-				String user = et_user.getText().toString();
-				String password = et_password.getText().toString();
-				String passwordRepeat = et_password_repeat.getText().toString();
-				String securityAnswer = et_security_answer.getText().toString();
-				String teamName = et_team_name.getText().toString();
+				String name = et_name.getText().toString().trim();
+				String surName = et_surName.getText().toString().trim();
+				String user = et_user.getText().toString().trim();
+				String password = et_password.getText().toString().trim();
+				String passwordRepeat = et_password_repeat.getText().toString().trim();
+				String securityAnswer = et_security_answer.getText().toString().trim();
+				String teamName = et_team_name.getText().toString().trim();
 				
 				if((name == null) || (name.equals(""))){
 					// Se comprueba que el nombre tenga contenido.
@@ -122,10 +122,6 @@ public class PopUpNewUser extends Activity {
 					setResult(RESULT_OK, i);
 					PopUpNewUser.this.finish();
 				}
-				
-				
-				
-				
 				
 			}
 		});
@@ -256,7 +252,7 @@ public class PopUpNewUser extends Activity {
 		//getMenuInflater().inflate(R.menu.pop_up_new_user, menu);
 		return true;
 	}
-
+	
 	/**
 	 * Este metodo permite la personalizacion de este activity para terminar de
 	 * convertirlo, junto al uso de '@style/', en un Activity de menu o Pop-Up.

@@ -198,23 +198,23 @@ public class PopUpNuevoEditarJugador extends Activity {
 					int numero=0;
 					//Comprobamos si es una accion de edicion o agregacion para usar la sentencia correcta
 					if(accion.equals("agregar")){
-						numero=SentenciasSQLiteNuevoEditarJugador.getNumDatosNuevoJugador(getApplicationContext(),dorsalJug.getText().toString());
+						numero=SentenciasSQLiteNuevoEditarJugador.getNumDatosNuevoJugador(getApplicationContext(),dorsalJug.getText().toString().trim());
 					}else if(accion.equals("editar")){
-						numero=SentenciasSQLiteNuevoEditarJugador.getNumDatosEditarJugador(getApplicationContext(),dorsalJug.getText().toString(),numberJugador);
+						numero=SentenciasSQLiteNuevoEditarJugador.getNumDatosEditarJugador(getApplicationContext(),dorsalJug.getText().toString().trim(),numberJugador);
 					}
 					
 					if(numero<1){
 						if(accion.equals("agregar")){
 							if(selectedImageUri==null){
-								SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString()});
+								SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString().trim(),apellJug.getText().toString().trim(),edadJug.getText().toString().trim(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString().trim()});
 							}else{
-								SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),String.valueOf(selectedImageUri)});
+								SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString().trim(),apellJug.getText().toString().trim(),edadJug.getText().toString().trim(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString().trim(),String.valueOf(selectedImageUri)});
 							}
 						}else if(accion.equals("editar")){
 							if(selectedImageUri==null){
-								SentenciasUpdateSQLite.actualizarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal"}, new String[]{nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString()},"id_equipo="+id_equipo+" and dorsal="+numberJugador+"");
+								SentenciasUpdateSQLite.actualizarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal"}, new String[]{nomJug.getText().toString().trim(),apellJug.getText().toString().trim(),edadJug.getText().toString().trim(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString().trim()},"id_equipo="+id_equipo+" and dorsal="+numberJugador+"");
 							}else{
-								SentenciasUpdateSQLite.actualizarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),String.valueOf(selectedImageUri)},"id_equipo="+id_equipo+" and dorsal="+numberJugador+"");
+								SentenciasUpdateSQLite.actualizarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{nomJug.getText().toString().trim(),apellJug.getText().toString().trim(),edadJug.getText().toString().trim(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString().trim(),String.valueOf(selectedImageUri)},"id_equipo="+id_equipo+" and dorsal="+numberJugador+"");
 							}
 						}
 						PopUpNuevoEditarJugador.this.finish();

@@ -199,9 +199,9 @@ public class PopUpNuevoEditarPartido extends Activity {
             		fechaEntrenamiento = fechaEntrenamiento.concat(anyoEntrenamiento+"-").concat(mesEntrenamiento+"-").concat(diaEntrenamiento);
             		
             		if(accion.equals("agregar")){
-            			SentenciasInsertSQLite.insertarSQLite("Partidos", new String[]{"id_equipo","lugar","rival","dia","fecha"}, new String[]{String.valueOf(id_equipo),lugar.getText().toString(),rival.getText().toString(),fechaEntrenamiento,fechaEntrenamiento+" "+horaMinuto});
+            			SentenciasInsertSQLite.insertarSQLite("Partidos", new String[]{"id_equipo","lugar","rival","dia","fecha"}, new String[]{String.valueOf(id_equipo),lugar.getText().toString().trim(),rival.getText().toString().trim(),fechaEntrenamiento,fechaEntrenamiento+" "+horaMinuto});
             		}else if(accion.equals("editar")){
-            			SentenciasUpdateSQLite.actualizarSQLite("Partidos", new String[]{"lugar","rival","fecha"}, new String[]{lugar.getText().toString(),rival.getText().toString(),fechaEntrenamiento+" "+horaMinuto},"id_equipo="+id_equipo+" AND dia='"+times+"'");
+            			SentenciasUpdateSQLite.actualizarSQLite("Partidos", new String[]{"lugar","rival","fecha"}, new String[]{lugar.getText().toString().trim(),rival.getText().toString().trim(),fechaEntrenamiento+" "+horaMinuto},"id_equipo="+id_equipo+" AND dia='"+times+"'");
             		}
             		
             		PopUpNuevoEditarPartido.this.finish();

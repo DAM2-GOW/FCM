@@ -49,7 +49,7 @@ public class PopUpRecoverPassword extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				usuario = user.getText().toString();
+				usuario = user.getText().toString().trim();
 				if((usuario == null) || (usuario.equals(""))){
 					// Se comprueba que el campo usuario tenga contenido.
 					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_new_username_null), Toast.LENGTH_SHORT).show();
@@ -72,7 +72,7 @@ public class PopUpRecoverPassword extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				String respseg = respuestaSecreta.getText().toString();
+				String respseg = respuestaSecreta.getText().toString().trim();
 				if((respseg==null) || (respseg.equals(""))){
 					// Se comprueba que el campo de pregunta secreta tenga contenido.
 					Toast.makeText(getApplicationContext(), getString(R.string.login_screen_toast_security_answer_null), Toast.LENGTH_SHORT).show();
