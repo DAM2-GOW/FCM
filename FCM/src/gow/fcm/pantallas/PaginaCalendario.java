@@ -40,6 +40,7 @@ public class PaginaCalendario extends Activity{
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
 	private String fechaActual,fechaSeleccionada,varFechaEvento="date_event",varAccion="action"; //Variables para las fechas e Intents en la base de datos
+	int totalEntrenamiento; //Número total de entrenamientos por un dia determinado
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -195,7 +196,7 @@ public class PaginaCalendario extends Activity{
 		SentenciasSQLiteCalendario.getDatosPartidos(this,fecha);
 		
 		//Sentencias para comprobar los eventos
-		int totalEntrenamiento=Integer.parseInt(SentenciasSQLiteCalendario.getTotalEntrenamiento());
+		totalEntrenamiento=Integer.parseInt(SentenciasSQLiteCalendario.getTotalEntrenamiento());
 		int totalPartido=Integer.parseInt(SentenciasSQLiteCalendario.getTotalPartido());
 		
 		//Sentencias para comprobar la fecha de los eventos
@@ -680,7 +681,12 @@ public class PaginaCalendario extends Activity{
 			e.printStackTrace();
 		}
 		
-		Intent i=new Intent(this,PopUpNuevoEditarEntrenamiento.class);
+		Intent i=null;
+		if(totalEntrenamiento>1){
+			i=new Intent(this,DetalleCalendario.class);
+		}else{
+			i=new Intent(this,PopUpNuevoEditarEntrenamiento.class);
+		}
 		i.putExtra(varAccion,"editar");
 		i.putExtra(varFechaEvento,date.getTime());
 		startActivity(i);
@@ -688,9 +694,14 @@ public class PaginaCalendario extends Activity{
 	
 	//El siguiente método abre un popup para borrar los entrenamiento
 	private void borrarEntrenamiento(){
-		String fecha=getFechaSeleccionada();
-		SentenciasSQLiteCalendario.borrarEventoEntrenamiento(this,fecha);
-		accionesMostrarEventos(fecha);
+		if(totalEntrenamiento>1){
+			Intent i=new Intent(this,DetalleCalendario.class);
+			startActivity(i);
+		}else{
+			String fecha=getFechaSeleccionada();
+			SentenciasSQLiteCalendario.borrarEventoEntrenamiento(this,fecha);
+			accionesMostrarEventos(fecha);
+		}
 	}
 	
 	//El siguiente método abre un popup para agregar un partido
