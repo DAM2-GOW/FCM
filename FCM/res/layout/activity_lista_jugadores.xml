@@ -38,19 +38,26 @@
                 android:id="@+id/imageButtonListaAtaque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="7dp"
                 android:src="@drawable/btn_all_attack" />
 
             <ImageButton
                 android:id="@+id/imageButtonListaDefensa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="7dp"
                 android:src="@drawable/btn_all_def" />
 
             <ImageButton
                 android:id="@+id/imageButtonListaEe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="7dp"
                 android:src="@drawable/btn_all_ee" />
+
         </LinearLayout>
 
     </LinearLayout>

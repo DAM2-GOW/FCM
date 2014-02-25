@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     
+    <item android:id="@+id/estadisticasJugador" android:title="@string/statistics"></item>
+    
     <item android:id="@+id/editarJug" android:title="@string/edit_player"></item>
     
     <item android:id="@+id/borrarJug" android:title="@string/delete_player">

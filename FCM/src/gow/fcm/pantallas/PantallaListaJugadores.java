@@ -6,9 +6,9 @@ import gow.fcm.popups.PopUpNuevoEditarJugador;
 import gow.fcm.sentencias.SentenciasSQLiteListaJugadores;
 import gow.fcm.utilidades.ListaJugadores;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,9 +32,7 @@ public class PantallaListaJugadores extends Activity {
 	private ListaJugadores adaptador; //Declaramos el adaptador
 	private View pie; //Variable usada para almacenar un objeto View del pie de página de la lista de jugadores
 	private String tiposJugadores;
-	private static boolean atak = false;
-	private static boolean def = false;
-	private static boolean eqe=false;
+	private static boolean atak=false,def=false,eqe=false,botonPulsado1=false,botonPulsado2=false,botonPulsado3=false;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,48 +59,102 @@ public class PantallaListaJugadores extends Activity {
 
 		// Método que mostrará la lista de jugadores
 		mostrarLista();
-
-		ImageButton BtnAtaque = (ImageButton) findViewById(R.id.imageButtonListaAtaque);
+		
+		final ImageButton BtnAtaque = (ImageButton) findViewById(R.id.imageButtonListaAtaque);
+		final ImageButton BtnDefensa = (ImageButton) findViewById(R.id.imageButtonListaDefensa);
+		final ImageButton BtnEe = (ImageButton) findViewById(R.id.imageButtonListaEe);
+		
 		BtnAtaque.setOnClickListener(new OnClickListener() {
 
 			// Funcionalidad al hacer click en el botón de Ataque
+			@SuppressLint("ResourceAsColor")
 			public void onClick(View v) {
-				tiposJugadores="0";
-				actualizarLista(tiposJugadores);
-				Log.d("Raul", "Pulsado ataque");
-				atak = true;
-				def=false;
-				eqe=false;
+				if(botonPulsado1==false){
+					tiposJugadores="0";
+					actualizarLista(tiposJugadores);
+					atak=true;
+					def=false;
+					eqe=false;
+					botonPulsado1=true;
+					botonPulsado2=false;
+					botonPulsado3=false;
+					BtnAtaque.setBackgroundColor(0x0FFFFFFF);
+					BtnDefensa.setBackgroundColor(0x00000000);
+					BtnEe.setBackgroundColor(0x00000000);
+				}else if(botonPulsado1==true){
+					mostrarLista();
+					atak=false;
+					def=false;
+					eqe=false;
+					botonPulsado1=false;
+					botonPulsado2=false;
+					botonPulsado3=false;
+					BtnAtaque.setBackgroundColor(0x00000000);
+					BtnDefensa.setBackgroundColor(0x00000000);
+					BtnEe.setBackgroundColor(0x00000000);
+				}
 			}
 		}
 				);
 
-		ImageButton BtnDefensa = (ImageButton) findViewById(R.id.imageButtonListaDefensa);
 		BtnDefensa.setOnClickListener(new OnClickListener() {
-
 			// Funcionalidad al hacer click en el botón de Defensa
 			public void onClick(View v) {
-				tiposJugadores="1";
-				actualizarLista(tiposJugadores);
-				Log.d("Raul", "Pulsado defensa");
-				def = true;
-				atak=false;
-				eqe=false;
+				if(botonPulsado2==false){
+					tiposJugadores="1";
+					actualizarLista(tiposJugadores);
+					atak=false;
+					def=true;
+					eqe=false;
+					botonPulsado1=false;
+					botonPulsado2=true;
+					botonPulsado3=false;
+					BtnAtaque.setBackgroundColor(0x00000000);
+					BtnDefensa.setBackgroundColor(0x0FFFFFFF);
+					BtnEe.setBackgroundColor(0x00000000);
+				}else if(botonPulsado2==true){
+					mostrarLista();
+					atak=false;
+					def=false;
+					eqe=false;
+					botonPulsado1=false;
+					botonPulsado2=false;
+					botonPulsado3=false;
+					BtnAtaque.setBackgroundColor(0x00000000);
+					BtnDefensa.setBackgroundColor(0x00000000);
+					BtnEe.setBackgroundColor(0x00000000);
+				}
 			}
 		}
 				);
-
 		
-		ImageButton BtnEe = (ImageButton) findViewById(R.id.imageButtonListaEe);
 		BtnEe.setOnClickListener(new OnClickListener() {
 			// Funcionalidad al hacer click en el botón de EE
 			public void onClick(View v) {
-				tiposJugadores="2";
-				actualizarLista(tiposJugadores);
-				Log.d("Raul", "Pulsado ee");
-				eqe = true;
-				def=false;
-				atak=false;
+				if(botonPulsado3==false){
+					tiposJugadores="2";
+					actualizarLista(tiposJugadores);
+					atak=false;
+					def=false;
+					eqe=true;
+					botonPulsado1=false;
+					botonPulsado2=false;
+					botonPulsado3=true;
+					BtnAtaque.setBackgroundColor(0x00000000);
+					BtnDefensa.setBackgroundColor(0x00000000);
+					BtnEe.setBackgroundColor(0x0FFFFFFF);
+				}else if(botonPulsado3==true){
+					mostrarLista();
+					atak=false;
+					def=false;
+					eqe=false;
+					botonPulsado1=false;
+					botonPulsado2=false;
+					botonPulsado3=false;
+					BtnAtaque.setBackgroundColor(0x00000000);
+					BtnDefensa.setBackgroundColor(0x00000000);
+					BtnEe.setBackgroundColor(0x00000000);
+				}
 			}
 		}
 				);
@@ -144,16 +196,16 @@ public class PantallaListaJugadores extends Activity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.editarJug:
-			editarJugador();
+		case R.id.estadisticasJugador: estadisticasJugador();
+			return true;
+		case R.id.editarJug: editarJugador();
 			return true;
 		case R.id.borrarJug: // Esta opción solo sirve para mostrar los
 			// siguientes valores
 			return true;
 		case R.id.optionNoJugador: // Esta opción no realiza ninguna acción
 			return true;
-		case R.id.optionSiJugador:
-			borrarJugador();
+		case R.id.optionSiJugador: borrarJugador();
 			if(atak==true){
 				tiposJugadores="0";
 				actualizarLista(tiposJugadores);
@@ -174,7 +226,12 @@ public class PantallaListaJugadores extends Activity {
 			return super.onContextItemSelected(item);
 		}
 	}
-
+	
+	private void estadisticasJugador(){
+		Intent i=new Intent(this,EstadisticasJugador.class);
+		startActivity(i);
+	}
+	
 	private void cargarJugadores() {
 		//Forzamos los datos de entrada que serán mostrados en la lista
 		SentenciasSQLiteListaJugadores.getDatosJugador(this);
