@@ -32,7 +32,7 @@ public class PantallaListaJugadores extends Activity {
 	private ListaJugadores adaptador; //Declaramos el adaptador
 	private View pie; //Variable usada para almacenar un objeto View del pie de página de la lista de jugadores
 	private String tiposJugadores;
-	private static boolean atak=false,def=false,eqe=false,botonPulsado1=false,botonPulsado2=false,botonPulsado3=false;
+	private static boolean botonAtaque=false,botonDefensa=false,botonEquiposEsp=false;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,26 +69,20 @@ public class PantallaListaJugadores extends Activity {
 			// Funcionalidad al hacer click en el botón de Ataque
 			@SuppressLint("ResourceAsColor")
 			public void onClick(View v) {
-				if(botonPulsado1==false){
+				if(botonAtaque==false){
 					tiposJugadores="0";
 					actualizarLista(tiposJugadores);
-					atak=true;
-					def=false;
-					eqe=false;
-					botonPulsado1=true;
-					botonPulsado2=false;
-					botonPulsado3=false;
+					botonAtaque=true;
+					botonDefensa=false;
+					botonEquiposEsp=false;
 					BtnAtaque.setBackgroundColor(0x0FFFFFFF);
 					BtnDefensa.setBackgroundColor(0x00000000);
 					BtnEe.setBackgroundColor(0x00000000);
-				}else if(botonPulsado1==true){
+				}else if(botonAtaque==true){
 					mostrarLista();
-					atak=false;
-					def=false;
-					eqe=false;
-					botonPulsado1=false;
-					botonPulsado2=false;
-					botonPulsado3=false;
+					botonAtaque=false;
+					botonDefensa=false;
+					botonEquiposEsp=false;
 					BtnAtaque.setBackgroundColor(0x00000000);
 					BtnDefensa.setBackgroundColor(0x00000000);
 					BtnEe.setBackgroundColor(0x00000000);
@@ -100,26 +94,20 @@ public class PantallaListaJugadores extends Activity {
 		BtnDefensa.setOnClickListener(new OnClickListener() {
 			// Funcionalidad al hacer click en el botón de Defensa
 			public void onClick(View v) {
-				if(botonPulsado2==false){
+				if(botonDefensa==false){
 					tiposJugadores="1";
 					actualizarLista(tiposJugadores);
-					atak=false;
-					def=true;
-					eqe=false;
-					botonPulsado1=false;
-					botonPulsado2=true;
-					botonPulsado3=false;
+					botonAtaque=false;
+					botonDefensa=true;
+					botonEquiposEsp=false;
 					BtnAtaque.setBackgroundColor(0x00000000);
 					BtnDefensa.setBackgroundColor(0x0FFFFFFF);
 					BtnEe.setBackgroundColor(0x00000000);
-				}else if(botonPulsado2==true){
+				}else if(botonDefensa==true){
 					mostrarLista();
-					atak=false;
-					def=false;
-					eqe=false;
-					botonPulsado1=false;
-					botonPulsado2=false;
-					botonPulsado3=false;
+					botonAtaque=false;
+					botonDefensa=false;
+					botonEquiposEsp=false;
 					BtnAtaque.setBackgroundColor(0x00000000);
 					BtnDefensa.setBackgroundColor(0x00000000);
 					BtnEe.setBackgroundColor(0x00000000);
@@ -131,26 +119,20 @@ public class PantallaListaJugadores extends Activity {
 		BtnEe.setOnClickListener(new OnClickListener() {
 			// Funcionalidad al hacer click en el botón de EE
 			public void onClick(View v) {
-				if(botonPulsado3==false){
+				if(botonEquiposEsp==false){
 					tiposJugadores="2";
 					actualizarLista(tiposJugadores);
-					atak=false;
-					def=false;
-					eqe=true;
-					botonPulsado1=false;
-					botonPulsado2=false;
-					botonPulsado3=true;
+					botonAtaque=false;
+					botonDefensa=false;
+					botonEquiposEsp=true;
 					BtnAtaque.setBackgroundColor(0x00000000);
 					BtnDefensa.setBackgroundColor(0x00000000);
 					BtnEe.setBackgroundColor(0x0FFFFFFF);
-				}else if(botonPulsado3==true){
+				}else if(botonEquiposEsp==true){
 					mostrarLista();
-					atak=false;
-					def=false;
-					eqe=false;
-					botonPulsado1=false;
-					botonPulsado2=false;
-					botonPulsado3=false;
+					botonAtaque=false;
+					botonDefensa=false;
+					botonEquiposEsp=false;
 					BtnAtaque.setBackgroundColor(0x00000000);
 					BtnDefensa.setBackgroundColor(0x00000000);
 					BtnEe.setBackgroundColor(0x00000000);
@@ -162,18 +144,18 @@ public class PantallaListaJugadores extends Activity {
 
 	protected void onResume(){
 		super.onResume();
-		if(atak==true){
+		if(botonAtaque==true){
 			tiposJugadores="0";
 			actualizarLista(tiposJugadores);
-			atak=false;
-		}else if(def==true){
+			botonAtaque=false;
+		}else if(botonDefensa==true){
 			tiposJugadores="1";
 			actualizarLista(tiposJugadores);
-			def=false;
-		}else if(eqe==true){
+			botonDefensa=false;
+		}else if(botonEquiposEsp==true){
 			tiposJugadores="2";
 			actualizarLista(tiposJugadores);
-			eqe=false;
+			botonEquiposEsp=false;
 		}else{
 			mostrarLista();
 		}
@@ -206,21 +188,23 @@ public class PantallaListaJugadores extends Activity {
 		case R.id.optionNoJugador: // Esta opción no realiza ninguna acción
 			return true;
 		case R.id.optionSiJugador: borrarJugador();
-			if(atak==true){
+		
+			if(botonAtaque==true){
 				tiposJugadores="0";
 				actualizarLista(tiposJugadores);
-				atak=false;
-			}else if(def==true){
+				botonAtaque=false;
+			}else if(botonDefensa==true){
 				tiposJugadores="1";
 				actualizarLista(tiposJugadores);
-				def=false;
-			}else if(eqe==true){
+				botonDefensa=false;
+			}else if(botonEquiposEsp==true){
 				tiposJugadores="2";
 				actualizarLista(tiposJugadores);
-				eqe=false;
+				botonEquiposEsp=false;
 			}else{
 				mostrarLista();
 			}
+		
 			return true;
 		default:
 			return super.onContextItemSelected(item);
