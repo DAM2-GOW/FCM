@@ -3,9 +3,8 @@ package gow.fcm.popups;
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
-import gow.fcm.sentencias.SentenciasSQLiteListaJugadores;
-import gow.fcm.sentencias.SentenciasSQLiteNuevoEditarEntrenamiento;
 import gow.fcm.sentencias.SentenciasSQLiteNuevoEditarJugador;
+import gow.fcm.sentencias.SentenciasUpdateSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
 import java.io.File;
 import android.app.Activity;
@@ -36,14 +35,14 @@ import android.widget.Toast;
 public class PopUpNuevoEditarJugador extends Activity {
 
 	private Spinner tipoJugador, posicionJugador;
-	private String posJug,rutaImagen;
+	private String posJug,rutaImagen,accion,numberJugador;
 	private Button botonEditar, guardarJugador;
 	private EditText nomJug, apellJug, edadJug, dorsalJug;
 	private ImageView imgPhoto; //Imagen o foto del entrenador
 	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
 	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
 	private File dirActual=Environment.getExternalStorageDirectory(); //Directorio donde esta la carpeta de las imágenes
-	private String dirRecortes="image/*",accion; //Directorio donde se encuentran las imágenes recortadas
+	private String dirRecortes="image/*"; //Directorio donde se encuentran las imágenes recortadas
 	private int tipoJug;
 	private Intent ir;
 	
@@ -78,7 +77,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 			String nameJugador=SentenciasSQLiteNuevoEditarJugador.getNameJugador();
 			String surnameJugador=SentenciasSQLiteNuevoEditarJugador.getSurnameJugador();
 			String ageJugador=SentenciasSQLiteNuevoEditarJugador.getAgeJugador();
-			String numberJugador=SentenciasSQLiteNuevoEditarJugador.getNumberJugador();
+			numberJugador=SentenciasSQLiteNuevoEditarJugador.getNumberJugador();
 			
 			//Rellenamos los campos
 			nomJug.setText(nameJugador);
@@ -120,7 +119,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 						@Override
 						public void onNothingSelected(AdapterView<?> arg0) {
 						}
-						
+
 					});
 				} else {
 					if(position == 1){ //Posicion de defensa
@@ -136,7 +135,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 							@Override
 							public void onNothingSelected(AdapterView<?> arg0) {
 							}
-							
+
 						});
 					}else{
 						if(position == 2){ //Posicion de EE
@@ -152,24 +151,24 @@ public class PopUpNuevoEditarJugador extends Activity {
 								@Override
 								public void onNothingSelected(AdapterView<?> arg0) {
 								}
-								
+
 							});
 						}
 					}
-					
-					if(accion.equals("editar")){
-						//Obtenemos la posición que ocupa en el spinner la posición del jugador
-						String positionJugador=SentenciasSQLiteNuevoEditarJugador.getPositionJugador(); //Obtenemos el valor
-						int indice=0;
-						for(int num=0;num<posicionJugador.getCount();num++){
-							if(posicionJugador.getItemAtPosition(num).equals(positionJugador)){
-								indice=num;
-							}
-						}
-						posicionJugador.setSelection(indice);
-					}
-					
 				}
+				
+				if(accion.equals("editar")){
+					//Obtenemos la posición que ocupa en el spinner la posición del jugador
+					String positionJugador=SentenciasSQLiteNuevoEditarJugador.getPositionJugador(); //Obtenemos el valor
+					int indice=0;
+					for(int num=0;num<posicionJugador.getCount();num++){
+						if(posicionJugador.getItemAtPosition(num).equals(positionJugador)){
+							indice=num;
+						}
+					}
+					posicionJugador.setSelection(indice);
+				}
+				
 			}
 
 			@Override
@@ -192,20 +191,37 @@ public class PopUpNuevoEditarJugador extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				if(SentenciasSQLiteNuevoEditarJugador.getDatosEditarPartido(getApplicationContext(), dorsalJug.getText().toString())<1){
-					if(nomJug.getText().toString().trim().equals("") || apellJug.getText().toString().trim().equals("")  || edadJug.getText().toString().trim()==null || dorsalJug.getText().toString().trim()==null){
-						Toast.makeText(getApplicationContext(), "Algun campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
-					}else{
-						SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),rutaImagen});
-						PopUpNuevoEditarJugador.this.finish();
-					}
+				if(nomJug.getText().toString().trim().equals("") || nomJug.getText().toString().trim().equals(null) || apellJug.getText().toString().trim().equals("") || apellJug.getText().toString().trim().equals(null) || edadJug.getText().toString().trim().equals("") || edadJug.getText().toString().trim().equals(null) || dorsalJug.getText().toString().trim().equals("") || dorsalJug.getText().toString().trim().equals(null)){
+					Toast.makeText(getApplicationContext(), "Algún campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
 				}else{
-					Toast.makeText(getApplicationContext(), "Ya existe ese dorsal", Toast.LENGTH_SHORT).show();
+					
+					int numero=0;
+					//Comprobamos si es una accion de edicion o agregacion para usar la sentencia correcta
+					if(accion.equals("agregar")){
+						numero=SentenciasSQLiteNuevoEditarJugador.getNumDatosNuevoJugador(getApplicationContext(),dorsalJug.getText().toString());
+					}else if(accion.equals("editar")){
+						numero=SentenciasSQLiteNuevoEditarJugador.getNumDatosEditarJugador(getApplicationContext(),dorsalJug.getText().toString());
+					}
+					
+					if(numero<1){
+						if(accion.equals("agregar")){
+							if(selectedImageUri==null){
+								SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString()});
+							}else{
+								SentenciasInsertSQLite.insertarSQLite("Jugadores", new String[]{"id_equipo","nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{String.valueOf(id_equipo),nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),String.valueOf(selectedImageUri)});
+							}
+						}else if(accion.equals("editar")){
+							SentenciasUpdateSQLite.actualizarSQLite("Jugadores", new String[]{"nombre","apellidos","edad","posicion","tipo","dorsal","foto"}, new String[]{nomJug.getText().toString(),apellJug.getText().toString(),edadJug.getText().toString(),posJug,String.valueOf(tipoJug),dorsalJug.getText().toString(),String.valueOf(selectedImageUri)},"id_equipo="+id_equipo+" and dorsal="+numberJugador+"");
+						}
+						PopUpNuevoEditarJugador.this.finish();
+					}else{
+						Toast.makeText(getApplicationContext(), "Ya existe un jugador con ese dorsal", Toast.LENGTH_SHORT).show();
+					}
 				}
-
 			}
 		});
 		
+		setFotoEntrenador(); //Muestra la imágen del entrenador si existe
 	}
 	
 	@Override
@@ -325,13 +341,31 @@ public class PopUpNuevoEditarJugador extends Activity {
 	
 	public void setFotoEntrenador(){
 		//Mostramos la foto del entrenador si la hay o no
-		if(rutaImagen==null){
-			imgPhoto.setImageResource(R.drawable.no_coach_photo);
-		}else{
-			//Agregamos el valor o contenido a los elementos
-			imgPhoto.setImageURI(Uri.parse(rutaImagen));
+		if(accion.equals("agregar")){
 			
-			rutaImagen=null; //Reseta a null el valor
+			if(rutaImagen==null){
+				imgPhoto.setImageResource(R.drawable.no_coach_photo);
+			}else{
+				//Agregamos el valor o contenido a los elementos
+				imgPhoto.setImageURI(Uri.parse(rutaImagen));
+				
+				rutaImagen=null; //Reseta a null el valor
+			}
+			
+		}else if(accion.equals("editar")){
+			String fotoJugador=SentenciasSQLiteNuevoEditarJugador.getFotoJugador(); //Obtenemos el valor
+			
+			if(fotoJugador==null & rutaImagen==null){
+				imgPhoto.setImageResource(R.drawable.no_coach_photo);
+			}else if(fotoJugador!=null){
+				rutaImagen=fotoJugador;
+				imgPhoto.setImageURI(Uri.parse(rutaImagen));
+				rutaImagen=null; //Reseta a null el valor
+			}else if(rutaImagen!=null){
+				imgPhoto.setImageURI(Uri.parse(rutaImagen));
+				rutaImagen=null; //Reseta a null el valor
+			}
+			
 		}
 	}
 	

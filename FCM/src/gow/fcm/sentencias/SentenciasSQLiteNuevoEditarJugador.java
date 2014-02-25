@@ -2,6 +2,7 @@ package gow.fcm.sentencias;
 
 import gow.fcm.sharefprefs.DatosFootball;
 import android.content.Context;
+import android.util.Log;
 
 public class SentenciasSQLiteNuevoEditarJugador {
 	
@@ -36,18 +37,38 @@ private static String nameJugador,surnameJugador,ageJugador,positionJugador,type
 	}
 	
 	//Este método obtiene los datos del partido para editarlo
-	public static int getDatosEditarPartido(Context contexto,String dorsal){
+	public static int getNumDatosNuevoJugador(Context contexto,String dorsal){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
 		SentenciasSelectSQLite.borrarTodosValores();
 
 		//Obtenemos el identificador
 		DatosFootball.getDatosFootball(contexto);
 		int id=DatosFootball.getIdEquipo();
-
+		
 		//Ejcutamos la sentencia
 		SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(dorsal)"},"id_equipo="+id+" AND dorsal="+dorsal+"");
-		String[] valores = SentenciasSelectSQLite.getValores();
+		String[] valores=SentenciasSelectSQLite.getValores();
 		return Integer.parseInt(valores[0]);
+	}
+	
+	//Este método obtiene los datos del partido para editarlo
+	public static int getNumDatosEditarJugador(Context contexto,String dorsal){
+		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
+		SentenciasSelectSQLite.borrarTodosValores();
+
+		//Obtenemos el identificador
+		DatosFootball.getDatosFootball(contexto);
+		int id=DatosFootball.getIdEquipo();
+		
+		//Ejcutamos la sentencia
+		SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"id_jugador"},"id_equipo="+id+" AND dorsal="+dorsal+"");
+		String[] valores=SentenciasSelectSQLite.getValores();
+		String idJugador=valores[0];
+		
+		//Ejcutamos la sentencia
+		SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(dorsal)"},"id_jugador!="+idJugador+" AND id_equipo="+id+" AND dorsal="+dorsal+"");
+		String[] valor=SentenciasSelectSQLite.getValores();
+		return Integer.parseInt(valor[0]);
 	}
 	
 	//Este método obtiene los datos del jugador
@@ -73,4 +94,3 @@ private static String nameJugador,surnameJugador,ageJugador,positionJugador,type
 		fotoJugador=valores[6];
 	}
 }
-

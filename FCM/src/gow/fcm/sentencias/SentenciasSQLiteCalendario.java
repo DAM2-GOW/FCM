@@ -70,7 +70,7 @@ public class SentenciasSQLiteCalendario{
 		int id=DatosFootball.getIdEquipo();
 		
 		//Ejcutamos la sentencia
-		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"id_entrenamiento"},"id_equipo="+id+" AND dia='"+fecha+"' LIMIT 1");
+		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"id_entrenamiento"},"id_equipo="+id+" AND dia='"+fecha+"'");
 		
 		//Almacenamos los valores
 		String[] valores=SentenciasSelectSQLite.getValores();
