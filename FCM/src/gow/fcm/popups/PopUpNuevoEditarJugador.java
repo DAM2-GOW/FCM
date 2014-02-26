@@ -306,8 +306,8 @@ public class PopUpNuevoEditarJugador extends Activity {
 		i.putExtra("crop","true");
 		i.putExtra("aspectX",1);
 		i.putExtra("aspectY",1);
-		i.putExtra("outputX",100);
-		i.putExtra("outputY",102);
+		i.putExtra("outputX",110);
+		i.putExtra("outputY",110);
 		i.putExtra("return-data",false);
 		
 		//Pasamos los parámetros para guardar la imagen
@@ -328,8 +328,8 @@ public class PopUpNuevoEditarJugador extends Activity {
 		i.putExtra("crop","true");
 		i.putExtra("aspectX",1);
 		i.putExtra("aspectY",1);
-		i.putExtra("outputX",100);
-		i.putExtra("outputY",102);
+		i.putExtra("outputX",110);
+		i.putExtra("outputY",110);
 		i.putExtra("return-data",false);
 		
 		//Pasamos los parámetros para guardarla

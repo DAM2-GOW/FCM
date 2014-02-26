@@ -1,7 +1,6 @@
 package gow.fcm.popups;
 
 import java.io.File;
-
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLLoginScreen;
@@ -11,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -211,8 +209,8 @@ public class PopUpNewUser extends Activity {
 		i.putExtra("crop","true");
 		i.putExtra("aspectX",1);
 		i.putExtra("aspectY",1);
-		i.putExtra("outputX",100);
-		i.putExtra("outputY",102);
+		i.putExtra("outputX",110);
+		i.putExtra("outputY",110);
 		i.putExtra("return-data",false);
 		
 		//Pasamos los parámetros para guardar la imagen
@@ -233,8 +231,8 @@ public class PopUpNewUser extends Activity {
 		i.putExtra("crop","true");
 		i.putExtra("aspectX",1);
 		i.putExtra("aspectY",1);
-		i.putExtra("outputX",100);
-		i.putExtra("outputY",102);
+		i.putExtra("outputX",110);
+		i.putExtra("outputY",110);
 		i.putExtra("return-data",false);
 		
 		//Pasamos los parámetros para guardarla
