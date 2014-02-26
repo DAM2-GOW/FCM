@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/nombre"
+            android:textSize="22sp"
             android:textColor="@color/white"
             android:ems="10" >
 
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/apellidos"
             android:textColor="@color/white"
+            android:textSize="22sp"
             android:ems="10" />
 
         <EditText
@@ -45,16 +47,19 @@
             android:textColor="@color/white"
             android:ems="10"
             android:maxLength="2"
+            android:textSize="22sp"
             android:inputType="number" />
 
         <Spinner
             android:id="@+id/spinnerTipoJugador"
             android:layout_width="231dp"
+            android:textSize="22sp"
             android:layout_height="wrap_content" />
 
         <Spinner
             android:id="@+id/spinnerPosicionJugador"
             android:layout_width="231dp"
+            android:textSize="22sp"
             android:layout_height="wrap_content" />
 
         <EditText
@@ -65,6 +70,7 @@
             android:hint="@string/dorsal"
             android:textColor="@color/white"
             android:maxLength="2"
+            android:textSize="22sp"
             android:inputType="number" />
 
     </LinearLayout>
@@ -86,13 +92,23 @@
             android:id="@+id/editarFotoJugador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_style"
+            android:textColor="@color/white"
+            android:textSize="22sp"
             android:text="@string/editar_foto" />
 
+        <Space 
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            />
         <Button
             android:id="@+id/guardarJugadorNuevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="guardarNuevoPartido"
+            android:background="@drawable/btn_style"
+            android:textColor="@color/white"
+            android:textSize="22sp"
             android:text="@string/bb_menu_save" />
 
     </LinearLayout>

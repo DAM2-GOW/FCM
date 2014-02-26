@@ -22,6 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:maxLength="45"
+            android:textSize="22sp"
             android:hint="@string/lugar"
             android:textColor="@color/white" >
 
@@ -58,6 +60,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white" 
             android:ems="10"
+            android:textSize="22sp"
+            android:maxLength="45"
             android:hint="@string/rival" />
 
         <Space
@@ -85,6 +89,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="guardarNuevoEntrenamiento"
+        android:background="@drawable/btn_style"
+        android:textColor="@color/white"
+        android:textSize="22sp"
         android:text="@string/bb_menu_save" />
 
 </LinearLayout>

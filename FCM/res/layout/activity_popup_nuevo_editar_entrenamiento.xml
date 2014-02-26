@@ -21,8 +21,9 @@
             android:id="@+id/titulo_entrenamientoNuevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
             android:ems="10"
+            android:maxLength="45"
+            android:textSize="22sp"
             android:hint="@string/titulo_entrenamiento"
             android:textColor="@color/white" />
 
@@ -122,11 +123,12 @@
             android:id="@+id/guardarEntrenamientoNuevo"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:textSize="22sp"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:background="@drawable/btn_style"
             android:onClick="guardarNuevoEntrenamiento"
-            android:text="@string/bb_menu_save" />
+            android:text="@string/bb_menu_save"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
         <Space
             android:layout_width="100dp"

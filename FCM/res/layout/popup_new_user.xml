@@ -274,6 +274,7 @@
             android:layout_height="wrap_content"
             android:text="@string/popup_newUser_btnGuardar"
             android:textColor="@color/white"
+            android:background="@drawable/btn_style"
             android:textSize="22sp" />
 
         <TextView
