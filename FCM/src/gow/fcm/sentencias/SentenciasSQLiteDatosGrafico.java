@@ -1,59 +1,48 @@
 package gow.fcm.sentencias;
 
+import gow.fcm.sharefprefs.DatosFootball;
 import android.content.Context;
 
 public class SentenciasSQLiteDatosGrafico {
 	
-	static String datos;
-	static String dia;
-	static int id;
+	private static int[] datos, dias;
 	
-	public static void setDatos(String dataS, int idj) {
-		datos = dataS;
-		id = idj;
+	public static int[] getDatos(){
+		return datos;
 	}
-
-	public static int[] getDatos() {
-		return data;
-	}
-
-	public static int[] getDias() {
+	
+	public static int[] getDias(){
 		return dias;
 	}
-
 	
-	private static int[] data, dias;
 	//Este método obtiene los datos del jugador
-	public static void getDatosJugador(Context contexto){
+	public static void getDatosGrafico(Context contexto,String dato){
 		
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
 		SentenciasSelectSQLite.borrarTodosValores();
 		
+		//Obtenemos el identificador
+		DatosFootball.getDatosFootball(contexto);
+		int idEquipo=DatosFootball.getIdEquipo();
+		
 		//Ejcutamos la sentencia
-		SentenciasSelectSQLite.seleccionarSQLite("Jugadores",new String[]{"COUNT(*)"},"id_jugador = "+id+"");
+		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"COUNT(*)","id_partido"},"id_equipo="+idEquipo+"");
 		
 		//Obtenemos el número de valores
-		String[] valores=(String[]) SentenciasSelectSQLite.getValores();
-		String numValores=valores[0];
+		String[] valor=SentenciasSelectSQLite.getValores();
+		String numPartidos=valor[0];
+		String idPartido=valor[1];
 		
-		data=new int[Integer.parseInt(numValores)];
+		datos=new int[Integer.parseInt(numPartidos)];
+		dias=new int[Integer.parseInt(numPartidos)];
 		
-		for(int i=0;i<Integer.parseInt(numValores);i++){
-			//Ejcutamos la sentencia
-			SentenciasSelectSQLite.seleccionarSQLite("Jugadores", new String[]{datos}, "id_jugador = "+id+"");
-			//Almacenamos los valores
-			valores=(String[]) SentenciasSelectSQLite.getValores();
-			data[i]=Integer.parseInt(valores[0]);
-		}
-		
-		dias=new int[Integer.parseInt(numValores)];
-		
-		for(int i=0;i<Integer.parseInt(numValores);i++){
-			//Ejcutamos la sentencia
-			SentenciasSelectSQLite.seleccionarSQLite("Partidos", new String[]{dia}, "id_jugador = "+id+"");
-			//Almacenamos los valores
-			valores=(String[]) SentenciasSelectSQLite.getValores();
-			dias[i]=Integer.parseInt(valores[0]);
+		for(int i=0;i<datos.length;i++){
+			SentenciasSelectSQLite.seleccionarSQLite("Estadisticas_Partidos",new String[]{dato},"id_partido="+idPartido+" ORDER BY id_partido LIMIT "+(i)+",1");
+			String[] valores=(String[]) SentenciasSelectSQLite.getValores();
+			datos[i]=Integer.parseInt(valores[0]);
+			SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"id_partido"},"id_equipo="+idEquipo+" ORDER BY id_partido LIMIT "+(i)+",1");
+			String[] valores2=(String[]) SentenciasSelectSQLite.getValores();
+			dias[i]=Integer.parseInt(valores2[0]);
 		}
 	}
 	

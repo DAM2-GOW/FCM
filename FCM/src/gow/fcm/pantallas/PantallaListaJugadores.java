@@ -1,5 +1,6 @@
 package gow.fcm.pantallas;
 
+import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNuevoEditarJugador;
 import gow.fcm.sentencias.SentenciasSQLiteListaJugadores;
@@ -30,7 +31,7 @@ public class PantallaListaJugadores extends Activity {
 	private String[] nombreJugador,apellidosJugador,posicionJugador,dorsalJugador; //Matrices donde se les pasa los datos a mostrar en la lista
 	private ListaJugadores adaptador; //Declaramos el adaptador
 	private View pie; //Variable usada para almacenar un objeto View del pie de página de la lista de jugadores
-	private String tiposJugadores;
+	private String tiposJugadores,varDorsal="dorsal_jugador";
 	private static boolean botonAtaque=false,botonDefensa=false,botonEquiposEsp=false;
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,9 @@ public class PantallaListaJugadores extends Activity {
 		// nombre de la
 		// aplicación
 		setContentView(R.layout.activity_lista_jugadores);
-
+		
+		ConexionSQLite.getCrearSQLite(this);
+		
 		//DatosFootball.setDatosFootball(this,1,1);
 		//SentenciasInsertSQLite.insertarSQLite("Equipos",new String[]{"nombre"},new String[]{"Pepe Team"});
 		//SentenciasInsertSQLite.insertarSQLite("Entrenadores",new String[]{"id_equipo","nombre","apellidos","usuario","clave","pregunta_seguridad","respuesta_seguridad"},new String[]{"1","Pepe","García","pepe","1234","1","Chispi"});
@@ -201,11 +204,6 @@ public class PantallaListaJugadores extends Activity {
 		}
 	}
 	
-	private void estadisticasJugador(){
-		Intent i=new Intent(this,EstadisticasJugador.class);
-		startActivity(i);
-	}
-	
 	private void cargarJugadores() {
 		//Forzamos los datos de entrada que serán mostrados en la lista
 		SentenciasSQLiteListaJugadores.getDatosJugador(this);
@@ -317,6 +315,12 @@ public class PantallaListaJugadores extends Activity {
 				return true;
 			}
 		});
+	}
+	
+	private void estadisticasJugador(){
+		Intent i=new Intent(this,EstadisticasJugador.class);
+		i.putExtra(varDorsal, String.valueOf(getDorsal));
+		startActivity(i);
 	}
 	
 	//Método para editar al jugador
