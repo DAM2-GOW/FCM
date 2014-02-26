@@ -1,6 +1,5 @@
 package gow.fcm.pantallas;
 
-import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNuevoEditarJugador;
 import gow.fcm.sentencias.SentenciasSQLiteListaJugadores;
@@ -135,29 +134,26 @@ public class PantallaListaJugadores extends Activity {
 					BtnEe.setBackgroundColor(0x00000000);
 				}
 			}
-		}
-				);
+		});
 	}
 
 	protected void onResume(){
 		super.onResume();
+		
 		if(botonAtaque==true){
 			tiposJugadores="0";
 			actualizarLista(tiposJugadores);
-			botonAtaque=false;
 		}else if(botonDefensa==true){
 			tiposJugadores="1";
 			actualizarLista(tiposJugadores);
-			botonDefensa=false;
 		}else if(botonEquiposEsp==true){
 			tiposJugadores="2";
 			actualizarLista(tiposJugadores);
-			botonEquiposEsp=false;
 		}else{
 			mostrarLista();
 		}
 	}
-
+	
 	// Método de creación de los menús contextuales
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -170,7 +166,7 @@ public class PantallaListaJugadores extends Activity {
 			break;
 		}
 	}
-
+	
 	// Método que indica la acción a realizar según la opción elegida en el menú
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
@@ -189,15 +185,12 @@ public class PantallaListaJugadores extends Activity {
 			if(botonAtaque==true){
 				tiposJugadores="0";
 				actualizarLista(tiposJugadores);
-				botonAtaque=false;
 			}else if(botonDefensa==true){
 				tiposJugadores="1";
 				actualizarLista(tiposJugadores);
-				botonDefensa=false;
 			}else if(botonEquiposEsp==true){
 				tiposJugadores="2";
 				actualizarLista(tiposJugadores);
-				botonEquiposEsp=false;
 			}else{
 				mostrarLista();
 			}
@@ -325,7 +318,7 @@ public class PantallaListaJugadores extends Activity {
 			}
 		});
 	}
-
+	
 	//Método para editar al jugador
 	private void editarJugador() {
 		String dorsal = String.valueOf(getDorsal);
