@@ -210,7 +210,6 @@
     <string name="login_screen_toast_recover_password">Ahora usa tu contraseña recuperada para iniciar</string>
     <string name="login_screen_toast_recover_password_cancel">Se ha cancelado la recuperacion de contraseña</string>
     <string name="title_activity_popup_recover_password">Recuperar contraseña perdida</string>
-    <string name="title_activity_login_entrenador">PopupRecoverPassword</string>
     <string name="login_screen_textview_recover_pass">Pulsa aqui para recuperar la contraseña</string>
     <string name="login_screen_toast_surname_null">El campo apellidos está vacío</string>
     <string name="login_screen_toast_username_in_use">El nombre de usuario ya existe. ¿Has perdido la contraseña?</string>

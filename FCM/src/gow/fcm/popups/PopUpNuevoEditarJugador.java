@@ -35,16 +35,21 @@ import android.widget.Toast;
 public class PopUpNuevoEditarJugador extends Activity {
 
 	private Spinner tipoJugador, posicionJugador;
-	private String posJug,rutaImagen,accion,numberJugador;
 	private Button botonEditar, guardarJugador;
 	private EditText nomJug, apellJug, edadJug, dorsalJug;
 	private ImageView imgPhoto; //Imagen o foto del entrenador
 	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
 	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
 	private File dirActual=Environment.getExternalStorageDirectory(); //Directorio donde esta la carpeta de las imágenes
-	private String dirRecortes="image/*"; //Directorio donde se encuentran las imágenes recortadas
+	private String dirRecortes="image/*",rutaImagen; //Directorio donde se encuentran las imágenes recortadas
+	private String posJug,accion,numberJugador;
 	private int tipoJug;
 	private Intent ir;
+	
+	//Reseteamos el valor de rutaImagen
+	private void setRutaImagen(){
+		rutaImagen=null; //Reseta a null el valor
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -225,7 +230,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 			}
 		});
 		
-		setFotoEntrenador(); //Muestra la imágen del entrenador si existe
+		getFotoEntrenador(); //Muestra la imágen del entrenador si existe
 	}
 	
 	@Override
@@ -244,12 +249,12 @@ public class PopUpNuevoEditarJugador extends Activity {
 			case galeria: Uri ruta2=selectedImageUri; //Obtenemos la ruta
 				rutaImagen=String.valueOf(ruta2); //Convertimos a string la ruta
 				
-				setFotoEntrenador();
+				getFotoEntrenador();
 				break;
 			case recortar: Uri ruta3=selectedImageUri; //Obtenemos la ruta
 				rutaImagen=String.valueOf(ruta3); //Convertimos a string la ruta
 				
-				setFotoEntrenador();
+				getFotoEntrenador();
 				break;
 			default:
 				break;
@@ -334,6 +339,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 		i.putExtra(MediaStore.EXTRA_OUTPUT,selectedImageUri);
 		startActivityForResult(i,recortar);
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -343,8 +349,8 @@ public class PopUpNuevoEditarJugador extends Activity {
 		return true;
 	}
 	
-	public void setFotoEntrenador(){
-		//Mostramos la foto del entrenador si la hay o no
+	public void getFotoEntrenador(){
+		//Mostramos la foto del jugador si la hay o no
 		if(accion.equals("agregar")){
 			
 			if(rutaImagen==null){
@@ -352,27 +358,26 @@ public class PopUpNuevoEditarJugador extends Activity {
 			}else{
 				//Agregamos el valor o contenido a los elementos
 				imgPhoto.setImageURI(Uri.parse(rutaImagen));
-				
-				rutaImagen=null; //Reseta a null el valor
+				setRutaImagen();
 			}
 			
 		}else if(accion.equals("editar")){
 			String fotoJugador=SentenciasSQLiteNuevoEditarJugador.getFotoJugador(); //Obtenemos el valor
 			
-			if(fotoJugador==null & rutaImagen==null){
+			if(fotoJugador==null & rutaImagen==null){ //No hay foto de jugador
 				imgPhoto.setImageResource(R.drawable.no_coach_photo);
-			}else if(fotoJugador!=null){
+			}else if(fotoJugador!=null){ //Hay foto de jugador en la BD
 				if(rutaImagen!=null){
 					imgPhoto.setImageURI(Uri.parse(rutaImagen));
-					rutaImagen=null; //Reseta a null el valor
+					setRutaImagen();
 				}else{
 					rutaImagen=fotoJugador;
 					imgPhoto.setImageURI(Uri.parse(rutaImagen));
-					rutaImagen=null; //Reseta a null el valor
+					setRutaImagen();
 				}
-			}else if(rutaImagen!=null){
+			}else if(rutaImagen!=null){ //Hay foto de jugador desde la cámara de foto o galería
 				imgPhoto.setImageURI(Uri.parse(rutaImagen));
-				rutaImagen=null; //Reseta a null el valor
+				setRutaImagen();
 			}
 			
 		}

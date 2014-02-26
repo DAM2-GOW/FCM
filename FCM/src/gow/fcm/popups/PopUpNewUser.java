@@ -34,11 +34,15 @@ public class PopUpNewUser extends Activity {
 	Spinner sp_security_question;
 	Button btn_edit_photo, btn_save_new_user;
 	EditText et_name, et_surName, et_user, et_password, et_password_repeat, et_security_answer, et_team_name;
-	private ImageView imgPhoto; //Imagen o foto del entrenador
 	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
 	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
 	private File dirActual=Environment.getExternalStorageDirectory(); //Directorio donde esta la carpeta de las imágenes
 	private String dirRecortes="image/*",rutaImagen; //Directorio donde se encuentran las imágenes recortadas
+	
+	//Reseteamos el valor de rutaImagen
+	private void setRutaImagen(){
+		rutaImagen=null; //Reseta a null el valor
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +121,11 @@ public class PopUpNewUser extends Activity {
 					SentenciasInsertSQLite.insertarSQLite("Equipos", new String[] {"nombre"}, new String[] {teamName});
 					int equipoID = ssls.obtenerIDEquipoPorNombre(teamName);
 					int preguntaSeguridad = sp_security_question.getSelectedItemPosition();
-					SentenciasInsertSQLite.insertarSQLite("Entrenadores", new String[] {"id_equipo","nombre","apellidos", "usuario","clave","pregunta_seguridad","respuesta_seguridad"}, new String[] {String.valueOf(equipoID),name,surName,user,password,String.valueOf(preguntaSeguridad),securityAnswer});
+					if(selectedImageUri==null){
+						SentenciasInsertSQLite.insertarSQLite("Entrenadores", new String[] {"id_equipo","nombre","apellidos","usuario","clave","pregunta_seguridad","respuesta_seguridad"}, new String[] {String.valueOf(equipoID),name,surName,user,password,String.valueOf(preguntaSeguridad),securityAnswer});
+					}else{
+						SentenciasInsertSQLite.insertarSQLite("Entrenadores", new String[] {"id_equipo","nombre","apellidos","foto","usuario","clave","pregunta_seguridad","respuesta_seguridad"}, new String[] {String.valueOf(equipoID),name,surName,String.valueOf(selectedImageUri),user,password,String.valueOf(preguntaSeguridad),securityAnswer});
+					}
 					Intent i = new Intent();
 					setResult(RESULT_OK, i);
 					PopUpNewUser.this.finish();
@@ -125,6 +133,8 @@ public class PopUpNewUser extends Activity {
 				
 			}
 		});
+		
+		getFotoEntrenador(); //Muestra la imágen del entrenador si existe
 	}
 
 	@Override
@@ -143,12 +153,12 @@ public class PopUpNewUser extends Activity {
 			case galeria: Uri ruta2=selectedImageUri; //Obtenemos la ruta
 				rutaImagen=String.valueOf(ruta2); //Convertimos a string la ruta
 				
-				setFotoEntrenador();
+				getFotoEntrenador();
 				break;
 			case recortar: Uri ruta3=selectedImageUri; //Obtenemos la ruta
 				rutaImagen=String.valueOf(ruta3); //Convertimos a string la ruta
 				
-				setFotoEntrenador();
+				getFotoEntrenador();
 				break;
 			default:
 				break;
@@ -161,10 +171,10 @@ public class PopUpNewUser extends Activity {
 		super.onCreateContextMenu(menu,v,menuInfo);
 		MenuInflater inflater=getMenuInflater();
 		switch(v.getId()){
-			case R.id.btn_edit_photo_entrenador: inflater.inflate(R.menu.foto_select, menu);
-				break;
-			default:
-				break;
+		case R.id.btn_edit_photo_entrenador: inflater.inflate(R.menu.foto_select, menu);
+		break;
+		default:
+			break;
 		}
 	}
 	
@@ -172,12 +182,12 @@ public class PopUpNewUser extends Activity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item){
 		switch(item.getItemId()){
-			case R.id.camaraFotos: cargarCamaraFotos();
-				return true;
-			case R.id.galeriaFotos: cargarGaleriaFotos();
-				return true;
-			default:
-				return super.onContextItemSelected(item);
+		case R.id.camaraFotos: cargarCamaraFotos();
+		return true;
+		case R.id.galeriaFotos: cargarGaleriaFotos();
+		return true;
+		default:
+			return super.onContextItemSelected(item);
 		}
 	}
 	
@@ -234,15 +244,14 @@ public class PopUpNewUser extends Activity {
 		startActivityForResult(i,recortar);
 	}
 	
-	public void setFotoEntrenador(){
+	public void getFotoEntrenador(){
 		//Mostramos la foto del entrenador si la hay o no
 		if(rutaImagen==null){
-			imgPhoto.setImageResource(R.drawable.no_coach_photo);
+			new_user_pic_preview.setImageResource(R.drawable.no_coach_photo);
 		}else{
 			//Agregamos el valor o contenido a los elementos
-			imgPhoto.setImageURI(Uri.parse(rutaImagen));
-			
-			rutaImagen=null; //Reseta a null el valor
+			new_user_pic_preview.setImageURI(Uri.parse(rutaImagen));
+			setRutaImagen();
 		}
 	}
 	
