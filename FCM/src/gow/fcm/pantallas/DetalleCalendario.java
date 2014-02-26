@@ -1,6 +1,8 @@
 package gow.fcm.pantallas;
 
 import gow.fcm.footballcoachmanager.R;
+import gow.fcm.sentencias.SentenciasSQLiteVistaDetallada;
+import gow.fcm.sharefprefs.DatosFootball;
 import gow.fcm.utilidades.ArrayAdapterVistaCalendario;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,75 +16,79 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 
 public class DetalleCalendario extends Activity {
-	private boolean selected;
-	private int lastPosition;
+	private int opcion, idEquipo;
+	private String dia;
+	SentenciasSQLiteVistaDetallada ssvd;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_detallecalendario);
-		
-		// Inicializamos la variable de selecciona de elementos.
-		selected = false;
+		Bundle b = getIntent().getExtras();
+		dia = b.getString("dia");
+		opcion = b.getInt("opcion");
+		idEquipo = DatosFootball.getIdEquipo();
 		
 		// Obtenemos el elemento 'ListView' de android desde el XML.
 		ListView lv = (ListView)findViewById(R.id.listView_eventoscalendario);
-		
-		// Forzamos los datos de entrada que seran mostrados en la lista.
-		String[] data_name = {"Entrenamiento de piernas","Entrenamiento de brazo","Entrenamiento importante del primer equipo"};
-		String[] data_type = {"Resistencia","Agilidad","Fuerza"};
-		String[] data_hora = {"8:30", "9:30", "10:30"};
-		String[] data_cosa = {"Entrenamiento", "Entrenamiento", "Entrenamiento"};
-		
+
+		// Obtenemos datos desde la DB.
+		String Titulo[];
+		String Tipo[];
+		String Fecha[];
+		String indicativo;
+
+		if(opcion==0){
+			// Si se recibe orden de tipo entrenamiento.
+		indicativo = "Entrenamiento";
+		Titulo = ssvd.obtenerTituloEntrenamientos(dia, idEquipo);
+		Tipo = ssvd.obtenerTipoEntrenamientos(dia, idEquipo);
+		Fecha = ssvd.obtenerHoraEntrenamientos(dia, idEquipo);
+		}else{
+			// Si se recibe orden de tipo partido.
+		indicativo = "Partido";
+		Titulo = ssvd.obtenerRivalPartidos(dia, idEquipo);
+		Tipo = ssvd.obtenerLugarPartidos(dia, idEquipo);
+		Fecha = ssvd.obtenerHoraPartidos(dia, idEquipo);
+		}
+
 		// Creamos un 'Adapter' para recoger esos datos los cuales son enviados a 
 		// una clase java que extiende a 'ArrayAdapter' de android pero personalizada.
-		final ArrayAdapterVistaCalendario adapter = new ArrayAdapterVistaCalendario(this, 
-                data_name, data_type, data_hora, data_cosa);
-        
+		ArrayAdapterVistaCalendario adapter = new ArrayAdapterVistaCalendario(this, 
+				Titulo, Tipo, Fecha, indicativo);
+
         // Se colocan los datos en el 'ListView'.
         lv.setAdapter(adapter);
-        
-        
+
         lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?>  parent, View view,
 			         int position, long id) {
-				lanzarObservacion(view);
-				//Cuando clicamos en un elemento del listview nos manda a la ventana de observacones
+				//Cuando clicamos en un elemento del listview abre un contextMenu para 
+				// seleccionar entre 3 opciones; editar evento, vef observaciones y borrar.
+				
+				// lanzarObservacion(view);
+				
+				
 			}
 		});
-        lv.setOnItemLongClickListener(new OnItemLongClickListener() {
 
-			@Override
-			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				// lanzarEdicion(view);
-				return false;
-				//cuando mantenemos pulsado un elemento nos manda a la ventana para editar el entrenamiento o partido.
-			}
-		});
 	}
 	 
 	public void lanzarObservacion(View view) {
         Intent i = new Intent(this, Obsevaciones.class );
-        //i.putExtra("idObservaciones", value)
+        //i.putExtra("idObserv", value);
         startActivity(i);
         // Este evento nos manda a la ventana de observaciones
   }  
-	/*public void lanzarEdicion(View view) {
-		Intent i = new Intent(this, ventanasenent.class);
-		i.putExtra("idObservaciones", value)
-		startActivity(i);
-	}
-	*/
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-	//	getMenuInflater().inflate(R.menu.main, menu);
+		//getMenuInflater().inflate(R.menu.main, menu);
 		return true;
-		// Este evento nos manda a la ventana de edicion
 	}
 
 }

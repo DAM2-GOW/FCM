@@ -725,6 +725,8 @@ public class PaginaCalendario extends Activity{
 	//El siguiente método abre un popup para ver un partido
 	private void verStatsPartido(){
 		Intent i=new Intent(this,DetalleCalendario.class);
+		i.putExtra("dia", "DIA ACTUAL CAMBIAR");
+		i.putExtra("opcion", 1);
 		startActivity(i);
 	}
 	
