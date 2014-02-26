@@ -27,24 +27,26 @@
             android:textSize="22sp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <ImageView
-            android:id="@+id/photo_entrenador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/info_img"
-            android:src="@drawable/no_coach_photo" />
-
-        <Button
-            android:id="@+id/edit_photo_entrenador"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="113dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="@string/editar_foto" />
-
-        <Space
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/photo_entrenador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/info_img"
+                android:src="@drawable/no_coach_photo" />
+
+            <Button
+                android:id="@+id/edit_photo_entrenador"
+                android:layout_width="113dp"
+                android:background="@drawable/btn_style"
+                android:layout_height="wrap_content"
+                android:text="@string/editar_foto"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -101,20 +103,18 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="22sp"
+            android:background="@drawable/btn_style"
             android:text="@string/activity_nuevoEntrenador_btnGuardarCambios" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />
-        
-        <ImageView
-        android:id="@+id/divisor_azul_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/div_img"
-        android:gravity="left"
-        android:src="@drawable/divider_element" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black_cat" />
 
         <Space
             android:layout_width="match_parent"
@@ -165,6 +165,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="22sp"
+            android:background="@drawable/btn_style"
             android:text="@string/activity_nuevoEntrenador_btnGuardarCambios" />
         
         <Space
@@ -198,7 +199,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="430dp"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="vertical" >
@@ -268,24 +269,18 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="22sp"
+            android:background="@drawable/btn_style"
             android:text="@string/activity_nuevoEntrenador_btnGuardarCambios" />
         
         <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />
         
-        <ImageView
-        android:id="@+id/divisor_azul_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:contentDescription="@string/div_img"
-        android:gravity="left"
-        android:src="@drawable/divider_element" />
-        
-        <Space
+        <View
+            android:id="@+id/view2"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="1dp"
+            android:background="@color/black_cat" />
 
     </LinearLayout>
 
