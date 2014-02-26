@@ -14,7 +14,7 @@ public class Obsevaciones extends Activity {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

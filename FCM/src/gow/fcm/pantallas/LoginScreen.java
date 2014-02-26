@@ -4,7 +4,6 @@ import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNewUser;
 import gow.fcm.popups.PopUpRecoverPassword;
-import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLLoginScreen;
 import gow.fcm.sharefprefs.DatosFootball;
 import gow.fcm.utilidades.AnimatorLogin;

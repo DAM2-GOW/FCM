@@ -52,6 +52,12 @@ public class PaginaPrincipal extends Activity{
 	protected void onResume(){
 		super.onResume();
 		
+		//Método que muestra el nombre del entrenador
+		mostrarDatosEntreneador();
+		
+		//Método que muestra el nombre del equipo
+		mostrarNombreEquipo();
+		
 		//Método que muestra las diferentes secciones de la aplicación
 		seccionesBotones();
 	}

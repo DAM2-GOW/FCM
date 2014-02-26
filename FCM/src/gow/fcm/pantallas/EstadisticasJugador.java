@@ -1,24 +1,16 @@
 package gow.fcm.pantallas;
 
-import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.GraphViewDataInterface;
 import com.jjoe64.graphview.LineGraphView;
-
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
-import gow.fcm.footballcoachmanager.R.layout;
-import gow.fcm.footballcoachmanager.R.menu;
 import gow.fcm.sentencias.SentenciasSQLiteDatosGrafico;
 import gow.fcm.sentencias.SentenciasSQLiteDatosJugador;
 import gow.fcm.sentencias.SentenciasSQLiteListaEstadisticas;
-import gow.fcm.sentencias.SentenciasSelectSQLite;
 import gow.fcm.utilidades.ArrayAdapterStatisticsList;
 import android.os.Bundle;
 import android.app.Activity;
-import android.graphics.Color;
-import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;

@@ -1,9 +1,9 @@
 package gow.fcm.pantallas;
 
 import java.io.File;
-
 import gow.fcm.footballcoachmanager.R;
-import gow.fcm.sentencias.SentenciasInsertSQLite;
+import gow.fcm.sentencias.SentenciasSQLitePerfilEntrenador;
+import gow.fcm.sentencias.SentenciasUpdateSQLite;
 import gow.fcm.sharefprefs.DatosFootball;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,20 +26,26 @@ import android.widget.Toast;
 public class PantallaPerfilEntrenador extends Activity {
 	
 	private Button editPhotoEntre, saveNewEntre, saveContra, saveEquipo; //botones del perfil del entrenador
-	private EditText nomEntrenador, apellEntrenador, newContra, repNewContra, nomEquipo, ciudadEquipo; //editText del perfil del entrenador, nombre, equipo, contraseña.
+	private EditText nomEntrenador, apellEntrenador, newContra, repNewContra, nomEquipo; //editText del perfil del entrenador, nombre, equipo, contraseña.
 	private ImageView imgPhoto; //Imagen o foto del entrenador
 	private final int camara=1,galeria=2,recortar=3; //Variable usadas para tomar la foto o imagen del entrenador o recortarla
 	private Uri selectedImageUri; //Imagen seleccionada desde la cámara
 	private File dirActual=Environment.getExternalStorageDirectory(); //Directorio donde esta la carpeta de las imágenes
-	private String dirRecortes="image/*", rutaImagen; //Directorio donde se encuentran las imágenes recortadas y ruta de la imagen de perfil.
-
+	private String dirRecortes="image/*",rutaImagen; //Directorio donde se encuentran las imágenes recortadas
+	
+	//Reseteamos el valor de rutaImagen
+	private void setRutaImagen(){
+		rutaImagen=null; //Reseta a null el valor
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_pantalla_perfil_entrenador);
 		
-		final int id_equipo = DatosFootball.getIdEquipo(); //Cogemos la id del equipo.
+		final int id_equipo = DatosFootball.getIdEquipo(); //Cogemos la id del equipo
+		final int id_entrenador = DatosFootball.getIdEntrenador(); //Cogemos la id del entrenador
 		
 		//Relacionamos las variables con la id del layout.
 		imgPhoto = (ImageView) findViewById(R.id.photo_entrenador);
@@ -53,16 +58,32 @@ public class PantallaPerfilEntrenador extends Activity {
 		nomEquipo = (EditText) findViewById(R.id.new_nom_Equipo);
 		saveEquipo = (Button) findViewById(R.id.guardarEquipo);
 		
+		//Obtenemos y mostramos los datos por defecto
+		SentenciasSQLitePerfilEntrenador.getDatosPerfilEntrenador(this);
+		String nombreEntrenador=SentenciasSQLitePerfilEntrenador.getNombreEntrenador();
+		String apellidosEntrenador=SentenciasSQLitePerfilEntrenador.getApellidosEntrenador();
+		String nombreEquipo=SentenciasSQLitePerfilEntrenador.getNombreEquipo();
+		
+		nomEntrenador.setText(nombreEntrenador);
+		apellEntrenador.setText(apellidosEntrenador);
+		nomEquipo.setText(nombreEquipo);
+		
 		//Método que sirve para cambiar el nombre y apellidos del entrenador.
 		saveNewEntre.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				if(nomEntrenador.getText().toString().trim().equals("") || apellEntrenador.getText().toString().trim().equals("")){
+				if(nomEntrenador.getText().toString().trim().equals("") || nomEntrenador.getText().toString().trim().equals(null) || apellEntrenador.getText().toString().trim().equals("") || apellEntrenador.getText().toString().trim().equals(null)){
 					Toast.makeText(getApplicationContext(), "Algun campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
 				}else{
-					SentenciasInsertSQLite.insertarSQLite("Entrenadores", new String[]{"nombre","apellidos"}, new String[]{nomEntrenador.getText().toString(),apellEntrenador.getText().toString()});
-					Toast.makeText(getApplicationContext(), "Cambios Guardados", Toast.LENGTH_SHORT).show();
+					if(selectedImageUri==null){
+						SentenciasUpdateSQLite.actualizarSQLite("Entrenadores", new String[]{"nombre","apellidos"}, new String[]{nomEntrenador.getText().toString().trim(),apellEntrenador.getText().toString().trim()}, "id_entrenador="+id_entrenador+"");
+						Toast.makeText(getApplicationContext(), "Cambios guardados", Toast.LENGTH_SHORT).show();
+					}else{
+						SentenciasUpdateSQLite.actualizarSQLite("Entrenadores", new String[]{"nombre","apellidos","foto"}, new String[]{nomEntrenador.getText().toString().trim(),apellEntrenador.getText().toString().trim(),String.valueOf(selectedImageUri)}, "id_entrenador="+id_entrenador+"");
+						Toast.makeText(getApplicationContext(), "Cambios guardados", Toast.LENGTH_SHORT).show();
+					}
+					
 				}
 				
 			}
@@ -73,7 +94,17 @@ public class PantallaPerfilEntrenador extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// guardar nuevo contraseña
+				//Guardar nueva contraseña
+				if(newContra.getText().toString().trim().equals("") || newContra.getText().toString().trim().equals(null) || repNewContra.getText().toString().trim().equals("") || repNewContra.getText().toString().trim().equals(null)){
+					Toast.makeText(getApplicationContext(), "Algun campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
+				}else{
+					if(newContra.getText().toString().trim().equals(repNewContra.getText().toString().trim())){
+						SentenciasUpdateSQLite.actualizarSQLite("Entrenadores", new String[]{"clave"}, new String[]{newContra.getText().toString().trim()}, "id_entrenador="+id_entrenador+"");
+						Toast.makeText(getApplicationContext(),"Contraseña actualizada",Toast.LENGTH_SHORT).show();
+					}else{
+						Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+					}
+				}
 			}
 		});
 		
@@ -82,11 +113,11 @@ public class PantallaPerfilEntrenador extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				if(nomEquipo.getText().toString().trim().equals("") || ciudadEquipo.getText().toString().trim().equals("")){
+				if(nomEquipo.getText().toString().trim().equals("") || nomEquipo.getText().toString().trim().equals(null)){
 					Toast.makeText(getApplicationContext(), "Algun campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
 				}else{
-					SentenciasInsertSQLite.insertarSQLite("Equipos", new String[]{"id_equipo","nombre","ciudad"}, new String[]{String.valueOf(id_equipo),nomEquipo.getText().toString(),ciudadEquipo.getText().toString()});
-					Toast.makeText(getApplicationContext(), "Nuevo Equipo Guardado", Toast.LENGTH_SHORT).show();
+					SentenciasUpdateSQLite.actualizarSQLite("Equipos", new String[]{"nombre"}, new String[]{nomEquipo.getText().toString().trim()}, "id_equipo="+id_equipo+"");
+					Toast.makeText(getApplicationContext(), "Nombre de equipo guardado", Toast.LENGTH_SHORT).show();
 				}
 				
 			}
@@ -102,6 +133,8 @@ public class PantallaPerfilEntrenador extends Activity {
 				editPhotoEntre.showContextMenu();
 			}
 		});
+		
+		getFotoEntrenador(); //Muestra la imágen del entrenador si existe
 	}
 
 	@Override
@@ -114,15 +147,18 @@ public class PantallaPerfilEntrenador extends Activity {
 		//Acciones a realizar según la opción seleccionada previamente
 		switch(codigo){
 			case camara: Uri ruta=selectedImageUri; //Obtenemos la ruta
+				
 				recortarFotoCamara(ruta); //Recortamos la imagen
 				break;
 			case galeria: Uri ruta2=selectedImageUri; //Obtenemos la ruta
 				rutaImagen=String.valueOf(ruta2); //Convertimos a string la ruta
-				setFotoEntrenador();
+				
+				getFotoEntrenador();
 				break;
 			case recortar: Uri ruta3=selectedImageUri; //Obtenemos la ruta
 				rutaImagen=String.valueOf(ruta3); //Convertimos a string la ruta
-				setFotoEntrenador();
+				
+				getFotoEntrenador();
 				break;
 			default:
 				break;
@@ -208,21 +244,26 @@ public class PantallaPerfilEntrenador extends Activity {
 		startActivityForResult(i,recortar);
 	}
 	
-	public void setFotoEntrenador(){
+	public void getFotoEntrenador(){
 		//Mostramos la foto del entrenador si la hay o no
-		if(rutaImagen==null){
+		String fotoEntrenador=SentenciasSQLitePerfilEntrenador.getFotoEntrenador(); //Obtenemos el valor
+		
+		if(fotoEntrenador==null & rutaImagen==null){ //No hay foto de entrenador
 			imgPhoto.setImageResource(R.drawable.no_coach_photo);
-		}else{
-			//Agregamos el valor o contenido a los elementos
-			imgPhoto.setImageURI(Uri.parse(rutaImagen));
+		}else if(fotoEntrenador!=null){ //Hay foto de entrenador en la BD
 			
-			rutaImagen=null; //Reseta a null el valor
+			if(rutaImagen!=null){
+				imgPhoto.setImageURI(Uri.parse(rutaImagen));
+				setRutaImagen();
+			}else{
+				rutaImagen=fotoEntrenador;
+				imgPhoto.setImageURI(Uri.parse(rutaImagen));
+				setRutaImagen();
+			}
+			
+		}else if(rutaImagen!=null){ //Hay foto de entrenador desde la cámara de foto o galería
+			imgPhoto.setImageURI(Uri.parse(rutaImagen));
+			setRutaImagen();
 		}
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.pantalla_perfil_entrenador, menu);
-		return true;
 	}
 }
