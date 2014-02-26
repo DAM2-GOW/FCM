@@ -69,6 +69,7 @@
     <string name="activity_nuevoEntrenador_lblContrasenya">Nueva Contraseña</string>
     <string name="activity_nuevoEntrenador_lblNewContra">Repita Contraseña:</string>
     <string name="activity_nuevoEntrenador_lblRepNewContra">Repite Contraseña</string>
+    <string name="activity_nuevoEntrenador_lblContraActual">Contraseña Actual:</string>
     <string name="popup_newUser_lblUser">Usuario:*</string>
     <string name="popup_newUser_lblNombre">Nombre:*</string>
     <string name="popup_newUser_lblApellidos">Apellidos:*</string>

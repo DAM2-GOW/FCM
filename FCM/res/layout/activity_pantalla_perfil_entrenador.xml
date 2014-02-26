@@ -66,6 +66,7 @@
                 android:layout_width="254dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:maxLength="45"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
 
@@ -90,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="text"
+                android:maxLength="45"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 android:ems="10" />
@@ -154,6 +156,7 @@
                 android:inputType="text"
                 android:textColor="@color/white"
             	android:textSize="22sp"
+            	android:maxLength="45"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -223,6 +226,34 @@
             android:layout_height="wrap_content" >
 
             <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_nuevoEntrenador_lblContraActual"
+                android:textColor="@color/white"
+            	android:textSize="22sp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="textPassword"
+                android:textSize="22sp"
+                android:maxLength="45"
+                android:ems="10" >
+
+                <requestFocus />
+            </EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -236,6 +267,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:maxLength="45"
+                android:textSize="22sp"
                 android:inputType="textPassword" />
         </LinearLayout>
 
@@ -258,6 +291,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:textColor="@color/white"
+                android:maxLength="45"
+                android:textSize="22sp"
                 android:ems="10" />
 
         </LinearLayout>
