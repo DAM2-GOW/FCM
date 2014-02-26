@@ -1,6 +1,5 @@
 package gow.fcm.pantallas;
 
-import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.popups.PopUpNuevoEditarEntrenamiento;
 import gow.fcm.popups.PopUpNuevoEditarPartido;
 import gow.fcm.sentencias.SentenciasSQLiteCalendario;
@@ -57,7 +56,8 @@ public class PaginaCalendario extends Activity{
 		super.onResume();
 		
 		//Este método actualiza el contenido del calendario al cerrar el Popup
-		accionesMostrarEventos(getFechaSeleccionada());
+		String fechas=getFechaSeleccionada();
+		accionesMostrarEventos(fechas);
 	}
 	
 	//Método de creación de los menús contextuales
@@ -549,7 +549,11 @@ public class PaginaCalendario extends Activity{
 				switch(arg1.getAction()){
 					case MotionEvent.ACTION_DOWN: {
 						borrarEventoEntrenamiento.setImageResource(R.drawable.delete_event_down);
-						borrarEventoEntrenamiento.showContextMenu(); //Menú contextual para borrar el entrenamiento
+						if(totalEntrenamiento>1){
+							borrarEntrenamiento();
+						}else{
+							borrarEventoEntrenamiento.showContextMenu(); //Menú contextual para borrar el entrenamiento
+						}
 						break;
 					}
 					case MotionEvent.ACTION_UP:
