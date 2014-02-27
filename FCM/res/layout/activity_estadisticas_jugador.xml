@@ -15,79 +15,159 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <GridLayout
-            android:layout_width="284dp"
+        <LinearLayout
+            android:id="@+id/LinearLayout2"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:background="@color/black_cow"
-            android:columnCount="2" >
+            android:background="@color/black_cow" >
 
-            <ImageView
-                android:id="@+id/imagen_jug"
-                android:layout_column="0"
-                android:layout_gravity="left|top"
-                android:layout_row="1"
-                android:src="@drawable/no_coach_photo" />
-
-            <ImageView
-                android:id="@+id/imagen_tipo"
-                android:layout_column="0"
-                android:layout_gravity="left|top"
-                android:layout_row="4"
-                android:src="@drawable/btn_all_attack" />
-
-            <TextView
-                android:id="@+id/dorsal_jug"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_column="1"
-                android:layout_gravity="right|bottom"
-                android:layout_row="1"
-                android:text="0"
-                android:textColor="@color/white_smoke"
-                android:textSize="75sp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/posicion_jug"
-                android:layout_column="1"
-                android:layout_gravity="left|bottom"
-                android:layout_row="1"
-                android:text="TextView"
-                android:textColor="@color/white_smoke"
-                android:textSize="20sp" />
+                <ImageView
+                    android:id="@+id/imagen_jug"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/no_coach_photo" />
 
-            <TextView
-                android:id="@+id/edad_jug"
-                android:layout_column="1"
-                android:layout_gravity="left|center_vertical"
-                android:layout_row="1"
-                android:text="TextView"
-                android:textColor="@color/white_smoke"
-                android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/nombre_jug"
-                android:layout_width="169dp"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_gravity="left|top"
-                android:layout_row="1"
-                android:text="TextView"
-                android:textColor="@color/white_smoke"
-                android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/id_tipo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Vistadetallada_calendario_tipo"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
 
-        </GridLayout>
+                    <ImageView
+                        android:id="@+id/imagen_tipo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/btn_all_attack" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="225dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/nombre_jug"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/white_smoke"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/id_edad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/edad"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/edad_jug"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textColor="@color/white_smoke"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/id_posicion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/position"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/posicion_jug"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textColor="@color/white_smoke"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/id_dosal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dorsal"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/dorsal_jug"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="0"
+                    android:textColor="@color/white_smoke"
+                    android:textSize="75sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <ListView
             android:id="@+id/statistics_list"
             android:layout_width="match_parent"
             android:layout_height="422dp" >
         </ListView>
-
     </LinearLayout>
 
-   <LinearLayout
-       android:id="@+id/graph1"
-       android:layout_width="fill_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/graphic_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/yes_data"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:typeface="serif" />
+
+        <LinearLayout
+            android:id="@+id/graph1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

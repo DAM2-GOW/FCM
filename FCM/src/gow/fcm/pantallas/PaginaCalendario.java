@@ -386,7 +386,7 @@ public class PaginaCalendario extends Activity{
 		}else if(signo=="fechaInferior" & num==2){
 			
 			opcionAgregarEntrenamiento("activar");
-			opcionVerEntrenamiento("desactivar");
+			opcionVerEntrenamiento("activar");
 			opcionEditarEntrenamiento("activar");
 			opcionBorrarEntrenamiento("activar");
 			opcionAgregarPartido("activar");
@@ -412,7 +412,7 @@ public class PaginaCalendario extends Activity{
 			opcionEditarEntrenamiento("desactivar");
 			opcionBorrarEntrenamiento("desactivar");
 			opcionAgregarPartido("desactivar");
-			opcionVerPartido("desactivar");
+			opcionVerPartido("activar");
 			opcionEditarPartido("activar");
 			opcionBorrarPartido("activar");
 			
@@ -430,11 +430,11 @@ public class PaginaCalendario extends Activity{
 		}else if(signo=="fechaInferior" & num==4){
 			
 			opcionAgregarEntrenamiento("activar");
-			opcionVerEntrenamiento("desactivar");
+			opcionVerEntrenamiento("activar");
 			opcionEditarEntrenamiento("activar");
 			opcionBorrarEntrenamiento("activar");
 			opcionAgregarPartido("desactivar");
-			opcionVerPartido("desactivar");
+			opcionVerPartido("activar");
 			opcionEditarPartido("activar");
 			opcionBorrarPartido("activar");
 			

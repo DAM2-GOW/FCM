@@ -34,7 +34,7 @@
     <string name="look_stats_img">Imagen ver estadísticas</string>
     <string name="edit_event_img">Imagen editar evento</string>
     <string name="delete_event_img">Imagen eliminar evento</string>
-    <string name="delete_training">Borrar entrenamiento/s</string>
+    <string name="delete_training">Borrar entrenamiento</string>
     <string name="delete_match">Borrar partido</string>
     <string name="title_page_calendar">Calendario</string>
     <string name="title_activity_config_entre">Config_entre</string>
@@ -50,7 +50,7 @@
     <string name="editar_foto">Editar Foto</string>
     <string name="nombre">Nombre</string>
     <string name="apellidos">Apellidos</string>
-    <string name="edad">Edad</string>
+    <string name="edad">Edad:</string>
     <string name="dorsal">Dorsal</string>
     <string name="lugar">Lugar</string>
     <string name="rival">Rival</string>
@@ -85,7 +85,9 @@
     <string name="popup_recoverPass_lblContrasenya">Tu contraseña es:</string>
     <string name="popup_recoverPass_lblVolver">Aceptar</string>
     
-
+    <string name="no_data">No hay datos</string>
+    <string name="yes_data">Datos</string>
+    
     <string-array name="TipoEntrenamiento">
         <item>Resistencia</item>
         <item>Fuerza</item>

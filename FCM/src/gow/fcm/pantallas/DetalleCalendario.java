@@ -141,7 +141,7 @@ public class DetalleCalendario extends Activity {
 				if(accion.equals("ver")){
 					
 					if(opcion==0){
-						lanzarObservacion();
+						lanzarObservacion(posicionActual);
 					}
 					
 				}else if(accion.equals("editar")){
@@ -159,9 +159,10 @@ public class DetalleCalendario extends Activity {
 		});
 	}
 	
-	public void lanzarObservacion(){
+	public void lanzarObservacion(String posicion){
         Intent i = new Intent(this, Obsevaciones.class );
-        //i.putExtra("idObserv", value);
+        i.putExtra(varPosicion,posicion);
+		i.putExtra(varFechaEvento,dia);
         startActivity(i);
     }
 	

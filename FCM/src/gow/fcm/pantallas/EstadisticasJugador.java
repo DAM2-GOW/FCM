@@ -4,7 +4,6 @@ import com.jjoe64.graphview.BarGraphView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphViewSeries;
-
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasSQLiteDatosGrafico;
 import gow.fcm.sentencias.SentenciasSQLiteDatosJugador;
@@ -30,13 +29,11 @@ public class EstadisticasJugador extends Activity{
 		Intent i=getIntent();
 		String dorsal=i.getExtras().getString(varDorsal);
 		
-		//SentenciasInsertSQLite.insertarSQLite("Estadisticas_Partidos", new String[]{"id_partido","id_jugador","carreras","pases","pases_completados","recepciones","fumbles","sacks","placajes","intercepciones","field_goals","punts","touchdowns","faltas","yardas_carrera","yardas_pase","yardas_recepcion","yardas_fumble","yardas_intercepcion","yardas_field_goal","yardas_punt","extra_points","extra_points_completados","pt2_conversions","pt2_conversions_completados"},new String[]{"1","1","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100"});
-		
 		//Este método rellena los datos de los jugadores
 		rellenarDatosJugador(dorsal);
 		
 		//Este método rellena el gráfico con estadisticas
-		datosGrafico();
+		datosGrafico(dorsal,"carreras");
 	}
 	
 	//Método que rellena los datos del jugador indicado
@@ -67,20 +64,31 @@ public class EstadisticasJugador extends Activity{
 		etFoto.setImageURI(Uri.parse(fot));
 		
 		switch(Integer.parseInt(tipo)){
-		case 0: etTipo.setImageResource(R.drawable.btn_all_attack);
-		break;
-		case 1: etTipo.setImageResource(R.drawable.btn_all_def);
-		break;
-		case 2: etTipo.setImageResource(R.drawable.btn_all_ee);
-		break;
+			case 0: etTipo.setImageResource(R.drawable.btn_all_attack);
+				break;
+			case 1: etTipo.setImageResource(R.drawable.btn_all_def);
+				break;
+			case 2: etTipo.setImageResource(R.drawable.btn_all_ee);
+				break;
 		}
 	}
 	
 	//Método que muestra en un gráfico la estadistica deseada
-	private void datosGrafico(){
+	private void datosGrafico(String dorsal,String dato){
+		//Obtenemos los valores
+		SentenciasSQLiteDatosGrafico.getDatosGrafico(this,dorsal,dato);
 		SentenciasSQLiteDatosGrafico.getDiasGrafico(this);
-		int[] datos={5,7,8};
+		int valores[]=SentenciasSQLiteDatosGrafico.getDatos();
+		int[] datos=valores;
 		String[] fechas=SentenciasSQLiteDatosGrafico.getDias();
+		
+		TextView tituloDatos=(TextView) findViewById(R.id.graphic_data);
+		
+		if(valores.length==0){
+			tituloDatos.setText(R.string.no_data);
+		}else{
+			tituloDatos.setText(R.string.yes_data);
+		}
 		
 		GraphViewData[] datosY=new GraphViewData[datos.length];
 		for(int num=0;num<datos.length;num++){
@@ -94,8 +102,19 @@ public class EstadisticasJugador extends Activity{
 		}
 		GraphViewSeries series2=new GraphViewSeries(datosX);
 		
-		GraphView graphView=new BarGraphView(this,"Datos");
+		GraphView graphView=new BarGraphView(this,"");
+		if(valores.length==0 & fechas.length==0){
+			graphView.getGraphViewStyle().setNumVerticalLabels(1);
+			graphView.getGraphViewStyle().setNumHorizontalLabels(1);
+		}else if(valores.length==0 & fechas.length!=0){
+			graphView.getGraphViewStyle().setNumVerticalLabels(1);
+		}else if(valores.length!=0 & fechas.length==0){
+			graphView.getGraphViewStyle().setNumHorizontalLabels(1);
+		}
+		
 		graphView.setHorizontalLabels(fechas);
+		graphView.setViewPort(1,1);
+		graphView.setScalable(true);
 		
 		graphView.addSeries(series2);
 		graphView.addSeries(series1);
