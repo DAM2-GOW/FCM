@@ -5,6 +5,8 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphViewSeries;
 import gow.fcm.footballcoachmanager.R;
+import gow.fcm.sentencias.SentenciasDeleteSQLite;
+import gow.fcm.sentencias.SentenciasInsertSQLite;
 import gow.fcm.sentencias.SentenciasSQLiteDatosGrafico;
 import gow.fcm.sentencias.SentenciasSQLiteDatosJugador;
 import gow.fcm.sentencias.SentenciasSQLiteListaEstadisticas;
@@ -26,6 +28,14 @@ public class EstadisticasJugador extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_estadisticas_jugador);
 		
+//		for (int i = 0; i < 1; i++) {
+//			SentenciasDeleteSQLite.borrarSQLite("Estadisticas_Partidos", "id_jugador=1");
+//		}
+//		
+//		SentenciasInsertSQLite.insertarSQLite("Estadisticas_Partidos", new String[]{"id_partido","id_jugador","carreras","pases","pases_completados","recepciones","fumbles","sacks","placajes","intercepciones","field_goals","punts","touchdowns","faltas","yardas_carrera","yardas_pase","yardas_recepcion","yardas_fumble","yardas_intercepcion","yardas_field_goal","yardas_punt","extra_points","extra_points_completados","pt2_conversions","pt2_conversions_completados"},new String[]{"1","1","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100"});
+//		SentenciasInsertSQLite.insertarSQLite("Estadisticas_Partidos", new String[]{"id_partido","id_jugador","carreras","pases","pases_completados","recepciones","fumbles","sacks","placajes","intercepciones","field_goals","punts","touchdowns","faltas","yardas_carrera","yardas_pase","yardas_recepcion","yardas_fumble","yardas_intercepcion","yardas_field_goal","yardas_punt","extra_points","extra_points_completados","pt2_conversions","pt2_conversions_completados"},new String[]{"2","1","50","50","50","50","50","50","50","50","50","50","50","50","50","50","50","50","50","50","50","50","50","50","50"});
+//		SentenciasInsertSQLite.insertarSQLite("Estadisticas_Partidos", new String[]{"id_partido","id_jugador","carreras","pases","pases_completados","recepciones","fumbles","sacks","placajes","intercepciones","field_goals","punts","touchdowns","faltas","yardas_carrera","yardas_pase","yardas_recepcion","yardas_fumble","yardas_intercepcion","yardas_field_goal","yardas_punt","extra_points","extra_points_completados","pt2_conversions","pt2_conversions_completados"},new String[]{"3","1","20","20","20","20","20","20","20","20","20","20","20","20","20","20","20","20","20","20","20","20","20","20","20"});
+		
 		Intent i=getIntent();
 		String dorsal=i.getExtras().getString(varDorsal);
 		
@@ -33,7 +43,7 @@ public class EstadisticasJugador extends Activity{
 		rellenarDatosJugador(dorsal);
 		
 		//Este método rellena el gráfico con estadisticas
-		datosGrafico(dorsal,"carreras");
+		datosGrafico(dorsal,"pases");
 	}
 	
 	//Método que rellena los datos del jugador indicado

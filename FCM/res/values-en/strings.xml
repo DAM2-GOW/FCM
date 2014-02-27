@@ -1,0 +1,231 @@
+<resources>
+
+    <string name="Vistadetallada_calendario_hora">Hour:</string>
+    <string name="Vistadetallada_calendario_rival">Rival:</string>
+    <string name="Vistadetallada_calendario_tipo">Type:</string>
+    <string name="acerca_de">About</string>
+    <string name="action_settings">Preferences</string>
+    <string name="activity_nuevoEntrenador_btnGuardarCambios">Save Changes</string>
+    <string name="activity_nuevoEntrenador_lblApellidosEntrenador">Surname:</string>
+    <string name="activity_nuevoEntrenador_lblCiudadEquipo">City:</string>
+    <string name="activity_nuevoEntrenador_lblContraActual">Password:</string>
+    <string name="activity_nuevoEntrenador_lblContrasenya">New Password</string>
+    <string name="activity_nuevoEntrenador_lblEntrenador">Coach</string>
+    <string name="activity_nuevoEntrenador_lblEquipo">Team</string>
+    <string name="activity_nuevoEntrenador_lblNewContra">Repeat Password:</string>
+    <string name="activity_nuevoEntrenador_lblNomEntrenador">Name:</string>
+    <string name="activity_nuevoEntrenador_lblNomEquipo">Team Name:</string>
+    <string name="activity_nuevoEntrenador_lblRepNewContra">Repeat Password:</string>
+    <string name="add_event_img">New event image</string>
+    <string name="add_photo_camera">Take a picture</string>
+    <string name="add_photo_gallery">Add image from gallery</string>
+    <string name="add_player">Add player</string>
+    <string name="apellidos">Surname</string>
+    <string name="app_name">Football Coach Manager</string>
+    <string name="bb_menu_exit">Exit</string>
+    <string name="bb_menu_restore">Restore</string>
+    <string name="bb_menu_save">Save</string>
+    <string name="btn_CANCEL">Cancel</string>
+    <string name="btn_OK">Accept</string>
+    <string name="coach_name">Coach name</string>
+    <string name="coach_settings">Coach options</string>
+    <string name="coach_surname">Coach surname</string>
+    <string name="conditional_option_no">No</string>
+    <string name="conditional_option_yes">Yes</string>
+    <string name="delete_event_img">Delete event image</string>
+    <string name="delete_match">Delete match</string>
+    <string name="delete_player">Delete player</string>
+    <string name="delete_training">Delete training</string>
+    <string name="digital_board">Digital Board</string>
+    <string name="digital_board_img">Digital board image</string>
+    <string name="div_img">Dividing image</string>
+    <string name="dorsal">Dorsal</string>
+    <string name="dorsal_number">0</string>
+    <string name="edad">Age:</string>
+    <string name="edit_event_img">Edit event image</string>
+    <string name="edit_player">Edit player</string>
+    <string name="editar_foto">Edit photo</string>
+    <string name="explicacion_acerca_de">Football Coach Manager(F.C.M.) is an application addressed to coaches and players of American Football. Through its functionality they can improve performance both individually and in team skills.</string>
+    <string name="go_match">Go Match</string>
+    <string name="go_match_img">go match image</string>
+    <string name="hora">Hour</string>
+    <string name="info_img">information image</string>
+    <string name="login_screen_btn_signup">Create Account</string>
+    <string name="login_screen_btn_singin">Enter</string>
+    <string name="login_screen_textview_password">Password</string>
+    <string name="login_screen_textview_recover_pass">Click here to recover the password</string>
+    <string name="login_screen_textview_signin">Username</string>
+    <string name="login_screen_toast_new_password_null">The field password is empty</string>
+    <string name="login_screen_toast_new_user_cancel">The creation of new user was canceled</string>
+    <string name="login_screen_toast_new_user_complete">New user created</string>
+    <string name="login_screen_toast_new_username_null">The field username is empty</string>
+    <string name="login_screen_toast_password_not_match">The password does not match with the username</string>
+    <string name="login_screen_toast_password_null">The field password is empty</string>
+    <string name="login_screen_toast_password_repeat_null">The field repeat password is empty</string>
+    <string name="login_screen_toast_passwords_verification">The passwords do not match</string>
+    <string name="login_screen_toast_recover_password">Now you can use the password</string>
+    <string name="login_screen_toast_recover_password_cancel">The recover password was canceled</string>
+    <string name="login_screen_toast_secret_answer_not_match">The secret answer does not match</string>
+    <string name="login_screen_toast_security_answer_null">The field secret answer is empty</string>
+    <string name="login_screen_toast_surname_null">The field surname is empty</string>
+    <string name="login_screen_toast_username_in_use">The username already exist. Do you forgot the password?</string>
+    <string name="login_screen_toast_username_not_exist">The username does not exist</string>
+    <string name="login_screen_toast_username_null">The field username is empty</string>
+    <string name="look_stats_img">estatistics image</string>
+    <string name="lugar">Place</string>
+    <string name="main_menu_settings">Options</string>
+    <string name="match">Match</string>
+    <string name="miembros_grupo">Members:</string>
+    <string name="msg_no_match">You have not a match today</string>
+    <string name="no_data">No data found</string>
+    <string name="no_match">No match found</string>
+    <string name="no_photo_img">No coach photo</string>
+    <string name="no_players">No players found</string>
+    <string name="no_training">No trainings found</string>
+    <string name="nombre">Name</string>
+    <string name="observaciones">Observations</string>
+    <string name="op_no">No</string>
+    <string name="op_si">Yes</string>
+    <string name="player_list">Player list</string>
+    <string name="player_name">Player name</string>
+    <string name="player_surname">Player surname</string>
+    <string name="playingGround_btn_action_finish_event">End event</string>
+    <string name="playingGround_fragment_dim2_att3_textView_selection">Player who receives:</string>
+    <string name="playingGround_fragment_dim2_att4_def3_ee5_textView_conditional">To us?</string>
+    <string name="playingGround_fragment_dim3_att23_textView_conditional">Does it pass the scremeage line?</string>
+    <string name="playingGround_fragment_dim3_att4_def3_ee5_textView_conditional">Penalization?</string>
+    <string name="playingGround_fragment_dim3_att4_def3_ee5_textView_player">Affected player</string>
+    <string name="playingGround_fragment_dim3_def1_textView_conditional">The rival pass the scremeage line?</string>
+    <string name="playingGround_fragment_final_words_1">Did</string>
+    <string name="playingGround_fragment_final_words_10">with penalization</string>
+    <string name="playingGround_fragment_final_words_11">without penalization</string>
+    <string name="playingGround_fragment_final_words_12">from</string>
+    <string name="playingGround_fragment_final_words_13">to</string>
+    <string name="playingGround_fragment_final_words_2">with</string>
+    <string name="playingGround_fragment_final_words_3">to us</string>
+    <string name="playingGround_fragment_final_words_4">against</string>
+    <string name="playingGround_fragment_final_words_5">Pass the scremage line</string>
+    <string name="playingGround_fragment_final_words_6">Does not pass the scremeage line</string>
+    <string name="playingGround_fragment_final_words_7">The rival pass the scremeage line</string>
+    <string name="playingGround_fragment_final_words_8">The rival does not pass the scremeage line</string>
+    <string name="playingGround_fragment_final_words_9">to player</string>
+    <string name="playingGround_fragment_textView_numPick">Yards</string>
+    <string name="playingGround_gridView_header">Players in playing ground</string>
+    <string name="playingGround_lbl_first_players">Click here to select the first players</string>
+    <string name="playingGround_option_att_rbtn0">Touchdown</string>
+    <string name="playingGround_option_att_rbtn1">Run</string>
+    <string name="playingGround_option_att_rbtn2">Pass</string>
+    <string name="playingGround_option_att_rbtn3">Fault</string>
+    <string name="playingGround_option_def_rbtn0">Block</string>
+    <string name="playingGround_option_def_rbtn1">Interception</string>
+    <string name="playingGround_option_def_rbtn2">Fault</string>
+    <string name="playingGround_option_ee_rbtn0">Field Goal</string>
+    <string name="playingGround_option_ee_rbtn1">Extra Point</string>
+    <string name="playingGround_option_ee_rbtn2">Extra Game</string>
+    <string name="playingGround_option_ee_rbtn3">4DOWN</string>
+    <string name="playingGround_option_ee_rbtn4">Fault</string>
+    <string name="playingGround_popup_players_selector_title">Player Selection Popup Activity</string>
+    <string name="playingGround_popup_toast1">SHOULD select 11 players</string>
+    <string name="playingGround_popup_toast2">SHOULD select 1 player or cancel it</string>
+    <string name="playingGround_template_position">Position:</string>
+    <string name="playingGround_toast_cancel_swap_player">Swap canceled</string>
+    <string name="playingGround_toast_no_player_selected">No players found</string>
+    <string name="pop_ups_nuevos_fecha">Date</string>
+    <string name="popup_newUser_btnGuardar">Save</string>
+    <string name="popup_newUser_camposObligatorios">* The fields are required</string>
+    <string name="popup_newUser_lblApellidos">Surname:*</string>
+    <string name="popup_newUser_lblContrasenya">Password:*</string>
+    <string name="popup_newUser_lblNombre">Name:*</string>
+    <string name="popup_newUser_lblPreguntaSecreta">Choose a secret answer:*</string>
+    <string name="popup_newUser_lblRepContrasenya">Repeat password:*</string>
+    <string name="popup_newUser_lblRespuesta">Answer:*</string>
+    <string name="popup_newUser_lblUser">Username:*</string>
+    <string name="popup_new_user_team_name">Choose the name of the team:*</string>
+    <string name="popup_new_user_toast_team_name_null">The field team name is empty</string>
+    <string name="popup_recoverPass_btnComprobar">Check</string>
+    <string name="popup_recoverPass_lblContrasenya">Your password is:</string>
+    <string name="popup_recoverPass_lblIntroUser">Username:</string>
+    <string name="popup_recoverPass_lblPreguntaSecreta">Secret question:</string>
+    <string name="popup_recoverPass_lblVolver">Accept</string>
+    <string name="popup_recover_password_textview_secret_answer">Your answer:</string>
+    <string name="position">Position</string>
+    <string name="position_name">Position name</string>
+    <string name="rival">Rival</string>
+    <string name="statistics">Estatistics</string>
+    <string name="team_calendar">Calendar</string>
+    <string name="team_calendar_img">Calendar image</string>
+    <string name="team_management">Manage team</string>
+    <string name="team_management_img">Manage team image</string>
+    <string name="team_name">Team name</string>
+    <string name="there_are">There are</string>
+    <string name="tipo_entrenamiento">Training type</string>
+    <string name="title_activity_config_entre">Coach configuration</string>
+    <string name="title_activity_estadisticas_jugador">Player estatistics</string>
+    <string name="title_activity_pantalla_perfil_entrenador">Coach Profile</string>
+    <string name="title_activity_pop_up_config_entre">Coach configuration popup</string>
+    <string name="title_activity_pop_up_new_user">Create new user</string>
+    <string name="title_activity_pop_up_nuevo_entrenamiento">Create new training</string>
+    <string name="title_activity_pop_up_nuevo_jugador">Create new player</string>
+    <string name="title_activity_pop_up_nuevo_partido">Create new match</string>
+    <string name="title_activity_popup_recover_password">Recover lost password</string>
+    <string name="title_page_calendar">Calendar</string>
+    <string name="title_popup_blackboard">Digital Board</string>
+    <string name="title_popup_player_selector">Select player</string>
+    <string name="titulo_entrenamiento">Training title</string>
+    <string name="toast_popup_nuevoeditarentrenamiento">The field training title is empty</string>
+    <string name="toast_popup_nuevoeditarjugador_campovacio">Some field is empty</string>
+    <string name="toast_popup_nuevoeditarjugador_existedorsal">A player with this dorsal already exists</string>
+    <string name="toast_popup_nuevoeditarpartido">Should fill all the fields</string>
+    <string name="training">Training</string>
+    <string name="trainings">Trainings</string>
+    <string name="yes_data">Data</string>
+    <string-array name="TipoEntrenamiento">
+        <item>Resistance</item>
+        <item>Force</item>
+        <item>Agility</item>
+        <item>Specific</item>
+    </string-array>
+    <string-array name="TipoModulo">
+        <item>Repetitions</item>
+        <item>Series</item>
+        <item>Plays</item>
+    </string-array>
+	<string-array name="PreguntasSeguridad">
+        <item>Which is your favourite meal?</item>
+        <item>What is your pets name?</item>
+        <item>Where did you born?</item>
+        <item>Which is your favourite colour?</item>
+    </string-array>
+    <string-array name="TipoJugador">
+        <item>Atack</item>
+        <item>Defens</item>
+        <item>Special Team</item>
+    </string-array>
+    <string-array name="PosicionAtaque">
+        <item>C</item>
+        <item>LG</item>
+        <item>RG</item>
+        <item>LT</item>
+        <item>RT</item>
+        <item>QB</item>
+        <item>RB</item>
+        <item>HB</item>
+        <item>FB</item>
+        <item>WR</item>
+        <item>TE</item>
+    </string-array>
+    <string-array name="PosicionDefensa">
+        <item>DT</item>
+        <item>DE</item>
+        <item>NT</item>
+        <item>CB</item>
+        <item>FS</item>
+        <item>SS</item>
+        <item>LB</item>
+    </string-array>
+    <string-array name="PosicionEE">
+        <item>K</item>
+        <item>P</item>
+    </string-array>
+
+</resources>

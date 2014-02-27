@@ -109,15 +109,6 @@ public class LoginScreen extends Activity {
 			}
 		});
 		
-		btn_DEMO.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// Aqui se podra iniciar una sesion de prueba en la aplicacion con
-				// un entrenador y un equipo con varios datos para consulta.
-				
-			}
-		});
 	}
 
 	@Override
