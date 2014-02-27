@@ -60,7 +60,7 @@ public class SentenciasSQLiteVistaDetallada {
 		
 		// Ejecutamos la sentencia
 		for(int i=0; i<num;i++){
-			SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"dirigido","tipo","fecha"},"id_equipo="+idEquipo+" AND dia='"+dia+"' LIMIT "+(i)+",1");
+			SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"dirigido","tipo","fecha"},"id_equipo="+idEquipo+" AND dia='"+dia+"' LIMIT "+i+",1");
 			
 			// Obtenemos respuesta de existencia
 			String[] valores = SentenciasSelectSQLite.getValores();
@@ -98,7 +98,7 @@ public class SentenciasSQLiteVistaDetallada {
 		
 		// Ejecutamos la sentencia
 		for(int i=0; i<num;i++){
-			SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"lugar","rival","fecha"},"id_equipo="+idEquipo+" AND dia='"+dia+"' LIMIT "+(i)+",1");
+			SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"lugar","rival","fecha"},"id_equipo="+idEquipo+" AND dia='"+dia+"' LIMIT "+i+",1");
 			
 			// Obtenemos respuesta de existencia
 			String[] valores = SentenciasSelectSQLite.getValores();

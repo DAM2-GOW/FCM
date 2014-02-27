@@ -11,20 +11,16 @@ import android.widget.TextView;
 
 public class ArrayAdapterStatisticsList extends ArrayAdapter<Object> {
   private final Context context; // Recoge el contexto en el que es lanzado.
-  private final String statistic; // Recoge las estadisticas recibidas como array de String.
-  private final String date; // Recoge los datos de las estadisticas recibidas como array de String.
-  private final String number; // Recoge los numeros de cada estadistica recibida como array de int.
+  private final String[] statistic; // Recoge las estadisticas recibidas como array de String.
   
   /**
    * Este es el constructor de la clase personalizada.
    * Recibe los datos de nombre, numero y dato de cada estadistica.
    */
-  public ArrayAdapterStatisticsList(Context context, String stat, String date, String numeros) {
+  public ArrayAdapterStatisticsList(Context context, String[] stat) {
     super(context, R.layout.template_item_player_grid);
     this.context = context;
     this.statistic = stat;
-    this.date = date;
-    this.number = numeros;
    
   }
   
@@ -40,14 +36,10 @@ public class ArrayAdapterStatisticsList extends ArrayAdapter<Object> {
     
     // Obtenemos los elementos de ese layout.
     TextView tv_statistic = (TextView) rowView.findViewById(R.id.statistic);
-    TextView tv_date = (TextView) rowView.findViewById(R.id.date);
-    TextView tv_number = (TextView) rowView.findViewById(R.id.number);
     
     //Rellenamos los elementos de ese layout con los elementos aportados
     // al llamar a esta clase.
-    tv_statistic.setText(statistic);
-    tv_date.setText(date);
-    tv_number.setText(number);
+    tv_statistic.setText(statistic[position]);
     
     return rowView;
   }
