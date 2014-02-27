@@ -102,16 +102,6 @@
                     android:textSize="17sp"
                     android:typeface="serif" />
 
-                <Button
-                    android:id="@+id/btn_demo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="98dp"
-                    android:text="DEMO"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:typeface="serif" />
-
             </LinearLayout>
 
             <LinearLayout

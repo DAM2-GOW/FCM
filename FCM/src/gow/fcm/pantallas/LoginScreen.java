@@ -43,7 +43,6 @@ public class LoginScreen extends Activity {
 		tv_pass = (TextView) findViewById(R.id.textView_recover_pass);
 		btn_singIn = (Button) findViewById(R.id.btn_singIn);
 		btn_singUp = (Button) findViewById(R.id.btn_singUp);
-		btn_DEMO = (Button) findViewById(R.id.btn_demo);
 		
 		// Contenido para slideShow de imagenes.
 		View myView1 = (View) findViewById(R.id.view_image1);
