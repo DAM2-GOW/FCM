@@ -197,7 +197,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 			@Override
 			public void onClick(View v) {
 				if(nomJug.getText().toString().trim().equals("") || nomJug.getText().toString().trim().equals(null) || apellJug.getText().toString().trim().equals("") || apellJug.getText().toString().trim().equals(null) || edadJug.getText().toString().trim().equals("") || edadJug.getText().toString().trim().equals(null) || dorsalJug.getText().toString().trim().equals("") || dorsalJug.getText().toString().trim().equals(null)){
-					Toast.makeText(getApplicationContext(), "Algún campo está vacío, compruébalo", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), R.string.toast_popup_nuevoeditarjugador_campovacio, Toast.LENGTH_SHORT).show();
 				}else{
 					
 					int numero=0;
@@ -224,7 +224,7 @@ public class PopUpNuevoEditarJugador extends Activity {
 						}
 						PopUpNuevoEditarJugador.this.finish();
 					}else{
-						Toast.makeText(getApplicationContext(), "Ya existe un jugador con ese dorsal", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), R.string.toast_popup_nuevoeditarjugador_existedorsal, Toast.LENGTH_SHORT).show();
 					}
 				}
 			}

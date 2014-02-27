@@ -221,7 +221,7 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
             @Override
             public void onClick(View v) {
             	if(titulEntrenamiento.getText().toString().trim().equals("") || titulEntrenamiento.getText().toString().trim().equals(null) ){
-            		Toast.makeText(getApplicationContext(), "Esta vacio el campo Título entrenamiento, rellenalo", Toast.LENGTH_SHORT).show();
+            		Toast.makeText(getApplicationContext(), R.string.toast_popup_nuevoeditarentrenamiento, Toast.LENGTH_SHORT).show();
             		
             	}else{
             		diaEntrenamiento = String.valueOf(dp.getDayOfMonth());

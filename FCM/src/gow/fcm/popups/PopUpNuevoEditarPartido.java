@@ -189,7 +189,7 @@ public class PopUpNuevoEditarPartido extends Activity {
             @Override
             public void onClick(View v) {
             	if(lugar.getText().toString().trim().equals("") || lugar.getText().toString().trim().equals(null)|| rival.getText().toString().trim().equals("") || rival.getText().toString().trim().equals(null)){
-            		Toast.makeText(getApplicationContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
+            		Toast.makeText(getApplicationContext(), R.string.toast_popup_nuevoeditarpartido, Toast.LENGTH_SHORT).show();
             		
             	}else{
             		diaEntrenamiento = String.valueOf(dp.getDayOfMonth());

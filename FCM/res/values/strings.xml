@@ -226,5 +226,8 @@
     <string name="login_screen_toast_secret_answer_not_match">La respuesta secreta no se corresponde</string>
     <string name="popup_recover_password_textview_secret_answer">Su respuesta:</string>
     <string name="title_popup_player_selector">Seleccione Jugadores</string>
-
+	<string name="toast_popup_nuevoeditarentrenamiento">Esta vacio el campo Titulo Entrenamiento, rellenalo</string>
+   	<string name="toast_popup_nuevoeditarjugador_campovacio">Algun campo esta vacio compruebalo</string>
+    <string name="toast_popup_nuevoeditarjugador_existedorsal">Ya existe un jugador con ese dorsal</string>
+    <string name="toast_popup_nuevoeditarpartido">Debes rellenar todos los campos</string>
 </resources>
