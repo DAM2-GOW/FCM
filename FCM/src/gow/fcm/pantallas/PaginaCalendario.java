@@ -13,13 +13,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.DisplayMetrics;
-import android.view.ContextMenu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnTouchListener;
 import android.widget.CalendarView;
 import android.widget.ImageView;
@@ -38,7 +34,7 @@ public class PaginaCalendario extends Activity{
 	private CalendarView calendario; //Calendario de los eventos
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
-	private String fechaActual,fechaSeleccionada,varFechaEvento="date_event",varAccion="action"; //Variables para las fechas e Intents en la base de datos
+	private String fechaActual,fechaSeleccionada,varFechaEvento="date_event",varAccion="action",varOpcion="opcion"; //Variables para las fechas e Intents en la base de datos
 	int totalEntrenamiento; //Número total de entrenamientos por un dia determinado
 	
 	@Override
@@ -58,42 +54,6 @@ public class PaginaCalendario extends Activity{
 		//Este método actualiza el contenido del calendario al cerrar el Popup
 		String fechas=getFechaSeleccionada();
 		accionesMostrarEventos(fechas);
-	}
-	
-	//Método de creación de los menús contextuales
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){
-		super.onCreateContextMenu(menu,v,menuInfo);
-		MenuInflater inflater=getMenuInflater();
-		switch(v.getId()){
-			case R.id.borrar_evento_entrenamiento: inflater.inflate(R.menu.entrenamiento_select, menu);
-				break;
-			case R.id.borrar_evento_partido: inflater.inflate(R.menu.partido_select, menu);
-				break;
-			default:
-				break;
-		}
-	}
-	
-	//Método que indica la acción a realizar según la opción elegida en el menú
-	@Override
-	public boolean onContextItemSelected(MenuItem item){
-		switch(item.getItemId()){
-			case R.id.borrarEnt: //Esta opción solo sirve para mostrar los siguientes valores
-				return true;
-			case R.id.optionNoEnt: //Esta opción no realiza ninguna acción
-				return true;
-			case R.id.optionSiEnt: borrarEntrenamiento();
-				return true;
-			case R.id.borrarPart: //Esta opción solo sirve para mostrar los siguientes valores
-				return true;
-			case R.id.optionNoPart: //Esta opción no realiza ninguna acción
-				return true;
-			case R.id.optionSiPart: borrarPartido();
-				return true;
-			default:
-				return super.onContextItemSelected(item);
-		}
 	}
 	
 	//Método que devuelve la fecha actual
@@ -549,11 +509,7 @@ public class PaginaCalendario extends Activity{
 				switch(arg1.getAction()){
 					case MotionEvent.ACTION_DOWN: {
 						borrarEventoEntrenamiento.setImageResource(R.drawable.delete_event_down);
-						if(totalEntrenamiento>1){
-							borrarEntrenamiento();
-						}else{
-							borrarEventoEntrenamiento.showContextMenu(); //Menú contextual para borrar el entrenamiento
-						}
+						borrarEntrenamiento();
 						break;
 					}
 					case MotionEvent.ACTION_UP:
@@ -633,7 +589,7 @@ public class PaginaCalendario extends Activity{
 				switch(arg1.getAction()){
 					case MotionEvent.ACTION_DOWN: {
 						borrarEventoPartido.setImageResource(R.drawable.delete_event_down);
-						borrarEventoPartido.showContextMenu(); //Menú contextual para borrar el partido
+						borrarPartido();
 						break;
 					}
 					case MotionEvent.ACTION_UP:
@@ -667,7 +623,11 @@ public class PaginaCalendario extends Activity{
 	
 	//El siguiente método abre un popup para ver los entrenamientos
 	private void verStatsEntrenamiento(){
+		String fecha=getFechaSeleccionada();
 		Intent i=new Intent(this,DetalleCalendario.class);
+		i.putExtra(varAccion,"ver");
+		i.putExtra(varFechaEvento,fecha);
+		i.putExtra(varOpcion,0);
 		startActivity(i);
 	}
 	
@@ -675,34 +635,21 @@ public class PaginaCalendario extends Activity{
 	private void editarEntrenamiento(){
 		//Pasamos la fecha seleccionada a milisegundos
 		String fecha=getFechaSeleccionada();
-		Date date=null;
-		try{
-			date=formato.parse(fecha);
-		}catch (ParseException e){
-			e.printStackTrace();
-		}
-		
-		Intent i=null;
-		if(totalEntrenamiento>1){
-			i=new Intent(this,DetalleCalendario.class);
-		}else{
-			i=new Intent(this,PopUpNuevoEditarEntrenamiento.class);
-		}
+		Intent i=new Intent(this,DetalleCalendario.class);
 		i.putExtra(varAccion,"editar");
-		i.putExtra(varFechaEvento,date.getTime());
+		i.putExtra(varFechaEvento,fecha);
+		i.putExtra(varOpcion,0);
 		startActivity(i);
 	}
 	
 	//El siguiente método abre un popup para borrar los entrenamiento
 	private void borrarEntrenamiento(){
-		if(totalEntrenamiento>1){
-			Intent i=new Intent(this,DetalleCalendario.class);
-			startActivity(i);
-		}else{
-			String fecha=getFechaSeleccionada();
-			SentenciasSQLiteCalendario.borrarEventoEntrenamiento(this,fecha);
-			accionesMostrarEventos(fecha);
-		}
+		String fecha=getFechaSeleccionada();
+		Intent i=new Intent(this,DetalleCalendario.class);
+		i.putExtra(varAccion,"borrar");
+		i.putExtra(varFechaEvento,fecha);
+		i.putExtra(varOpcion,0);
+		startActivity(i);
 	}
 	
 	//El siguiente método abre un popup para agregar un partido
@@ -724,34 +671,32 @@ public class PaginaCalendario extends Activity{
 	
 	//El siguiente método abre un popup para ver un partido
 	private void verStatsPartido(){
+		String fecha=getFechaSeleccionada();
 		Intent i=new Intent(this,DetalleCalendario.class);
-		i.putExtra("dia", "DIA ACTUAL CAMBIAR");
-		i.putExtra("opcion", 1);
+		i.putExtra(varAccion,"ver");
+		i.putExtra(varFechaEvento,fecha);
+		i.putExtra(varOpcion,1);
 		startActivity(i);
 	}
 	
 	//El siguiente método abre un popup para editar un partido
 	private void editarPartido(){
-		//Pasamos la fecha seleccionada a milisegundos
 		String fecha=getFechaSeleccionada();
-		Date date=null;
-		try{
-			date=formato.parse(fecha);
-		}catch (ParseException e){
-			e.printStackTrace();
-		}
-		
-		Intent i=new Intent(this,PopUpNuevoEditarPartido.class);
+		Intent i=new Intent(this,DetalleCalendario.class);
 		i.putExtra(varAccion,"editar");
-		i.putExtra(varFechaEvento,date.getTime());
+		i.putExtra(varFechaEvento,fecha);
+		i.putExtra(varOpcion,1);
 		startActivity(i);
 	}
 	
 	//El siguiente método borra un partido
 	private void borrarPartido(){
 		String fecha=getFechaSeleccionada();
-		SentenciasSQLiteCalendario.borrarEventoPartido(this,fecha);
-		accionesMostrarEventos(fecha);
+		Intent i=new Intent(this,DetalleCalendario.class);
+		i.putExtra(varAccion,"borrar");
+		i.putExtra(varFechaEvento,fecha);
+		i.putExtra(varOpcion,1);
+		startActivity(i);
 	}
 	
 }

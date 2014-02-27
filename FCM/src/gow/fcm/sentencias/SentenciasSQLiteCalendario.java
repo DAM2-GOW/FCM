@@ -60,26 +60,6 @@ public class SentenciasSQLiteCalendario{
 		}
 	}
 	
-	//Este método borrar los entrenamientos
-	public static void borrarEventoEntrenamiento(Context contexto,String fecha){
-		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
-		SentenciasSelectSQLite.borrarTodosValores();
-		
-		//Obtenemos el identificador
-		DatosFootball.getDatosFootball(contexto);
-		int id=DatosFootball.getIdEquipo();
-		
-		//Ejcutamos la sentencia
-		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"id_entrenamiento"},"id_equipo="+id+" AND dia='"+fecha+"'");
-		
-		//Almacenamos los valores
-		String[] valores=SentenciasSelectSQLite.getValores();
-		String idEntrenamiento=valores[0];
-		
-		//Ejcutamos la sentencia
-		SentenciasDeleteSQLite.borrarSQLite("Entrenamientos","id_entrenamiento="+idEntrenamiento+"");
-	}
-	
 	//Este método obtiene los datos del partido
 	public static void getDatosPartidos(Context contexto,String fecha){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
@@ -104,25 +84,4 @@ public class SentenciasSQLiteCalendario{
 			}
 		}
 	}
-	
-	//Este método borrar los partidos
-	public static void borrarEventoPartido(Context contexto,String fecha){
-		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
-		SentenciasSelectSQLite.borrarTodosValores();
-		
-		//Obtenemos el identificador
-		DatosFootball.getDatosFootball(contexto);
-		int id=DatosFootball.getIdEquipo();
-		
-		//Ejcutamos la sentencia
-		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"id_partido"},"id_equipo="+id+" AND dia='"+fecha+"'");
-		
-		//Almacenamos los valores
-		String[] valores=SentenciasSelectSQLite.getValores();
-		String idPartido=valores[0];
-		
-		//Ejcutamos la sentencia
-		SentenciasDeleteSQLite.borrarSQLite("Partidos","id_partido="+idPartido+"");
-	}
-	
 }

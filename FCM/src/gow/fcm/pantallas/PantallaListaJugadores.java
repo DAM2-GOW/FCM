@@ -1,6 +1,5 @@
 package gow.fcm.pantallas;
 
-import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.popups.PopUpNuevoEditarJugador;
 import gow.fcm.sentencias.SentenciasSQLiteListaJugadores;
@@ -42,8 +41,6 @@ public class PantallaListaJugadores extends Activity {
 		// nombre de la
 		// aplicación
 		setContentView(R.layout.activity_lista_jugadores);
-		
-		ConexionSQLite.getCrearSQLite(this);
 		
 		//DatosFootball.setDatosFootball(this,1,1);
 		//SentenciasInsertSQLite.insertarSQLite("Equipos",new String[]{"nombre"},new String[]{"Pepe Team"});

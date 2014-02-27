@@ -38,7 +38,7 @@ public class SentenciasSQLiteNuevoEditarEntrenamiento{
 	}
 	
 	//Este método obtiene los datos del entrenamiento para editarlo
-	public static void getDatosEditarEntrenamiento(Context contexto,String dia){
+	public static void getDatosEditarEntrenamiento(Context contexto,String dia,String posicion){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
 		SentenciasSelectSQLite.borrarTodosValores();
 		
@@ -47,7 +47,7 @@ public class SentenciasSQLiteNuevoEditarEntrenamiento{
 		int id=DatosFootball.getIdEquipo();
 		
 		//Ejcutamos la sentencia
-		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"tipo","dirigido","dia","fecha","observaciones"},"id_equipo="+id+" AND dia='"+dia+"'");
+		SentenciasSelectSQLite.seleccionarSQLite("Entrenamientos",new String[]{"tipo","dirigido","dia","fecha","observaciones"},"id_equipo="+id+" AND dia='"+dia+"' LIMIT "+posicion+",1");
 		
 		//Almacenamos los valores
 		String[] valores=(String[]) SentenciasSelectSQLite.getValores();

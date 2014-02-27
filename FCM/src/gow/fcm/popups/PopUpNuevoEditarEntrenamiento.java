@@ -40,7 +40,7 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 	private Spinner sp;
 	private Button bt;
 	private EditText titulEntrenamiento, observacionesEntrenamiento;
-	private String stringTipoEntrenamiento, fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event", varAccion="action", times;
+	private String stringTipoEntrenamiento, fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event", varAccion="action",varPosicion="position", times;
 	private int hour,min; //Variables que almacenan la hora del sistema o del evento
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
@@ -63,6 +63,7 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 		Intent i=getIntent();
 		final long fecha=i.getExtras().getLong(varFechaEvento);
 		final String accion=i.getExtras().getString(varAccion);
+		final String posicion=i.getExtras().getString(varPosicion);
 		
 		//Declaramos los elementos a usar por el Popup
 		titulEntrenamiento = (EditText) findViewById(R.id.titulo_entrenamientoNuevo);
@@ -74,7 +75,7 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 		
 		if(accion.equals("editar")){
 			times=formato.format(fecha);
-			SentenciasSQLiteNuevoEditarEntrenamiento.getDatosEditarEntrenamiento(this,times);
+			SentenciasSQLiteNuevoEditarEntrenamiento.getDatosEditarEntrenamiento(this,times,posicion);
 			
 			//Obtenemos los datos
 			String targetTraining=SentenciasSQLiteNuevoEditarEntrenamiento.getDirigidoEntrenamiento();
@@ -165,7 +166,7 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 			//Obtenemos la hora
 			String horaEntrenamiento="";
 			for(int num=0;num<=1;num++){
-				horaEntrenamiento=horaEntrenamiento.concat(String.valueOf(hora.charAt(num+0)));
+				horaEntrenamiento=horaEntrenamiento.concat(String.valueOf(hora.charAt(num+1)));
 				horaEntrenamiento=horaEntrenamiento.replace(":","");
 			}
 			hour=Integer.parseInt(horaEntrenamiento);
@@ -200,7 +201,11 @@ public class PopUpNuevoEditarEntrenamiento extends Activity {
 					if(hourOfDay<hour){
 						tp.setCurrentHour(hour);
 					}else if(minute<min){
-						tp.setCurrentMinute(min);
+						if(hourOfDay>hour){
+							//Solo controlamos la opción para que no realice ninguna acción y podamos cambiar los minutos
+						}else{
+							tp.setCurrentMinute(min);
+						}
 					}
 				}
 				

@@ -28,7 +28,7 @@ public class EstadisticasJugador extends Activity {
 	String yardas_carrera, yardas_pase, yardas_recepcion, yardas_fumble, yardas_intercepcion, yardas_field_goal, yardas_punt, extra_points, extra_points_completados, pt2_conversions, pt2_conversion_completados, yardas_falta;
 
 	String car, pas, rec, fum, sac, pla, inter, figo, pun, tou, fal, extp, ptcon; 
-
+	
 	GraphViewSeries series;
 
 	@Override
@@ -85,7 +85,7 @@ public class EstadisticasJugador extends Activity {
 
 		FillStatistics(carrera, pases, pase_comp, recep, fumbles, sacks, placajes, intercepciones, field_goals, punts, touchdown, faltas, yardas_carrera, yardas_pase, yardas_recepcion, yardas_fumble, yardas_intercepcion, yardas_field_goal, yardas_punt, extra_points,extra_points_completados, pt2_conversions, pt2_conversion_completados, yardas_falta);
 
-		TextView et = (TextView) findViewById(R.id.statistic);
+		//TextView et = (TextView) findViewById(R.id.statistic);
 		int[] DatosR;
 		int[] Dias;
 

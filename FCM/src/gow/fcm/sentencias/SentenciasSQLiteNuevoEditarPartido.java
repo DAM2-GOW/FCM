@@ -33,7 +33,7 @@ public class SentenciasSQLiteNuevoEditarPartido{
 	}
 	
 	//Este método obtiene los datos del partido para editarlo
-	public static void getDatosEditarPartido(Context contexto,String dia){
+	public static void getDatosEditarPartido(Context contexto,String dia,String posicion){
 		//Reseteamos los valores antes de obtenerlos para obtener los valores adecuados para el método
 		SentenciasSelectSQLite.borrarTodosValores();
 		
@@ -42,7 +42,7 @@ public class SentenciasSQLiteNuevoEditarPartido{
 		int id=DatosFootball.getIdEquipo();
 		
 		//Ejcutamos la sentencia
-		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"lugar","rival","dia","fecha"},"id_equipo="+id+" AND dia='"+dia+"'");
+		SentenciasSelectSQLite.seleccionarSQLite("Partidos",new String[]{"lugar","rival","dia","fecha"},"id_equipo="+id+" AND dia='"+dia+"' LIMIT "+posicion+",1");
 		
 		//Almacenamos los valores
 		String[] valores=(String[]) SentenciasSelectSQLite.getValores();

@@ -48,12 +48,17 @@ public class ArrayAdapterVistaCalendario extends ArrayAdapter<String> {
     TextView tv_player_hora = (TextView) rowView.findViewById(R.id.hora);
     TextView tv_player_cosa = (TextView) rowView.findViewById(R.id.textView_tipoevento);
     
-    //Rellenamos los elementos de ese layout con los elementos aportados
-    // al llamar a esta clase.
+    //Rellenamos los elementos de ese layout con los elementos aportados al llamar a esta clase
     tv_player_name.setText(name[position]);
-    tv_player_type.setText(context.getString(R.string.Vistadetallada_calendario_tipo)+" "+type[position]);
     tv_player_hora.setText(context.getString(R.string.Vistadetallada_calendario_hora)+" "+hora[position]);
     tv_player_cosa.setText(cosa);
+    
+    //Actualizamos el valor según el tipo de evento que sea
+    if(cosa.equals("Entrenamiento")){
+        tv_player_type.setText(context.getString(R.string.Vistadetallada_calendario_tipo)+" "+type[position]);
+    }else if(cosa.equals("Partido")){
+        tv_player_type.setText(context.getString(R.string.Vistadetallada_calendario_rival)+" "+type[position]);
+    }
     
     // Al ser una clase independiente, lo que nos interesa es obtener de ella datos,
     // ahora que han sido procesados las acciones oportunas devolvemos todos esos

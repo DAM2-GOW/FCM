@@ -3,6 +3,7 @@ package gow.fcm.popups;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import gow.fcm.basedatos.ConexionSQLite;
 import gow.fcm.footballcoachmanager.R;
 import gow.fcm.sentencias.SentenciasInsertSQLite;
@@ -36,7 +37,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 	private Button bt;
 	private EditText lugar,rival;
 	//Elementos que interactuan con el popup e Intents de otras páginas
-	private String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event", varAccion="action", times;
+	private String fechaEntrenamiento="", horaMinuto, diaEntrenamiento, mesEntrenamiento, anyoEntrenamiento, varFechaEvento="date_event", varAccion="action",varPosicion="position", times;
 	private int hour,min; //Variables que almacenan la hora del sistema o del evento
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd"); //Formato de conversión a Date
@@ -59,6 +60,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 		Intent i=getIntent();
 		final long fecha=i.getExtras().getLong(varFechaEvento);
 		final String accion=i.getExtras().getString(varAccion);
+		final String posicion=i.getExtras().getString(varPosicion);
 		
 		//Declaramos los elementos a usar por el Popup
 		lugar = (EditText) findViewById(R.id.lugarPartidoNuevo);
@@ -69,7 +71,7 @@ public class PopUpNuevoEditarPartido extends Activity {
 		
 		if(accion.equals("editar")){
 			times=formato.format(fecha);
-			SentenciasSQLiteNuevoEditarPartido.getDatosEditarPartido(this,times);
+			SentenciasSQLiteNuevoEditarPartido.getDatosEditarPartido(this,times,posicion);
 			
 			//Obtenemos los datos
 			String placeMatch=SentenciasSQLiteNuevoEditarPartido.getLugarPartido();
@@ -167,7 +169,11 @@ public class PopUpNuevoEditarPartido extends Activity {
 					if(hourOfDay<hour){
 						tp.setCurrentHour(hour);
 					}else if(minute<min){
-						tp.setCurrentMinute(min);
+						if(hourOfDay>hour){
+							//Solo controlamos la opción para que no realice ninguna acción y podamos cambiar los minutos
+						}else{
+							tp.setCurrentMinute(min);
+						}
 					}
 				}
 				
